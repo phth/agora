@@ -31,7 +31,7 @@ namespace AgoraTeam\Agora\Domain\Repository;
 /**
  * The repository for Votings
  */
-class VotingRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class VotingRepository extends Repository {
 
-	
+
 }

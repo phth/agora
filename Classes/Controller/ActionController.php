@@ -1,7 +1,6 @@
 <?php
 namespace AgoraTeam\Agora\Controller;
 
-
 /***************************************************************
  *
  *  Copyright notice
@@ -32,6 +31,43 @@ namespace AgoraTeam\Agora\Controller;
  * ActionController
  */
 class ActionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+
+	/**
+	 * userRepository
+	 *
+	 * @var \AgoraTeam\Agora\Domain\Repository\UserRepository
+	 * @inject
+	 */
+	protected $userRepository;
+
+
+	/**
+	 * Get current logged in user
+	 *
+	 * @return null|object
+	 */
+	public function getCurrentUser() {
+		if (!is_array($GLOBALS['TSFE']->fe_user->user)) {
+			return NULL;
+		}
+		return $this->userRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
+	}
+
+	/**
+	 * Get Usergroups from current user
+	 *
+	 * @return array
+	 */
+	public function getCurrentUsergroupUids() {
+		$currentUser = $this->getCurrentUser();
+		$usergroupUids = array();
+		if ($currentUser !== NULL) {
+			foreach ($currentUser->getUsergroup() as $usergroup) {
+				$usergroupUids[] = $usergroup->getUid();
+			}
+		}
+		return $usergroupUids;
+	}
 
 
 }

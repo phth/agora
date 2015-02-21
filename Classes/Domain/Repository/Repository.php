@@ -1,7 +1,6 @@
 <?php
 namespace AgoraTeam\Agora\Domain\Repository;
 
-
 /***************************************************************
  *
  *  Copyright notice
@@ -29,25 +28,43 @@ namespace AgoraTeam\Agora\Domain\Repository;
  ***************************************************************/
 
 /**
- * The repository for Users
+ * Class Repository
+ *
+ * @package AgoraTeam\Agora\Domain\Repository
  */
-class UserRepository extends Repository {
+class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
-	 * @param int $uid
-	 * @return object
+	 * @var \AgoraTeam\Agora\Domain\Repository\UserRepository
+	 * @inject
 	 */
-	public function findByUid($uid) {
-		$query = $this->createQuery();
-		$query->getQuerySettings()->setIgnoreEnableFields(TRUE);
-		$query->getQuerySettings()->setRespectSysLanguage(FALSE);
-		$query->getQuerySettings()->setRespectStoragePage(FALSE);
-		$and = array(
-			$query->equals('uid', $uid),
-			$query->equals('deleted', 0)
-		);
-		$object = $query->matching($query->logicalAnd($and))->execute()->getFirst();
-		return $object;
+	public $userRepository;
+
+	/**
+	 * @var
+	 */
+	protected $user;
+
+
+	public function initializeObject() {
+		$user = $GLOBALS['TSFE']->fe_user->user;
+		$this->user = $this->userRepository->findByUid($user['uid']);
+	}
+
+
+
+	/**
+	 * @return mixed
+	 */
+	public function getUser() {
+		return $this->user;
+	}
+
+	/**
+	 * @param mixed $user
+	 */
+	public function setUser($user) {
+		$this->user = $user;
 	}
 
 

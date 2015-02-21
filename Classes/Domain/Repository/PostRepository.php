@@ -31,7 +31,7 @@ namespace AgoraTeam\Agora\Domain\Repository;
 /**
  * The repository for Posts
  */
-class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class PostRepository extends Repository {
 
-	
+
 }

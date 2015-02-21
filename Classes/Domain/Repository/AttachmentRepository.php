@@ -31,7 +31,7 @@ namespace AgoraTeam\Agora\Domain\Repository;
 /**
  * The repository for Attachments
  */
-class AttachmentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class AttachmentRepository extends Repository {
 
-	
+
 }

@@ -31,20 +31,26 @@ namespace AgoraTeam\Agora\Domain\Repository;
 /**
  * The repository for Threads
  */
-class ThreadRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class ThreadRepository extends Repository {
 
 	/**
 	 * Finds the latest Threads
 	 *
 	 * @param integer $limit The number of threads to return at max
-	 * @param $user
 	 * @return \Extbase\Persistence\QueryResultInterface
 	 */
-	public function findLatestThreadsForUser($limit, $user) {
+	public function findLatestThreadsForUser($limit) {
+		$user = $this->getUser();
+
 		$query = $this->createQuery();
-		return $query
-				->setLimit((integer)$limit)
-				->execute();
+
+		$result = $query->setLimit((integer)$limit)->execute();
+		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($result ,__FILE__ . " " . __LINE__);
+
+
+//		return $query
+//				->setLimit((integer)$limit)
+//				->execute();
 	}
 
 

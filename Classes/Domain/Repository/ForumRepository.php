@@ -31,7 +31,7 @@ namespace AgoraTeam\Agora\Domain\Repository;
 /**
  * The repository for Forums
  */
-class ForumRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class ForumRepository extends Repository {
 
-	
+
 }

@@ -42,14 +42,6 @@ class ThreadController extends ActionController {
 	protected $threadRepository = NULL;
 
 	/**
-	 * frontendUserRepository
-	 *
-	 * @var
-	 * @inject
-	 */
-	protected $frontendUserRepository = NULL;
-
-	/**
 	 * action list
 	 *
 	 * @return void
@@ -133,9 +125,10 @@ class ThreadController extends ActionController {
 	 * @return void
 	 */
 	public function listLatestAction() {
-		$user = '';
-		$limit = $this->settings['threads']['numberOfItemsInLatestView'];
-		$latestThreads = $this->threadRepository->findLatestThreadsForUser($limit, $user);
+		$limit = $this->settings['thread']['numberOfItemsInLatestView'];
+//		$latestThreads = $this->threadRepository->findLatestThreadsForUser($limit);
+		$latestThreads = $this->threadRepository->findAll();
+		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($latestThreads,__FILE__ . " " . __LINE__);
 		$this->view->assign('latestThreads', $latestThreads);
 	}
 

@@ -2,21 +2,20 @@
 config.tx_extbase{
     persistence{
         classes{
-
             AgoraTeam\Agora\Domain\Model\User {
                 mapping {
                     tableName = fe_users
-                    recordType = Tx_Agora_User
+                    recordType =
                 }
             }
-            
+
             AgoraTeam\Agora\Domain\Model\Group {
                 mapping {
                     tableName = fe_groups
-                    recordType = Tx_Agora_Group
+                    recordType =
                 }
             }
-            
+
     	}
     }
 }
