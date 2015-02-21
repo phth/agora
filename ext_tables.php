@@ -27,7 +27,7 @@ if (TYPO3_MODE === 'BE') {
 		'',						// Position
 		array(
 			'ForumAdmin' => 'list, new, create, edit, update, statistic',
-			
+
 		),
 		array(
 			'access' => 'user,group',
@@ -38,7 +38,8 @@ if (TYPO3_MODE === 'BE') {
 
 }
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Agora - TYPO3 Forum');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Main', 'Agora - TYPO3 Forum');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript/ExampleTemplate', 'Agora - TYPO3 Forum - Bootstrap Theme');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_agora_domain_model_forum', 'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_forum.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_agora_domain_model_forum');

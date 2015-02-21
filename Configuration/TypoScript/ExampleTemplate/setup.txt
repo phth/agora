@@ -1,0 +1,7 @@
+page {
+    includeCSSLibs {
+        agoraBootstrap = EXT:agora/Resources/Public/Library/Bootstrap/css/bootstrap.min.css
+        agoraBootstrapTheme = EXT:agora/Resources/Public/Library/Bootstrap/css/bootstrap-theme.min.css
+        agoraTheme = EXT:agora/Resources/Public/Css/agora-theme.css
+    }
+}
