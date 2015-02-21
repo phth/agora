@@ -33,5 +33,18 @@ namespace AgoraTeam\Agora\Domain\Repository;
  */
 class ThreadRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
-	
+	/**
+	 * Finds the latest Threads
+	 *
+	 * @param integer $limit The number of threads to return at max
+	 * @return \Extbase\Persistence\QueryResultInterface
+	 */
+	public function findLatestThreads($limit) {
+		$query = $this->createQuery();
+		return $query
+				-setLimit((integer)$limit)
+				->execute();
+	}
+
+
 }

@@ -35,7 +35,7 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * threadRepository
-	 * 
+	 *
 	 * @var \AgoraTeam\Agora\Domain\Repository\ThreadRepository
 	 * @inject
 	 */
@@ -43,7 +43,7 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action list
-	 * 
+	 *
 	 * @return void
 	 */
 	public function listAction() {
@@ -53,7 +53,7 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action show
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 * @return void
 	 */
@@ -63,7 +63,7 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action new
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $newThread
 	 * @ignorevalidation $newThread
 	 * @return void
@@ -74,7 +74,7 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action create
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $newThread
 	 * @return void
 	 */
@@ -86,7 +86,7 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action edit
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 * @ignorevalidation $thread
 	 * @return void
@@ -97,7 +97,7 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action update
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 * @return void
 	 */
@@ -109,7 +109,7 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action delete
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 * @return void
 	 */
@@ -121,11 +121,13 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action listLatest
-	 * 
+	 *
 	 * @return void
 	 */
 	public function listLatestAction() {
-		
+		$limit = $this->settings['threads']['numberOfItemsInLatestView'];
+		$latestThreads = $this->threadRepository->findLatestThreads($limit);
+		$this->view->assign('latestThreads', $latestThreads);
 	}
 
 }
