@@ -440,8 +440,8 @@
         {
             "config": {
                 "position": [
-                    752,
-                    835
+                    966,
+                    707
                 ]
             },
             "name": "New Model Object",
@@ -452,7 +452,10 @@
                     "_default2_new_create": false,
                     "_default3_edit_update": false,
                     "_default4_delete": false,
-                    "customActions": []
+                    "customActions": [
+                        "favoritePosts",
+                        "observedThreads"
+                    ]
                 },
                 "name": "User",
                 "objectsettings": {
@@ -726,7 +729,28 @@
                     "uid": "517328384667"
                 },
                 "propertyGroup": {
-                    "properties": []
+                    "properties": [
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": false,
+                            "propertyName": "title",
+                            "propertyType": "String",
+                            "uid": "1019390873202"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsRequired": true,
+                            "propertyName": "file",
+                            "propertyType": "File",
+                            "uid": "63159855969"
+                        }
+                    ]
                 },
                 "relationGroup": {
                     "relations": []
@@ -1009,7 +1033,7 @@
                 "actions": {
                     "controllerActionCombinations": "",
                     "noncacheableActions": "",
-                    "switchableActions": "User => favoritePosts,\nUser => observedThreads\nThread => listLatest\nPost => listLatest\nMessage => list; Message => listConversation; Message => new; Message => create "
+                    "switchableActions": "Favorite Posts\nUser->favoritePosts;\nObserved Threads\nUser->observedThreads;\nLatest Threads\nThread->listLatest;\nLatest Posts\nPost->listLatest;\nInobx\nMessage->list; Message->listConversation; Message->new; Message->create;"
                 },
                 "key": "widgets",
                 "name": "Widgets"
@@ -1423,12 +1447,12 @@
             "tgt": {
                 "moduleId": 2,
                 "terminal": "SOURCES",
-                "uid": "1014072435350"
+                "uid": "491724027225"
             }
         }
     ],
     "log": {
-        "last_modified": "2015-02-21 07:32",
+        "last_modified": "2015-02-21 08:00",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

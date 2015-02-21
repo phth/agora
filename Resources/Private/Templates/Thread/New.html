@@ -19,7 +19,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:render partial="FormErrors" arguments="{object:Thread}" />
 
-<f:form action="create"  name="newThread" object="{newThread}">
+<f:form action="create"  enctype="multipart/form-data"  name="newThread" object="{newThread}">
 <f:render partial="Thread/FormFields" />
 	<f:form.submit value="Create new" />
 </f:form>

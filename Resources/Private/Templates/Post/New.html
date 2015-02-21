@@ -19,7 +19,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:render partial="FormErrors" arguments="{object:Post}" />
 
-<f:form action="create"  name="newPost" object="{newPost}">
+<f:form action="create"  enctype="multipart/form-data"  name="newPost" object="{newPost}">
 <f:render partial="Post/FormFields" />
 	<f:form.submit value="Create new" />
 </f:form>

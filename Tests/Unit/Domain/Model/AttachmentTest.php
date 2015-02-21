@@ -53,7 +53,47 @@ class AttachmentTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
-	public function dummyTestToNotLeaveThisFileEmpty() {
-		$this->markTestIncomplete();
+	public function getTitleReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getTitle()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setTitleForStringSetsTitle() {
+		$this->subject->setTitle('Conceived at T3CON10');
+
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'title',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getFileReturnsInitialValueForFileReference() {
+		$this->assertEquals(
+			NULL,
+			$this->subject->getFile()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setFileForFileReferenceSetsFile() {
+		$fileReferenceFixture = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+		$this->subject->setFile($fileReferenceFixture);
+
+		$this->assertAttributeEquals(
+			$fileReferenceFixture,
+			'file',
+			$this->subject
+		);
 	}
 }

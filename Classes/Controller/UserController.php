@@ -1,5 +1,5 @@
 <?php
-namespace AgoraTeam\Agora\Domain\Model;
+namespace AgoraTeam\Agora\Controller;
 
 
 /***************************************************************
@@ -29,61 +29,34 @@ namespace AgoraTeam\Agora\Domain\Model;
  ***************************************************************/
 
 /**
- * Attachment
+ * UserController
  */
-class Attachment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class UserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
-	 * title
+	 * userRepository
 	 * 
-	 * @var string
+	 * @var \AgoraTeam\Agora\Domain\Repository\UserRepository
+	 * @inject
 	 */
-	protected $title = '';
+	protected $userRepository = NULL;
 
 	/**
-	 * file
+	 * action favoritePosts
 	 * 
-	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 * @validate NotEmpty
-	 */
-	protected $file = NULL;
-
-	/**
-	 * Returns the title
-	 * 
-	 * @return string $title
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
-
-	/**
-	 * Sets the title
-	 * 
-	 * @param string $title
 	 * @return void
 	 */
-	public function setTitle($title) {
-		$this->title = $title;
+	public function favoritePostsAction() {
+		
 	}
 
 	/**
-	 * Returns the file
+	 * action observedThreads
 	 * 
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $file
-	 */
-	public function getFile() {
-		return $this->file;
-	}
-
-	/**
-	 * Sets the file
-	 * 
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $file
 	 * @return void
 	 */
-	public function setFile(\TYPO3\CMS\Extbase\Domain\Model\FileReference $file) {
-		$this->file = $file;
+	public function observedThreadsAction() {
+		
 	}
 
 }

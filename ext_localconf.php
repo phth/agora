@@ -30,6 +30,7 @@ if (!defined('TYPO3_MODE')) {
 		'Forum' => 'list, show, new, create, edit, update, delete',
 		'Post' => 'list, show, new, create, edit, update, delete, listLatest',
 		'Thread' => 'list, show, new, create, edit, update, delete, listLatest',
+		'User' => 'favoritePosts, observedThreads',
 		'Message' => 'list, show, new, create, delete, listConversation',
 		'Attachment' => 'download',
 		
@@ -39,6 +40,7 @@ if (!defined('TYPO3_MODE')) {
 		'Forum' => 'create, update, delete',
 		'Post' => 'create, update, delete, ',
 		'Thread' => 'create, update, delete, ',
+		'User' => '',
 		'Message' => 'create, delete, ',
 		'Attachment' => '',
 		

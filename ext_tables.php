@@ -15,6 +15,10 @@ if (!defined('TYPO3_MODE')) {
 	'Widgets'
 );
 
+$pluginSignature = str_replace('_','',$_EXTKEY) . '_widgets';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_widgets.xml');
+
 if (TYPO3_MODE === 'BE') {
 
 	/**
@@ -191,7 +195,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_voting'] = array(
 $GLOBALS['TCA']['tx_agora_domain_model_attachment'] = array(
 	'ctrl' => array(
 		'title'	=> 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_attachment',
-		'label' => 'uid',
+		'label' => 'title',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -209,7 +213,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_attachment'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => '',
+		'searchFields' => 'title,file,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Attachment.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_agora_domain_model_attachment.gif'
 	),
