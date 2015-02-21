@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-02-02T18:11:01Z" product-name="agora">
+		<header/>
+		<body>
+			<trans-unit id="title.description">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="description.description">
+				<source>description</source>
+			</trans-unit>
+			<trans-unit id="public.description">
+				<source>public</source>
+			</trans-unit>
+			<trans-unit id="parent.description">
+				<source>parent</source>
+			</trans-unit>
+			<trans-unit id="threads.description">
+				<source>threads</source>
+			</trans-unit>
+			<trans-unit id="groups_with_read_access.description">
+				<source>groupsWithReadAccess</source>
+			</trans-unit>
+			<trans-unit id="group_with_write_accesss.description">
+				<source>groupWithWriteAccesss</source>
+			</trans-unit>
+			<trans-unit id="groups_with_modification_access.description">
+				<source>groupsWithModificationAccess</source>
+			</trans-unit>
+			<trans-unit id="users_with_read_access.description">
+				<source>usersWithReadAccess</source>
+			</trans-unit>
+			<trans-unit id="users_wth_write_accessii.description">
+				<source>usersWthWriteAccessii</source>
+			</trans-unit>
+			<trans-unit id="users_with_modification_access.description">
+				<source>usersWithModificationAccess</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

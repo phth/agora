@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-02-02T18:11:01Z" product-name="agora">
+		<header/>
+		<body>
+			<trans-unit id="voting.description">
+				<source>voting</source>
+			</trans-unit>
+			<trans-unit id="voting_answers.description">
+				<source>votingAnswers</source>
+			</trans-unit>
+			<trans-unit id="user.description">
+				<source>user</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

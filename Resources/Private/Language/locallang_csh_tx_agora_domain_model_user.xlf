@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-02-02T18:11:01Z" product-name="agora">
+		<header/>
+		<body>
+			<trans-unit id="signiture.description">
+				<source>signiture</source>
+			</trans-unit>
+			<trans-unit id="posts.description">
+				<source>posts</source>
+			</trans-unit>
+			<trans-unit id="favorite_threads.description">
+				<source>favoriteThreads</source>
+			</trans-unit>
+			<trans-unit id="observed_threads.description">
+				<source>observedThreads</source>
+			</trans-unit>
+			<trans-unit id="spam_posts.description">
+				<source>spamPosts</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

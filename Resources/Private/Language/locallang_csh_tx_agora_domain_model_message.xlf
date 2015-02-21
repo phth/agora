@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-02-02T18:11:01Z" product-name="agora">
+		<header/>
+		<body>
+			<trans-unit id="subject.description">
+				<source>subject</source>
+			</trans-unit>
+			<trans-unit id="message.description">
+				<source>message</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_read.description">
+				<source>read</source>
+			</trans-unit>
+			<trans-unit id="sender.description">
+				<source>sender</source>
+			</trans-unit>
+			<trans-unit id="reciever.description">
+				<source>reciever</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

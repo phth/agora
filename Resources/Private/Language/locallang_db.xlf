@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-02-02T18:11:01Z" product-name="agora">
+		<header/>
+		<body>
+			<trans-unit id="tx_agora_domain_model_forum">
+				<source>Forum</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_forum.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_forum.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_forum.public">
+				<source>Public</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_forum.parent">
+				<source>Parent</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_forum.threads">
+				<source>Threads</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_forum.groups_with_read_access">
+				<source>Groups With Read Access</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_forum.group_with_write_accesss">
+				<source>Group With Write Accesss</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_forum.groups_with_modification_access">
+				<source>Groups With Modification Access</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_forum.users_with_read_access">
+				<source>Users With Read Access</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_forum.users_wth_write_accessii">
+				<source>Users Wth Write Accessii</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_forum.users_with_modification_access">
+				<source>Users With Modification Access</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_post">
+				<source>Post</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_post.topic">
+				<source>Topic</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_post.text">
+				<source>Text</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_post.quoted_posts">
+				<source>Quoted Posts</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_post.voting">
+				<source>Voting</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_post.attachments">
+				<source>Attachments</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_post.creator">
+				<source>Creator</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_thread">
+				<source>Thread</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_thread.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_thread.solved">
+				<source>Solved</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_thread.closed">
+				<source>Closed</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_thread.sticky">
+				<source>Sticky</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_thread.creator">
+				<source>Creator</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_thread.posts">
+				<source>Posts</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_thread.views">
+				<source>Views</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_user">
+				<source>User</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_user.signiture">
+				<source>Signiture</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_user.posts">
+				<source>Posts</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_user.favorite_threads">
+				<source>Favorite Threads</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_user.observed_threads">
+				<source>Observed Threads</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_user.spam_posts">
+				<source>Spam Posts</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_message">
+				<source>Message</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_message.subject">
+				<source>Subject</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_message.message">
+				<source>Message</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_message.tx_agora_read">
+				<source>Read</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_message.sender">
+				<source>Sender</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_message.reciever">
+				<source>Reciever</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_voting">
+				<source>Voting</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_voting.question">
+				<source>Question</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_voting.answers">
+				<source>Answers</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_attachment">
+				<source>Attachment</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_vote">
+				<source>Vote</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_vote.voting">
+				<source>Voting</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_vote.voting_answers">
+				<source>Voting Answers</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_vote.user">
+				<source>User</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_votinganswer">
+				<source>Voting Answer</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_votinganswer.answer">
+				<source>Answer</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_group">
+				<source>Group</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

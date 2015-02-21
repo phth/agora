@@ -1,0 +1,14 @@
+
+config.tx_extbase{
+    persistence{
+        classes{
+
+            AgoraTeam\Agora\Domain\Model\Message {
+                mapping {
+                    
+                }
+            }
+            
+    	}
+    }
+}
