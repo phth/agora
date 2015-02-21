@@ -1,22 +1,27 @@
 
 <f:layout name="Default" />
 
-This Template is responsible for displaying a single view for a domain object
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        Show.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
 <f:section name="main">
-<h1>Single View for Post</h1>
 
-<f:flashMessages renderMode="div" />
-<f:render partial="Post/Properties" arguments="{post:post}" />
-<f:link.action action="list">Back to list</f:link.action><br />
-<f:link.action action="new">New Post</f:link.action>
+    <f:flashMessages renderMode="div" />
+
+    <f:render partial="Navigation/Post" arguments="{post:post}" />
+
+    <f:format.raw>{post.text}</f:format.raw>
+
+    <ul class="list-group">
+        <f:for each="{post.answers}" as="answer">
+            <li class="list-group-item">
+                <h4>
+                    <f:link.action action="show" controller="Post" arguments="{post:answer}">
+                        {answer.topic}
+                    </f:link.action>
+                </h4>
+                <p>
+                    <f:format.raw>{answer.text}</f:format.raw>
+                </p>
+
+            </li>
+        </f:for>
+    </ul>
 </f:section>

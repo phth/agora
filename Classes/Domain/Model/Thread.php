@@ -135,6 +135,13 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected $usersWithModificationAccess = NULL;
 
+    /**
+     * forum
+     *
+     * @var \AgoraTeam\Agora\Domain\Model\Forum
+     */
+    protected $forum;
+
 	/**
 	 * __construct
 	 */
@@ -594,5 +601,24 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setUsersWithModificationAccess(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $usersWithModificationAccess) {
 		$this->usersWithModificationAccess = $usersWithModificationAccess;
 	}
+
+    /**
+     * Returns the forum
+     *
+     * @return \AgoraTeam\Agora\Domain\Model\Forum $forum
+     */
+    public function getForum() {
+        return $this->forum;
+    }
+
+    /**
+     * Sets the forum
+     *
+     * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
+     * @return void
+     */
+    public function setForum(\AgoraTeam\Agora\Domain\Model\Forum $forum) {
+        $this->forum = $forum;
+    }
 
 }

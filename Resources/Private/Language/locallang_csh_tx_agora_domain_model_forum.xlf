@@ -9,9 +9,6 @@
 			<trans-unit id="description.description">
 				<source>description</source>
 			</trans-unit>
-			<trans-unit id="public.description">
-				<source>public</source>
-			</trans-unit>
 			<trans-unit id="parent.description">
 				<source>parent</source>
 			</trans-unit>

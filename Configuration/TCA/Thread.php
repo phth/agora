@@ -163,7 +163,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_thread'] = array(
 			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_thread.views',
 			'config' => array(
 				'type' => 'inline',
-				'foreign_table' => '',
+				'foreign_table' => 'tx_agora_domain_model_view',
 				'foreign_field' => 'thread',
 				'maxitems'      => 9999,
 				'appearance' => array(
@@ -174,7 +174,6 @@ $GLOBALS['TCA']['tx_agora_domain_model_thread'] = array(
 					'showAllLocalizationLink' => 1
 				),
 			),
-
 		),
 		'groups_with_read_access' => array(
 			'exclude' => 1,
@@ -392,16 +391,16 @@ $GLOBALS['TCA']['tx_agora_domain_model_thread'] = array(
 				),
 			),
 		),
-
 		'forum' => array(
-			'config' => array(
-				'type' => 'passthrough',
-			),
-		),
-		'user3' => array(
-			'config' => array(
-				'type' => 'passthrough',
-			),
+            'exclude' => 1,
+            'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_thread.forum',
+            'config' => array(
+                'type' => 'select',
+                'items' => array(
+                    array('', 0),
+                ),
+                'foreign_table' => 'tx_agora_domain_model_forum'
+            ),
 		),
 		'user' => array(
 			'config' => array(

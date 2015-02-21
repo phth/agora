@@ -43,12 +43,16 @@ class PostController extends ActionController {
 
 	/**
 	 * action list
-	 * 
+	 *
+     * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 * @return void
 	 */
-	public function listAction() {
-		$posts = $this->postRepository->findAll();
-		$this->view->assign('posts', $posts);
+	public function listAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
+
+        $posts = $this->postRepository->findByThread($thread);
+
+        $this->view->assign('thread', $thread);
+        $this->view->assign('posts', $posts);
 	}
 
 	/**

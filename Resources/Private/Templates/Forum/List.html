@@ -2,18 +2,20 @@
 
 <f:section name="main">
 
-<f:flashMessages renderMode="div" />
+    <f:flashMessages renderMode="div" />
 
-<ul class="list-group">
-	<f:for each="{forums}" as="forum">
-		<li class="list-group-item">
-			<f:link.action action="show" arguments="{forum : forum}">
-                <h2>{forum.title}</h2>
-			    <p>{forum.description}</p>
-            </f:link.action>
-		</li>
-	</f:for>
-</ul>
+    <f:render partial="Navigation/Forum" />
 
-<f:link.action action="new">New Forum</f:link.action>
+    <ul class="list-group">
+        <f:for each="{forums}" as="forum">
+            <li class="list-group-item">
+                <f:link.action action="list" controller="Thread" arguments="{forum:forum}">
+                    <h2>{forum.title}</h2>
+                    <p>{forum.description}</p>
+                </f:link.action>
+            </li>
+        </f:for>
+    </ul>
+
+    <f:link.action action="new">New Forum</f:link.action>
 </f:section>

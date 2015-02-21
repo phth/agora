@@ -203,30 +203,19 @@ $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 					'showAllLocalizationLink' => 1
 				),
 			),
-
-		),
-		
-		'post' => array(
-			'config' => array(
-				'type' => 'passthrough',
-			),
-		),
-		'post4' => array(
-			'config' => array(
-				'type' => 'passthrough',
-			),
 		),
 		'thread' => array(
-			'config' => array(
-				'type' => 'passthrough',
-			),
+            'exclude' => 1,
+            'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_post.thread',
+            'config' => array(
+                'type' => 'select',
+                'items' => array(
+                    array('', 0),
+                ),
+                'foreign_table' => 'tx_agora_domain_model_thread'
+            ),
 		),
 		'user' => array(
-			'config' => array(
-				'type' => 'passthrough',
-			),
-		),
-		'user2' => array(
 			'config' => array(
 				'type' => 'passthrough',
 			),

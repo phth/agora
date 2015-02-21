@@ -44,10 +44,14 @@ class ThreadController extends ActionController {
 	/**
 	 * action list
 	 *
+     * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
 	 * @return void
 	 */
-	public function listAction() {
-		$threads = $this->threadRepository->findAll();
+	public function listAction(\AgoraTeam\Agora\Domain\Model\Forum $forum) {
+
+        $threads = $this->threadRepository->findByForum($forum);
+
+        $this->view->assign('forum', $forum);
 		$this->view->assign('threads', $threads);
 	}
 

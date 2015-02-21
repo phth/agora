@@ -1,0 +1,18 @@
+<ul class="breadcrumb">
+    <li>
+        <f:link.action action="list" controller="Forum">
+            Start
+        </f:link.action>
+    </li>
+    <f:if condition="{forum}">
+        <li>
+            <f:link.action action="list" controller="Thread" arguments="{forum:forum}">
+                {forum.title}
+            </f:link.action>
+        </li>
+    </f:if>
+</ul>
+
+<f:if condition="{forum}">
+    <h2>{forum.title}</h2>
+</f:if>

@@ -10,7 +10,6 @@ CREATE TABLE tx_agora_domain_model_forum (
 
 	title varchar(255) DEFAULT '' NOT NULL,
 	description text NOT NULL,
-	public tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	parent int(11) unsigned DEFAULT '0' NOT NULL,
 	threads int(11) unsigned DEFAULT '0' NOT NULL,
 	groups_with_read_access int(11) unsigned DEFAULT '0' NOT NULL,

@@ -81,6 +81,14 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected $creator = NULL;
 
+    /**
+     * thread
+     *
+     * @var \AgoraTeam\Agora\Domain\Model\Thread
+     * @lazy
+     */
+    protected $thread = NULL;
+
 	/**
 	 * historicalVersions
 	 * 
@@ -265,6 +273,25 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setCreator(\AgoraTeam\Agora\Domain\Model\User $creator) {
 		$this->creator = $creator;
 	}
+
+    /**
+     * Returns the thread
+     *
+     * @return \AgoraTeam\Agora\Domain\Model\Thread $thread
+     */
+    public function getThread() {
+        return $this->thread;
+    }
+
+    /**
+     * Sets the thread
+     *
+     * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
+     * @return void
+     */
+    public function setThread(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
+        $this->thread = $thread;
+    }
 
 	/**
 	 * Adds a Post

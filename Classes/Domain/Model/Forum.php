@@ -48,13 +48,6 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $description = '';
 
 	/**
-	 * public
-	 * 
-	 * @var boolean
-	 */
-	protected $public = FALSE;
-
-	/**
 	 * parent
 	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Forum>
@@ -182,34 +175,6 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setDescription($description) {
 		$this->description = $description;
-	}
-
-	/**
-	 * Returns the public
-	 * 
-	 * @return boolean $public
-	 */
-	public function getPublic() {
-		return $this->public;
-	}
-
-	/**
-	 * Sets the public
-	 * 
-	 * @param boolean $public
-	 * @return void
-	 */
-	public function setPublic($public) {
-		$this->public = $public;
-	}
-
-	/**
-	 * Returns the boolean state of public
-	 * 
-	 * @return boolean
-	 */
-	public function isPublic() {
-		return $this->public;
 	}
 
 	/**
@@ -523,5 +488,23 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setUsersWithModificationAccess(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $usersWithModificationAccess) {
 		$this->usersWithModificationAccess = $usersWithModificationAccess;
 	}
+
+    /**
+     * Returns the public
+     *
+     * @return boolean $public
+     */
+    public function getPublic() {
+        return TRUE;
+    }
+
+    /**
+     * Returns the boolean state of public
+     *
+     * @return boolean
+     */
+    public function isPublic() {
+        return TRUE;
+    }
 
 }

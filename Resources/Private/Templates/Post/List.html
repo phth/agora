@@ -1,39 +1,27 @@
 
 <f:layout name="Default" />
 
-This Template is responsible for creating a table of domain objects.
+    <f:section name="main">
 
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        List.html: keep
+    <f:flashMessages renderMode="div" />
 
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+    <f:render partial="Navigation/Thread" arguments="{thread:thread}" />
 
-<f:section name="main">
-<h1>Listing for Post</h1>
+    <ul class="list-group">
+        <f:for each="{posts}" as="post">
+            <li class="list-group-item">
+                <h4>
+                    <f:link.action action="show" controller="Post" arguments="{post:post}">
+                        {post.topic}
+                    </f:link.action>
+                </h4>
+                <p>
+                    <f:format.raw>{post.text}</f:format.raw>
+                </p>
 
-<f:flashMessages renderMode="div" />
+            </li>
+        </f:for>
+    </ul>
 
-<table  class="tx_agora" >
-	<tr>
-		<th><f:translate key="tx_agora_domain_model_post.topic" /></th>
-		<th><f:translate key="tx_agora_domain_model_post.text" /></th>
-		<th> </th>
-		<th> </th>
-	</tr>
-
-	<f:for each="{posts}" as="post">
-		<tr>
-			<td><f:link.action action="show" arguments="{post : post}"> {post.topic}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{post : post}"> {post.text}</f:link.action></td>
-			<td><f:link.action action="edit" arguments="{post : post}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{post : post}">Delete</f:link.action></td>
-		</tr>
-	</f:for>
-</table>
-
-<f:link.action action="new">New Post</f:link.action>
+    <f:link.action action="new">New Post</f:link.action>
 </f:section>
