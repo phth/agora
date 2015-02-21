@@ -42,6 +42,14 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	protected $threadRepository = NULL;
 
 	/**
+	 * frontendUserRepository
+	 *
+	 * @var
+	 * @inject
+	 */
+	protected $frontendUserRepository = NULL;
+
+	/**
 	 * action list
 	 *
 	 * @return void
@@ -125,8 +133,9 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function listLatestAction() {
+		$user = '';
 		$limit = $this->settings['threads']['numberOfItemsInLatestView'];
-		$latestThreads = $this->threadRepository->findLatestThreads($limit);
+		$latestThreads = $this->threadRepository->findLatestThreadsForUser($limit, $user);
 		$this->view->assign('latestThreads', $latestThreads);
 	}
 
