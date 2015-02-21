@@ -68,7 +68,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'title,description,public,parent,threads,groups_with_read_access,group_with_write_accesss,groups_with_modification_access,users_with_read_access,users_wth_write_accessii,users_with_modification_access,',
+		'searchFields' => 'title,description,public,parent,threads,groups_with_read_access,group_with_write_access,groups_with_modification_access,users_with_read_access,users_with_write_access,users_with_modification_access,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Forum.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_agora_domain_model_forum.gif'
 	),
@@ -126,7 +126,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_thread'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'title,solved,closed,sticky,creator,posts,views,groups_with_read_access,group_with_write_accesss,groups_with_modification_access,users_with_read_access,users_wth_write_accessii,users_with_modification_access,',
+		'searchFields' => 'title,solved,closed,sticky,creator,posts,views,groups_with_read_access,group_with_write_access,groups_with_modification_access,users_with_read_access,users_with_write_access,users_with_modification_access,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Thread.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_agora_domain_model_thread.gif'
 	),

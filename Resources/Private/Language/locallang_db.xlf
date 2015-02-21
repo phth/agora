@@ -24,8 +24,8 @@
 			<trans-unit id="tx_agora_domain_model_forum.groups_with_read_access">
 				<source>Groups With Read Access</source>
 			</trans-unit>
-			<trans-unit id="tx_agora_domain_model_forum.group_with_write_accesss">
-				<source>Group With Write Accesss</source>
+			<trans-unit id="tx_agora_domain_model_forum.group_with_write_access">
+				<source>Group With Write Access</source>
 			</trans-unit>
 			<trans-unit id="tx_agora_domain_model_forum.groups_with_modification_access">
 				<source>Groups With Modification Access</source>
@@ -33,8 +33,8 @@
 			<trans-unit id="tx_agora_domain_model_forum.users_with_read_access">
 				<source>Users With Read Access</source>
 			</trans-unit>
-			<trans-unit id="tx_agora_domain_model_forum.users_wth_write_accessii">
-				<source>Users Wth Write Accessii</source>
+			<trans-unit id="tx_agora_domain_model_forum.users_with_write_access">
+				<source>Users With Write Access</source>
 			</trans-unit>
 			<trans-unit id="tx_agora_domain_model_forum.users_with_modification_access">
 				<source>Users With Modification Access</source>
@@ -90,8 +90,8 @@
 			<trans-unit id="tx_agora_domain_model_thread.groups_with_read_access">
 				<source>Groups With Read Access</source>
 			</trans-unit>
-			<trans-unit id="tx_agora_domain_model_thread.group_with_write_accesss">
-				<source>Group With Write Accesss</source>
+			<trans-unit id="tx_agora_domain_model_thread.group_with_write_access">
+				<source>Group With Write Access</source>
 			</trans-unit>
 			<trans-unit id="tx_agora_domain_model_thread.groups_with_modification_access">
 				<source>Groups With Modification Access</source>
@@ -99,8 +99,8 @@
 			<trans-unit id="tx_agora_domain_model_thread.users_with_read_access">
 				<source>Users With Read Access</source>
 			</trans-unit>
-			<trans-unit id="tx_agora_domain_model_thread.users_wth_write_accessii">
-				<source>Users Wth Write Accessii</source>
+			<trans-unit id="tx_agora_domain_model_thread.users_with_write_access">
+				<source>Users With Write Access</source>
 			</trans-unit>
 			<trans-unit id="tx_agora_domain_model_thread.users_with_modification_access">
 				<source>Users With Modification Access</source>

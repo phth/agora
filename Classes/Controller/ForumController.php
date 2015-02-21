@@ -31,7 +31,7 @@ namespace AgoraTeam\Agora\Controller;
 /**
  * ForumController
  */
-class ForumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class ForumController extends ActionController {
 
 	/**
 	 * forumRepository

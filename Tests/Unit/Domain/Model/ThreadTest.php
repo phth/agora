@@ -344,7 +344,7 @@ class ThreadTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 		$this->assertAttributeEquals(
 			$objectStorageHoldingExactlyOneGroupWithWriteAccesss,
-			'groupWithWriteAccesss',
+			'groupWithWriteAccess',
 			$this->subject
 		);
 	}
@@ -356,7 +356,7 @@ class ThreadTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$groupWithWriteAccess = new \AgoraTeam\Agora\Domain\Model\Group();
 		$groupWithWriteAccesssObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
 		$groupWithWriteAccesssObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($groupWithWriteAccess));
-		$this->inject($this->subject, 'groupWithWriteAccesss', $groupWithWriteAccesssObjectStorageMock);
+		$this->inject($this->subject, 'groupWithWriteAccess', $groupWithWriteAccesssObjectStorageMock);
 
 		$this->subject->addGroupWithWriteAccess($groupWithWriteAccess);
 	}
@@ -368,7 +368,7 @@ class ThreadTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$groupWithWriteAccess = new \AgoraTeam\Agora\Domain\Model\Group();
 		$groupWithWriteAccesssObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
 		$groupWithWriteAccesssObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($groupWithWriteAccess));
-		$this->inject($this->subject, 'groupWithWriteAccesss', $groupWithWriteAccesssObjectStorageMock);
+		$this->inject($this->subject, 'groupWithWriteAccess', $groupWithWriteAccesssObjectStorageMock);
 
 		$this->subject->removeGroupWithWriteAccess($groupWithWriteAccess);
 

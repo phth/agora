@@ -29,25 +29,9 @@ namespace AgoraTeam\Agora\Controller;
  ***************************************************************/
 
 /**
- * AttachmentController
+ * ActionController
  */
-class AttachmentController extends ActionController {
+class ActionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
-	/**
-	 * attachmentRepository
-	 * 
-	 * @var \AgoraTeam\Agora\Domain\Repository\AttachmentRepository
-	 * @inject
-	 */
-	protected $attachmentRepository = NULL;
-
-	/**
-	 * action download
-	 * 
-	 * @return void
-	 */
-	public function downloadAction() {
-		
-	}
 
 }

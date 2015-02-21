@@ -31,7 +31,7 @@ namespace AgoraTeam\Agora\Controller;
 /**
  * PostController
  */
-class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class PostController extends ActionController {
 
 	/**
 	 * postRepository

@@ -31,7 +31,7 @@ namespace AgoraTeam\Agora\Controller;
 /**
  * MessageController
  */
-class MessageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class MessageController extends ActionController {
 
 	/**
 	 * action list

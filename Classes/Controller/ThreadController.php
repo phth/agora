@@ -31,7 +31,7 @@ namespace AgoraTeam\Agora\Controller;
 /**
  * ThreadController
  */
-class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class ThreadController extends ActionController {
 
 	/**
 	 * threadRepository

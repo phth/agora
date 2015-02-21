@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_agora_domain_model_forum']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, public, parent, threads, groups_with_read_access, group_with_write_accesss, groups_with_modification_access, users_with_read_access, users_wth_write_accessii, users_with_modification_access',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, public, parent, threads, groups_with_read_access, group_with_write_access, groups_with_modification_access, users_with_read_access, users_with_write_access, users_with_modification_access',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, description, public, parent, threads, groups_with_read_access, group_with_write_accesss, groups_with_modification_access, users_with_read_access, users_wth_write_accessii, users_with_modification_access, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, description, public, parent, threads, groups_with_read_access, group_with_write_access, groups_with_modification_access, users_with_read_access, users_with_write_access, users_with_modification_access, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -198,13 +198,13 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 				),
 			),
 		),
-		'group_with_write_accesss' => array(
+		'group_with_write_access' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.group_with_write_accesss',
+			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.group_with_write_access',
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'fe_groups',
-				'MM' => 'tx_agora_forum_groupwithwriteaccesss_group_mm',
+				'MM' => 'tx_agora_forum_groupwithwriteaccess_group_mm',
 				'size' => 10,
 				'autoSizeMax' => 30,
 				'maxitems' => 9999,
@@ -306,13 +306,13 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 				),
 			),
 		),
-		'users_wth_write_accessii' => array(
+		'users_with_write_access' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.users_wth_write_accessii',
+			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.users_with_write_access',
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'fe_users',
-				'MM' => 'tx_agora_forum_userswthwriteaccessii_user_mm',
+				'MM' => 'tx_agora_forum_userswithwriteaccess_user_mm',
 				'size' => 10,
 				'autoSizeMax' => 30,
 				'maxitems' => 9999,

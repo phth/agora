@@ -27,8 +27,8 @@
 			<trans-unit id="groups_with_read_access.description">
 				<source>groupsWithReadAccess</source>
 			</trans-unit>
-			<trans-unit id="group_with_write_accesss.description">
-				<source>groupWithWriteAccesss</source>
+			<trans-unit id="group_with_write_access.description">
+				<source>groupWithWriteAccess</source>
 			</trans-unit>
 			<trans-unit id="groups_with_modification_access.description">
 				<source>groupsWithModificationAccess</source>
@@ -36,8 +36,8 @@
 			<trans-unit id="users_with_read_access.description">
 				<source>usersWithReadAccess</source>
 			</trans-unit>
-			<trans-unit id="users_wth_write_accessii.description">
-				<source>usersWthWriteAccessii</source>
+			<trans-unit id="users_with_write_access.description">
+				<source>usersWithWriteAccess</source>
 			</trans-unit>
 			<trans-unit id="users_with_modification_access.description">
 				<source>usersWithModificationAccess</source>
