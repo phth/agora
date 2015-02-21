@@ -8,7 +8,7 @@
 .. _start:
 
 =============================================================
-Agora - TYPO3 Board
+Agora - TYPO3 Forum
 =============================================================
 
 .. only:: html
@@ -34,7 +34,7 @@ Agora - TYPO3 Board
 		Phillip Thiele, Björn Christopher Bresser
 
 	:Email:
-		, bjoern.bresser@gmail.com
+		philipp.thiele@phth.de, bjoern.bresser@gmail.com
 
 	:License:
 		This document is published under the Open Content License

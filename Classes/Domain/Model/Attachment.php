@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Domain\Model;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele
+ *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved

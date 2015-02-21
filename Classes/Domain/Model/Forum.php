@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Domain\Model;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele
+ *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -35,80 +35,88 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * title
-	 *
+	 * 
 	 * @var string
 	 */
 	protected $title = '';
 
 	/**
 	 * description
-	 *
+	 * 
 	 * @var string
 	 */
 	protected $description = '';
 
 	/**
 	 * public
-	 *
+	 * 
 	 * @var boolean
 	 */
 	protected $public = FALSE;
 
 	/**
 	 * parent
-	 *
+	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Forum>
 	 * @cascade remove
+	 * @lazy
 	 */
 	protected $parent = NULL;
 
 	/**
 	 * threads
-	 *
+	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread>
 	 * @cascade remove
+	 * @lazy
 	 */
 	protected $threads = NULL;
 
 	/**
 	 * groupsWithReadAccess
-	 *
+	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group>
+	 * @lazy
 	 */
 	protected $groupsWithReadAccess = NULL;
 
 	/**
 	 * groupWithWriteAccesss
-	 *
+	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group>
+	 * @lazy
 	 */
 	protected $groupWithWriteAccesss = NULL;
 
 	/**
 	 * groupsWithModificationAccess
-	 *
+	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group>
+	 * @lazy
 	 */
 	protected $groupsWithModificationAccess = NULL;
 
 	/**
 	 * usersWithReadAccess
-	 *
+	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User>
+	 * @lazy
 	 */
 	protected $usersWithReadAccess = NULL;
 
 	/**
 	 * usersWthWriteAccessii
-	 *
+	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User>
+	 * @lazy
 	 */
 	protected $usersWthWriteAccessii = NULL;
 
 	/**
 	 * usersWithModificationAccess
-	 *
+	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User>
+	 * @lazy
 	 */
 	protected $usersWithModificationAccess = NULL;
 
@@ -125,7 +133,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Do not modify this method!
 	 * It will be rewritten on each save in the extension builder
 	 * You may modify the constructor of this class instead
-	 *
+	 * 
 	 * @return void
 	 */
 	protected function initStorageObjects() {
@@ -141,7 +149,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the title
-	 *
+	 * 
 	 * @return string $title
 	 */
 	public function getTitle() {
@@ -150,7 +158,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the title
-	 *
+	 * 
 	 * @param string $title
 	 * @return void
 	 */
@@ -160,7 +168,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the description
-	 *
+	 * 
 	 * @return string $description
 	 */
 	public function getDescription() {
@@ -169,7 +177,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the description
-	 *
+	 * 
 	 * @param string $description
 	 * @return void
 	 */
@@ -179,7 +187,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the public
-	 *
+	 * 
 	 * @return boolean $public
 	 */
 	public function getPublic() {
@@ -188,7 +196,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the public
-	 *
+	 * 
 	 * @param boolean $public
 	 * @return void
 	 */
@@ -198,7 +206,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the boolean state of public
-	 *
+	 * 
 	 * @return boolean
 	 */
 	public function isPublic() {
@@ -207,7 +215,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Forum
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $parent
 	 * @return void
 	 */
@@ -217,7 +225,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Forum
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $parentToRemove The Forum to be removed
 	 * @return void
 	 */
@@ -227,7 +235,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the parent
-	 *
+	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Forum> $parent
 	 */
 	public function getParent() {
@@ -236,7 +244,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the parent
-	 *
+	 * 
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Forum> $parent
 	 * @return void
 	 */
@@ -246,7 +254,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Thread
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 * @return void
 	 */
@@ -256,7 +264,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Thread
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $threadToRemove The Thread to be removed
 	 * @return void
 	 */
@@ -266,7 +274,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the threads
-	 *
+	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread> $threads
 	 */
 	public function getThreads() {
@@ -275,7 +283,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the threads
-	 *
+	 * 
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread> $threads
 	 * @return void
 	 */
@@ -285,7 +293,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Group
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupsWithReadAcces
 	 * @return void
 	 */
@@ -295,7 +303,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Group
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupsWithReadAccesToRemove The Group to be removed
 	 * @return void
 	 */
@@ -305,7 +313,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the groupsWithReadAccess
-	 *
+	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupsWithReadAccess
 	 */
 	public function getGroupsWithReadAccess() {
@@ -314,7 +322,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the groupsWithReadAccess
-	 *
+	 * 
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupsWithReadAccess
 	 * @return void
 	 */
@@ -324,7 +332,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Group
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupWithWriteAccess
 	 * @return void
 	 */
@@ -334,7 +342,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Group
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupWithWriteAccessToRemove The Group to be removed
 	 * @return void
 	 */
@@ -344,7 +352,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the groupWithWriteAccesss
-	 *
+	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupWithWriteAccesss
 	 */
 	public function getGroupWithWriteAccesss() {
@@ -353,7 +361,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the groupWithWriteAccesss
-	 *
+	 * 
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupWithWriteAccesss
 	 * @return void
 	 */
@@ -363,7 +371,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Group
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupsWithModificationAcces
 	 * @return void
 	 */
@@ -373,7 +381,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Group
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupsWithModificationAccesToRemove The Group to be removed
 	 * @return void
 	 */
@@ -383,7 +391,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the groupsWithModificationAccess
-	 *
+	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupsWithModificationAccess
 	 */
 	public function getGroupsWithModificationAccess() {
@@ -392,7 +400,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the groupsWithModificationAccess
-	 *
+	 * 
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupsWithModificationAccess
 	 * @return void
 	 */
@@ -402,7 +410,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a User
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithReadAcces
 	 * @return void
 	 */
@@ -412,7 +420,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a User
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithReadAccesToRemove The User to be removed
 	 * @return void
 	 */
@@ -422,7 +430,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the usersWithReadAccess
-	 *
+	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User> $usersWithReadAccess
 	 */
 	public function getUsersWithReadAccess() {
@@ -431,7 +439,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the usersWithReadAccess
-	 *
+	 * 
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User> $usersWithReadAccess
 	 * @return void
 	 */
@@ -441,7 +449,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a User
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWthWriteAccessii
 	 * @return void
 	 */
@@ -451,7 +459,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a User
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWthWriteAccessiiToRemove The User to be removed
 	 * @return void
 	 */
@@ -461,7 +469,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the usersWthWriteAccessii
-	 *
+	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User> $usersWthWriteAccessii
 	 */
 	public function getUsersWthWriteAccessii() {
@@ -470,7 +478,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the usersWthWriteAccessii
-	 *
+	 * 
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User> $usersWthWriteAccessii
 	 * @return void
 	 */
@@ -480,7 +488,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a User
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithModificationAcces
 	 * @return void
 	 */
@@ -490,7 +498,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a User
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithModificationAccesToRemove The User to be removed
 	 * @return void
 	 */
@@ -500,7 +508,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the usersWithModificationAccess
-	 *
+	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User> $usersWithModificationAccess
 	 */
 	public function getUsersWithModificationAccess() {
@@ -509,7 +517,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the usersWithModificationAccess
-	 *
+	 * 
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User> $usersWithModificationAccess
 	 * @return void
 	 */

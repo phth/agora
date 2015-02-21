@@ -5,7 +5,7 @@ namespace AgoraTeam\Agora\Tests\Unit\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele
+ *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -33,7 +33,7 @@ namespace AgoraTeam\Agora\Tests\Unit\Domain\Model;
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
- * @author Phillip Thiele 
+ * @author Phillip Thiele <philipp.thiele@phth.de>
  * @author Björn Christopher Bresser <bjoern.bresser@gmail.com>
  */
 class PostTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
@@ -246,5 +246,57 @@ class PostTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 			'creator',
 			$this->subject
 		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getHistoricalVersionsReturnsInitialValueForPost() {
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->assertEquals(
+			$newObjectStorage,
+			$this->subject->getHistoricalVersions()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setHistoricalVersionsForObjectStorageContainingPostSetsHistoricalVersions() {
+		$historicalVersion = new \AgoraTeam\Agora\Domain\Model\Post();
+		$objectStorageHoldingExactlyOneHistoricalVersions = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$objectStorageHoldingExactlyOneHistoricalVersions->attach($historicalVersion);
+		$this->subject->setHistoricalVersions($objectStorageHoldingExactlyOneHistoricalVersions);
+
+		$this->assertAttributeEquals(
+			$objectStorageHoldingExactlyOneHistoricalVersions,
+			'historicalVersions',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function addHistoricalVersionToObjectStorageHoldingHistoricalVersions() {
+		$historicalVersion = new \AgoraTeam\Agora\Domain\Model\Post();
+		$historicalVersionsObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
+		$historicalVersionsObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($historicalVersion));
+		$this->inject($this->subject, 'historicalVersions', $historicalVersionsObjectStorageMock);
+
+		$this->subject->addHistoricalVersion($historicalVersion);
+	}
+
+	/**
+	 * @test
+	 */
+	public function removeHistoricalVersionFromObjectStorageHoldingHistoricalVersions() {
+		$historicalVersion = new \AgoraTeam\Agora\Domain\Model\Post();
+		$historicalVersionsObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
+		$historicalVersionsObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($historicalVersion));
+		$this->inject($this->subject, 'historicalVersions', $historicalVersionsObjectStorageMock);
+
+		$this->subject->removeHistoricalVersion($historicalVersion);
+
 	}
 }

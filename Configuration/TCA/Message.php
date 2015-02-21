@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_agora_domain_model_message'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_agora_domain_model_message']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, subject, message, tx_agora_read, sender, reciever',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, subject, message, called, sender, reciever',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, subject, message, tx_agora_read, sender, reciever, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, subject, message, called, sender, reciever, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -116,9 +116,9 @@ $GLOBALS['TCA']['tx_agora_domain_model_message'] = array(
 				'eval' => 'trim'
 			)
 		),
-		'tx_agora_read' => array(
+		'called' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_message.tx_agora_read',
+			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_message.called',
 			'config' => array(
 				'type' => 'check',
 				'default' => 0
@@ -129,7 +129,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_message'] = array(
 			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_message.sender',
 			'config' => array(
 				'type' => 'inline',
-				'foreign_table' => 'tx_agora_domain_model_user',
+				'foreign_table' => 'fe_users',
 				'minitems' => 0,
 				'maxitems' => 1,
 				'appearance' => array(
@@ -146,7 +146,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_message'] = array(
 			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_message.reciever',
 			'config' => array(
 				'type' => 'inline',
-				'foreign_table' => 'tx_agora_domain_model_user',
+				'foreign_table' => 'fe_users',
 				'minitems' => 0,
 				'maxitems' => 1,
 				'appearance' => array(

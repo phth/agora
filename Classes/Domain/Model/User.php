@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Domain\Model;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele
+ *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -35,30 +35,30 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * signiture
-	 *
+	 * 
 	 * @var string
 	 */
 	protected $signiture = '';
 
 	/**
 	 * posts
-	 *
+	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post>
 	 * @cascade remove
 	 */
 	protected $posts = NULL;
 
 	/**
-	 * favoriteThreads
-	 *
+	 * favoritePosts
+	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread>
 	 * @cascade remove
 	 */
-	protected $favoriteThreads = NULL;
+	protected $favoritePosts = NULL;
 
 	/**
 	 * observedThreads
-	 *
+	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread>
 	 * @cascade remove
 	 */
@@ -66,11 +66,19 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * spamPosts
-	 *
+	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post>
 	 * @cascade remove
 	 */
 	protected $spamPosts = NULL;
+
+	/**
+	 * groups
+	 * 
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group>
+	 * @lazy
+	 */
+	protected $groups = NULL;
 
 	/**
 	 * __construct
@@ -85,19 +93,20 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Do not modify this method!
 	 * It will be rewritten on each save in the extension builder
 	 * You may modify the constructor of this class instead
-	 *
+	 * 
 	 * @return void
 	 */
 	protected function initStorageObjects() {
 		$this->posts = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		$this->favoriteThreads = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->favoritePosts = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->observedThreads = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->spamPosts = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->groups = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
 	 * Returns the signiture
-	 *
+	 * 
 	 * @return string $signiture
 	 */
 	public function getSigniture() {
@@ -106,7 +115,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the signiture
-	 *
+	 * 
 	 * @param string $signiture
 	 * @return void
 	 */
@@ -116,7 +125,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Post
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
 	 * @return void
 	 */
@@ -126,7 +135,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Post
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $postToRemove The Post to be removed
 	 * @return void
 	 */
@@ -136,7 +145,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the posts
-	 *
+	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $posts
 	 */
 	public function getPosts() {
@@ -145,7 +154,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the posts
-	 *
+	 * 
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $posts
 	 * @return void
 	 */
@@ -155,46 +164,46 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Thread
-	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\Thread $favoriteThread
+	 * 
+	 * @param \AgoraTeam\Agora\Domain\Model\Thread $favoritePost
 	 * @return void
 	 */
-	public function addFavoriteThread(\AgoraTeam\Agora\Domain\Model\Thread $favoriteThread) {
-		$this->favoriteThreads->attach($favoriteThread);
+	public function addFavoritePost(\AgoraTeam\Agora\Domain\Model\Thread $favoritePost) {
+		$this->favoritePosts->attach($favoritePost);
 	}
 
 	/**
 	 * Removes a Thread
-	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\Thread $favoriteThreadToRemove The Thread to be removed
+	 * 
+	 * @param \AgoraTeam\Agora\Domain\Model\Thread $favoritePostToRemove The Thread to be removed
 	 * @return void
 	 */
-	public function removeFavoriteThread(\AgoraTeam\Agora\Domain\Model\Thread $favoriteThreadToRemove) {
-		$this->favoriteThreads->detach($favoriteThreadToRemove);
+	public function removeFavoritePost(\AgoraTeam\Agora\Domain\Model\Thread $favoritePostToRemove) {
+		$this->favoritePosts->detach($favoritePostToRemove);
 	}
 
 	/**
-	 * Returns the favoriteThreads
-	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread> $favoriteThreads
+	 * Returns the favoritePosts
+	 * 
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread> $favoritePosts
 	 */
-	public function getFavoriteThreads() {
-		return $this->favoriteThreads;
+	public function getFavoritePosts() {
+		return $this->favoritePosts;
 	}
 
 	/**
-	 * Sets the favoriteThreads
-	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread> $favoriteThreads
+	 * Sets the favoritePosts
+	 * 
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread> $favoritePosts
 	 * @return void
 	 */
-	public function setFavoriteThreads(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $favoriteThreads) {
-		$this->favoriteThreads = $favoriteThreads;
+	public function setFavoritePosts(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $favoritePosts) {
+		$this->favoritePosts = $favoritePosts;
 	}
 
 	/**
 	 * Adds a Thread
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $observedThread
 	 * @return void
 	 */
@@ -204,7 +213,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Thread
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $observedThreadToRemove The Thread to be removed
 	 * @return void
 	 */
@@ -214,7 +223,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the observedThreads
-	 *
+	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread> $observedThreads
 	 */
 	public function getObservedThreads() {
@@ -223,7 +232,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the observedThreads
-	 *
+	 * 
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread> $observedThreads
 	 * @return void
 	 */
@@ -233,7 +242,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Post
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $spamPost
 	 * @return void
 	 */
@@ -243,7 +252,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Post
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $spamPostToRemove The Post to be removed
 	 * @return void
 	 */
@@ -253,7 +262,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the spamPosts
-	 *
+	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $spamPosts
 	 */
 	public function getSpamPosts() {
@@ -262,12 +271,51 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the spamPosts
-	 *
+	 * 
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $spamPosts
 	 * @return void
 	 */
 	public function setSpamPosts(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $spamPosts) {
 		$this->spamPosts = $spamPosts;
+	}
+
+	/**
+	 * Adds a Group
+	 * 
+	 * @param \AgoraTeam\Agora\Domain\Model\Group $group
+	 * @return void
+	 */
+	public function addGroup(\AgoraTeam\Agora\Domain\Model\Group $group) {
+		$this->groups->attach($group);
+	}
+
+	/**
+	 * Removes a Group
+	 * 
+	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupToRemove The Group to be removed
+	 * @return void
+	 */
+	public function removeGroup(\AgoraTeam\Agora\Domain\Model\Group $groupToRemove) {
+		$this->groups->detach($groupToRemove);
+	}
+
+	/**
+	 * Returns the groups
+	 * 
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groups
+	 */
+	public function getGroups() {
+		return $this->groups;
+	}
+
+	/**
+	 * Sets the groups
+	 * 
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groups
+	 * @return void
+	 */
+	public function setGroups(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $groups) {
+		$this->groups = $groups;
 	}
 
 }

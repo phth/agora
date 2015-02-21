@@ -127,6 +127,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_vote'] = array(
 					'levelLinksPosition' => 'top',
 					'showSynchronizationLink' => 1,
 					'showPossibleLocalizationRecords' => 1,
+					'useSortable' => 1,
 					'showAllLocalizationLink' => 1
 				),
 			),
@@ -137,7 +138,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_vote'] = array(
 			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_vote.user',
 			'config' => array(
 				'type' => 'inline',
-				'foreign_table' => 'tx_agora_domain_model_user',
+				'foreign_table' => 'fe_users',
 				'minitems' => 0,
 				'maxitems' => 1,
 				'appearance' => array(

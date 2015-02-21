@@ -37,6 +37,7 @@ CREATE TABLE tx_agora_domain_model_forum (
 	t3ver_count int(11) DEFAULT '0' NOT NULL,
 	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
 	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
 
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l10n_parent int(11) DEFAULT '0' NOT NULL,
@@ -58,6 +59,7 @@ CREATE TABLE tx_agora_domain_model_post (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	post int(11) unsigned DEFAULT '0' NOT NULL,
+	post4 int(11) unsigned DEFAULT '0' NOT NULL,
 	thread int(11) unsigned DEFAULT '0' NOT NULL,
 	user int(11) unsigned DEFAULT '0' NOT NULL,
 	user2 int(11) unsigned DEFAULT '0' NOT NULL,
@@ -68,6 +70,7 @@ CREATE TABLE tx_agora_domain_model_post (
 	voting int(11) unsigned DEFAULT '0',
 	attachments int(11) unsigned DEFAULT '0' NOT NULL,
 	creator int(11) unsigned DEFAULT '0',
+	historical_versions int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -117,6 +120,12 @@ CREATE TABLE tx_agora_domain_model_thread (
 	creator int(11) unsigned DEFAULT '0',
 	posts int(11) unsigned DEFAULT '0' NOT NULL,
 	views int(11) unsigned DEFAULT '0' NOT NULL,
+	groups_with_read_access int(11) unsigned DEFAULT '0' NOT NULL,
+	group_with_write_accesss int(11) unsigned DEFAULT '0' NOT NULL,
+	groups_with_modification_access int(11) unsigned DEFAULT '0' NOT NULL,
+	users_with_read_access int(11) unsigned DEFAULT '0' NOT NULL,
+	users_wth_write_accessii int(11) unsigned DEFAULT '0' NOT NULL,
+	users_with_modification_access int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -135,6 +144,7 @@ CREATE TABLE tx_agora_domain_model_thread (
 	t3ver_count int(11) DEFAULT '0' NOT NULL,
 	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
 	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
 
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l10n_parent int(11) DEFAULT '0' NOT NULL,
@@ -148,47 +158,20 @@ CREATE TABLE tx_agora_domain_model_thread (
 );
 
 #
-# Table structure for table 'tx_agora_domain_model_user'
+# Table structure for table 'fe_users'
 #
-CREATE TABLE tx_agora_domain_model_user (
+CREATE TABLE fe_users (
 
-	uid int(11) NOT NULL auto_increment,
-	pid int(11) DEFAULT '0' NOT NULL,
-
-	thread2 int(11) unsigned DEFAULT '0' NOT NULL,
+	view int(11) unsigned DEFAULT '0' NOT NULL,
 
 	signiture text NOT NULL,
 	posts int(11) unsigned DEFAULT '0' NOT NULL,
-	favorite_threads int(11) unsigned DEFAULT '0' NOT NULL,
+	favorite_posts int(11) unsigned DEFAULT '0' NOT NULL,
 	observed_threads int(11) unsigned DEFAULT '0' NOT NULL,
 	spam_posts int(11) unsigned DEFAULT '0' NOT NULL,
+	groups int(11) unsigned DEFAULT '0' NOT NULL,
 
-	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
-	crdate int(11) unsigned DEFAULT '0' NOT NULL,
-	cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
-	deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	starttime int(11) unsigned DEFAULT '0' NOT NULL,
-	endtime int(11) unsigned DEFAULT '0' NOT NULL,
-
-	t3ver_oid int(11) DEFAULT '0' NOT NULL,
-	t3ver_id int(11) DEFAULT '0' NOT NULL,
-	t3ver_wsid int(11) DEFAULT '0' NOT NULL,
-	t3ver_label varchar(255) DEFAULT '' NOT NULL,
-	t3ver_state tinyint(4) DEFAULT '0' NOT NULL,
-	t3ver_stage int(11) DEFAULT '0' NOT NULL,
-	t3ver_count int(11) DEFAULT '0' NOT NULL,
-	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
-	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
-
-	sys_language_uid int(11) DEFAULT '0' NOT NULL,
-	l10n_parent int(11) DEFAULT '0' NOT NULL,
-	l10n_diffsource mediumblob,
-
-	PRIMARY KEY (uid),
-	KEY parent (pid),
-	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
+	tx_extbase_type varchar(255) DEFAULT '' NOT NULL,
 
 );
 
@@ -202,7 +185,7 @@ CREATE TABLE tx_agora_domain_model_message (
 
 	subject varchar(255) DEFAULT '' NOT NULL,
 	message text NOT NULL,
-	tx_agora_read tinyint(1) unsigned DEFAULT '0' NOT NULL,
+	called tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	sender int(11) unsigned DEFAULT '0',
 	reciever int(11) unsigned DEFAULT '0',
 
@@ -302,6 +285,7 @@ CREATE TABLE tx_agora_domain_model_attachment (
 	t3ver_count int(11) DEFAULT '0' NOT NULL,
 	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
 	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
 
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l10n_parent int(11) DEFAULT '0' NOT NULL,
@@ -385,6 +369,7 @@ CREATE TABLE tx_agora_domain_model_votinganswer (
 	t3ver_count int(11) DEFAULT '0' NOT NULL,
 	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
 	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
 
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l10n_parent int(11) DEFAULT '0' NOT NULL,
@@ -398,12 +383,24 @@ CREATE TABLE tx_agora_domain_model_votinganswer (
 );
 
 #
-# Table structure for table 'tx_agora_domain_model_group'
+# Table structure for table 'fe_groups'
 #
-CREATE TABLE tx_agora_domain_model_group (
+CREATE TABLE fe_groups (
+
+	tx_extbase_type varchar(255) DEFAULT '' NOT NULL,
+
+);
+
+#
+# Table structure for table 'tx_agora_domain_model_view'
+#
+CREATE TABLE tx_agora_domain_model_view (
 
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
+
+	thread int(11) unsigned DEFAULT '0',
+	user int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -537,6 +534,8 @@ CREATE TABLE tx_agora_domain_model_post (
 
 	post  int(11) unsigned DEFAULT '0' NOT NULL,
 
+	post4  int(11) unsigned DEFAULT '0' NOT NULL,
+
 );
 
 #
@@ -558,12 +557,81 @@ CREATE TABLE tx_agora_domain_model_post (
 );
 
 #
-# Table structure for table 'tx_agora_domain_model_user'
+# Table structure for table 'tx_agora_thread_group_mm'
 #
-CREATE TABLE tx_agora_domain_model_user (
+CREATE TABLE tx_agora_thread_group_mm (
+	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
+	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 
-	thread2  int(11) unsigned DEFAULT '0' NOT NULL,
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
 
+#
+# Table structure for table 'tx_agora_thread_groupwithwriteaccesss_group_mm'
+#
+CREATE TABLE tx_agora_thread_groupwithwriteaccesss_group_mm (
+	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
+	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+#
+# Table structure for table 'tx_agora_thread_groupswithmodificationaccess_group_mm'
+#
+CREATE TABLE tx_agora_thread_groupswithmodificationaccess_group_mm (
+	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
+	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+#
+# Table structure for table 'tx_agora_thread_userswithreadaccess_user_mm'
+#
+CREATE TABLE tx_agora_thread_userswithreadaccess_user_mm (
+	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
+	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+#
+# Table structure for table 'tx_agora_thread_userswthwriteaccessii_user_mm'
+#
+CREATE TABLE tx_agora_thread_userswthwriteaccessii_user_mm (
+	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
+	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+#
+# Table structure for table 'tx_agora_thread_userswithmodificationaccess_user_mm'
+#
+CREATE TABLE tx_agora_thread_userswithmodificationaccess_user_mm (
+	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
+	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
 );
 
 #
@@ -589,6 +657,19 @@ CREATE TABLE tx_agora_domain_model_thread (
 );
 
 #
+# Table structure for table 'tx_agora_user_group_mm'
+#
+CREATE TABLE tx_agora_user_group_mm (
+	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
+	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+#
 # Table structure for table 'tx_agora_domain_model_votinganswer'
 #
 CREATE TABLE tx_agora_domain_model_votinganswer (
@@ -603,5 +684,14 @@ CREATE TABLE tx_agora_domain_model_votinganswer (
 CREATE TABLE tx_agora_domain_model_votinganswer (
 
 	vote  int(11) unsigned DEFAULT '0' NOT NULL,
+
+);
+
+#
+# Table structure for table 'fe_users'
+#
+CREATE TABLE fe_users (
+
+	view  int(11) unsigned DEFAULT '0' NOT NULL,
 
 );

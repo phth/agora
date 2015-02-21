@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Controller;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele
+ *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -35,7 +35,7 @@ class ForumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 	/**
 	 * forumRepository
-	 *
+	 * 
 	 * @var \AgoraTeam\Agora\Domain\Repository\ForumRepository
 	 * @inject
 	 */
@@ -43,7 +43,7 @@ class ForumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 	/**
 	 * action list
-	 *
+	 * 
 	 * @return void
 	 */
 	public function listAction() {
@@ -53,7 +53,7 @@ class ForumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 	/**
 	 * action show
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
 	 * @return void
 	 */
@@ -63,7 +63,7 @@ class ForumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 	/**
 	 * action new
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $newForum
 	 * @ignorevalidation $newForum
 	 * @return void
@@ -74,7 +74,7 @@ class ForumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 	/**
 	 * action create
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $newForum
 	 * @return void
 	 */
@@ -86,7 +86,7 @@ class ForumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 	/**
 	 * action edit
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
 	 * @ignorevalidation $forum
 	 * @return void
@@ -97,7 +97,7 @@ class ForumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 	/**
 	 * action update
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
 	 * @return void
 	 */
@@ -109,7 +109,7 @@ class ForumController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 	/**
 	 * action delete
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
 	 * @return void
 	 */

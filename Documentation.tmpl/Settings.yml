@@ -9,7 +9,7 @@
 ---
 conf.py:
   copyright: 2015
-  project: Agora - TYPO3 Board
+  project: Agora - TYPO3 Forum
   version: 0.1.0
   release: 0.1.0
   intersphinx_mapping:
@@ -19,7 +19,7 @@ conf.py:
   latex_documents:
   - - Index
     - agora.tex
-    - Agora - TYPO3 Board
+    - Agora - TYPO3 Forum
     - Phillip Thiele, Björn Christopher Bresser
     - manual
   latex_elements:

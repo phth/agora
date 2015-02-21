@@ -47,3 +47,15 @@ plugin.tx_agora._CSS_DEFAULT_STYLE (
 	}
 
 )
+
+ # Module configuration
+module.tx_agora {
+	persistence {
+		storagePid = {$module.tx_agora.persistence.storagePid}
+	}
+	view {
+		templateRootPath = {$module.tx_agora.view.templateRootPath}
+		partialRootPath = {$module.tx_agora.view.partialRootPath}
+		layoutRootPath = {$module.tx_agora.view.layoutRootPath}
+	}
+}

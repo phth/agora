@@ -3,7 +3,7 @@ namespace AgoraTeam\Agora\Tests\Unit\Controller;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele 
+ *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
  *  			Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *  			
  *  All rights reserved
@@ -28,7 +28,7 @@ namespace AgoraTeam\Agora\Tests\Unit\Controller;
 /**
  * Test case for class AgoraTeam\Agora\Controller\PostController.
  *
- * @author Phillip Thiele 
+ * @author Phillip Thiele <philipp.thiele@phth.de>
  * @author Björn Christopher Bresser <bjoern.bresser@gmail.com>
  */
 class PostControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
@@ -53,7 +53,7 @@ class PostControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 		$allPosts = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
 
-		$postRepository = $this->getMock('', array('findAll'), array(), '', FALSE);
+		$postRepository = $this->getMock('AgoraTeam\\Agora\\Domain\\Repository\\PostRepository', array('findAll'), array(), '', FALSE);
 		$postRepository->expects($this->once())->method('findAll')->will($this->returnValue($allPosts));
 		$this->inject($this->subject, 'postRepository', $postRepository);
 
@@ -96,7 +96,7 @@ class PostControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function createActionAddsTheGivenPostToPostRepository() {
 		$post = new \AgoraTeam\Agora\Domain\Model\Post();
 
-		$postRepository = $this->getMock('', array('add'), array(), '', FALSE);
+		$postRepository = $this->getMock('AgoraTeam\\Agora\\Domain\\Repository\\PostRepository', array('add'), array(), '', FALSE);
 		$postRepository->expects($this->once())->method('add')->with($post);
 		$this->inject($this->subject, 'postRepository', $postRepository);
 
@@ -122,7 +122,7 @@ class PostControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function updateActionUpdatesTheGivenPostInPostRepository() {
 		$post = new \AgoraTeam\Agora\Domain\Model\Post();
 
-		$postRepository = $this->getMock('', array('update'), array(), '', FALSE);
+		$postRepository = $this->getMock('AgoraTeam\\Agora\\Domain\\Repository\\PostRepository', array('update'), array(), '', FALSE);
 		$postRepository->expects($this->once())->method('update')->with($post);
 		$this->inject($this->subject, 'postRepository', $postRepository);
 
@@ -135,10 +135,28 @@ class PostControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function deleteActionRemovesTheGivenPostFromPostRepository() {
 		$post = new \AgoraTeam\Agora\Domain\Model\Post();
 
-		$postRepository = $this->getMock('', array('remove'), array(), '', FALSE);
+		$postRepository = $this->getMock('AgoraTeam\\Agora\\Domain\\Repository\\PostRepository', array('remove'), array(), '', FALSE);
 		$postRepository->expects($this->once())->method('remove')->with($post);
 		$this->inject($this->subject, 'postRepository', $postRepository);
 
 		$this->subject->deleteAction($post);
+	}
+
+	/**
+	 * @test
+	 */
+	public function listActionFetchesAllPostsFromRepositoryAndAssignsThemToView() {
+
+		$allPosts = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
+
+		$postRepository = $this->getMock('AgoraTeam\\Agora\\Domain\\Repository\\PostRepository', array('findAll'), array(), '', FALSE);
+		$postRepository->expects($this->once())->method('findAll')->will($this->returnValue($allPosts));
+		$this->inject($this->subject, 'postRepository', $postRepository);
+
+		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
+		$view->expects($this->once())->method('assign')->with('posts', $allPosts);
+		$this->inject($this->subject, 'view', $view);
+
+		$this->subject->listAction();
 	}
 }

@@ -5,7 +5,7 @@ namespace AgoraTeam\Agora\Tests\Unit\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele
+ *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -33,7 +33,7 @@ namespace AgoraTeam\Agora\Tests\Unit\Domain\Model;
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
- * @author Phillip Thiele 
+ * @author Phillip Thiele <philipp.thiele@phth.de>
  * @author Björn Christopher Bresser <bjoern.bresser@gmail.com>
  */
 class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
@@ -128,26 +128,26 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
-	public function getFavoriteThreadsReturnsInitialValueForThread() {
+	public function getFavoritePostsReturnsInitialValueForThread() {
 		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->assertEquals(
 			$newObjectStorage,
-			$this->subject->getFavoriteThreads()
+			$this->subject->getFavoritePosts()
 		);
 	}
 
 	/**
 	 * @test
 	 */
-	public function setFavoriteThreadsForObjectStorageContainingThreadSetsFavoriteThreads() {
-		$favoriteThread = new \AgoraTeam\Agora\Domain\Model\Thread();
-		$objectStorageHoldingExactlyOneFavoriteThreads = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		$objectStorageHoldingExactlyOneFavoriteThreads->attach($favoriteThread);
-		$this->subject->setFavoriteThreads($objectStorageHoldingExactlyOneFavoriteThreads);
+	public function setFavoritePostsForObjectStorageContainingThreadSetsFavoritePosts() {
+		$favoritePost = new \AgoraTeam\Agora\Domain\Model\Thread();
+		$objectStorageHoldingExactlyOneFavoritePosts = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$objectStorageHoldingExactlyOneFavoritePosts->attach($favoritePost);
+		$this->subject->setFavoritePosts($objectStorageHoldingExactlyOneFavoritePosts);
 
 		$this->assertAttributeEquals(
-			$objectStorageHoldingExactlyOneFavoriteThreads,
-			'favoriteThreads',
+			$objectStorageHoldingExactlyOneFavoritePosts,
+			'favoritePosts',
 			$this->subject
 		);
 	}
@@ -155,25 +155,25 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
-	public function addFavoriteThreadToObjectStorageHoldingFavoriteThreads() {
-		$favoriteThread = new \AgoraTeam\Agora\Domain\Model\Thread();
-		$favoriteThreadsObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
-		$favoriteThreadsObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($favoriteThread));
-		$this->inject($this->subject, 'favoriteThreads', $favoriteThreadsObjectStorageMock);
+	public function addFavoritePostToObjectStorageHoldingFavoritePosts() {
+		$favoritePost = new \AgoraTeam\Agora\Domain\Model\Thread();
+		$favoritePostsObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
+		$favoritePostsObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($favoritePost));
+		$this->inject($this->subject, 'favoritePosts', $favoritePostsObjectStorageMock);
 
-		$this->subject->addFavoriteThread($favoriteThread);
+		$this->subject->addFavoritePost($favoritePost);
 	}
 
 	/**
 	 * @test
 	 */
-	public function removeFavoriteThreadFromObjectStorageHoldingFavoriteThreads() {
-		$favoriteThread = new \AgoraTeam\Agora\Domain\Model\Thread();
-		$favoriteThreadsObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
-		$favoriteThreadsObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($favoriteThread));
-		$this->inject($this->subject, 'favoriteThreads', $favoriteThreadsObjectStorageMock);
+	public function removeFavoritePostFromObjectStorageHoldingFavoritePosts() {
+		$favoritePost = new \AgoraTeam\Agora\Domain\Model\Thread();
+		$favoritePostsObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
+		$favoritePostsObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($favoritePost));
+		$this->inject($this->subject, 'favoritePosts', $favoritePostsObjectStorageMock);
 
-		$this->subject->removeFavoriteThread($favoriteThread);
+		$this->subject->removeFavoritePost($favoritePost);
 
 	}
 
@@ -278,6 +278,58 @@ class UserTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->inject($this->subject, 'spamPosts', $spamPostsObjectStorageMock);
 
 		$this->subject->removeSpamPost($spamPost);
+
+	}
+
+	/**
+	 * @test
+	 */
+	public function getGroupsReturnsInitialValueForGroup() {
+		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->assertEquals(
+			$newObjectStorage,
+			$this->subject->getGroups()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setGroupsForObjectStorageContainingGroupSetsGroups() {
+		$group = new \AgoraTeam\Agora\Domain\Model\Group();
+		$objectStorageHoldingExactlyOneGroups = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$objectStorageHoldingExactlyOneGroups->attach($group);
+		$this->subject->setGroups($objectStorageHoldingExactlyOneGroups);
+
+		$this->assertAttributeEquals(
+			$objectStorageHoldingExactlyOneGroups,
+			'groups',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function addGroupToObjectStorageHoldingGroups() {
+		$group = new \AgoraTeam\Agora\Domain\Model\Group();
+		$groupsObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('attach'), array(), '', FALSE);
+		$groupsObjectStorageMock->expects($this->once())->method('attach')->with($this->equalTo($group));
+		$this->inject($this->subject, 'groups', $groupsObjectStorageMock);
+
+		$this->subject->addGroup($group);
+	}
+
+	/**
+	 * @test
+	 */
+	public function removeGroupFromObjectStorageHoldingGroups() {
+		$group = new \AgoraTeam\Agora\Domain\Model\Group();
+		$groupsObjectStorageMock = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array('detach'), array(), '', FALSE);
+		$groupsObjectStorageMock->expects($this->once())->method('detach')->with($this->equalTo($group));
+		$this->inject($this->subject, 'groups', $groupsObjectStorageMock);
+
+		$this->subject->removeGroup($group);
 
 	}
 }

@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Domain\Model;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele
+ *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -35,42 +35,42 @@ class Message extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * subject
-	 *
+	 * 
 	 * @var string
 	 */
 	protected $subject = '';
 
 	/**
 	 * message
-	 *
+	 * 
 	 * @var string
 	 */
 	protected $message = '';
 
 	/**
-	 * read
-	 *
+	 * called
+	 * 
 	 * @var boolean
 	 */
-	protected $read = FALSE;
+	protected $called = FALSE;
 
 	/**
 	 * sender
-	 *
+	 * 
 	 * @var \AgoraTeam\Agora\Domain\Model\User
 	 */
 	protected $sender = NULL;
 
 	/**
 	 * reciever
-	 *
+	 * 
 	 * @var \AgoraTeam\Agora\Domain\Model\User
 	 */
 	protected $reciever = NULL;
 
 	/**
 	 * Returns the subject
-	 *
+	 * 
 	 * @return string $subject
 	 */
 	public function getSubject() {
@@ -79,7 +79,7 @@ class Message extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the subject
-	 *
+	 * 
 	 * @param string $subject
 	 * @return void
 	 */
@@ -89,7 +89,7 @@ class Message extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the message
-	 *
+	 * 
 	 * @return string $message
 	 */
 	public function getMessage() {
@@ -98,7 +98,7 @@ class Message extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the message
-	 *
+	 * 
 	 * @param string $message
 	 * @return void
 	 */
@@ -107,36 +107,36 @@ class Message extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * Returns the read
-	 *
-	 * @return boolean $read
+	 * Returns the called
+	 * 
+	 * @return boolean $called
 	 */
-	public function getRead() {
-		return $this->read;
+	public function getCalled() {
+		return $this->called;
 	}
 
 	/**
-	 * Sets the read
-	 *
-	 * @param boolean $read
+	 * Sets the called
+	 * 
+	 * @param boolean $called
 	 * @return void
 	 */
-	public function setRead($read) {
-		$this->read = $read;
+	public function setCalled($called) {
+		$this->called = $called;
 	}
 
 	/**
-	 * Returns the boolean state of read
-	 *
+	 * Returns the boolean state of called
+	 * 
 	 * @return boolean
 	 */
-	public function isRead() {
-		return $this->read;
+	public function isCalled() {
+		return $this->called;
 	}
 
 	/**
 	 * Returns the sender
-	 *
+	 * 
 	 * @return \AgoraTeam\Agora\Domain\Model\User $sender
 	 */
 	public function getSender() {
@@ -145,7 +145,7 @@ class Message extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the sender
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\User $sender
 	 * @return void
 	 */
@@ -155,7 +155,7 @@ class Message extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the reciever
-	 *
+	 * 
 	 * @return \AgoraTeam\Agora\Domain\Model\User $reciever
 	 */
 	public function getReciever() {
@@ -164,7 +164,7 @@ class Message extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the reciever
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\User $reciever
 	 * @return void
 	 */

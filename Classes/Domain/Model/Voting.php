@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Domain\Model;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele
+ *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -35,14 +35,14 @@ class Voting extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * question
-	 *
+	 * 
 	 * @var string
 	 */
 	protected $question = '';
 
 	/**
 	 * answers
-	 *
+	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\VotingAnswer>
 	 * @cascade remove
 	 */
@@ -61,7 +61,7 @@ class Voting extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Do not modify this method!
 	 * It will be rewritten on each save in the extension builder
 	 * You may modify the constructor of this class instead
-	 *
+	 * 
 	 * @return void
 	 */
 	protected function initStorageObjects() {
@@ -70,7 +70,7 @@ class Voting extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the question
-	 *
+	 * 
 	 * @return string $question
 	 */
 	public function getQuestion() {
@@ -79,7 +79,7 @@ class Voting extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the question
-	 *
+	 * 
 	 * @param string $question
 	 * @return void
 	 */
@@ -89,7 +89,7 @@ class Voting extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a VotingAnswer
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\VotingAnswer $answer
 	 * @return void
 	 */
@@ -99,7 +99,7 @@ class Voting extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a VotingAnswer
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\VotingAnswer $answerToRemove The VotingAnswer to be removed
 	 * @return void
 	 */
@@ -109,7 +109,7 @@ class Voting extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the answers
-	 *
+	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\VotingAnswer> $answers
 	 */
 	public function getAnswers() {
@@ -118,7 +118,7 @@ class Voting extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the answers
-	 *
+	 * 
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\VotingAnswer> $answers
 	 * @return void
 	 */

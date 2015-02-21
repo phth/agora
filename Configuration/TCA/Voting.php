@@ -119,6 +119,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_voting'] = array(
 					'levelLinksPosition' => 'top',
 					'showSynchronizationLink' => 1,
 					'showPossibleLocalizationRecords' => 1,
+					'useSortable' => 1,
 					'showAllLocalizationLink' => 1
 				),
 			),

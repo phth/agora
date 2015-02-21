@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Domain\Model;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele
+ *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -35,14 +35,14 @@ class VotingAnswer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * answer
-	 *
+	 * 
 	 * @var string
 	 */
 	protected $answer = '';
 
 	/**
 	 * Returns the answer
-	 *
+	 * 
 	 * @return string $answer
 	 */
 	public function getAnswer() {
@@ -51,7 +51,7 @@ class VotingAnswer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the answer
-	 *
+	 * 
 	 * @param string $answer
 	 * @return void
 	 */

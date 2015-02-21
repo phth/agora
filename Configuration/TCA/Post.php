@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_agora_domain_model_post']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, topic, text, quoted_posts, voting, attachments, creator',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, topic, text, quoted_posts, voting, attachments, creator, historical_versions',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, topic, text, quoted_posts, voting, attachments, creator, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, topic, text, quoted_posts, voting, attachments, creator, historical_versions, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -164,6 +164,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 					'levelLinksPosition' => 'top',
 					'showSynchronizationLink' => 1,
 					'showPossibleLocalizationRecords' => 1,
+					'useSortable' => 1,
 					'showAllLocalizationLink' => 1
 				),
 			),
@@ -174,7 +175,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_post.creator',
 			'config' => array(
 				'type' => 'inline',
-				'foreign_table' => 'tx_agora_domain_model_user',
+				'foreign_table' => 'fe_users',
 				'minitems' => 0,
 				'maxitems' => 1,
 				'appearance' => array(
@@ -186,8 +187,31 @@ $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 				),
 			),
 		),
+		'historical_versions' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_post.historical_versions',
+			'config' => array(
+				'type' => 'inline',
+				'foreign_table' => 'tx_agora_domain_model_post',
+				'foreign_field' => 'post4',
+				'maxitems'      => 9999,
+				'appearance' => array(
+					'collapseAll' => 0,
+					'levelLinksPosition' => 'top',
+					'showSynchronizationLink' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1
+				),
+			),
+
+		),
 		
 		'post' => array(
+			'config' => array(
+				'type' => 'passthrough',
+			),
+		),
+		'post4' => array(
 			'config' => array(
 				'type' => 'passthrough',
 			),

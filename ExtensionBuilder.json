@@ -15,9 +15,7 @@
                     "_default2_new_create": true,
                     "_default3_edit_update": true,
                     "_default4_delete": true,
-                    "customActions": [
-
-                    ]
+                    "customActions": []
                 },
                 "name": "Forum",
                 "objectsettings": {
@@ -29,7 +27,7 @@
                     "description": "",
                     "mapToTable": "",
                     "parentClass": "",
-                    "sorting": false,
+                    "sorting": true,
                     "type": "Entity",
                     "uid": "909060748141"
                 },
@@ -71,7 +69,7 @@
                     "relations": [
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "parent",
@@ -81,7 +79,7 @@
                         },
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "threads",
@@ -91,7 +89,7 @@
                         },
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "groupsWithReadAccess",
@@ -101,7 +99,7 @@
                         },
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "groupWithWriteAccesss",
@@ -111,7 +109,7 @@
                         },
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "groupsWithModificationAccess",
@@ -121,7 +119,7 @@
                         },
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "usersWithReadAccess",
@@ -131,7 +129,7 @@
                         },
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "usersWthWriteAccessii",
@@ -141,7 +139,7 @@
                         },
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "usersWithModificationAccess",
@@ -169,7 +167,7 @@
                     "_default3_edit_update": true,
                     "_default4_delete": true,
                     "customActions": [
-
+                        "listLatest"
                     ]
                 },
                 "name": "Post",
@@ -177,7 +175,7 @@
                     "addDeletedField": true,
                     "addHiddenField": true,
                     "addStarttimeEndtimeFields": true,
-                    "aggregateRoot": false,
+                    "aggregateRoot": true,
                     "categorizable": false,
                     "description": "",
                     "mapToTable": "",
@@ -214,7 +212,7 @@
                     "relations": [
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "quotedPosts",
@@ -224,7 +222,7 @@
                         },
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "voting",
@@ -234,7 +232,7 @@
                         },
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "attachments",
@@ -244,13 +242,23 @@
                         },
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "creator",
                             "relationType": "zeroToOne",
                             "relationWire": "[wired]",
                             "uid": "5396594756"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": true,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "historicalVersions",
+                            "relationType": "zeroToMany",
+                            "relationWire": "[wired]",
+                            "uid": "1279309860696"
                         }
                     ]
                 }
@@ -272,7 +280,7 @@
                     "_default3_edit_update": true,
                     "_default4_delete": true,
                     "customActions": [
-
+                        "listLatest"
                     ]
                 },
                 "name": "Thread",
@@ -280,12 +288,12 @@
                     "addDeletedField": true,
                     "addHiddenField": true,
                     "addStarttimeEndtimeFields": true,
-                    "aggregateRoot": false,
+                    "aggregateRoot": true,
                     "categorizable": false,
                     "description": "",
                     "mapToTable": "",
                     "parentClass": "",
-                    "sorting": false,
+                    "sorting": true,
                     "type": "Entity",
                     "uid": "491724027225"
                 },
@@ -337,7 +345,7 @@
                     "relations": [
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "creator",
@@ -347,7 +355,7 @@
                         },
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "posts",
@@ -357,13 +365,73 @@
                         },
                         {
                             "foreignRelationClass": "",
-                            "lazyLoading": false,
+                            "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
                             "relationName": "views",
                             "relationType": "zeroToMany",
                             "relationWire": "[wired]",
                             "uid": "1014072435350"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": true,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "groupsWithReadAccess",
+                            "relationType": "manyToMany",
+                            "relationWire": "[wired]",
+                            "uid": "620822676159"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": true,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "groupWithWriteAccesss",
+                            "relationType": "manyToMany",
+                            "relationWire": "[wired]",
+                            "uid": "817943841157"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": true,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "groupsWithModificationAccess",
+                            "relationType": "manyToMany",
+                            "relationWire": "[wired]",
+                            "uid": "1226944451923"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": true,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "usersWithReadAccess",
+                            "relationType": "manyToMany",
+                            "relationWire": "[wired]",
+                            "uid": "1379613998522"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": true,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "usersWthWriteAccessii",
+                            "relationType": "manyToMany",
+                            "relationWire": "[wired]",
+                            "uid": "1109490792248"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": true,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "usersWithModificationAccess",
+                            "relationType": "manyToMany",
+                            "relationWire": "[wired]",
+                            "uid": "410807231113"
                         }
                     ]
                 }
@@ -372,8 +440,8 @@
         {
             "config": {
                 "position": [
-                    310,
-                    421
+                    752,
+                    835
                 ]
             },
             "name": "New Model Object",
@@ -384,19 +452,17 @@
                     "_default2_new_create": false,
                     "_default3_edit_update": false,
                     "_default4_delete": false,
-                    "customActions": [
-
-                    ]
+                    "customActions": []
                 },
                 "name": "User",
                 "objectsettings": {
                     "addDeletedField": true,
                     "addHiddenField": true,
                     "addStarttimeEndtimeFields": true,
-                    "aggregateRoot": false,
+                    "aggregateRoot": true,
                     "categorizable": false,
                     "description": "",
-                    "mapToTable": "",
+                    "mapToTable": "fe_users",
                     "parentClass": "",
                     "sorting": false,
                     "type": "Entity",
@@ -433,7 +499,7 @@
                             "lazyLoading": false,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
-                            "relationName": "favoriteThreads",
+                            "relationName": "favoritePosts",
                             "relationType": "zeroToMany",
                             "relationWire": "[wired]",
                             "uid": "1199702774439"
@@ -457,6 +523,16 @@
                             "relationType": "zeroToMany",
                             "relationWire": "[wired]",
                             "uid": "239162734683"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": true,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "groups",
+                            "relationType": "manyToMany",
+                            "relationWire": "[wired]",
+                            "uid": "918405939430"
                         }
                     ]
                 }
@@ -465,20 +541,20 @@
         {
             "config": {
                 "position": [
-                    600,
-                    564
+                    713,
+                    551
                 ]
             },
             "name": "New Model Object",
             "value": {
                 "actionGroup": {
-                    "_default0_list": false,
-                    "_default1_show": false,
-                    "_default2_new_create": false,
+                    "_default0_list": true,
+                    "_default1_show": true,
+                    "_default2_new_create": true,
                     "_default3_edit_update": false,
-                    "_default4_delete": false,
+                    "_default4_delete": true,
                     "customActions": [
-
+                        "listConversation"
                     ]
                 },
                 "name": "Message",
@@ -523,7 +599,7 @@
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
-                            "propertyName": "read",
+                            "propertyName": "called",
                             "propertyType": "Boolean",
                             "uid": "682964504635"
                         }
@@ -570,16 +646,14 @@
                     "_default2_new_create": false,
                     "_default3_edit_update": false,
                     "_default4_delete": false,
-                    "customActions": [
-
-                    ]
+                    "customActions": []
                 },
                 "name": "Voting",
                 "objectsettings": {
                     "addDeletedField": true,
                     "addHiddenField": true,
                     "addStarttimeEndtimeFields": true,
-                    "aggregateRoot": false,
+                    "aggregateRoot": true,
                     "categorizable": false,
                     "description": "",
                     "mapToTable": "",
@@ -621,8 +695,8 @@
         {
             "config": {
                 "position": [
-                    597,
-                    383
+                    594,
+                    397
                 ]
             },
             "name": "New Model Object",
@@ -634,7 +708,7 @@
                     "_default3_edit_update": false,
                     "_default4_delete": false,
                     "customActions": [
-
+                        "download"
                     ]
                 },
                 "name": "Attachment",
@@ -642,32 +716,28 @@
                     "addDeletedField": true,
                     "addHiddenField": true,
                     "addStarttimeEndtimeFields": true,
-                    "aggregateRoot": false,
+                    "aggregateRoot": true,
                     "categorizable": false,
                     "description": "",
                     "mapToTable": "",
                     "parentClass": "",
-                    "sorting": false,
+                    "sorting": true,
                     "type": "Entity",
                     "uid": "517328384667"
                 },
                 "propertyGroup": {
-                    "properties": [
-
-                    ]
+                    "properties": []
                 },
                 "relationGroup": {
-                    "relations": [
-
-                    ]
+                    "relations": []
                 }
             }
         },
         {
             "config": {
                 "position": [
-                    935,
-                    553
+                    1021,
+                    456
                 ]
             },
             "name": "New Model Object",
@@ -678,9 +748,7 @@
                     "_default2_new_create": false,
                     "_default3_edit_update": false,
                     "_default4_delete": false,
-                    "customActions": [
-
-                    ]
+                    "customActions": []
                 },
                 "name": "Vote",
                 "objectsettings": {
@@ -697,9 +765,7 @@
                     "uid": "680205142829"
                 },
                 "propertyGroup": {
-                    "properties": [
-
-                    ]
+                    "properties": []
                 },
                 "relationGroup": {
                     "relations": [
@@ -740,8 +806,8 @@
         {
             "config": {
                 "position": [
-                    889,
-                    327
+                    968,
+                    282
                 ]
             },
             "name": "New Model Object",
@@ -752,9 +818,7 @@
                     "_default2_new_create": false,
                     "_default3_edit_update": false,
                     "_default4_delete": false,
-                    "customActions": [
-
-                    ]
+                    "customActions": []
                 },
                 "name": "VotingAnswer",
                 "objectsettings": {
@@ -766,7 +830,7 @@
                     "description": "",
                     "mapToTable": "",
                     "parentClass": "",
-                    "sorting": false,
+                    "sorting": true,
                     "type": "Entity",
                     "uid": "433991028695"
                 },
@@ -785,17 +849,15 @@
                     ]
                 },
                 "relationGroup": {
-                    "relations": [
-
-                    ]
+                    "relations": []
                 }
             }
         },
         {
             "config": {
                 "position": [
-                    43,
-                    450
+                    40,
+                    515
                 ]
             },
             "name": "New Model Object",
@@ -806,11 +868,48 @@
                     "_default2_new_create": false,
                     "_default3_edit_update": false,
                     "_default4_delete": false,
-                    "customActions": [
-
-                    ]
+                    "customActions": []
                 },
                 "name": "Group",
+                "objectsettings": {
+                    "addDeletedField": true,
+                    "addHiddenField": true,
+                    "addStarttimeEndtimeFields": true,
+                    "aggregateRoot": false,
+                    "categorizable": false,
+                    "description": "",
+                    "mapToTable": "fe_groups",
+                    "parentClass": "",
+                    "sorting": false,
+                    "type": "Entity",
+                    "uid": "293699052172"
+                },
+                "propertyGroup": {
+                    "properties": []
+                },
+                "relationGroup": {
+                    "relations": []
+                }
+            }
+        },
+        {
+            "config": {
+                "position": [
+                    374,
+                    760
+                ]
+            },
+            "name": "New Model Object",
+            "value": {
+                "actionGroup": {
+                    "_default0_list": false,
+                    "_default1_show": false,
+                    "_default2_new_create": false,
+                    "_default3_edit_update": false,
+                    "_default4_delete": false,
+                    "customActions": []
+                },
+                "name": "View",
                 "objectsettings": {
                     "addDeletedField": true,
                     "addHiddenField": true,
@@ -822,16 +921,33 @@
                     "parentClass": "",
                     "sorting": false,
                     "type": "Entity",
-                    "uid": "293699052172"
+                    "uid": "1245274897239"
                 },
                 "propertyGroup": {
-                    "properties": [
-
-                    ]
+                    "properties": []
                 },
                 "relationGroup": {
                     "relations": [
-
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "thread",
+                            "relationType": "manyToOne",
+                            "relationWire": "[wired]",
+                            "uid": "180065525847"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "user",
+                            "relationType": "zeroToMany",
+                            "relationWire": "[wired]",
+                            "uid": "678926839310"
+                        }
                     ]
                 }
             }
@@ -839,7 +955,16 @@
     ],
     "properties": {
         "backendModules": [
-
+            {
+                "actions": {
+                    "controllerActionCombinations": "ForumAdmin => list, new, create, edit, update, statistic\n"
+                },
+                "description": "Agora Forum Administration",
+                "key": "forum",
+                "mainModule": "web",
+                "name": "Forum",
+                "tabLabel": "Agora Forum Administration"
+            }
         ],
         "description": "",
         "emConf": {
@@ -854,12 +979,12 @@
             "version": "0.1.0"
         },
         "extensionKey": "agora",
-        "name": "Agora - TYPO3 Board",
-        "originalExtensionKey": "",
+        "name": "Agora - TYPO3 Forum",
+        "originalExtensionKey": "agora",
         "persons": [
             {
                 "company": "",
-                "email": "",
+                "email": "philipp.thiele@phth.de",
                 "name": "Phillip Thiele",
                 "role": "Developer"
             },
@@ -873,8 +998,8 @@
         "plugins": [
             {
                 "actions": {
-                    "controllerActionCombinations": "Forum => show, list, delete, edit, new,",
-                    "noncacheableActions": "",
+                    "controllerActionCombinations": "Forum => list, delete, edit, new, create\nThread => list, delete, edit, new, create\nPost => list, show, delete, edit, new, create\nAttachment => download",
+                    "noncacheableActions": "Forum => list, delete, edit, new, create\nThread => list, delete, edit, new, create\nPost => list, show, delete, edit, new, create\nAttachment => download",
                     "switchableActions": ""
                 },
                 "key": "forum",
@@ -884,10 +1009,10 @@
                 "actions": {
                     "controllerActionCombinations": "",
                     "noncacheableActions": "",
-                    "switchableActions": ""
+                    "switchableActions": "User => favoritePosts,\nUser => observedThreads\nThread => listLatest\nPost => listLatest\nMessage => list; Message => listConversation; Message => new; Message => create "
                 },
-                "key": "dashboard",
-                "name": "Dashboard"
+                "key": "widgets",
+                "name": "Widgets"
             }
         ],
         "vendorName": "AgoraTeam"
@@ -1063,18 +1188,6 @@
         },
         {
             "src": {
-                "moduleId": 2,
-                "terminal": "relationWire_2",
-                "uid": "1014072435350"
-            },
-            "tgt": {
-                "moduleId": 3,
-                "terminal": "SOURCES",
-                "uid": "561443505545"
-            }
-        },
-        {
-            "src": {
                 "moduleId": 7,
                 "terminal": "relationWire_2",
                 "uid": "645835204845"
@@ -1192,10 +1305,130 @@
                 "terminal": "SOURCES",
                 "uid": "293699052172"
             }
+        },
+        {
+            "src": {
+                "moduleId": 3,
+                "terminal": "relationWire_4",
+                "uid": "918405939430"
+            },
+            "tgt": {
+                "moduleId": 9,
+                "terminal": "SOURCES",
+                "uid": "293699052172"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 1,
+                "terminal": "relationWire_4",
+                "uid": "1279309860696"
+            },
+            "tgt": {
+                "moduleId": 1,
+                "terminal": "SOURCES",
+                "uid": "612222251821"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 2,
+                "terminal": "relationWire_3",
+                "uid": "620822676159"
+            },
+            "tgt": {
+                "moduleId": 9,
+                "terminal": "SOURCES",
+                "uid": "293699052172"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 2,
+                "terminal": "relationWire_4",
+                "uid": "817943841157"
+            },
+            "tgt": {
+                "moduleId": 9,
+                "terminal": "SOURCES",
+                "uid": "293699052172"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 2,
+                "terminal": "relationWire_5",
+                "uid": "1226944451923"
+            },
+            "tgt": {
+                "moduleId": 9,
+                "terminal": "SOURCES",
+                "uid": "293699052172"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 2,
+                "terminal": "relationWire_6",
+                "uid": "1379613998522"
+            },
+            "tgt": {
+                "moduleId": 3,
+                "terminal": "SOURCES",
+                "uid": "561443505545"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 2,
+                "terminal": "relationWire_7",
+                "uid": "1109490792248"
+            },
+            "tgt": {
+                "moduleId": 3,
+                "terminal": "SOURCES",
+                "uid": "561443505545"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 2,
+                "terminal": "relationWire_8",
+                "uid": "410807231113"
+            },
+            "tgt": {
+                "moduleId": 3,
+                "terminal": "SOURCES",
+                "uid": "561443505545"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 10,
+                "terminal": "relationWire_1",
+                "uid": "678926839310"
+            },
+            "tgt": {
+                "moduleId": 3,
+                "terminal": "SOURCES",
+                "uid": "561443505545"
+            }
+        },
+        {
+            "src": {
+                "moduleId": 10,
+                "terminal": "relationWire_0",
+                "uid": "180065525847"
+            },
+            "tgt": {
+                "moduleId": 2,
+                "terminal": "SOURCES",
+                "uid": "1014072435350"
+            }
         }
     ],
     "log": {
-        "last_modified": "2015-02-02 06:11",
+        "last_modified": "2015-02-21 07:32",
         "extension_builder_version": "6.2.0",
         "be_user": " (1)"
     }

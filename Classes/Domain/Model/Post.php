@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Domain\Model;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele
+ *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -35,47 +35,60 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * topic
-	 *
+	 * 
 	 * @var string
 	 */
 	protected $topic = '';
 
 	/**
 	 * text
-	 *
+	 * 
 	 * @var string
 	 */
 	protected $text = '';
 
 	/**
 	 * quotedPosts
-	 *
+	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post>
 	 * @cascade remove
+	 * @lazy
 	 */
 	protected $quotedPosts = NULL;
 
 	/**
 	 * voting
-	 *
+	 * 
 	 * @var \AgoraTeam\Agora\Domain\Model\Voting
+	 * @lazy
 	 */
 	protected $voting = NULL;
 
 	/**
 	 * attachments
-	 *
+	 * 
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Attachment>
 	 * @cascade remove
+	 * @lazy
 	 */
 	protected $attachments = NULL;
 
 	/**
 	 * creator
-	 *
+	 * 
 	 * @var \AgoraTeam\Agora\Domain\Model\User
+	 * @lazy
 	 */
 	protected $creator = NULL;
+
+	/**
+	 * historicalVersions
+	 * 
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post>
+	 * @cascade remove
+	 * @lazy
+	 */
+	protected $historicalVersions = NULL;
 
 	/**
 	 * __construct
@@ -90,17 +103,18 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Do not modify this method!
 	 * It will be rewritten on each save in the extension builder
 	 * You may modify the constructor of this class instead
-	 *
+	 * 
 	 * @return void
 	 */
 	protected function initStorageObjects() {
 		$this->quotedPosts = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->attachments = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->historicalVersions = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
 	 * Returns the topic
-	 *
+	 * 
 	 * @return string $topic
 	 */
 	public function getTopic() {
@@ -109,7 +123,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the topic
-	 *
+	 * 
 	 * @param string $topic
 	 * @return void
 	 */
@@ -119,7 +133,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the text
-	 *
+	 * 
 	 * @return string $text
 	 */
 	public function getText() {
@@ -128,7 +142,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the text
-	 *
+	 * 
 	 * @param string $text
 	 * @return void
 	 */
@@ -138,7 +152,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Post
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $quotedPost
 	 * @return void
 	 */
@@ -148,7 +162,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Post
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $quotedPostToRemove The Post to be removed
 	 * @return void
 	 */
@@ -158,7 +172,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the quotedPosts
-	 *
+	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $quotedPosts
 	 */
 	public function getQuotedPosts() {
@@ -167,7 +181,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the quotedPosts
-	 *
+	 * 
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $quotedPosts
 	 * @return void
 	 */
@@ -177,7 +191,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the voting
-	 *
+	 * 
 	 * @return \AgoraTeam\Agora\Domain\Model\Voting $voting
 	 */
 	public function getVoting() {
@@ -186,7 +200,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the voting
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Voting $voting
 	 * @return void
 	 */
@@ -196,7 +210,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Attachment
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Attachment $attachment
 	 * @return void
 	 */
@@ -206,7 +220,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Attachment
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Attachment $attachmentToRemove The Attachment to be removed
 	 * @return void
 	 */
@@ -216,7 +230,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the attachments
-	 *
+	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Attachment> $attachments
 	 */
 	public function getAttachments() {
@@ -225,7 +239,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the attachments
-	 *
+	 * 
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Attachment> $attachments
 	 * @return void
 	 */
@@ -235,7 +249,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the creator
-	 *
+	 * 
 	 * @return \AgoraTeam\Agora\Domain\Model\User $creator
 	 */
 	public function getCreator() {
@@ -244,12 +258,51 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the creator
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\User $creator
 	 * @return void
 	 */
 	public function setCreator(\AgoraTeam\Agora\Domain\Model\User $creator) {
 		$this->creator = $creator;
+	}
+
+	/**
+	 * Adds a Post
+	 * 
+	 * @param \AgoraTeam\Agora\Domain\Model\Post $historicalVersion
+	 * @return void
+	 */
+	public function addHistoricalVersion(\AgoraTeam\Agora\Domain\Model\Post $historicalVersion) {
+		$this->historicalVersions->attach($historicalVersion);
+	}
+
+	/**
+	 * Removes a Post
+	 * 
+	 * @param \AgoraTeam\Agora\Domain\Model\Post $historicalVersionToRemove The Post to be removed
+	 * @return void
+	 */
+	public function removeHistoricalVersion(\AgoraTeam\Agora\Domain\Model\Post $historicalVersionToRemove) {
+		$this->historicalVersions->detach($historicalVersionToRemove);
+	}
+
+	/**
+	 * Returns the historicalVersions
+	 * 
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $historicalVersions
+	 */
+	public function getHistoricalVersions() {
+		return $this->historicalVersions;
+	}
+
+	/**
+	 * Sets the historicalVersions
+	 * 
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $historicalVersions
+	 * @return void
+	 */
+	public function setHistoricalVersions(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $historicalVersions) {
+		$this->historicalVersions = $historicalVersions;
 	}
 
 }

@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Controller;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele
+ *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -34,8 +34,16 @@ namespace AgoraTeam\Agora\Controller;
 class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
+	 * postRepository
+	 * 
+	 * @var \AgoraTeam\Agora\Domain\Repository\PostRepository
+	 * @inject
+	 */
+	protected $postRepository = NULL;
+
+	/**
 	 * action list
-	 *
+	 * 
 	 * @return void
 	 */
 	public function listAction() {
@@ -45,7 +53,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 
 	/**
 	 * action show
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
 	 * @return void
 	 */
@@ -55,7 +63,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 
 	/**
 	 * action new
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $newPost
 	 * @ignorevalidation $newPost
 	 * @return void
@@ -66,7 +74,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 
 	/**
 	 * action create
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $newPost
 	 * @return void
 	 */
@@ -78,7 +86,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 
 	/**
 	 * action edit
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
 	 * @ignorevalidation $post
 	 * @return void
@@ -89,7 +97,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 
 	/**
 	 * action update
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
 	 * @return void
 	 */
@@ -101,7 +109,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 
 	/**
 	 * action delete
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
 	 * @return void
 	 */
@@ -109,6 +117,15 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 		$this->postRepository->remove($post);
 		$this->redirect('list');
+	}
+
+	/**
+	 * action listLatest
+	 * 
+	 * @return void
+	 */
+	public function listLatestAction() {
+		
 	}
 
 }

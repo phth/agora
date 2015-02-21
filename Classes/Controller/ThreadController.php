@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Controller;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele
+ *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -34,8 +34,16 @@ namespace AgoraTeam\Agora\Controller;
 class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
+	 * threadRepository
+	 * 
+	 * @var \AgoraTeam\Agora\Domain\Repository\ThreadRepository
+	 * @inject
+	 */
+	protected $threadRepository = NULL;
+
+	/**
 	 * action list
-	 *
+	 * 
 	 * @return void
 	 */
 	public function listAction() {
@@ -45,7 +53,7 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action show
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 * @return void
 	 */
@@ -55,7 +63,7 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action new
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $newThread
 	 * @ignorevalidation $newThread
 	 * @return void
@@ -66,7 +74,7 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action create
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $newThread
 	 * @return void
 	 */
@@ -78,7 +86,7 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action edit
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 * @ignorevalidation $thread
 	 * @return void
@@ -89,7 +97,7 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action update
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 * @return void
 	 */
@@ -101,7 +109,7 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action delete
-	 *
+	 * 
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 * @return void
 	 */
@@ -109,6 +117,15 @@ class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		$this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 		$this->threadRepository->remove($thread);
 		$this->redirect('list');
+	}
+
+	/**
+	 * action listLatest
+	 * 
+	 * @return void
+	 */
+	public function listLatestAction() {
+		
 	}
 
 }

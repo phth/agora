@@ -3,7 +3,7 @@ namespace AgoraTeam\Agora\Tests\Unit\Controller;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele 
+ *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
  *  			Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *  			
  *  All rights reserved
@@ -28,7 +28,7 @@ namespace AgoraTeam\Agora\Tests\Unit\Controller;
 /**
  * Test case for class AgoraTeam\Agora\Controller\ThreadController.
  *
- * @author Phillip Thiele 
+ * @author Phillip Thiele <philipp.thiele@phth.de>
  * @author Björn Christopher Bresser <bjoern.bresser@gmail.com>
  */
 class ThreadControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
@@ -53,7 +53,7 @@ class ThreadControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 		$allThreads = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
 
-		$threadRepository = $this->getMock('', array('findAll'), array(), '', FALSE);
+		$threadRepository = $this->getMock('AgoraTeam\\Agora\\Domain\\Repository\\ThreadRepository', array('findAll'), array(), '', FALSE);
 		$threadRepository->expects($this->once())->method('findAll')->will($this->returnValue($allThreads));
 		$this->inject($this->subject, 'threadRepository', $threadRepository);
 
@@ -96,7 +96,7 @@ class ThreadControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function createActionAddsTheGivenThreadToThreadRepository() {
 		$thread = new \AgoraTeam\Agora\Domain\Model\Thread();
 
-		$threadRepository = $this->getMock('', array('add'), array(), '', FALSE);
+		$threadRepository = $this->getMock('AgoraTeam\\Agora\\Domain\\Repository\\ThreadRepository', array('add'), array(), '', FALSE);
 		$threadRepository->expects($this->once())->method('add')->with($thread);
 		$this->inject($this->subject, 'threadRepository', $threadRepository);
 
@@ -122,7 +122,7 @@ class ThreadControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function updateActionUpdatesTheGivenThreadInThreadRepository() {
 		$thread = new \AgoraTeam\Agora\Domain\Model\Thread();
 
-		$threadRepository = $this->getMock('', array('update'), array(), '', FALSE);
+		$threadRepository = $this->getMock('AgoraTeam\\Agora\\Domain\\Repository\\ThreadRepository', array('update'), array(), '', FALSE);
 		$threadRepository->expects($this->once())->method('update')->with($thread);
 		$this->inject($this->subject, 'threadRepository', $threadRepository);
 
@@ -135,10 +135,28 @@ class ThreadControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function deleteActionRemovesTheGivenThreadFromThreadRepository() {
 		$thread = new \AgoraTeam\Agora\Domain\Model\Thread();
 
-		$threadRepository = $this->getMock('', array('remove'), array(), '', FALSE);
+		$threadRepository = $this->getMock('AgoraTeam\\Agora\\Domain\\Repository\\ThreadRepository', array('remove'), array(), '', FALSE);
 		$threadRepository->expects($this->once())->method('remove')->with($thread);
 		$this->inject($this->subject, 'threadRepository', $threadRepository);
 
 		$this->subject->deleteAction($thread);
+	}
+
+	/**
+	 * @test
+	 */
+	public function listActionFetchesAllThreadsFromRepositoryAndAssignsThemToView() {
+
+		$allThreads = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
+
+		$threadRepository = $this->getMock('AgoraTeam\\Agora\\Domain\\Repository\\ThreadRepository', array('findAll'), array(), '', FALSE);
+		$threadRepository->expects($this->once())->method('findAll')->will($this->returnValue($allThreads));
+		$this->inject($this->subject, 'threadRepository', $threadRepository);
+
+		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
+		$view->expects($this->once())->method('assign')->with('threads', $allThreads);
+		$this->inject($this->subject, 'view', $view);
+
+		$this->subject->listAction();
 	}
 }

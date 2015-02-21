@@ -3,9 +3,17 @@ config.tx_extbase{
     persistence{
         classes{
 
-            AgoraTeam\Agora\Domain\Model\Message {
+            AgoraTeam\Agora\Domain\Model\User {
                 mapping {
-                    
+                    tableName = fe_users
+                    recordType = Tx_Agora_User
+                }
+            }
+            
+            AgoraTeam\Agora\Domain\Model\Group {
+                mapping {
+                    tableName = fe_groups
+                    recordType = Tx_Agora_Group
                 }
             }
             
