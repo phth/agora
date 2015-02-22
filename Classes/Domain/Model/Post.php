@@ -48,13 +48,21 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $text = '';
 
 	/**
-	 * quotedPosts
+	 * quotedPost
 	 * 
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post>
-	 * @cascade remove
+	 * @var \AgoraTeam\Agora\Domain\Model\Post
 	 * @lazy
 	 */
-	protected $quotedPosts = NULL;
+	protected $quotedPost = NULL;
+
+    /**
+     * replies
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post>
+     * @cascade remove
+     * @lazy
+     */
+    protected $replies = NULL;
 
 	/**
 	 * voting
@@ -102,7 +110,6 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * __construct
 	 */
 	public function __construct() {
-		//Do not remove the next line: It would break the functionality
 		$this->initStorageObjects();
 	}
 
@@ -115,7 +122,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return void
 	 */
 	protected function initStorageObjects() {
-		$this->quotedPosts = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->replies = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->attachments = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->historicalVersions = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
@@ -159,42 +166,61 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * Adds a Post
+	 * Returns the quotedPost
 	 * 
-	 * @param \AgoraTeam\Agora\Domain\Model\Post $quotedPost
-	 * @return void
+	 * @return \AgoraTeam\Agora\Domain\Model\Post $quotedPost
 	 */
-	public function addQuotedPost(\AgoraTeam\Agora\Domain\Model\Post $quotedPost) {
-		$this->quotedPosts->attach($quotedPost);
+	public function getQuotedPost() {
+		return $this->quotedPost;
 	}
 
-	/**
-	 * Removes a Post
-	 * 
-	 * @param \AgoraTeam\Agora\Domain\Model\Post $quotedPostToRemove The Post to be removed
-	 * @return void
-	 */
-	public function removeQuotedPost(\AgoraTeam\Agora\Domain\Model\Post $quotedPostToRemove) {
-		$this->quotedPosts->detach($quotedPostToRemove);
-	}
+    /**
+     * Sets the quotedPost
+     *
+     * @param \AgoraTeam\Agora\Domain\Model\Post $quotedPost
+     * @return void
+     */
+    public function setQuotedPost(\AgoraTeam\Agora\Domain\Model\Post $quotedPost) {
+        $this->quotedPost = $quotedPost;
+    }
+
+    /**
+     * Adds a Reply
+     *
+     * @param \AgoraTeam\Agora\Domain\Model\Reply $reply
+     * @return void
+     */
+    public function addReply(\AgoraTeam\Agora\Domain\Model\Reply $reply) {
+        $this->replies->attach($reply);
+    }
+
+    /**
+     * Removes a Reply
+     *
+     * @param \AgoraTeam\Agora\Domain\Model\Reply $reply The Reply to be removed
+     * @return void
+     */
+    public function removeReply(\AgoraTeam\Agora\Domain\Model\Reply $replyToRemove) {
+        $this->replies->detach($replyToRemove);
+    }
+
+    /**
+     * Returns the replies
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $replies
+     */
+    public function getReplies() {
+        return $this->replies;
+    }
 
 	/**
-	 * Returns the quotedPosts
+	 * Sets the replies
 	 * 
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $quotedPosts
-	 */
-	public function getQuotedPosts() {
-		return $this->quotedPosts;
-	}
-
-	/**
-	 * Sets the quotedPosts
-	 * 
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $quotedPosts
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $replies
 	 * @return void
 	 */
-	public function setQuotedPosts(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $quotedPosts) {
-		$this->quotedPosts = $quotedPosts;
+	public function setReplies(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $replies) {
+		$this->replies = $replies;
 	}
 
 	/**
@@ -280,7 +306,12 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @return \AgoraTeam\Agora\Domain\Model\Thread $thread
      */
     public function getThread() {
-        return $this->thread;
+        if(is_object($this->thread)) {
+            $thread = $this->thread;
+        } else {
+            $thread = $this->detectThread();
+        }
+        return $thread;
     }
 
     /**
@@ -331,5 +362,17 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setHistoricalVersions(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $historicalVersions) {
 		$this->historicalVersions = $historicalVersions;
 	}
+
+    public function detectThread() {
+        $thread = FALSE;
+        if(is_object($this->thread)) {
+            $thread = $this->thread;
+        } else {
+            if(is_object($this->quotedPost)) {
+                $thread = $this->quotedPost->detectThread();
+            }
+        }
+        return $thread;
+    }
 
 }

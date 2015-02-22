@@ -10,15 +10,15 @@
     <f:format.raw>{post.text}</f:format.raw>
 
     <ul class="list-group">
-        <f:for each="{post.answers}" as="answer">
+        <f:for each="{post.replies}" as="reply">
             <li class="list-group-item">
                 <h4>
-                    <f:link.action action="show" controller="Post" arguments="{post:answer}">
-                        {answer.topic}
+                    <f:link.action action="show" controller="Post" arguments="{post:reply}">
+                        {reply.topic}
                     </f:link.action>
                 </h4>
                 <p>
-                    <f:format.raw>{answer.text}</f:format.raw>
+                    <f:format.raw>{reply.text}</f:format.raw>
                 </p>
 
             </li>

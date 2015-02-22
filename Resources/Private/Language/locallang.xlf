@@ -45,9 +45,12 @@
 			<trans-unit id="tx_agora_domain_model_post.text">
 				<source>Text</source>
 			</trans-unit>
-			<trans-unit id="tx_agora_domain_model_post.quoted_posts">
-				<source>Quoted Posts</source>
+			<trans-unit id="tx_agora_domain_model_post.quoted_post">
+				<source>Quoted Post</source>
 			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_post.replies">
+                <source>Replies</source>
+            </trans-unit>
 			<trans-unit id="tx_agora_domain_model_post.voting">
 				<source>Voting</source>
 			</trans-unit>

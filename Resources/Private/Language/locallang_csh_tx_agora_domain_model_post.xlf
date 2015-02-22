@@ -9,9 +9,12 @@
 			<trans-unit id="text.description">
 				<source>text</source>
 			</trans-unit>
-			<trans-unit id="quoted_posts.description">
-				<source>quotedPosts</source>
+			<trans-unit id="quoted_post.description">
+				<source>quotedPost</source>
 			</trans-unit>
+			<trans-unit id="replies.description">
+                <source>replies</source>
+            </trans-unit>
 			<trans-unit id="voting.description">
 				<source>voting</source>
 			</trans-unit>

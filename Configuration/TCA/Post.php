@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_agora_domain_model_post']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, topic, text, quoted_posts, voting, attachments, creator, historical_versions',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, topic, text, thread, replies, quoted_post, voting, attachments, creator, historical_versions',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, topic, text, quoted_posts, voting, attachments, creator, historical_versions, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, topic, text, thread, replies, quoted_post, voting, attachments, creator, historical_versions, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -116,13 +116,24 @@ $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 				'eval' => 'trim'
 			)
 		),
-		'quoted_posts' => array(
+        'quoted_post' => array(
+            'exclude' => 1,
+            'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_post.quoted_post',
+            'config' => array(
+                'type' => 'select',
+                'items' => array(
+                    array('', 0),
+                ),
+                'foreign_table' => 'tx_agora_domain_model_post'
+            ),
+        ),
+		'replies' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_post.quoted_posts',
+			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_post.replies',
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_agora_domain_model_post',
-				'foreign_field' => 'post',
+				'foreign_field' => 'quoted_post',
 				'maxitems'      => 9999,
 				'appearance' => array(
 					'collapseAll' => 0,
@@ -132,7 +143,6 @@ $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 					'showAllLocalizationLink' => 1
 				),
 			),
-
 		),
 		'voting' => array(
 			'exclude' => 1,
@@ -174,17 +184,11 @@ $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_post.creator',
 			'config' => array(
-				'type' => 'inline',
-				'foreign_table' => 'fe_users',
-				'minitems' => 0,
-				'maxitems' => 1,
-				'appearance' => array(
-					'collapseAll' => 0,
-					'levelLinksPosition' => 'top',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
-				),
+				'type' => 'select',
+                'items' => array(
+                    array('', 0),
+                ),
+				'foreign_table' => 'fe_users'
 			),
 		),
 		'historical_versions' => array(
@@ -212,6 +216,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
                 'items' => array(
                     array('', 0),
                 ),
+                'type' => 'select',
                 'foreign_table' => 'tx_agora_domain_model_thread'
             ),
 		),

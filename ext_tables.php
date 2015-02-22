@@ -97,7 +97,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'topic,text,quoted_posts,voting,attachments,creator,historical_versions,',
+		'searchFields' => 'topic,text,quoted_post,voting,attachments,creator,historical_versions,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Post.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_agora_domain_model_post.gif'
 	),

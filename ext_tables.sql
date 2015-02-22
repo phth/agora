@@ -57,15 +57,13 @@ CREATE TABLE tx_agora_domain_model_post (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-	post int(11) unsigned DEFAULT '0' NOT NULL,
-	post4 int(11) unsigned DEFAULT '0' NOT NULL,
 	thread int(11) unsigned DEFAULT '0' NOT NULL,
 	user int(11) unsigned DEFAULT '0' NOT NULL,
-	user2 int(11) unsigned DEFAULT '0' NOT NULL,
+	replies int(11) unsigned DEFAULT '0' NOT NULL,
 
 	topic varchar(255) DEFAULT '' NOT NULL,
 	text text NOT NULL,
-	quoted_posts int(11) unsigned DEFAULT '0' NOT NULL,
+	quoted_post int(11) unsigned DEFAULT '0' NOT NULL,
 	voting int(11) unsigned DEFAULT '0',
 	attachments int(11) unsigned DEFAULT '0' NOT NULL,
 	creator int(11) unsigned DEFAULT '0',
