@@ -33,5 +33,19 @@ namespace AgoraTeam\Agora\Domain\Repository;
  */
 class ForumRepository extends Repository {
 
-
+    /**
+     * findRootForums
+     *
+     * find forums that have no parent and are therefore root forums
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     */
+    public function findRootForums() {
+        $query = $this->createQuery();
+        $query->matching($query->equals('parent', 0));
+        $query->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
+        $forums = $query->execute();
+        return $forums;
+    }
+	
 }

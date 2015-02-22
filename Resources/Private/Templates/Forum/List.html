@@ -6,16 +6,7 @@
 
     <f:render partial="Navigation/Forum" />
 
-    <ul class="list-group">
-        <f:for each="{forums}" as="forum">
-            <li class="list-group-item">
-                <f:link.action action="list" controller="Thread" arguments="{forum:forum}">
-                    <h2>{forum.title}</h2>
-                    <p>{forum.description}</p>
-                </f:link.action>
-            </li>
-        </f:for>
-    </ul>
+    <f:render partial="Forum/List" arguments="{forums:forums}"/>
 
     <f:link.action action="new">New Forum</f:link.action>
 </f:section>

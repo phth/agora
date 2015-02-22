@@ -4,22 +4,25 @@
             Start
         </f:link.action>
     </li>
-    <li>
-
-        <f:link.action action="list" controller="Thread" arguments="{forum:post.thread.forum}">
-            {post.thread.forum.title}
-        </f:link.action>
-    </li>
+    <f:for each="{post.thread.forum.rootline}" as="forumRootlineItem">
+        <li>
+            <f:link.action action="list" controller="Thread" arguments="{forum:forumRootlineItem}">
+                {forumRootlineItem.title}
+            </f:link.action>
+        </li>
+    </f:for>
     <li>
         <f:link.action action="list" controller="Post" arguments="{thread:post.thread}">
             {post.thread.title}
         </f:link.action>
     </li>
-    <li>
-        <f:link.action action="show" controller="Post" arguments="{post: post}">
-            {post.topic}
-        </f:link.action>
-    </li>
+    <f:for each="{post.rootline}" as="postRootlineItem">
+        <li>
+            <f:link.action action="show" controller="Post" arguments="{post: postRootlineItem}">
+                {postRootlineItem.topic}
+            </f:link.action>
+        </li>
+    </f:for>
 </ul>
 
 <f:if condition="{post.thread.forum}">

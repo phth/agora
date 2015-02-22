@@ -6,11 +6,13 @@
     </li>
     <f:if condition="{thread}">
         <f:then>
-            <li>
-                <f:link.action action="list" controller="Thread" arguments="{forum:thread.forum}">
-                    {thread.forum.title}
-                </f:link.action>
-            </li>
+            <f:for each="{thread.forum.rootline}" as="forumRootlineItem">
+                <li>
+                    <f:link.action action="list" controller="Thread" arguments="{forum:forumRootlineItem}">
+                        {forumRootlineItem.title}
+                    </f:link.action>
+                </li>
+            </f:for>
             <li>
                 <f:link.action action="list" controller="Post" arguments="{thread:thread}">
                     {thread.title}
@@ -18,11 +20,13 @@
             </li>
         </f:then>
         <f:else>
-            <li>
-                <f:link.action action="list" controller="Thread" arguments="{forum:forum}">
-                    {forum.title}
-                </f:link.action>
-            </li>
+            <f:for each="{forum.rootline}" as="forumRootlineItem">
+                <li>
+                    <f:link.action action="list" controller="Thread" arguments="{forum:forumRootlineItem}">
+                        {forumRootlineItem.title}
+                    </f:link.action>
+                </li>
+            </f:for>
         </f:else>
     </f:if>
 </ul>

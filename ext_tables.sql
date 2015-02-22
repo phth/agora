@@ -6,11 +6,11 @@ CREATE TABLE tx_agora_domain_model_forum (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-	forum int(11) unsigned DEFAULT '0' NOT NULL,
-
-	title varchar(255) DEFAULT '' NOT NULL,
+  title varchar(255) DEFAULT '' NOT NULL,
 	description text NOT NULL,
-	parent int(11) unsigned DEFAULT '0' NOT NULL,
+
+	parent  int(11) unsigned DEFAULT '0' NOT NULL,
+	sub_forums  int(11) unsigned DEFAULT '0' NOT NULL,
 	threads int(11) unsigned DEFAULT '0' NOT NULL,
 	groups_with_read_access int(11) unsigned DEFAULT '0' NOT NULL,
 	group_with_write_access int(11) unsigned DEFAULT '0' NOT NULL,
@@ -106,7 +106,8 @@ CREATE TABLE tx_agora_domain_model_thread (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-	forum int(11) unsigned DEFAULT '0' NOT NULL,
+	forum  int(11) unsigned DEFAULT '0' NOT NULL,
+	user  int(11) unsigned DEFAULT '0' NOT NULL,
 
 	title varchar(255) DEFAULT '' NOT NULL,
 	solved tinyint(1) unsigned DEFAULT '0' NOT NULL,
@@ -430,24 +431,6 @@ CREATE TABLE tx_agora_domain_model_view (
 );
 
 #
-# Table structure for table 'tx_agora_domain_model_forum'
-#
-CREATE TABLE tx_agora_domain_model_forum (
-
-	forum  int(11) unsigned DEFAULT '0' NOT NULL,
-
-);
-
-#
-# Table structure for table 'tx_agora_domain_model_thread'
-#
-CREATE TABLE tx_agora_domain_model_thread (
-
-	forum  int(11) unsigned DEFAULT '0' NOT NULL,
-
-);
-
-#
 # Table structure for table 'tx_agora_forum_groupswithreadaccess_group_mm'
 #
 CREATE TABLE tx_agora_forum_groupswithreadaccess_group_mm (
@@ -640,17 +623,6 @@ CREATE TABLE tx_agora_domain_model_post (
 	user  int(11) unsigned DEFAULT '0' NOT NULL,
 
 	user2  int(11) unsigned DEFAULT '0' NOT NULL,
-
-);
-
-#
-# Table structure for table 'tx_agora_domain_model_thread'
-#
-CREATE TABLE tx_agora_domain_model_thread (
-
-	user3  int(11) unsigned DEFAULT '0' NOT NULL,
-
-	user  int(11) unsigned DEFAULT '0' NOT NULL,
 
 );
 

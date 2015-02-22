@@ -5,11 +5,13 @@
         </f:link.action>
     </li>
     <f:if condition="{forum}">
-        <li>
-            <f:link.action action="list" controller="Thread" arguments="{forum:forum}">
-                {forum.title}
-            </f:link.action>
-        </li>
+        <f:for each="{forum.rootline}" as="forumRootlineItem">
+            <li>
+                <f:link.action action="list" controller="Thread" arguments="{forum:forumRootlineItem}">
+                    {forumRootlineItem.title}
+                </f:link.action>
+            </li>
+        </f:for>
     </f:if>
 </ul>
 

@@ -50,11 +50,19 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * parent
 	 * 
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Forum>
-	 * @cascade remove
+	 * @var \AgoraTeam\Agora\Domain\Model\Forum
 	 * @lazy
 	 */
 	protected $parent = NULL;
+
+    /**
+     * parent
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Forum>
+     * @cascade remove
+     * @lazy
+     */
+    protected $subForums = NULL;
 
 	/**
 	 * threads
@@ -113,6 +121,13 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected $usersWithModificationAccess = NULL;
 
+    /**
+     * rootline
+     *
+     * @var array
+     */
+    protected $rootline = array();
+
 	/**
 	 * __construct
 	 */
@@ -129,7 +144,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return void
 	 */
 	protected function initStorageObjects() {
-		$this->parent = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->subForums = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->threads = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->groupsWithReadAccess = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->groupWithWriteAccess = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
@@ -177,43 +192,62 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$this->description = $description;
 	}
 
+    /**
+     * Returns the parent
+     *
+     * @return \AgoraTeam\Agora\Domain\Model\Forum $parent
+     */
+    public function getParent() {
+        return $this->parent;
+    }
+
+    /**
+     * Sets the parent
+     *
+     * @param \AgoraTeam\Agora\Domain\Model\Forum $parent
+     * @return void
+     */
+    public function setParent(\AgoraTeam\Agora\Domain\Model\Forum $parent) {
+        $this->parent = $parent;
+    }
+
 	/**
-	 * Adds a Forum
+	 * Adds a SubForum
 	 * 
-	 * @param \AgoraTeam\Agora\Domain\Model\Forum $parent
+	 * @param \AgoraTeam\Agora\Domain\Model\Forum $subForum
 	 * @return void
 	 */
-	public function addParent(\AgoraTeam\Agora\Domain\Model\Forum $parent) {
-		$this->parent->attach($parent);
+	public function addSubForum(\AgoraTeam\Agora\Domain\Model\Forum $subForum) {
+		$this->subForums->attach($subForum);
 	}
 
 	/**
 	 * Removes a Forum
 	 * 
-	 * @param \AgoraTeam\Agora\Domain\Model\Forum $parentToRemove The Forum to be removed
+	 * @param \AgoraTeam\Agora\Domain\Model\Forum $subForumToRemove The SubForum to be removed
 	 * @return void
 	 */
-	public function removeParent(\AgoraTeam\Agora\Domain\Model\Forum $parentToRemove) {
-		$this->parent->detach($parentToRemove);
+	public function removeSubForum(\AgoraTeam\Agora\Domain\Model\Forum $subForumToRemove) {
+		$this->subForums->detach($subForumToRemove);
 	}
 
 	/**
-	 * Returns the parent
+	 * Returns the subForums
 	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Forum> $parent
 	 */
-	public function getParent() {
-		return $this->parent;
+	public function getSubForums() {
+		return $this->subForums;
 	}
 
 	/**
-	 * Sets the parent
+	 * Sets the subForums
 	 * 
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Forum> $parent
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Forum> $subForums
 	 * @return void
 	 */
-	public function setParent(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $parent) {
-		$this->parent = $parent;
+	public function setSubForums(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $subForums) {
+		$this->subForums = $subForums;
 	}
 
 	/**
@@ -492,6 +526,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     /**
      * Returns the public
      *
+     * @todo implement some functionality
      * @return boolean $public
      */
     public function getPublic() {
@@ -501,10 +536,40 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     /**
      * Returns the boolean state of public
      *
+     * @todo implement some functionality
      * @return boolean
      */
     public function isPublic() {
         return TRUE;
+    }
+
+    /**
+     * Returns the rootline
+     *
+     * @return array
+     */
+    public function getRootline() {
+        if(empty($this->rootline)) {
+            $this->fetchNextRootlineLevel();
+        }
+        return $this->rootline;
+    }
+
+    /**
+     * fetches next rootline level recursively
+     *
+     * @return void
+     */
+    public function fetchNextRootlineLevel() {
+
+        if(empty($this->rootline)) {
+            if (is_object($this->getParent())) {
+                array_push($this->rootline, current($this->getParent()->getRootline()));
+                array_push($this->rootline, $this);
+            } else {
+                array_push($this->rootline, $this);
+            }
+        }
     }
 
 }

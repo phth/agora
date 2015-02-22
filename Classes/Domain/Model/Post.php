@@ -106,6 +106,13 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected $historicalVersions = NULL;
 
+    /**
+     * rootline
+     *
+     * @var array
+     */
+    protected $rootline = array();
+
 	/**
 	 * __construct
 	 */
@@ -363,6 +370,11 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$this->historicalVersions = $historicalVersions;
 	}
 
+    /**
+     * Detects the Thread recursively
+     *
+     * @return Thread|bool
+     */
     public function detectThread() {
         $thread = FALSE;
         if(is_object($this->thread)) {
@@ -373,6 +385,35 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
             }
         }
         return $thread;
+    }
+
+    /**
+     * Returns the rootline
+     *
+     * @return array
+     */
+    public function getRootline() {
+        if(empty($this->rootline)) {
+            $this->fetchNextRootlineLevel();
+        }
+        return $this->rootline;
+    }
+
+    /**
+     * fetches next rootline level recursively
+     *
+     * @return void
+     */
+    public function fetchNextRootlineLevel() {
+
+        if(empty($this->rootline)) {
+            if (is_object($this->getQuotedPost())) {
+                array_push($this->rootline, current($this->getQuotedPost()->getRootline()));
+                array_push($this->rootline, $this);
+            } else {
+                array_push($this->rootline, $this);
+            }
+        }
     }
 
 }

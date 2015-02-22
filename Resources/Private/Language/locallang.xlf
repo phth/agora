@@ -12,6 +12,9 @@
 			<trans-unit id="tx_agora_domain_model_forum.description">
 				<source>Description</source>
 			</trans-unit>
+		    <trans-unit id="tx_agora_domain_model_forum.sub_forums">
+                <source>subParent</source>
+            </trans-unit>
 			<trans-unit id="tx_agora_domain_model_forum.parent">
 				<source>Parent</source>
 			</trans-unit>
