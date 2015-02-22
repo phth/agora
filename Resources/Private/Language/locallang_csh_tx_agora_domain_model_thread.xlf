@@ -42,6 +42,17 @@
 			<trans-unit id="users_with_modification_access.description">
 				<source>usersWithModificationAccess</source>
 			</trans-unit>
+
+
+			<trans-unit id="latestThreads.forum">
+				<source>Forum</source>
+			</trans-unit>
+			<trans-unit id="latestThreads.username">
+				<source>User</source>
+			</trans-unit>
+			<trans-unit id="latestThreads.editTime">
+				<source>Editation time</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -1,0 +1,29 @@
+<div class="agoraLatestList">
+	<ul class="list-group">
+		<f:for each="{latestThreads}" as="latest">
+			<li class="list-group-item">
+				<label class="strong h6">
+					<f:link.action action="show" pluginName="Forum" controller="Post" arguments="{post:latest.post.0}">
+						{latest.title}
+					</f:link.action>
+				</label>
+				<div class="subHeader small">
+					<label class="latestForum">
+						<f:translate key="latestThreads.forum" />:
+						<f:link.action action="list" pluginName="Forum" controller="Forum" arguments="{forum:latest.forum}">
+							{latest.forum.title}
+						</f:link.action>
+					</label>
+					<label class="latestCreator">
+						<f:translate key="latestThreads.username" />:
+							{latest.creator.username}
+					</label>
+					<label class="latestTime">
+						<f:translate key="latestThreads.editTime" />:
+						{latest.tstamp}
+					</label>
+				</div>
+			</li>
+		</f:for>
+	</ul>
+</div>

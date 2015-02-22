@@ -35,7 +35,7 @@ class PostController extends ActionController {
 
 	/**
 	 * postRepository
-	 * 
+	 *
 	 * @var \AgoraTeam\Agora\Domain\Repository\PostRepository
 	 * @inject
 	 */
@@ -57,7 +57,7 @@ class PostController extends ActionController {
 
 	/**
 	 * action show
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
 	 * @return void
 	 */
@@ -67,30 +67,39 @@ class PostController extends ActionController {
 
 	/**
 	 * action new
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $newPost
+	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 * @ignorevalidation $newPost
 	 * @return void
 	 */
-	public function newAction(\AgoraTeam\Agora\Domain\Model\Post $newPost = NULL) {
+	public function newAction(\AgoraTeam\Agora\Domain\Model\Post $newPost = NULL, \AgoraTeam\Agora\Domain\Model\Thread $thread = NULL) {
 		$this->view->assign('newPost', $newPost);
+		$this->view->assign('thread', $thread);
 	}
 
 	/**
 	 * action create
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $newPost
 	 * @return void
 	 */
 	public function createAction(\AgoraTeam\Agora\Domain\Model\Post $newPost) {
+		$user = $this->getCurrentUser();
+		$newPost->setCreator($user);
 		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 		$this->postRepository->add($newPost);
-		$this->redirect('list');
+		$this->redirect(
+			'list',
+			'Post',
+			'agora',
+			array('thread'=> $newPost->getThread())
+		);
 	}
 
 	/**
 	 * action edit
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
 	 * @ignorevalidation $post
 	 * @return void
@@ -101,7 +110,7 @@ class PostController extends ActionController {
 
 	/**
 	 * action update
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
 	 * @return void
 	 */
@@ -113,7 +122,7 @@ class PostController extends ActionController {
 
 	/**
 	 * action delete
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
 	 * @return void
 	 */
@@ -125,11 +134,11 @@ class PostController extends ActionController {
 
 	/**
 	 * action listLatest
-	 * 
+	 *
 	 * @return void
 	 */
 	public function listLatestAction() {
-		
+
 	}
 
 }

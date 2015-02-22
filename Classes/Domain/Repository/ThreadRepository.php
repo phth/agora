@@ -44,13 +44,13 @@ class ThreadRepository extends Repository {
 
 		$query = $this->createQuery();
 
-		$result = $query->setLimit((integer)$limit)->execute();
-		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($result ,__FILE__ . " " . __LINE__);
+			//@todo Implementation of the access-rights
+		$result = $query
+			->setOrderings(array('tstamp' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING))
+			->setLimit((integer)$limit)
+			->execute();
 
-
-//		return $query
-//				->setLimit((integer)$limit)
-//				->execute();
+		return $result;
 	}
 
 
