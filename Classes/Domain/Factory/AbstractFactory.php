@@ -1,12 +1,12 @@
 <?php
-namespace AgoraTeam\Agora\Domain\Repository;
+namespace AgoraTeam\Agora\Domain\Factory;
+
 
 /***************************************************************
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
- *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
+ *  (c) 2015 Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
  *
@@ -27,44 +27,28 @@ namespace AgoraTeam\Agora\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-/**
- * Class Repository
- *
- * @package AgoraTeam\Agora\Domain\Repository
- */
-class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class AbstractFactory {
 
 	/**
+	 * userRepository
+	 *
 	 * @var \AgoraTeam\Agora\Domain\Repository\UserRepository
 	 * @inject
 	 */
 	protected $userRepository;
 
-	/**
-	 * @var
-	 */
-	protected $user;
-
-
-	public function initializeObject() {
-		$user = $GLOBALS['TSFE']->fe_user->user;
-		$this->user = $this->userRepository->findByUid($user['uid']);
-	}
-
-
 
 	/**
-	 * @return mixed
+	 * Get current logged in user
+	 *
+	 * @return null|object
 	 */
-	public function getUser() {
-		return $this->user;
-	}
+	public function getCurrentUser() {
+		if (!is_array($GLOBALS['TSFE']->fe_user->user)) {
+			return NULL;
+		}
 
-	/**
-	 * @param mixed $user
-	 */
-	public function setUser($user) {
-		$this->user = $user;
+		return $this->userRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
 	}
 
 

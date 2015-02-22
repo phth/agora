@@ -42,13 +42,26 @@ class ThreadController extends ActionController {
 	protected $threadRepository = NULL;
 
 	/**
+	 * @var \AgoraTeam\Agora\Domain\Factory\ThreadFactory
+	 */
+	protected $threadFactory;
+
+
+
+	public function __construct(\AgoraTeam\Agora\Domain\Factory\ThreadFactory $threadFactory) {
+		parent::__construct();
+
+		$this->threadFactory = $threadFactory;
+	}
+
+
+	/**
 	 * action list
 	 *
      * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
 	 * @return void
 	 */
 	public function listAction(\AgoraTeam\Agora\Domain\Model\Forum $forum) {
-
         $threads = $this->threadRepository->findByForum($forum);
 
         $this->view->assign('forum', $forum);
@@ -69,28 +82,40 @@ class ThreadController extends ActionController {
 	 * action new
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
-	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
-	 * @param string $topic
+	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
+	 * @param string $text
 	 * @return void
 	 */
 	public function newAction(\AgoraTeam\Agora\Domain\Model\Forum $forum,
-								\AgoraTeam\Agora\Domain\Model\Post $post = NULL, $topic = NULL) {
-		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($forum,__FILE__ . " " . __LINE__);
+								\AgoraTeam\Agora\Domain\Model\Thread $thread = NULL, $text = '') {
+
 		$this->view->assign('forum', $forum)
-					->assign('post', $post)
-					->assign('topic', $topic);
+					->assign('thread', $thread)
+					->assign('text', $text);
 	}
 
 	/**
 	 * action create
 	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\Thread $newThread
+	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
+	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
+	 * @param string $text
+	 *
+	 * @validate $text notEmpty
 	 * @return void
 	 */
-	public function createAction(\AgoraTeam\Agora\Domain\Model\Thread $newThread) {
+	public function createAction(\AgoraTeam\Agora\Domain\Model\Forum $forum,
+									\AgoraTeam\Agora\Domain\Model\Thread $thread, $text) {
+
+		$thread = $this->threadFactory->createThread($forum, $thread, $text);
+
 		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->threadRepository->add($newThread);
-		$this->redirect('list');
+		$this->redirect(
+			'list',
+			'Thread',
+			'Agora',
+			array('forum' => $forum)
+		);
 	}
 
 	/**

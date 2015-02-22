@@ -5,9 +5,13 @@
 
   <f:render partial="FormErrors" arguments="{object:Thread}" />
 
-  <f:form action="create"  enctype="multipart/form-data"  name="newThread" object="{newThread}">
+  <f:form action="create"  enctype="multipart/form-data"  name="thread" object="{thread}">
+    <f:form.hidden name="forum" value="{forum}" />
+    <f:form.textarea name="text" cols="40" rows="15" /><br />
+
     <f:render partial="Thread/FormFields" />
-        <f:form.submit value="Create new" />
+    <f:form.submit value="Create new" />
   </f:form>
 
 </f:section>
+
