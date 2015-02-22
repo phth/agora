@@ -68,12 +68,17 @@ class ThreadController extends ActionController {
 	/**
 	 * action new
 	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\Thread $newThread
-	 * @ignorevalidation $newThread
+	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
+	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
+	 * @param string $topic
 	 * @return void
 	 */
-	public function newAction(\AgoraTeam\Agora\Domain\Model\Thread $newThread = NULL) {
-		$this->view->assign('newThread', $newThread);
+	public function newAction(\AgoraTeam\Agora\Domain\Model\Forum $forum,
+								\AgoraTeam\Agora\Domain\Model\Post $post = NULL, $topic = NULL) {
+		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($forum,__FILE__ . " " . __LINE__);
+		$this->view->assign('forum', $forum)
+					->assign('post', $post)
+					->assign('topic', $topic);
 	}
 
 	/**

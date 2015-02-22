@@ -21,13 +21,10 @@ plugin.tx_agora {
 
 page {
 	includeCSSLibs {
-		agoraWmd = EXT:agora/Resources/Public/Library/Wmd/wmd.css
 	}
 	includeJSLibs {
-		agoraShowdown = EXT:agora/Resources/Public/Library/Wmd/showdown.css
 	}
 	includeJSFooterlibs {
-		agoraWmd = EXT:agora/Resources/Public/Library/Wmd/wmd.js
 	}
 }
 
