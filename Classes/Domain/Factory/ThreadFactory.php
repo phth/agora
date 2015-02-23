@@ -55,11 +55,15 @@ class ThreadFactory extends AbstractFactory {
 
 
 	/**
+     * create thread
+     *
+     * @todo check for permissions, anonymous posts
+     *
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
-	 * @param $text
+	 * @param string $text
 	 *
-	 * @return
+	 * @return \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 */
 	public function createThread(\AgoraTeam\Agora\Domain\Model\Forum $forum,
 		                         \AgoraTeam\Agora\Domain\Model\Thread $thread, $text) {
@@ -70,10 +74,14 @@ class ThreadFactory extends AbstractFactory {
 		$post = new \AgoraTeam\Agora\Domain\Model\Post;
 		$post->setTopic($thread->getTitle());
 		$post->setText($text);
-		$post->setCreator($user);
+        if(is_a($user,'\AgoraTeam\Agora\Domain\Model\User')) {
+            $post->setCreator($user);
+        }
 
 		$thread->addPost($post);
-		$thread->setCreator($user);
+        if(is_a($user,'\AgoraTeam\Agora\Domain\Model\User')) {
+            $thread->setCreator($user);
+        }
 		$thread->setForum($forum);
 
 		$forum->addThread($thread);

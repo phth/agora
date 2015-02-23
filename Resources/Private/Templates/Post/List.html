@@ -10,6 +10,19 @@
     <ul class="list-group">
         <f:for each="{posts}" as="post">
             <li class="list-group-item">
+                <div class="small text-muted">
+                    <f:translate
+                        key="tx_agora_domain_model_post.created_at"
+                        arguments="{0:'{f:format.date(date:\'{post.crdate}\',format:\'{settings.post.dateFormat}\')}'}" />
+                    <f:if condition="{post.replies}">
+                        |
+                        <f:link.action action="show" controller="Post" arguments="{post:post}">
+                            <f:translate
+                                key="tx_agora_domain_model_post.replies"
+                                arguments="{0:'{f:count(subject:\'{post.replies}\')}'}" />
+                        </f:link.action>
+                    </f:if>
+                </div>
                 <h4>
                     <f:link.action action="show" controller="Post" arguments="{post:post}">
                         {post.topic}
@@ -19,9 +32,15 @@
                     <f:format.raw>{post.text}</f:format.raw>
                 </p>
 
+                <f:link.action class="btn btn-default" action="new" arguments="{thread:thread,quotedPost:post}">
+                    <f:translate key="tx_agora_domain_model_post.reply" />
+                </f:link.action>
+
             </li>
         </f:for>
     </ul>
 
-    <f:link.action action="new" arguments="{thread:thread}">New Post</f:link.action>
+    <f:link.action class="btn btn-primary" action="new" arguments="{thread:thread}">
+        <f:translate key="tx_agora_domain_model_post.new" />
+    </f:link.action>
 </f:section>

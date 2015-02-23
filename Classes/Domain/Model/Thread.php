@@ -62,9 +62,12 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $sticky = FALSE;
 
 	/**
-	 * creator
-	 * 
-	 * @var \AgoraTeam\Agora\Domain\Model\User
+     * creator
+     *
+     * may be NULL if post is anonymous
+     *
+     * @var NULL|\AgoraTeam\Agora\Domain\Model\User
+	 *
 	 * @lazy
 	 */
 	protected $creator = NULL;
@@ -274,7 +277,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the creator
 	 * 
-	 * @return \AgoraTeam\Agora\Domain\Model\User $creator
+	 * @return mixed $creator
 	 */
 	public function getCreator() {
 		return $this->creator;
@@ -283,10 +286,10 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the creator
 	 * 
-	 * @param \AgoraTeam\Agora\Domain\Model\User $creator
+	 * @param mixed $creator
 	 * @return void
 	 */
-	public function setCreator(\AgoraTeam\Agora\Domain\Model\User $creator) {
+	public function setCreator($creator) {
 		$this->creator = $creator;
 	}
 

@@ -42,6 +42,8 @@ class ThreadController extends ActionController {
 	protected $threadRepository = NULL;
 
 	/**
+     * threadFactory
+     *
 	 * @var \AgoraTeam\Agora\Domain\Factory\ThreadFactory
 	 */
 	protected $threadFactory;

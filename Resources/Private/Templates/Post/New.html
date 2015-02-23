@@ -3,12 +3,15 @@
 
 <f:section name="main">
 
-<f:flashMessages renderMode="div" />
+    <f:flashMessages renderMode="div" />
 
-<f:render partial="FormErrors" arguments="{object:Post}" />
-  <f:form action="create" enctype="multipart/form-data"  name="newPost" object="{newPost}">
-    <f:form.textfield property="thread" value="{thread.uid}" /><br />
-    <f:render partial="Post/FormFields" />
-    <f:form.submit value="Create new" />
-  </f:form>
+    <f:render partial="FormErrors" arguments="{object:Post}" />
+    <f:form action="create" enctype="multipart/form-data"  name="newPost" object="{newPost}">
+        <f:form.hidden property="thread" value="{thread}" />
+        <f:if condition="{quotedPost}">
+            <f:form.hidden property="quotedPost" value="{quotedPost}" />
+        </f:if>
+        <f:render partial="Post/FormFields" />
+        <f:form.submit class="btn btn-primary" value="{f:translate(key:'tx_agora_domain_model_post.create')}" />
+    </f:form>
 </f:section>

@@ -35,6 +35,8 @@ namespace AgoraTeam\Agora\Domain\Repository;
 class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
+     * userRepository
+     *
 	 * @var \AgoraTeam\Agora\Domain\Repository\UserRepository
 	 * @inject
 	 */

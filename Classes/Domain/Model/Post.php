@@ -47,6 +47,13 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected $text = '';
 
+    /**
+     * crdate
+     *
+     * @var \DateTime
+     */
+    protected $crdate;
+
 	/**
 	 * quotedPost
 	 * 
@@ -83,8 +90,10 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * creator
+     *
+     * may be NULL if post is anonymous
 	 * 
-	 * @var \AgoraTeam\Agora\Domain\Model\User
+	 * @var NULL|\AgoraTeam\Agora\Domain\Model\User
 	 * @lazy
 	 */
 	protected $creator = NULL;
@@ -171,6 +180,25 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setText($text) {
 		$this->text = $text;
 	}
+
+    /**
+     * Returns the crdate
+     *
+     * @return \DateTime $crdate
+     */
+    public function getCrdate() {
+        return $this->crdate;
+    }
+
+    /**
+     * Sets the crdate
+     *
+     * @param \DateTime $crdate
+     * @return void
+     */
+    public function setCrdate($crdate) {
+        $this->crdate = $crdate;
+    }
 
 	/**
 	 * Returns the quotedPost
@@ -291,7 +319,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the creator
 	 * 
-	 * @return \AgoraTeam\Agora\Domain\Model\User $creator
+	 * @return mixed $creator
 	 */
 	public function getCreator() {
 		return $this->creator;
@@ -300,10 +328,10 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the creator
 	 * 
-	 * @param \AgoraTeam\Agora\Domain\Model\User $creator
+	 * @param mixed $creator
 	 * @return void
 	 */
-	public function setCreator(\AgoraTeam\Agora\Domain\Model\User $creator) {
+	public function setCreator($creator) {
 		$this->creator = $creator;
 	}
 

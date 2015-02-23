@@ -70,16 +70,22 @@ class PostController extends ActionController {
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $newPost
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
+     * @param \AgoraTeam\Agora\Domain\Model\Post $quotedPost
 	 * @ignorevalidation $newPost
 	 * @return void
 	 */
-	public function newAction(\AgoraTeam\Agora\Domain\Model\Post $newPost = NULL, \AgoraTeam\Agora\Domain\Model\Thread $thread = NULL) {
+	public function newAction(  \AgoraTeam\Agora\Domain\Model\Post $newPost = NULL,
+                                \AgoraTeam\Agora\Domain\Model\Post $quotedPost = NULL,
+                                \AgoraTeam\Agora\Domain\Model\Thread $thread = NULL) {
 		$this->view->assign('newPost', $newPost);
+        $this->view->assign('quotedPost', $quotedPost);
 		$this->view->assign('thread', $thread);
 	}
 
 	/**
 	 * action create
+     *
+     * @todo send info mails for subscribed users
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $newPost
 	 * @return void
@@ -87,8 +93,14 @@ class PostController extends ActionController {
 	public function createAction(\AgoraTeam\Agora\Domain\Model\Post $newPost) {
 		$user = $this->getCurrentUser();
 		$newPost->setCreator($user);
-		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->postRepository->add($newPost);
+        $this->postRepository->add($newPost);
+
+        $this->addFlashMessage(
+            \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_post.flashMessages.created', 'agora'),
+            '',
+            \TYPO3\CMS\Core\Messaging\AbstractMessage::OK
+        );
+
 		$this->redirect(
 			'list',
 			'Post',

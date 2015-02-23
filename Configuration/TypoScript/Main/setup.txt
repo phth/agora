@@ -16,6 +16,10 @@ plugin.tx_agora {
             numberOfItemsInLatestView = 10
             numberOfItemsPerPage = 10
         }
+        post {
+            numberOfItemsPerPage = 10
+            dateFormat = m-d-y h:i
+        }
     }
 }
 

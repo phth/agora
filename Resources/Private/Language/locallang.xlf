@@ -66,6 +66,27 @@
 			<trans-unit id="tx_agora_domain_model_post.historical_versions">
 				<source>Historical Versions</source>
 			</trans-unit>
+
+            <trans-unit id="tx_agora_domain_model_post.new">
+                <source>New Post</source>
+            </trans-unit>
+            <trans-unit id="tx_agora_domain_model_post.reply">
+                <source>Reply</source>
+            </trans-unit>
+            <trans-unit id="tx_agora_domain_model_post.replies">
+                <source>%s replies</source>
+            </trans-unit>
+			<trans-unit id="tx_agora_domain_model_post.create">
+                <source>Create Post</source>
+            </trans-unit>
+            <trans-unit id="tx_agora_domain_model_post.created_at">
+                <source>created at %s</source>
+            </trans-unit>
+
+            <trans-unit id="tx_agora_domain_model_post.flashMessages.created">
+                <source>Post created.</source>
+            </trans-unit>
+
 			<trans-unit id="tx_agora_domain_model_thread">
 				<source>Thread</source>
 			</trans-unit>

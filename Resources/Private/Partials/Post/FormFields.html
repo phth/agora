@@ -1,9 +1,20 @@
-
-<label for="topic">
-	<f:translate key="tx_agora_domain_model_post.topic" />
-</label><br />
-	<f:form.textfield property="topic" /><br />
-<label for="text">
-	<f:translate key="tx_agora_domain_model_post.text" />
-</label><br />
-	<f:form.textarea property="text" cols="40" rows="15" /><br />
+<div class="form-group">
+    <label for="PostTopicField">
+    	<f:translate key="tx_agora_domain_model_post.topic" />
+    </label>
+	<f:form.textfield
+            class="form-control"
+            id="PostTopicField"
+            property="topic" />
+</div>
+<div class="form-group">
+    <label for="PostTextField">
+        <f:translate key="tx_agora_domain_model_post.text" />
+    </label>
+	<f:form.textarea
+            class="form-control"
+            id="PostTextField"
+            property="text"
+            cols="40"
+            rows="15" />
+</div>
