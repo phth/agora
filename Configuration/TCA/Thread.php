@@ -147,6 +147,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_thread'] = array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_agora_domain_model_post',
 				'foreign_field' => 'thread',
+				'foreign_default_sortby' => 'ORDER BY publishing_date ASC',
 				'maxitems'      => 9999,
 				'appearance' => array(
 					'collapseAll' => 0,
