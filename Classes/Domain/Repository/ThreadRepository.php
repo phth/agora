@@ -37,14 +37,14 @@ class ThreadRepository extends Repository {
 	 * Finds the latest Threads
 	 *
 	 * @param integer $limit The number of threads to return at max
-	 * @return \Extbase\Persistence\QueryResultInterface
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
 	 */
 	public function findLatestThreadsForUser($limit) {
 		$user = $this->getUser();
 
 		$query = $this->createQuery();
 
-			//@todo Implementation of the access-rights
+		//@todo Implementation of the access-rights
 		$result = $query
 			->setOrderings(array('tstamp' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING))
 			->setLimit((integer)$limit)
