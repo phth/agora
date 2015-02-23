@@ -129,6 +129,11 @@
 			<trans-unit id="tx_agora_domain_model_thread.users_with_modification_access">
 				<source>Users With Modification Access</source>
 			</trans-unit>
+
+			<trans-unit id="tx_agora_domain_model_thread.new">
+                <source>New Thread</source>
+            </trans-unit>
+
 			<trans-unit id="tx_agora_domain_model_user">
 				<source>User</source>
 			</trans-unit>

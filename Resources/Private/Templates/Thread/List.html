@@ -1,20 +1,30 @@
-<f:layout name="Default" />
 
-<f:section name="main">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:f="http://xsd.helmut-hummel.de/ns/TYPO3/Fluid/ViewHelpers">
+    <f:layout name="Default" />
 
-    <f:flashMessages renderMode="div" />
+    <f:section name="main">
 
-    <f:render partial="Navigation/Thread" arguments="{forum:forum}" />
+        <f:flashMessages renderMode="div" />
 
-    <ul class="list-group">
-        <f:for each="{threads}" as="thread">
-            <li class="list-group-item">
-                <f:link.action action="list" controller="Post" arguments="{thread:thread}">
-                    <h2>{thread.title}</h2>
-                </f:link.action>
-            </li>
-        </f:for>
-    </ul>
+        <f:render partial="Navigation/Thread" arguments="{forum:forum}" />
 
-    <f:link.action action="new" arguments="{forum:forum}">New Thread</f:link.action>
-</f:section>
+        <f:widget.paginate objects="{threads}" as="paginatedThreads" configuration="{itemsPerPage: '{settings.thread.numberOfItemsPerPage}', insertAbove: 1, insertBelow: 1}">
+            <ul class="list-group">
+                <f:for each="{paginatedThreads}" as="thread">
+                    <li class="list-group-item">
+                        <f:link.action action="list" controller="Post" arguments="{thread:thread}">
+                            <h2>{thread.title}</h2>
+                        </f:link.action>
+                    </li>
+                </f:for>
+            </ul>
+        </f:widget.paginate>
+
+        <br/>
+
+        <f:link.action class="btn btn-primary" action="new" arguments="{forum:forum}">
+            <f:translate key="tx_agora_domain_model_thread.new" />
+        </f:link.action>
+    </f:section>
+</html>
