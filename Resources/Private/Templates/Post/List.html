@@ -1,46 +1,55 @@
 
-<f:layout name="Default" />
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:f="http://xsd.helmut-hummel.de/ns/TYPO3/Fluid/ViewHelpers">
 
-    <f:section name="main">
+    <f:layout name="Default" />
 
-    <f:flashMessages renderMode="div" />
+        <f:section name="main">
 
-    <f:render partial="Navigation/Thread" arguments="{thread:thread}" />
+        <f:flashMessages renderMode="div" />
 
-    <ul class="list-group">
-        <f:for each="{posts}" as="post">
-            <li class="list-group-item">
-                <div class="small text-muted">
-                    <f:translate
-                        key="tx_agora_domain_model_post.created_at"
-                        arguments="{0:'{f:format.date(date:\'{post.crdate}\',format:\'{settings.post.dateFormat}\')}'}" />
-                    <f:if condition="{post.replies}">
-                        |
-                        <f:link.action action="show" controller="Post" arguments="{post:post}">
+        <f:render partial="Navigation/Thread" arguments="{thread:thread}" />
+
+
+        <f:widget.paginate objects="{posts}" as="paginatedPost" configuration="{itemsPerPage: '{settings.post.numberOfItemsPerPage}', insertAbove: 1, insertBelow: 1}">
+            <ul class="list-group">
+                <f:for each="{paginatedPost}" as="post">
+                    <li class="list-group-item">
+                        <div class="small text-muted">
                             <f:translate
-                                key="tx_agora_domain_model_post.replies"
-                                arguments="{0:'{f:count(subject:\'{post.replies}\')}'}" />
+                                key="tx_agora_domain_model_post.created_at"
+                                arguments="{0:'{f:format.date(date:\'{post.crdate}\', format:\'{settings.post.dateFormat}\')}'}" />
+                            <f:if condition="{post.replies}">
+                                |
+                                <f:link.action action="show" controller="Post" arguments="{post:post}">
+                                    <f:translate
+                                        key="tx_agora_domain_model_post.replies"
+                                        arguments="{0:'{f:count(subject:\'{post.replies}\')}'}" />
+                                </f:link.action>
+                            </f:if>
+                        </div>
+                        <h4>
+                            <f:link.action action="show" controller="Post" arguments="{post:post}">
+                                {post.topic}
+                            </f:link.action>
+                        </h4>
+                        <p>
+                            <f:format.raw>{post.text}</f:format.raw>
+                        </p>
+
+                        <f:link.action class="btn btn-default" action="new" arguments="{thread:thread, quotedPost:post}">
+                            <f:translate key="tx_agora_domain_model_post.reply" />
                         </f:link.action>
-                    </f:if>
-                </div>
-                <h4>
-                    <f:link.action action="show" controller="Post" arguments="{post:post}">
-                        {post.topic}
-                    </f:link.action>
-                </h4>
-                <p>
-                    <f:format.raw>{post.text}</f:format.raw>
-                </p>
 
-                <f:link.action class="btn btn-default" action="new" arguments="{thread:thread,quotedPost:post}">
-                    <f:translate key="tx_agora_domain_model_post.reply" />
-                </f:link.action>
+                    </li>
+                </f:for>
+            </ul>
+        </f:widget.paginate>
 
-            </li>
-        </f:for>
-    </ul>
+        <br />
 
-    <f:link.action class="btn btn-primary" action="new" arguments="{thread:thread}">
-        <f:translate key="tx_agora_domain_model_post.new" />
-    </f:link.action>
-</f:section>
+        <f:link.action class="btn btn-primary" action="new" arguments="{thread:thread}">
+            <f:translate key="tx_agora_domain_model_post.new" />
+        </f:link.action>
+    </f:section>
+</html>

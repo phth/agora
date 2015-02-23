@@ -3,6 +3,11 @@ plugin.tx_agora {
 		templateRootPath = {$plugin.tx_agora.view.templateRootPath}
 		partialRootPath = {$plugin.tx_agora.view.partialRootPath}
 		layoutRootPath = {$plugin.tx_agora.view.layoutRootPath}
+        widget {
+            TYPO3\CMS\Fluid\ViewHelpers\Widget\PaginateViewHelper {
+                templateRootPath = {$plugin.tx_agora.view.widget.TYPO3\CMS\Fluid\ViewHelpers\Widget\PaginateViewHelper.templateRootPath}
+            }
+        }
 	}
 	persistence {
 		storagePid = {$plugin.tx_agora.persistence.storagePid}
@@ -17,7 +22,7 @@ plugin.tx_agora {
             numberOfItemsPerPage = 10
         }
         post {
-            numberOfItemsPerPage = 10
+            numberOfItemsPerPage = 3
             dateFormat = m-d-y h:i
         }
     }

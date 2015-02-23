@@ -84,7 +84,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * views
 	 * 
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\View>
 	 * @cascade remove
 	 * @lazy
 	 */
@@ -355,7 +355,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the views
 	 * 
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<> $views
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\View> $views
 	 */
 	public function getViews() {
 		return $this->views;
@@ -364,7 +364,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the views
 	 * 
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<> $views
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\View> $views
 	 * @return void
 	 */
 	public function setViews(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $views) {

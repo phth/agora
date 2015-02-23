@@ -1,17 +1,21 @@
 
-<f:layout name="Default" />
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:f="http://xsd.helmut-hummel.de/ns/TYPO3/Fluid/ViewHelpers">
 
-<f:section name="main">
+    <f:layout name="Default" />
 
-    <f:flashMessages renderMode="div" />
+    <f:section name="main">
 
-    <f:render partial="FormErrors" arguments="{object:Post}" />
-    <f:form action="create" enctype="multipart/form-data"  name="newPost" object="{newPost}">
-        <f:form.hidden property="thread" value="{thread}" />
-        <f:if condition="{quotedPost}">
-            <f:form.hidden property="quotedPost" value="{quotedPost}" />
-        </f:if>
-        <f:render partial="Post/FormFields" />
-        <f:form.submit class="btn btn-primary" value="{f:translate(key:'tx_agora_domain_model_post.create')}" />
-    </f:form>
-</f:section>
+        <f:flashMessages renderMode="div" />
+
+        <f:render partial="FormErrors" arguments="{object:Post}" />
+        <f:form action="create" enctype="multipart/form-data"  name="newPost" object="{newPost}">
+            <f:form.hidden property="thread" value="{thread}" />
+            <f:if condition="{quotedPost}">
+                <f:form.hidden property="quotedPost" value="{quotedPost}" />
+            </f:if>
+            <f:render partial="Post/FormFields" />
+            <f:form.submit class="btn btn-primary" value="{f:translate(key:'tx_agora_domain_model_post.create')}" />
+        </f:form>
+    </f:section>
+</html>

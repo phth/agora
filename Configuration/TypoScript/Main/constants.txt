@@ -7,6 +7,11 @@ plugin.tx_agora {
 		partialRootPath = EXT:agora/Resources/Private/Partials/
 		# cat=plugin.tx_agora/file; type=string; label=Path to template layouts (FE)
 		layoutRootPath = EXT:agora/Resources/Private/Layouts/
+        widget {
+            TYPO3\CMS\Fluid\ViewHelpers\Widget\PaginateViewHelper {
+                templateRootPath = EXT:agora/Resources/Private/Templates/
+            }
+        }
 	}
 	persistence {
 		# cat=plugin.tx_agora//a; type=string; label=Default storage PID
