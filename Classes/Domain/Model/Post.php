@@ -54,6 +54,13 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      */
     protected $crdate;
 
+    /**
+     * publishingDate
+     *
+     * @var \DateTime
+     */
+    protected $publishingDate;
+
 	/**
 	 * quotedPost
 	 * 
@@ -93,7 +100,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      *
      * may be NULL if post is anonymous
 	 * 
-	 * @var NULL|\AgoraTeam\Agora\Domain\Model\User
+	 * @var \AgoraTeam\Agora\Domain\Model\User
 	 * @lazy
 	 */
 	protected $creator = NULL;
@@ -198,6 +205,28 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      */
     public function setCrdate($crdate) {
         $this->crdate = $crdate;
+    }
+
+    /**
+     * Returns the publishingDate
+     *
+     * @return \DateTime $publishingDate
+     */
+    public function getPublishingDate() {
+        if(!$this->publishingDate) {
+            return $this->getCrdate();
+        }
+        return $this->publishingDate;
+    }
+
+    /**
+     * Sets the publishingDate
+     *
+     * @param \DateTime $publishingDate
+     * @return void
+     */
+    public function setPublishingDate($publishingDate) {
+        $this->publishingDate = $publishingDate;
     }
 
 	/**
@@ -355,7 +384,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
      * @return void
      */
-    public function setThread(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
+    public function setThread($thread) {
         $this->thread = $thread;
     }
 

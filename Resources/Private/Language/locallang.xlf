@@ -73,6 +73,12 @@
             <trans-unit id="tx_agora_domain_model_post.reply">
                 <source>Reply</source>
             </trans-unit>
+            <trans-unit id="tx_agora_domain_model_post.edit">
+                <source>Edit</source>
+            </trans-unit>
+            <trans-unit id="tx_agora_domain_model_post.save">
+                <source>Save</source>
+            </trans-unit>
             <trans-unit id="tx_agora_domain_model_post.replies">
                 <source>%s replies</source>
             </trans-unit>
@@ -82,9 +88,18 @@
             <trans-unit id="tx_agora_domain_model_post.created_at">
                 <source>created at %s</source>
             </trans-unit>
+            <trans-unit id="tx_agora_domain_model_post.edited_at">
+                <source>edited at %s</source>
+            </trans-unit>
+            <trans-unit id="tx_agora_domain_model_post.by">
+                <source>by %s</source>
+            </trans-unit>
 
             <trans-unit id="tx_agora_domain_model_post.flashMessages.created">
                 <source>Post created.</source>
+            </trans-unit>
+            <trans-unit id="tx_agora_domain_model_post.flashMessages.updated">
+                <source>Post updated.</source>
             </trans-unit>
 
 			<trans-unit id="tx_agora_domain_model_thread">

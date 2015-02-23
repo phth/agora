@@ -8,6 +8,8 @@
 
         <f:flashMessages renderMode="div" />
 
+        <f:render partial="Navigation/Thread" arguments="{thread:thread}" />
+
         <f:render partial="FormErrors" arguments="{object:Post}" />
         <f:form action="create" enctype="multipart/form-data"  name="newPost" object="{newPost}">
             <f:form.hidden property="thread" value="{thread}" />

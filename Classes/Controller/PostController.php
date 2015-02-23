@@ -33,6 +33,14 @@ namespace AgoraTeam\Agora\Controller;
  */
 class PostController extends ActionController {
 
+    /**
+     * postService
+     *
+     * @var \AgoraTeam\Agora\Domain\Service\PostService
+     * @inject
+     */
+    protected $postService = NULL;
+
 	/**
 	 * postRepository
 	 *
@@ -64,6 +72,16 @@ class PostController extends ActionController {
 	public function showAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
 		$this->view->assign('post', $post);
 	}
+
+    /**
+     * action showHistory
+     *
+     * @param \AgoraTeam\Agora\Domain\Model\Post $post
+     * @return void
+     */
+    public function showHistoryAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
+        $this->view->assign('post', $post);
+    }
 
 	/**
 	 * action new
@@ -112,24 +130,52 @@ class PostController extends ActionController {
 	/**
 	 * action edit
 	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
+	 * @param \AgoraTeam\Agora\Domain\Model\Post $originalPost
+     * @param \AgoraTeam\Agora\Domain\Model\Post $post
 	 * @ignorevalidation $post
 	 * @return void
 	 */
-	public function editAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
-		$this->view->assign('post', $post);
+	public function editAction(\AgoraTeam\Agora\Domain\Model\Post $originalPost, \AgoraTeam\Agora\Domain\Model\Post $post = NULL) {
+
+        if($post === NULL) {
+            $post = $this->postService->copy($originalPost);
+        }
+
+        $this->view->assign('originalPost', $originalPost);
+        $this->view->assign('post', $post);
 	}
 
 	/**
 	 * action update
 	 *
+     * @param \AgoraTeam\Agora\Domain\Model\Post $originalPost
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
 	 * @return void
 	 */
-	public function updateAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
-		$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-		$this->postRepository->update($post);
-		$this->redirect('list');
+	public function updateAction(\AgoraTeam\Agora\Domain\Model\Post $originalPost, \AgoraTeam\Agora\Domain\Model\Post $post) {
+
+        $newPost = $this->postService->copy($originalPost);
+        $newPost->setTopic($post->getTopic());
+        $newPost->setText($post->getText());
+
+        $this->postService->archive($originalPost);
+        $newPost->addHistoricalVersion($originalPost);
+        $this->postRepository->update($originalPost);
+        $this->postRepository->add($newPost);
+
+
+        $this->addFlashMessage(
+            \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_post.flashMessages.updated', 'agora'),
+            '',
+            \TYPO3\CMS\Core\Messaging\AbstractMessage::OK
+        );
+
+        $this->redirect(
+            'list',
+            'Post',
+            'agora',
+            array('thread'=> $newPost->getThread())
+        );
 	}
 
 	/**

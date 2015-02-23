@@ -66,7 +66,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      *
      * may be NULL if post is anonymous
      *
-     * @var NULL|\AgoraTeam\Agora\Domain\Model\User
+     * @var \AgoraTeam\Agora\Domain\Model\User
 	 *
 	 * @lazy
 	 */

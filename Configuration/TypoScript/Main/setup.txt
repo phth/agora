@@ -24,6 +24,7 @@ plugin.tx_agora {
         post {
             numberOfItemsPerPage = 10
             dateFormat = m-d-y h:i
+            defaultCreatorName = Anonymous
         }
     }
 }

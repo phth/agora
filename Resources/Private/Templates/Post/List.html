@@ -1,3 +1,4 @@
+{namespace a=AgoraTeam\Agora\ViewHelpers}
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en"
       xmlns:f="http://xsd.helmut-hummel.de/ns/TYPO3/Fluid/ViewHelpers">
@@ -18,15 +19,25 @@
                         <div class="small text-muted">
                             <f:translate
                                 key="tx_agora_domain_model_post.created_at"
-                                arguments="{0:'{f:format.date(date:\'{post.crdate}\', format:\'{settings.post.dateFormat}\')}'}" />
+                                arguments="{0:'{f:format.date(date:\'{post.publishingDate}\', format:\'{settings.post.dateFormat}\')}'}" />
+                            <f:if condition="{post.historicalVersions}">
+                                |
+                                <f:link.action action="showHistory" controller="Post" arguments="{post:post}">
+                                    <f:translate
+                                            key="tx_agora_domain_model_post.edited_at"
+                                            arguments="{0:'{f:format.date(date:\'{post.crdate}\', format:\'{settings.post.dateFormat}\')}'}" /></f:link.action>
+                            </f:if>
                             <f:if condition="{post.replies}">
                                 |
                                 <f:link.action action="show" controller="Post" arguments="{post:post}">
                                     <f:translate
                                         key="tx_agora_domain_model_post.replies"
-                                        arguments="{0:'{f:count(subject:\'{post.replies}\')}'}" />
-                                </f:link.action>
+                                        arguments="{0:'{f:count(subject:\'{post.replies}\')}'}" /></f:link.action>
                             </f:if>
+                            |
+                            <f:translate
+                                key="tx_agora_domain_model_post.by"
+                                arguments="{0:'{a:creator(object:\'{post}\')}'}" />
                         </div>
                         <h4>
                             <f:link.action action="show" controller="Post" arguments="{post:post}">
@@ -40,6 +51,11 @@
                         <f:link.action class="btn btn-default" action="new" arguments="{thread:thread, quotedPost:post}">
                             <f:translate key="tx_agora_domain_model_post.reply" />
                         </f:link.action>
+                        <a:security.ifIsAuthor object="{post}">
+                            <f:link.action class="btn btn-default" action="edit" arguments="{originalPost:post}">
+                                <f:translate key="tx_agora_domain_model_post.edit" />
+                            </f:link.action>
+                        </a:security.ifIsAuthor>
 
                     </li>
                 </f:for>
