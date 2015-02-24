@@ -35,28 +35,28 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * title
-	 * 
+	 *
 	 * @var string
 	 */
 	protected $title = '';
 
 	/**
 	 * solved
-	 * 
+	 *
 	 * @var boolean
 	 */
 	protected $solved = FALSE;
 
 	/**
 	 * closed
-	 * 
+	 *
 	 * @var boolean
 	 */
 	protected $closed = FALSE;
 
 	/**
 	 * sticky
-	 * 
+	 *
 	 * @var boolean
 	 */
 	protected $sticky = FALSE;
@@ -65,16 +65,14 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * creator
      *
      * may be NULL if post is anonymous
-     *
-     * @var NULL|\AgoraTeam\Agora\Domain\Model\User
-	 *
+     * @var boolean|\AgoraTeam\Agora\Domain\Model\User
 	 * @lazy
 	 */
-	protected $creator = NULL;
+	protected $creator = FALSE;
 
 	/**
 	 * posts
-	 * 
+	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post>
 	 * @cascade remove
 	 * @lazy
@@ -83,7 +81,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * views
-	 * 
+	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\View>
 	 * @cascade remove
 	 * @lazy
@@ -92,7 +90,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * groupsWithReadAccess
-	 * 
+	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group>
 	 * @lazy
 	 */
@@ -100,7 +98,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * groupWithWriteAccess
-	 * 
+	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group>
 	 * @lazy
 	 */
@@ -108,7 +106,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * groupsWithModificationAccess
-	 * 
+	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group>
 	 * @lazy
 	 */
@@ -116,7 +114,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * usersWithReadAccess
-	 * 
+	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User>
 	 * @lazy
 	 */
@@ -124,7 +122,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * usersWithWriteAccess
-	 * 
+	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User>
 	 * @lazy
 	 */
@@ -132,7 +130,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * usersWithModificationAccess
-	 * 
+	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User>
 	 * @lazy
 	 */
@@ -157,7 +155,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Do not modify this method!
 	 * It will be rewritten on each save in the extension builder
 	 * You may modify the constructor of this class instead
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function initStorageObjects() {
@@ -173,7 +171,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the title
-	 * 
+	 *
 	 * @return string $title
 	 */
 	public function getTitle() {
@@ -182,7 +180,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the title
-	 * 
+	 *
 	 * @param string $title
 	 * @return void
 	 */
@@ -192,7 +190,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the solved
-	 * 
+	 *
 	 * @return boolean $solved
 	 */
 	public function getSolved() {
@@ -201,7 +199,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the solved
-	 * 
+	 *
 	 * @param boolean $solved
 	 * @return void
 	 */
@@ -211,7 +209,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the boolean state of solved
-	 * 
+	 *
 	 * @return boolean
 	 */
 	public function isSolved() {
@@ -220,7 +218,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the closed
-	 * 
+	 *
 	 * @return boolean $closed
 	 */
 	public function getClosed() {
@@ -229,7 +227,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the closed
-	 * 
+	 *
 	 * @param boolean $closed
 	 * @return void
 	 */
@@ -239,7 +237,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the boolean state of closed
-	 * 
+	 *
 	 * @return boolean
 	 */
 	public function isClosed() {
@@ -248,7 +246,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the sticky
-	 * 
+	 *
 	 * @return boolean $sticky
 	 */
 	public function getSticky() {
@@ -257,7 +255,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the sticky
-	 * 
+	 *
 	 * @param boolean $sticky
 	 * @return void
 	 */
@@ -267,7 +265,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the boolean state of sticky
-	 * 
+	 *
 	 * @return boolean
 	 */
 	public function isSticky() {
@@ -276,7 +274,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the creator
-	 * 
+	 *
 	 * @return mixed $creator
 	 */
 	public function getCreator() {
@@ -285,7 +283,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the creator
-	 * 
+	 *
 	 * @param mixed $creator
 	 * @return void
 	 */
@@ -295,7 +293,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Post
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
 	 * @return void
 	 */
@@ -305,7 +303,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Post
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $postToRemove The Post to be removed
 	 * @return void
 	 */
@@ -315,7 +313,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the posts
-	 * 
+	 *
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $posts
 	 */
 	public function getPosts() {
@@ -324,7 +322,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the posts
-	 * 
+	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $posts
 	 * @return void
 	 */
@@ -334,7 +332,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a
-	 * 
+	 *
 	 * @param  $view
 	 * @return void
 	 */
@@ -344,7 +342,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a
-	 * 
+	 *
 	 * @param $viewToRemove The  to be removed
 	 * @return void
 	 */
@@ -354,7 +352,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the views
-	 * 
+	 *
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\View> $views
 	 */
 	public function getViews() {
@@ -363,7 +361,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the views
-	 * 
+	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\View> $views
 	 * @return void
 	 */
@@ -373,7 +371,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Group
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupsWithReadAccess
 	 * @return void
 	 */
@@ -383,7 +381,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Group
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupsWithReadAccessToRemove The Group to be removed
 	 * @return void
 	 */
@@ -393,7 +391,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the groupsWithReadAccess
-	 * 
+	 *
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupsWithReadAccess
 	 */
 	public function getGroupsWithReadAccess() {
@@ -402,7 +400,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the groupsWithReadAccess
-	 * 
+	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupsWithReadAccess
 	 * @return void
 	 */
@@ -412,7 +410,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Group
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupWithWriteAccess
 	 * @return void
 	 */
@@ -422,7 +420,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Group
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupWithWriteAccessToRemove The Group to be removed
 	 * @return void
 	 */
@@ -432,7 +430,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the groupWithWriteAccess
-	 * 
+	 *
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupWithWriteAccess
 	 */
 	public function getGroupWithWriteAccess() {
@@ -441,7 +439,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the groupWithWriteAccess
-	 * 
+	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupWithWriteAccess
 	 * @return void
 	 */
@@ -451,7 +449,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Group
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupsWithModificationAccess
 	 * @return void
 	 */
@@ -461,7 +459,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Group
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupsWithModificationAccessToRemove The Group to be removed
 	 * @return void
 	 */
@@ -471,7 +469,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the groupsWithModificationAccess
-	 * 
+	 *
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupsWithModificationAccess
 	 */
 	public function getGroupsWithModificationAccess() {
@@ -480,7 +478,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the groupsWithModificationAccess
-	 * 
+	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupsWithModificationAccess
 	 * @return void
 	 */
@@ -490,7 +488,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a User
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithReadAccess
 	 * @return void
 	 */
@@ -500,7 +498,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a User
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithReadAccessToRemove The User to be removed
 	 * @return void
 	 */
@@ -510,7 +508,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the usersWithReadAccess
-	 * 
+	 *
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User> $usersWithReadAccess
 	 */
 	public function getUsersWithReadAccess() {
@@ -519,7 +517,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the usersWithReadAccess
-	 * 
+	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User> $usersWithReadAccess
 	 * @return void
 	 */
@@ -529,7 +527,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a User
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithWriteAccess
 	 * @return void
 	 */
@@ -539,7 +537,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a User
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithWriteAccessToRemove The User to be removed
 	 * @return void
 	 */
@@ -549,7 +547,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the usersWithWriteAccess
-	 * 
+	 *
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User> $usersWithWriteAccess
 	 */
 	public function getUsersWithWriteAccess() {
@@ -558,7 +556,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the usersWithWriteAccess
-	 * 
+	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User> $usersWithWriteAccess
 	 * @return void
 	 */
@@ -568,7 +566,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a User
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithModificationAccess
 	 * @return void
 	 */
@@ -578,7 +576,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a User
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithModificationAccessToRemove The User to be removed
 	 * @return void
 	 */
@@ -588,7 +586,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the usersWithModificationAccess
-	 * 
+	 *
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User> $usersWithModificationAccess
 	 */
 	public function getUsersWithModificationAccess() {
@@ -597,7 +595,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the usersWithModificationAccess
-	 * 
+	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User> $usersWithModificationAccess
 	 * @return void
 	 */

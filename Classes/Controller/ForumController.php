@@ -35,7 +35,7 @@ class ForumController extends ActionController {
 
 	/**
 	 * forumRepository
-	 * 
+	 *
 	 * @var \AgoraTeam\Agora\Domain\Repository\ForumRepository
 	 * @inject
 	 */
@@ -43,7 +43,7 @@ class ForumController extends ActionController {
 
 	/**
 	 * action list
-	 * 
+	 *
 	 * @return void
 	 */
 	public function listAction() {
@@ -53,7 +53,7 @@ class ForumController extends ActionController {
 
 	/**
 	 * action show
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
 	 * @return void
 	 */
@@ -63,7 +63,7 @@ class ForumController extends ActionController {
 
 	/**
 	 * action new
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $newForum
 	 * @ignorevalidation $newForum
 	 * @return void
@@ -74,7 +74,7 @@ class ForumController extends ActionController {
 
 	/**
 	 * action create
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $newForum
 	 * @return void
 	 */
@@ -86,7 +86,7 @@ class ForumController extends ActionController {
 
 	/**
 	 * action edit
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
 	 * @ignorevalidation $forum
 	 * @return void
@@ -96,11 +96,12 @@ class ForumController extends ActionController {
 	}
 
 	/**
-	 * action update
-	 * 
-	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
-	 * @return void
-	 */
+	* action update
+    *
+	* @param \AgoraTeam\Agora\Domain\Model\Forum $forum
+	*
+	* @return void
+	*/
 	public function updateAction(\AgoraTeam\Agora\Domain\Model\Forum $forum) {
 		$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 		$this->forumRepository->update($forum);
@@ -109,7 +110,7 @@ class ForumController extends ActionController {
 
 	/**
 	 * action delete
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
 	 * @return void
 	 */

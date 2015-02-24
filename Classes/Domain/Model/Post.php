@@ -35,14 +35,14 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * topic
-	 * 
+	 *
 	 * @var string
 	 */
 	protected $topic = '';
 
 	/**
 	 * text
-	 * 
+	 *
 	 * @var string
 	 */
 	protected $text = '';
@@ -56,7 +56,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * quotedPost
-	 * 
+	 *
 	 * @var \AgoraTeam\Agora\Domain\Model\Post
 	 * @lazy
 	 */
@@ -73,7 +73,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * voting
-	 * 
+	 *
 	 * @var \AgoraTeam\Agora\Domain\Model\Voting
 	 * @lazy
 	 */
@@ -81,7 +81,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * attachments
-	 * 
+	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Attachment>
 	 * @cascade remove
 	 * @lazy
@@ -92,8 +92,8 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * creator
      *
      * may be NULL if post is anonymous
-	 * 
-	 * @var NULL|\AgoraTeam\Agora\Domain\Model\User
+	 *
+	 * @var boolean|\AgoraTeam\Agora\Domain\Model\User
 	 * @lazy
 	 */
 	protected $creator = NULL;
@@ -108,7 +108,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * historicalVersions
-	 * 
+	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post>
 	 * @cascade remove
 	 * @lazy
@@ -134,7 +134,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Do not modify this method!
 	 * It will be rewritten on each save in the extension builder
 	 * You may modify the constructor of this class instead
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function initStorageObjects() {
@@ -145,7 +145,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the topic
-	 * 
+	 *
 	 * @return string $topic
 	 */
 	public function getTopic() {
@@ -154,7 +154,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the topic
-	 * 
+	 *
 	 * @param string $topic
 	 * @return void
 	 */
@@ -164,7 +164,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the text
-	 * 
+	 *
 	 * @return string $text
 	 */
 	public function getText() {
@@ -173,7 +173,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the text
-	 * 
+	 *
 	 * @param string $text
 	 * @return void
 	 */
@@ -202,7 +202,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the quotedPost
-	 * 
+	 *
 	 * @return \AgoraTeam\Agora\Domain\Model\Post $quotedPost
 	 */
 	public function getQuotedPost() {
@@ -250,7 +250,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the replies
-	 * 
+	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $replies
 	 * @return void
 	 */
@@ -260,7 +260,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the voting
-	 * 
+	 *
 	 * @return \AgoraTeam\Agora\Domain\Model\Voting $voting
 	 */
 	public function getVoting() {
@@ -269,7 +269,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the voting
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Voting $voting
 	 * @return void
 	 */
@@ -279,7 +279,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Attachment
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Attachment $attachment
 	 * @return void
 	 */
@@ -289,7 +289,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Attachment
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Attachment $attachmentToRemove The Attachment to be removed
 	 * @return void
 	 */
@@ -299,7 +299,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the attachments
-	 * 
+	 *
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Attachment> $attachments
 	 */
 	public function getAttachments() {
@@ -308,7 +308,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the attachments
-	 * 
+	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Attachment> $attachments
 	 * @return void
 	 */
@@ -318,7 +318,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the creator
-	 * 
+	 *
 	 * @return mixed $creator
 	 */
 	public function getCreator() {
@@ -327,7 +327,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the creator
-	 * 
+	 *
 	 * @param mixed $creator
 	 * @return void
 	 */
@@ -361,7 +361,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Adds a Post
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $historicalVersion
 	 * @return void
 	 */
@@ -371,7 +371,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Removes a Post
-	 * 
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $historicalVersionToRemove The Post to be removed
 	 * @return void
 	 */
@@ -381,7 +381,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Returns the historicalVersions
-	 * 
+	 *
 	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $historicalVersions
 	 */
 	public function getHistoricalVersions() {
@@ -390,7 +390,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Sets the historicalVersions
-	 * 
+	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $historicalVersions
 	 * @return void
 	 */

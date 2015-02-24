@@ -50,5 +50,25 @@ class UserRepository extends Repository {
 		return $object;
 	}
 
+	/**
+	 * @param \AgoraTeam\Agora\Domain\Model\User $user
+	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
+	 */
+	public function findObservedThreadByUser(\AgoraTeam\Agora\Domain\Model\Thread $thread, \AgoraTeam\Agora\Domain\Model\User $user) {
+		$query = $this->createQuery();
+		$query->getQuerySettings()->setIgnoreEnableFields(TRUE);
+		$query->getQuerySettings()->setRespectSysLanguage(FALSE);
+		$query->getQuerySettings()->setRespectStoragePage(FALSE);
+
+		$and = array(
+			$query->equals('uid', $user->getUid()),
+			$query->contains('observedThreads', $thread)
+		);
+
+		$object = $query->matching($query->logicalAnd($and))->execute()->getFirst();
+		return ($object !== NULL) ? TRUE : FALSE;
+	}
+
+
 
 }

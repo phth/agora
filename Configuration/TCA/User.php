@@ -15,7 +15,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_user'] = array(
 		'1' => array('showitem' => ''),
 	),
 	'columns' => array(
-	
+
 		'sys_language_uid' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
@@ -56,7 +56,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_user'] = array(
 				'max' => 255,
 			)
 		),
-	
+
 		'hidden' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
@@ -131,7 +131,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_user'] = array(
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_agora_domain_model_thread',
-				'foreign_field' => 'user3',
+				'foreign_field' => 'uid',
 				'maxitems'      => 9999,
 				'appearance' => array(
 					'collapseAll' => 0,
@@ -179,7 +179,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_user'] = array(
 			),
 
 		),
-		
+
 		'thread2' => array(
 			'config' => array(
 				'type' => 'passthrough',

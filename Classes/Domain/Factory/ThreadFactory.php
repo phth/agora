@@ -74,15 +74,14 @@ class ThreadFactory extends AbstractFactory {
 		$post = new \AgoraTeam\Agora\Domain\Model\Post;
 		$post->setTopic($thread->getTitle());
 		$post->setText($text);
-        if(is_a($user,'\AgoraTeam\Agora\Domain\Model\User')) {
+        if (is_a($user,'\AgoraTeam\Agora\Domain\Model\User')) {
             $post->setCreator($user);
         }
 
 		$thread->addPost($post);
-        if(is_a($user,'\AgoraTeam\Agora\Domain\Model\User')) {
+        if (is_a($user,'\AgoraTeam\Agora\Domain\Model\User')) {
             $thread->setCreator($user);
         }
-		$thread->setForum($forum);
 
 		$forum->addThread($thread);
 		$this->forumRepository->update($forum);

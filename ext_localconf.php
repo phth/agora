@@ -10,14 +10,16 @@ if (!defined('TYPO3_MODE')) {
 		'Forum' => 'list, delete, edit, new, create',
 		'Thread' => 'list, delete, edit, new, create',
 		'Post' => 'list, show, delete, edit, new, create',
+		'User' => 'addObservedThread, removeObservedThread',
 		'Attachment' => 'download'
 	),
 	array(
 		'Forum' => 'list, delete, edit, new, create',
 		'Thread' => 'list, delete, edit, new, create',
 		'Post' => 'list, show, delete, edit, new, create',
+		'User' => 'addObservedThread, removeObservedThread',
 		'Attachment' => 'download',
-		
+
 	)
 );
 
@@ -27,13 +29,13 @@ if (!defined('TYPO3_MODE')) {
 	array(
 		'Post' => 'listLatest',
 		'Thread' => 'listLatest',
-		'User' => 'favoritePosts, observedThreads',
+		'User' => 'favoritePosts, observedThreads, removeObservedThread',
 		'Message' => 'list, show, new, create, delete, listConversation'
 	),
 	array(
         'Post' => 'listLatest',
         'Thread' => 'listLatest',
-        'User' => 'favoritePosts, observedThreads',
+        'User' => 'favoritePosts, observedThreads, removeObservedThread',
         'Message' => 'list, show, new, create, delete, listConversation'
 	)
 );
