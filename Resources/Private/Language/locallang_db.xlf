@@ -45,6 +45,9 @@
 			<trans-unit id="tx_agora_domain_model_post.crdate">
                 <source>Creation Date</source>
             </trans-unit>
+            <trans-unit id="tx_agora_domain_model_post.publishing_date">
+                <source>Publishing Date</source>
+            </trans-unit>
             <trans-unit id="tx_agora_domain_model_post.thread">
                 <source>Thread</source>
             </trans-unit>

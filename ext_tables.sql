@@ -63,6 +63,7 @@ CREATE TABLE tx_agora_domain_model_post (
 
 	topic varchar(255) DEFAULT '' NOT NULL,
 	text text NOT NULL,
+	publishing_date int(11) unsigned DEFAULT '0' NOT NULL,
 	quoted_post int(11) unsigned DEFAULT '0' NOT NULL,
 	voting int(11) unsigned DEFAULT '0',
 	attachments int(11) unsigned DEFAULT '0' NOT NULL,

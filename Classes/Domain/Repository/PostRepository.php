@@ -33,5 +33,9 @@ namespace AgoraTeam\Agora\Domain\Repository;
  */
 class PostRepository extends Repository {
 
+	protected $defaultOrderings = array(
+		'publishing_date' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
+	);
+
 
 }

@@ -84,6 +84,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'dividers2tabs' => TRUE,
+		'sortby' => 'publishing_date',
 
 		'versioningWS' => 2,
 		'versioning_followPages' => TRUE,

@@ -1,0 +1,41 @@
+{namespace a=AgoraTeam\Agora\ViewHelpers}
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:f="http://xsd.helmut-hummel.de/ns/TYPO3/Fluid/ViewHelpers">
+
+<f:layout name="Default" />
+
+    <f:section name="main">
+
+        <f:flashMessages renderMode="div" />
+
+        <f:render partial="Navigation/Post" arguments="{post:post}" />
+
+        <f:format.raw>{post.text}</f:format.raw>
+
+        <ul class="list-group">
+            <f:for each="{post.historicalVersions}" as="version">
+                <li class="list-group-item">
+                    <div class="small text-muted">
+                        <f:translate
+                                key="tx_agora_domain_model_post.created_at"
+                                arguments="{0:'{f:format.date(date:\'{post.publishingDate}\', format:\'{settings.post.dateFormat}\')}'}" />
+                        <f:if condition="{post.creator}">
+                            |
+                            <f:translate
+                                    key="tx_agora_domain_model_post.by"
+                                    arguments="{0:'{a:creator(object:\'{post}\')}'}" />
+                        </f:if>
+                    </div>
+                    <h4>
+                        {version.topic}
+                    </h4>
+                    <p>
+                        <f:format.raw>{version.text}</f:format.raw>
+                    </p>
+
+                </li>
+            </f:for>
+        </ul>
+    </f:section>
+</html>

@@ -354,4 +354,23 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$this->username = $username;
 	}
 
+    /**
+     * displayName
+     *
+     * @todo map / import user firstname / lastname
+     *
+     * @return string
+     */
+    public function getDisplayName() {
+        $displayName = '';
+        $displayNameParts = array();
+
+        if(count($displayNameParts) > 0) {
+
+        } else {
+            $displayName = $this->getUsername();
+        }
+        return $displayName;
+    }
+
 }

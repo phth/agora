@@ -65,10 +65,12 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * creator
      *
      * may be NULL if post is anonymous
-     * @var boolean|\AgoraTeam\Agora\Domain\Model\User
+     *
+     * @var \AgoraTeam\Agora\Domain\Model\User
+	 *
 	 * @lazy
 	 */
-	protected $creator = FALSE;
+	protected $creator = NULL;
 
 	/**
 	 * posts
