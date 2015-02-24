@@ -35,7 +35,7 @@ class UserController extends ActionController {
 
 	/**
 	 * userRepository
-	 * 
+	 *
 	 * @var \AgoraTeam\Agora\Domain\Repository\UserRepository
 	 * @inject
 	 */
@@ -43,20 +43,45 @@ class UserController extends ActionController {
 
 	/**
 	 * action favoritePosts
-	 * 
+	 *
 	 * @return void
 	 */
 	public function favoritePostsAction() {
-		
+
 	}
 
 	/**
 	 * action observedThreads
-	 * 
+	 *
 	 * @return void
 	 */
 	public function observedThreadsAction() {
-		
+		//@todo Limit by TypoScript
+		$user = $this->getCurrentUser();
+		$observedThreads = $user->getObservedThreads();
+		$this->view->assign('observedThreads', $observedThreads);
 	}
+
+	/**
+	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
+	 */
+	public function addObservedThreadAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
+		$user = $this->getCurrentUser();
+		$user->addObservedThread($thread);
+		$this->userRepository->update($user);
+		$this->redirect('list', 'Post', 'Agora', array('thread' => $thread));
+	}
+
+	/**
+	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
+	 */
+	public function removeObservedThreadAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
+		//@todo Back to refere redirect
+		$user = $this->getCurrentUser();
+		$user->removeObservedThread($thread);
+		$this->userRepository->update($user);
+		$this->redirect('list', 'Post', 'Agora', array('thread' => $thread));
+	}
+
 
 }

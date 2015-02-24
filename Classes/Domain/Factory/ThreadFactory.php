@@ -81,10 +81,9 @@ class ThreadFactory extends AbstractFactory {
         }
 
 		$thread->addPost($post);
-        if(is_a($user,'\AgoraTeam\Agora\Domain\Model\User')) {
+        if (is_a($user,'\AgoraTeam\Agora\Domain\Model\User')) {
             $thread->setCreator($user);
         }
-		$thread->setForum($forum);
 
 		$forum->addThread($thread);
 		$this->forumRepository->update($forum);

@@ -50,17 +50,29 @@ class PostController extends ActionController {
 	protected $postRepository = NULL;
 
 	/**
+	 * userRepository
+	 *
+	 * @var \AgoraTeam\Agora\Domain\Repository\UserRepository
+	 * @inject
+	 */
+	protected $userRepository = NULL;
+
+	/**
 	 * action list
 	 *
      * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 * @return void
 	 */
 	public function listAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
+		//@todo Mark post as read
+		$user = $this->getCurrentUser();
+		$observedThread = $this->userRepository->findObservedThreadByUser($thread, $user);
 
         $posts = $this->postRepository->findByThread($thread);
 
         $this->view->assign('thread', $thread);
         $this->view->assign('posts', $posts);
+        $this->view->assign('observedThread', $observedThread);
 	}
 
 	/**

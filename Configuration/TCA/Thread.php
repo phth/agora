@@ -135,8 +135,11 @@ $GLOBALS['TCA']['tx_agora_domain_model_thread'] = array(
 			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_thread.creator',
 			'config' => array(
 				'type' => 'select',
+				'items' => array(
+					array('', 0),
+				),
 				'foreign_table' => 'fe_users',
-				'minitems' => 1,
+				'minitems' => 0,
 				'maxitems' => 1,
 			),
 		),

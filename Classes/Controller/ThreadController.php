@@ -64,6 +64,7 @@ class ThreadController extends ActionController {
 	 * @return void
 	 */
 	public function listAction(\AgoraTeam\Agora\Domain\Model\Forum $forum) {
+
         $threads = $this->threadRepository->findByForum($forum);
 
         $this->view->assign('forum', $forum);
@@ -162,10 +163,7 @@ class ThreadController extends ActionController {
 	 */
 	public function listLatestAction() {
 		$limit = $this->settings['thread']['numberOfItemsInLatestView'];
-//		$latestThreads = $this->threadRepository->findLatestThreadsForUser($limit);
-		$latestThreads = $this->threadRepository->findAll();
-		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($latestThreads,__FILE__ . " " . __LINE__);
+		$latestThreads = $this->threadRepository->findLatestThreadsForUser($limit);
 		$this->view->assign('latestThreads', $latestThreads);
 	}
-
 }

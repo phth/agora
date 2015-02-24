@@ -52,7 +52,6 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * favoritePosts
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread>
-	 * @cascade remove
 	 */
 	protected $favoritePosts = NULL;
 
@@ -60,7 +59,6 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * observedThreads
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread>
-	 * @cascade remove
 	 */
 	protected $observedThreads = NULL;
 
@@ -68,7 +66,6 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * spamPosts
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post>
-	 * @cascade remove
 	 */
 	protected $spamPosts = NULL;
 

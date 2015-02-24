@@ -354,7 +354,6 @@ $GLOBALS['TCA']['fe_groups']['types']['Tx_Agora_Group']['showitem'] .= '';
 $GLOBALS['TCA']['fe_groups']['columns'][$TCA['fe_groups']['ctrl']['type']]['config']['items'][] = array('LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:fe_groups.tx_extbase_type.Tx_Agora_Group','Tx_Agora_Group');
 
 $tmp_agora_columns = array(
-
 	'signiture' => array(
 		'exclude' => 1,
 		'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_user.signiture',
@@ -389,7 +388,7 @@ $tmp_agora_columns = array(
 		'config' => array(
 			'type' => 'inline',
 			'foreign_table' => 'tx_agora_domain_model_thread',
-			'foreign_field' => 'user3',
+			'foreign_field' => 'uid',
 			'maxitems'      => 9999,
 			'appearance' => array(
 				'collapseAll' => 0,

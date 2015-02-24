@@ -3,7 +3,7 @@
 		<f:for each="{latestThreads}" as="latest">
 			<li class="list-group-item">
 				<label class="strong h6">
-					<f:link.action action="show" pluginName="Forum" controller="Post" arguments="{post:latest.post.0}">
+					<f:link.action action="list" pluginName="Forum" controller="Post" arguments="{thread:latest}">
 						{latest.title}
 					</f:link.action>
 				</label>

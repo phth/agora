@@ -8,7 +8,6 @@
         <f:flashMessages renderMode="div" />
 
         <f:render partial="Navigation/Thread" arguments="{forum:forum}" />
-
         <f:widget.paginate objects="{threads}" as="paginatedThreads" configuration="{itemsPerPage: '{settings.thread.numberOfItemsPerPage}', insertAbove: 1, insertBelow: 1}">
             <ul class="list-group">
                 <f:for each="{paginatedThreads}" as="thread">

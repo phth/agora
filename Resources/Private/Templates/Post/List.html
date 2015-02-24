@@ -11,7 +11,6 @@
 
         <f:render partial="Navigation/Thread" arguments="{thread:thread}" />
 
-
         <f:widget.paginate objects="{posts}" as="paginatedPost" configuration="{itemsPerPage: '{settings.post.numberOfItemsPerPage}', insertAbove: 1, insertBelow: 1}">
             <ul class="list-group">
                 <f:for each="{paginatedPost}" as="post">
@@ -63,6 +62,27 @@
         </f:widget.paginate>
 
         <br />
+
+        <div class="listPostFooter">
+            <f:security.ifAuthenticated>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <f:if condition="{observedThread} == 0">
+                            <f:then>
+                                <f:link.action class="btn btn-default" action="addObservedThread" controller="User" arguments="{thread:thread}">
+                                    Favorite Thread
+                                </f:link.action>
+                            </f:then>
+                            <f:else>
+                                <f:link.action class="btn btn-default" action="removeObservedThread" controller="User" arguments="{thread:thread}">
+                                    Remove Favorite Thread
+                                </f:link.action>
+                            </f:else>
+                        </f:if>
+                    </li>
+                </ul>
+            </f:security.ifAuthenticated>
+        </div>
 
         <f:link.action class="btn btn-primary" action="new" arguments="{thread:thread}">
             <f:translate key="tx_agora_domain_model_post.new" />
