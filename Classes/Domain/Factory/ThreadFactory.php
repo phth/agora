@@ -74,6 +74,8 @@ class ThreadFactory extends AbstractFactory {
 		$post = new \AgoraTeam\Agora\Domain\Model\Post;
 		$post->setTopic($thread->getTitle());
 		$post->setText($text);
+		$now = new \DateTime();
+		$post->setPublishingDate($now);
         if(is_a($user,'\AgoraTeam\Agora\Domain\Model\User')) {
             $post->setCreator($user);
         }

@@ -58,7 +58,8 @@ class PostService {
      * @return \AgoraTeam\Agora\Domain\Model\Post $post
      */
     public function copy(\AgoraTeam\Agora\Domain\Model\Post $originalPost) {
-        $post = $this->objectManager->get('AgoraTeam\\Agora\\Domain\\Model\\Post');
+        /** @var \AgoraTeam\Agora\Domain\Model\Post $post */
+	    $post = $this->objectManager->get('AgoraTeam\\Agora\\Domain\\Model\\Post');
 
         $post->setPublishingDate($originalPost->getPublishingDate());
         $post->setTopic($originalPost->getTopic());
@@ -73,7 +74,7 @@ class PostService {
             $post->setThread($originalPost->getThread());
         }
 
-        $post->setReplies($originalPost->getReplies());
+	    $post->setHistoricalVersions($originalPost->getHistoricalVersions());
 
         return $post;
     }
@@ -87,8 +88,9 @@ class PostService {
     public function archive(\AgoraTeam\Agora\Domain\Model\Post $post) {
         // detach thread so that an archived post will not shown up in thread history
         $post->setThread(NULL);
-        $emptyReplyStorage = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage');
-        $post->setReplies($emptyReplyStorage);
+
+        //$emptyReplyStorage = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage');
+        //$post->setReplies($emptyReplyStorage);
     }
 
 }

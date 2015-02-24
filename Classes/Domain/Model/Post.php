@@ -73,7 +73,6 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * replies
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post>
-     * @cascade remove
      * @lazy
      */
     protected $replies = NULL;
@@ -251,20 +250,20 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     /**
      * Adds a Reply
      *
-     * @param \AgoraTeam\Agora\Domain\Model\Reply $reply
+     * @param \AgoraTeam\Agora\Domain\Model\Post $reply
      * @return void
      */
-    public function addReply(\AgoraTeam\Agora\Domain\Model\Reply $reply) {
+    public function addReply(\AgoraTeam\Agora\Domain\Model\Post $reply) {
         $this->replies->attach($reply);
     }
 
     /**
      * Removes a Reply
      *
-     * @param \AgoraTeam\Agora\Domain\Model\Reply $reply The Reply to be removed
+     * @param \AgoraTeam\Agora\Domain\Model\Post $replyToRemove The Reply to be removed
      * @return void
      */
-    public function removeReply(\AgoraTeam\Agora\Domain\Model\Reply $replyToRemove) {
+    public function removeReply(\AgoraTeam\Agora\Domain\Model\Post $replyToRemove) {
         $this->replies->detach($replyToRemove);
     }
 

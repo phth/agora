@@ -33,6 +33,14 @@ namespace AgoraTeam\Agora\Controller;
 class ActionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
+	 * persistenceManager
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
+	 * @inject
+	 */
+	protected $persistenceManager;
+
+	/**
 	 * userRepository
 	 *
 	 * @var \AgoraTeam\Agora\Domain\Repository\UserRepository
@@ -40,11 +48,33 @@ class ActionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 */
 	protected $userRepository;
 
+	/**
+	 * user
+	 *
+	 * the logged in frontend user, if there is any
+	 *
+	 * @var mixed
+	 */
+	protected $user;
+
+	/**
+	 * initialize object
+	 *
+	 * @return void
+	 */
+	public function initializeObject() {
+
+		$user = $this->getCurrentUser();
+
+		if(is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
+			$this->setUser($user);
+		}
+	}
 
 	/**
 	 * Get current logged in user
 	 *
-	 * @return null|object
+	 * @return null|\AgoraTeam\Agora\Domain\Repository\User
 	 */
 	public function getCurrentUser() {
 		if (!is_array($GLOBALS['TSFE']->fe_user->user)) {
@@ -54,12 +84,30 @@ class ActionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	}
 
 	/**
+	 * Returns the user
+	 *
+	 * @return mixed
+	 */
+	public function getUser() {
+		return $this->user;
+	}
+
+	/**
+	 * Sets the user
+	 *
+	 * @param mixed $user
+	 */
+	public function setUser($user) {
+		$this->user = $user;
+	}
+
+	/**
 	 * Get Usergroups from current user
 	 *
 	 * @return array
 	 */
 	public function getCurrentUsergroupUids() {
-		$currentUser = $this->getCurrentUser();
+		$currentUser = $this->getUser();
 		$usergroupUids = array();
 		if ($currentUser !== NULL) {
 			foreach ($currentUser->getUsergroup() as $usergroup) {

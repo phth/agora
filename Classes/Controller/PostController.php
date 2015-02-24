@@ -109,8 +109,11 @@ class PostController extends ActionController {
 	 * @return void
 	 */
 	public function createAction(\AgoraTeam\Agora\Domain\Model\Post $newPost) {
-		$user = $this->getCurrentUser();
+		$user = $this->getUser();
+
 		$newPost->setCreator($user);
+		$now = new \DateTime();
+		$newPost->setPublishingDate($now);
         $this->postRepository->add($newPost);
 
         $this->addFlashMessage(
@@ -158,11 +161,16 @@ class PostController extends ActionController {
         $newPost->setTopic($post->getTopic());
         $newPost->setText($post->getText());
 
-        $this->postService->archive($originalPost);
+		foreach($originalPost->getReplies()->toArray() as $reply) {
+			$newPost->addReply($reply);
+			$reply->setQuotedPost($newPost);
+			$this->postRepository->update($reply);
+		}
+
+		$this->postService->archive($originalPost);
         $newPost->addHistoricalVersion($originalPost);
         $this->postRepository->update($originalPost);
-        $this->postRepository->add($newPost);
-
+		$this->postRepository->add($newPost);
 
         $this->addFlashMessage(
             \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_post.flashMessages.updated', 'agora'),
