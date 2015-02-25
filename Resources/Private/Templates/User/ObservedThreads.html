@@ -1,0 +1,50 @@
+<ul class="list-group">
+	<f:if condition="{observedThreads}">
+		<f:then>
+			<f:for each="{observedThreads}" as="thread" iteration="iterator">
+				<li class="list-group-item">
+					<div class="strong h6">
+						<f:link.action action="list" pluginName="Forum" controller="Post" arguments="{thread:thread}">
+							{thread.title}
+						</f:link.action>
+
+						<f:link.action class="small" action="removeObservedThread" pluginName="Forum" controller="User" arguments="{thread:thread}">
+							(<f:translate key="tx_agora_domain_model_user.observed_threads.remove" />)
+						</f:link.action>
+
+						<div class="subHeader small">
+							<label class="latestForum">
+								<f:translate key="tx_agora_domain_model_user.observed_threads.forum" />:
+								<f:link.action action="list" pluginName="Forum" controller="Forum" arguments="{forum:thread.forum}">
+									{thread.forum.title}
+								</f:link.action>
+							</label>
+							<label class="latestCreator">
+								<f:translate key="tx_agora_domain_model_user.observed_threads.username" />:
+								{thread.creator.username}
+							</label>
+							<label class="latestTime">
+								{thread.tstamp}
+							</label>
+						</div>
+					</div>
+				</li>
+			</f:for>
+		</f:then>
+		<f:else>
+			<ul class="list-group">
+				<li class="list-group-item">
+					<f:translate key="tx_agora_domain_model_user.observed_threads.noThreads" />
+				</li>
+			</ul>
+		</f:else>
+	</f:if>
+	<f:if condition="{listPid}">
+		<li class="list-group-item">
+			<f:link.page pageUid="{listPid}">
+				<f:translate key="tx_agora_domain_model_user.observed_threads.showMore" />
+			</f:link.page>
+		</li>
+	</f:if>
+
+</ul>
