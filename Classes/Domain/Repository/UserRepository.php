@@ -49,21 +49,4 @@ class UserRepository extends Repository {
 		$object = $query->matching($query->logicalAnd($and))->execute()->getFirst();
 		return $object;
 	}
-
-	/**
-	 * @param \AgoraTeam\Agora\Domain\Model\User $user
-	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
-	 */
-	public function findObservedThreadByUser(\AgoraTeam\Agora\Domain\Model\Thread $thread, \AgoraTeam\Agora\Domain\Model\User $user) {
-		$query = $this->createQuery();
-
-		$and = array(
-			$query->equals('uid', $user->getUid()),
-			$query->contains('observedThreads', $thread)
-		);
-
-		$object = $query->matching($query->logicalAnd($and))->execute()->getFirst();
-		return ($object !== NULL) ? TRUE : FALSE;
-	}
-
 }

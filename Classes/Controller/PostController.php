@@ -59,20 +59,21 @@ class PostController extends ActionController {
 
 	/**
 	 * action list
+	 * @todo Mark post as read
 	 *
      * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 * @return void
 	 */
 	public function listAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
-		//@todo Mark post as read
+			// Check if current user observes thread
 		$user = $this->getCurrentUser();
-		$observedThread = $this->userRepository->findObservedThreadByUser($thread, $user);
+		$observedThread = $user->getObservedThreads()->offsetExists($thread);
 
-        $posts = $this->postRepository->findByThread($thread);
+		$posts = $this->postRepository->findByThread($thread);
 
-        $this->view->assign('thread', $thread);
-        $this->view->assign('posts', $posts);
-        $this->view->assign('observedThread', $observedThread);
+		$this->view->assign('thread', $thread);
+		$this->view->assign('posts', $posts);
+		$this->view->assign('observedThread', $observedThread);
 	}
 
 	/**
@@ -85,15 +86,16 @@ class PostController extends ActionController {
 		$this->view->assign('post', $post);
 	}
 
-    /**
-     * action showHistory
-     *
-     * @param \AgoraTeam\Agora\Domain\Model\Post $post
-     * @return void
-     */
-    public function showHistoryAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
-        $this->view->assign('post', $post);
-    }
+	/**
+	* action showHistory
+	*
+	* @param \AgoraTeam\Agora\Domain\Model\Post $post
+    *
+	* @return void
+	*/
+	public function showHistoryAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
+		$this->view->assign('post', $post);
+	}
 
 	/**
 	 * action new
@@ -104,9 +106,9 @@ class PostController extends ActionController {
 	 * @ignorevalidation $newPost
 	 * @return void
 	 */
-	public function newAction(  \AgoraTeam\Agora\Domain\Model\Post $newPost = NULL,
-                                \AgoraTeam\Agora\Domain\Model\Post $quotedPost = NULL,
-                                \AgoraTeam\Agora\Domain\Model\Thread $thread = NULL) {
+	public function newAction(\AgoraTeam\Agora\Domain\Model\Post $newPost = NULL,
+                              \AgoraTeam\Agora\Domain\Model\Post $quotedPost = NULL,
+                              \AgoraTeam\Agora\Domain\Model\Thread $thread = NULL) {
 		$this->view->assign('newPost', $newPost);
         $this->view->assign('quotedPost', $quotedPost);
 		$this->view->assign('thread', $thread);
