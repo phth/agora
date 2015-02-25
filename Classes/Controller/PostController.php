@@ -218,7 +218,9 @@ class PostController extends ActionController {
 	 * @return void
 	 */
 	public function listLatestAction() {
-
+		$limit = $this->settings['thread']['numberOfItemsInLatestView'];
+		$latestPosts = $this->postRepository->findLatestPostsForUser($limit);
+		$this->view->assign('latestPosts', $latestPosts);
 	}
 
 }

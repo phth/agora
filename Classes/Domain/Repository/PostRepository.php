@@ -38,4 +38,27 @@ class PostRepository extends Repository {
 	);
 
 
+	/**
+	 * Finds the latest Posts
+	 *
+	 * @param integer $limit The number of threads to return at max
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+	 */
+	public function findLatestPostsForUser($limit) {
+		$user = $this->getUser();
+
+		$query = $this->createQuery();
+
+			// @todo Implementation of the access-rights
+		$result = $query
+			->matching($query->equals('post4', 0))
+			->setOrderings(array('publishing_date' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING))
+			->setLimit((integer)$limit)
+			->execute();
+
+		return $result;
+	}
+
+
+
 }

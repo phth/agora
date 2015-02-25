@@ -1,1 +1,33 @@
-listLatest
+<div class="agoraLatestList">
+	<ul class="list-group">
+		<f:for each="{latestPosts}" as="latest">
+			<li class="list-group-item">
+				<div class="text small">
+					<f:format.crop maxCharacters="200" respectWordBoundaries="true" respectHtml="false">
+						{latest.text -> f:format.raw()}
+					</f:format.crop>
+				</div>
+				<div class="strong h6">
+					<f:link.action action="list" pluginName="Forum" controller="Post" arguments="{post:latest}">
+						{latest.topic}
+					</f:link.action>
+					<div class="subHeader small">
+						<label class="latestForum">
+							<f:translate key="tx_agora_domain_model_thread.list_latest.forum" />:
+							<f:link.action action="list" pluginName="Forum" controller="Forum" arguments="{forum:latest.forum}">
+								{latest.thread.forum.title}
+							</f:link.action>
+						</label>
+						<label class="latestCreator">
+							<f:translate key="tx_agora_domain_model_thread.list_latest.username" />:
+							{latest.creator.username}
+						</label>
+						<label class="latestTime">
+							{latest.tstamp}
+						</label>
+					</div>
+				</div>
+			</li>
+		</f:for>
+	</ul>
+</div>

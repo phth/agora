@@ -42,9 +42,11 @@ plugin.tx_agora {
         thread {
             numberOfItemsInLatestView = 10
             numberOfItemsPerPage = 10
+			dateFormat = m-d-y h:i
 			numberOfItemsInObservedThreadsWidget = 5
         }
         post {
+			numberOfItemsInLatestView = 10
             numberOfItemsPerPage = 10
             dateFormat = m-d-y h:i
             defaultCreatorName = Anonymous
