@@ -2,26 +2,25 @@
 	<ul class="list-group">
 		<f:for each="{latestThreads}" as="latest">
 			<li class="list-group-item">
-				<label class="strong h6">
+				<div class="strong h6">
 					<f:link.action action="list" pluginName="Forum" controller="Post" arguments="{thread:latest}">
 						{latest.title}
 					</f:link.action>
-				</label>
-				<div class="subHeader small">
-					<label class="latestForum">
-						<f:translate key="latestThreads.forum" />:
-						<f:link.action action="list" pluginName="Forum" controller="Forum" arguments="{forum:latest.forum}">
-							{latest.forum.title}
-						</f:link.action>
-					</label>
-					<label class="latestCreator">
-						<f:translate key="latestThreads.username" />:
-							{latest.creator.username}
-					</label>
-					<label class="latestTime">
-						<f:translate key="latestThreads.editTime" />:
-						{latest.tstamp}
-					</label>
+					<div class="subHeader small">
+						<label class="latestForum">
+							<f:translate key="tx_agora_domain_model_thread.list_latest.forum" />:
+							<f:link.action action="list" pluginName="Forum" controller="Forum" arguments="{forum:latest.forum}">
+								{latest.forum.title}
+							</f:link.action>
+						</label>
+						<label class="latestCreator">
+							<f:translate key="tx_agora_domain_model_thread.list_latest.username" />:
+								{latest.creator.username}
+						</label>
+						<label class="latestTime">
+							{latest.tstamp}
+						</label>
+					</div>
 				</div>
 			</li>
 		</f:for>

@@ -56,10 +56,18 @@ class UserController extends ActionController {
 	 * @return void
 	 */
 	public function observedThreadsAction() {
-		//@todo Limit by TypoScript
 		$user = $this->getCurrentUser();
-		$observedThreads = $user->getObservedThreads();
+		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
+			$observedThreads = $user->getObservedThreads()->toArray();
+			$limit = $this->settings['thread']['numberOfItemsInObservedThreadsWidget'];
+
+			if ($limit < count($observedThreads)) {
+				$observedThreads = array_slice($observedThreads, 0, $limit);
+				$listPid = $this->settings['listView'];
+			}
+		}
 		$this->view->assign('observedThreads', $observedThreads);
+		$this->view->assign('listPid', $listPid);
 	}
 
 	/**

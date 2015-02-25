@@ -42,6 +42,7 @@ plugin.tx_agora {
         thread {
             numberOfItemsInLatestView = 10
             numberOfItemsPerPage = 10
+			numberOfItemsInObservedThreadsWidget = 5
         }
         post {
             numberOfItemsPerPage = 10

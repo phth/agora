@@ -102,6 +102,13 @@
                 <source>Post updated.</source>
             </trans-unit>
 
+            <trans-unit id="tx_agora_domain_model_post.favorite">
+                <source>Favorite thread</source>
+            </trans-unit>
+            <trans-unit id="tx_agora_domain_model_post.removeFavorite">
+                <source>Remove favorite thread</source>
+            </trans-unit>
+
 			<trans-unit id="tx_agora_domain_model_thread">
 				<source>Thread</source>
 			</trans-unit>
@@ -145,8 +152,14 @@
 				<source>Users With Modification Access</source>
 			</trans-unit>
 
-			<trans-unit id="tx_agora_domain_model_thread.new">
-                <source>New Thread</source>
+			<trans-unit id="tx_agora_domain_model_thread.list_latest.forum">
+                <source>Forum</source>
+            </trans-unit>
+			<trans-unit id="tx_agora_domain_model_thread.list_latest.editTime">
+                <source>Time</source>
+            </trans-unit>
+			<trans-unit id="tx_agora_domain_model_thread.list_latest.username">
+                <source>User</source>
             </trans-unit>
 
 			<trans-unit id="tx_agora_domain_model_user">
@@ -161,9 +174,29 @@
 			<trans-unit id="tx_agora_domain_model_user.favorite_posts">
 				<source>Favorite Posts</source>
 			</trans-unit>
+
 			<trans-unit id="tx_agora_domain_model_user.observed_threads">
 				<source>Observed Threads</source>
 			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_user.observed_threads.remove">
+				<source>remove</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_user.observed_threads.forum">
+				<source>Forum</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_user.observed_threads.username">
+				<source>Username</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_user.observed_threads.editTime">
+				<source>Time</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_user.observed_threads.noThreads">
+				<source>You are not observing threads yet.</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_user.observed_threads.showMore">
+				<source>Show all</source>
+			</trans-unit>
+
 			<trans-unit id="tx_agora_domain_model_user.spam_posts">
 				<source>Spam Posts</source>
 			</trans-unit>

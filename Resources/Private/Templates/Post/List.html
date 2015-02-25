@@ -70,12 +70,12 @@
                         <f:if condition="{observedThread} == 0">
                             <f:then>
                                 <f:link.action class="btn btn-default" action="addObservedThread" controller="User" arguments="{thread:thread}">
-                                    Favorite Thread
+                                    <f:translate key="tx_agora_domain_model_post.favorite" />
                                 </f:link.action>
                             </f:then>
                             <f:else>
                                 <f:link.action class="btn btn-default" action="removeObservedThread" controller="User" arguments="{thread:thread}">
-                                    Remove Favorite Thread
+                                    <f:translate key="tx_agora_domain_model_post.removeFavorite" />
                                 </f:link.action>
                             </f:else>
                         </f:if>

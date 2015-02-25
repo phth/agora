@@ -41,6 +41,13 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $title = '';
 
 	/**
+	 * tstamp
+	 *
+	 * @var string
+	 */
+	protected $tstamp;
+
+	/**
 	 * solved
 	 *
 	 * @var boolean
@@ -189,6 +196,21 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setTitle($title) {
 		$this->title = $title;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getTstamp() {
+		return $this->tstamp;
+	}
+
+	/**
+	 * @param string $tstamp
+	 */
+	public function setTstamp($tstamp) {
+		$this->tstamp = $tstamp;
+	}
+
 
 	/**
 	 * Returns the solved

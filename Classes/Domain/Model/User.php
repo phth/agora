@@ -238,6 +238,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		return $this->observedThreads;
 	}
 
+
 	/**
 	 * Sets the observedThreads
 	 *
