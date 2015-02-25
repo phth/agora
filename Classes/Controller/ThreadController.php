@@ -48,8 +48,9 @@ class ThreadController extends ActionController {
 	 */
 	protected $threadFactory;
 
-
-
+	/**
+	 * @param \AgoraTeam\Agora\Domain\Factory\ThreadFactory $threadFactory
+	 */
 	public function __construct(\AgoraTeam\Agora\Domain\Factory\ThreadFactory $threadFactory) {
 		parent::__construct();
 

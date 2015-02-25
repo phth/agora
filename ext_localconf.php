@@ -38,3 +38,14 @@ if (!defined('TYPO3_MODE')) {
         'Message' => 'list, show, new, create, delete, listConversation'
 	)
 );
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+	'AgoraTeam.' . $_EXTKEY,
+	'Forumpages',
+	array(
+		'User' => 'removeObservedThread, listObservedThreads',
+	),
+	array(
+        'User' => 'removeObservedThread, listObservedThreads',
+	)
+);

@@ -41,6 +41,7 @@ class UserController extends ActionController {
 	 */
 	protected $userRepository = NULL;
 
+
 	/**
 	 * action favoritePosts
 	 *
@@ -71,6 +72,19 @@ class UserController extends ActionController {
 	}
 
 	/**
+	 * action listObservedThreads
+	 * @retun void
+	 */
+	public function listObservedThreadsAction() {
+		$user = $this->getCurrentUser();
+		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
+			$observedThreads = $user->getObservedThreads();
+		}
+		$this->view->assign('observedThreads', $observedThreads);
+	}
+
+
+	/**
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 */
 	public function addObservedThreadAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
@@ -84,7 +98,7 @@ class UserController extends ActionController {
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
 	 */
 	public function removeObservedThreadAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
-		//@todo Back to refere redirect
+			// @todo Back to refere redirect
 		$user = $this->getCurrentUser();
 		$user->removeObservedThread($thread);
 		$this->userRepository->update($user);

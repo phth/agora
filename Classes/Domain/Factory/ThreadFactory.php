@@ -90,6 +90,4 @@ class ThreadFactory extends AbstractFactory {
 
 		return $thread;
 	}
-
-
 }

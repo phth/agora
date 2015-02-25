@@ -1,0 +1,29 @@
+<T3DataStructure>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>Function</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<switchableControllerActions>
+						<TCEforms>
+							<label>Select function</label>
+							<onChange>reload</onChange>
+							<config>
+								<type>select</type>
+								<items>
+									<numIndex index="0">
+										<numIndex index="0">Observed Threads</numIndex>
+										<numIndex index="1">User->listObservedThreads</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</switchableControllerActions>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>

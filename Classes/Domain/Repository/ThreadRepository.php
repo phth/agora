@@ -53,5 +53,4 @@ class ThreadRepository extends Repository {
 		return $result;
 	}
 
-
 }
