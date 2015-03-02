@@ -10,14 +10,14 @@ if (!defined('TYPO3_MODE')) {
 		'Forum' => 'list, delete, edit, update, new, create',
 		'Thread' => 'list, delete, edit, update, new, create',
 		'Post' => 'list, show, showHistory, delete, edit, update, new, create',
-		'User' => 'addObservedThread, removeObservedThread',
+		'User' => 'addObservedThread, removeObservedThread, addObservedPost, removeObservedPost',
 		'Attachment' => 'download'
 	),
 	array(
 		'Forum' => 'list, delete, edit, update, new, create',
 		'Thread' => 'list, delete, edit, update, new, create',
 		'Post' => 'list, show, showHistory, delete, edit, update, new, create',
-		'User' => 'addObservedThread, removeObservedThread',
+		'User' => 'addObservedThread, removeObservedThread, addObservedPost, removeObservedPost',
 		'Attachment' => 'download',
 	)
 );

@@ -46,7 +46,7 @@ class ThreadRepository extends Repository {
 
 		//@todo Implementation of the access-rights
 		$result = $query
-			->setOrderings(array('tstamp' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING))
+			->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING))
 			->setLimit((integer)$limit)
 			->execute();
 

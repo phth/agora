@@ -66,6 +66,12 @@
 			<trans-unit id="tx_agora_domain_model_post.historical_versions">
 				<source>Historical Versions</source>
 			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_post.favorite">
+				<source>Favorite Post</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_post.removeFavorite">
+				<source>Rmove favorite Post</source>
+			</trans-unit>
 
             <trans-unit id="tx_agora_domain_model_post.new">
                 <source>New Post</source>
@@ -111,6 +117,9 @@
 
 			<trans-unit id="tx_agora_domain_model_thread">
 				<source>Thread</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_thread.new">
+				<source>New Thread</source>
 			</trans-unit>
 			<trans-unit id="tx_agora_domain_model_thread.title">
 				<source>Title</source>

@@ -56,6 +56,12 @@
                             </f:link.action>
                         </a:security.ifIsAuthor>
 
+                        <f:security.ifAuthenticated>
+                            <f:link.action class="btn btn-default" controller="User" action="addObservedPost" arguments="{post:post}">
+                                <f:translate key="tx_agora_domain_model_post.favorite" />
+                            </f:link.action>
+                        </f:security.ifAuthenticated>
+
                     </li>
                 </f:for>
             </ul>
