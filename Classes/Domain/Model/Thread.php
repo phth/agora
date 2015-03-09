@@ -170,6 +170,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected function initStorageObjects() {
 		$this->posts = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->views = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->user = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->groupsWithReadAccess = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->groupWithWriteAccess = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->groupsWithModificationAccess = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();

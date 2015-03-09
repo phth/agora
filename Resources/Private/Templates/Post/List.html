@@ -43,10 +43,7 @@
                                 {post.topic}
                             </f:link.action>
                         </h4>
-                        <p>
-                            <f:format.raw>{post.text}</f:format.raw>
-                        </p>
-
+                            {post.text -> f:format.html()}
                         <f:link.action class="btn btn-default" action="new" arguments="{thread:thread, quotedPost:post}">
                             <f:translate key="tx_agora_domain_model_post.reply" />
                         </f:link.action>
@@ -56,10 +53,21 @@
                             </f:link.action>
                         </a:security.ifIsAuthor>
 
+
+
                         <f:security.ifAuthenticated>
-                            <f:link.action class="btn btn-default" controller="User" action="addObservedPost" arguments="{post:post}">
-                                <f:translate key="tx_agora_domain_model_post.favorite" />
-                            </f:link.action>
+                            <f:if condition="{a:postHasFavoriteUser(post:post,user:user)}">
+                                <f:then>
+                                    <f:link.action class="btn btn-default" controller="User" action="removeFavoritePost" arguments="{post:post}">
+                                        <f:translate key="tx_agora_domain_model_post.removeFavorite" />
+                                    </f:link.action>
+                                </f:then>
+                                <f:else>
+                                    <f:link.action class="btn btn-default" controller="User" action="addFavoritePost" arguments="{post:post}">
+                                        <f:translate key="tx_agora_domain_model_post.favorite" />
+                                    </f:link.action>
+                                </f:else>
+                            </f:if>
                         </f:security.ifAuthenticated>
 
                     </li>
@@ -76,12 +84,12 @@
                         <f:if condition="{observedThread} == 0">
                             <f:then>
                                 <f:link.action class="btn btn-default" action="addObservedThread" controller="User" arguments="{thread:thread}">
-                                    <f:translate key="tx_agora_domain_model_post.favorite" />
+                                    <f:translate key="tx_agora_domain_model_thread.favorite" />
                                 </f:link.action>
                             </f:then>
                             <f:else>
                                 <f:link.action class="btn btn-default" action="removeObservedThread" controller="User" arguments="{thread:thread}">
-                                    <f:translate key="tx_agora_domain_model_post.removeFavorite" />
+                                    <f:translate key="tx_agora_domain_model_thread.removeFavorite" />
                                 </f:link.action>
                             </f:else>
                         </f:if>

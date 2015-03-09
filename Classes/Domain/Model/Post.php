@@ -129,6 +129,13 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     protected $rootline = array();
 
 	/**
+	 * isFavorite
+	 *
+	 * @var bool
+	 */
+	protected $isFavorite = FALSE;
+
+	/**
 	 * __construct
 	 */
 	public function __construct() {
@@ -471,5 +478,21 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
             }
         }
     }
+
+	/**
+	 * @return boolean
+	 */
+	public function isIsFavorite() {
+		return $this->isFavorite;
+	}
+
+	/**
+	 * @param boolean $isFavorite
+	 */
+	public function setIsFavorite($isFavorite) {
+		$this->isFavorite = $isFavorite;
+	}
+
+
 
 }

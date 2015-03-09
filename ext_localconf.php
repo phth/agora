@@ -10,14 +10,14 @@ if (!defined('TYPO3_MODE')) {
 		'Forum' => 'list, delete, edit, update, new, create',
 		'Thread' => 'list, delete, edit, update, new, create',
 		'Post' => 'list, show, showHistory, delete, edit, update, new, create',
-		'User' => 'addObservedThread, removeObservedThread, addObservedPost, removeObservedPost',
+		'User' => 'addObservedThread, removeObservedThread, addFavoritePost, removeFavoritePost',
 		'Attachment' => 'download'
 	),
 	array(
 		'Forum' => 'list, delete, edit, update, new, create',
 		'Thread' => 'list, delete, edit, update, new, create',
 		'Post' => 'list, show, showHistory, delete, edit, update, new, create',
-		'User' => 'addObservedThread, removeObservedThread, addObservedPost, removeObservedPost',
+		'User' => 'addObservedThread, removeObservedThread, addFavoritePost, removeFavoritePost',
 		'Attachment' => 'download',
 	)
 );
@@ -28,13 +28,13 @@ if (!defined('TYPO3_MODE')) {
 	array(
 		'Post' => 'listLatest',
 		'Thread' => 'listLatest',
-		'User' => 'favoritePosts, observedThreads, removeObservedThread',
+		'User' => 'favoritePosts, observedThreads, removeObservedThread, removeFavoritePost',
 		'Message' => 'list, show, new, create, delete, listConversation'
 	),
 	array(
         'Post' => 'listLatest',
         'Thread' => 'listLatest',
-        'User' => 'favoritePosts, observedThreads, removeObservedThread',
+        'User' => 'favoritePosts, observedThreads, removeObservedThread, removeFavoritePost',
         'Message' => 'list, show, new, create, delete, listConversation'
 	)
 );

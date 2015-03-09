@@ -1,3 +1,4 @@
+{namespace a=AgoraTeam\Agora\ViewHelpers}
 
 <f:layout name="Default" />
 
@@ -20,8 +21,23 @@
                 <p>
                     <f:format.raw>{reply.text}</f:format.raw>
                 </p>
-
             </li>
         </f:for>
     </ul>
+
+    <f:security.ifAuthenticated>
+        <f:if condition="{a:postHasFavoriteUser(post:post,user:user)}">
+            <f:then>
+                <f:link.action class="btn btn-default" controller="User" action="removeFavoritePost" arguments="{post:post}">
+                    <f:translate key="tx_agora_domain_model_post.removeFavorite" />
+                </f:link.action>
+            </f:then>
+            <f:else>
+                <f:link.action class="btn btn-default" controller="User" action="addFavoritePost" arguments="{post:post}">
+                    <f:translate key="tx_agora_domain_model_post.favorite" />
+                </f:link.action>
+            </f:else>
+        </f:if>
+    </f:security.ifAuthenticated>
+
 </f:section>

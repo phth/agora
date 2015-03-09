@@ -6,7 +6,7 @@ CREATE TABLE tx_agora_domain_model_forum (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-  title varchar(255) DEFAULT '' NOT NULL,
+	title varchar(255) DEFAULT '' NOT NULL,
 	description text NOT NULL,
 
 	parent  int(11) unsigned DEFAULT '0' NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE tx_agora_domain_model_forum (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
+	KEY language (l10n_parent,sys_language_uid)
 
 );
 
@@ -58,7 +58,7 @@ CREATE TABLE tx_agora_domain_model_post (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	thread int(11) unsigned DEFAULT '0' NOT NULL,
-	user int(11) unsigned DEFAULT '0' NOT NULL,
+	user  int(11) unsigned DEFAULT '0' NOT NULL,
 	replies int(11) unsigned DEFAULT '0' NOT NULL,
 
 	topic varchar(255) DEFAULT '' NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE tx_agora_domain_model_post (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
+	KEY language (l10n_parent,sys_language_uid)
 
 );
 
@@ -108,7 +108,6 @@ CREATE TABLE tx_agora_domain_model_thread (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	forum  int(11) unsigned DEFAULT '0' NOT NULL,
-	user  int(11) unsigned DEFAULT '0' NOT NULL,
 
 	title varchar(255) DEFAULT '' NOT NULL,
 	solved tinyint(1) unsigned DEFAULT '0' NOT NULL,
@@ -150,7 +149,7 @@ CREATE TABLE tx_agora_domain_model_thread (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
+	KEY language (l10n_parent,sys_language_uid)
 
 );
 
@@ -158,18 +157,14 @@ CREATE TABLE tx_agora_domain_model_thread (
 # Table structure for table 'fe_users'
 #
 CREATE TABLE fe_users (
-
 	view int(11) unsigned DEFAULT '0' NOT NULL,
-
 	signiture text NOT NULL,
 	posts int(11) unsigned DEFAULT '0' NOT NULL,
-	favorite_posts int(11) unsigned DEFAULT '0' NOT NULL,
 	observed_threads int(11) unsigned DEFAULT '0' NOT NULL,
+	favorite_posts int(11) unsigned DEFAULT '0' NOT NULL,
 	spam_posts int(11) unsigned DEFAULT '0' NOT NULL,
 	groups int(11) unsigned DEFAULT '0' NOT NULL,
-
-	tx_extbase_type varchar(255) DEFAULT '' NOT NULL,
-
+	tx_extbase_type varchar(255) DEFAULT '' NOT NULL
 );
 
 #
@@ -211,7 +206,7 @@ CREATE TABLE tx_agora_domain_model_message (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
+	KEY language (l10n_parent,sys_language_uid)
 
 );
 
@@ -251,7 +246,7 @@ CREATE TABLE tx_agora_domain_model_voting (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
+	KEY language (l10n_parent,sys_language_uid)
 
 );
 
@@ -294,7 +289,7 @@ CREATE TABLE tx_agora_domain_model_attachment (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
+	KEY language (l10n_parent,sys_language_uid)
 
 );
 
@@ -335,7 +330,7 @@ CREATE TABLE tx_agora_domain_model_vote (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
+	KEY language (l10n_parent,sys_language_uid)
 
 );
 
@@ -378,7 +373,7 @@ CREATE TABLE tx_agora_domain_model_votinganswer (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
+	KEY language (l10n_parent,sys_language_uid)
 
 );
 
@@ -386,9 +381,7 @@ CREATE TABLE tx_agora_domain_model_votinganswer (
 # Table structure for table 'fe_groups'
 #
 CREATE TABLE fe_groups (
-
-	tx_extbase_type varchar(255) DEFAULT '' NOT NULL,
-
+	tx_extbase_type varchar(255) DEFAULT '' NOT NULL
 );
 
 #
@@ -427,7 +420,7 @@ CREATE TABLE tx_agora_domain_model_view (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
- KEY language (l10n_parent,sys_language_uid)
+	KEY language (l10n_parent,sys_language_uid)
 
 );
 
@@ -513,29 +506,22 @@ CREATE TABLE tx_agora_forum_user_mm (
 # Table structure for table 'tx_agora_domain_model_post'
 #
 CREATE TABLE tx_agora_domain_model_post (
-
 	post  int(11) unsigned DEFAULT '0' NOT NULL,
-
-	post4  int(11) unsigned DEFAULT '0' NOT NULL,
-
+	post4  int(11) unsigned DEFAULT '0' NOT NULL
 );
 
 #
 # Table structure for table 'tx_agora_domain_model_attachment'
 #
 CREATE TABLE tx_agora_domain_model_attachment (
-
-	post  int(11) unsigned DEFAULT '0' NOT NULL,
-
+	post  int(11) unsigned DEFAULT '0' NOT NULL
 );
 
 #
 # Table structure for table 'tx_agora_domain_model_post'
 #
 CREATE TABLE tx_agora_domain_model_post (
-
-	thread  int(11) unsigned DEFAULT '0' NOT NULL,
-
+	thread  int(11) unsigned DEFAULT '0' NOT NULL
 );
 
 #
@@ -620,11 +606,7 @@ CREATE TABLE tx_agora_thread_userswithmodificationaccess_user_mm (
 # Table structure for table 'tx_agora_domain_model_post'
 #
 CREATE TABLE tx_agora_domain_model_post (
-
-	user  int(11) unsigned DEFAULT '0' NOT NULL,
-
-	user2  int(11) unsigned DEFAULT '0' NOT NULL,
-
+	user2  int(11) unsigned DEFAULT '0' NOT NULL
 );
 
 #
@@ -641,28 +623,48 @@ CREATE TABLE tx_agora_user_group_mm (
 );
 
 #
-# Table structure for table 'tx_agora_domain_model_votinganswer'
+# Table structure for table 'tx_agora_forum_user_post_mm'
 #
-CREATE TABLE tx_agora_domain_model_votinganswer (
+CREATE TABLE tx_agora_feuser_post_mm (
+	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
+	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 
-	voting  int(11) unsigned DEFAULT '0' NOT NULL,
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
 
+#
+# Table structure for table 'tx_agora_forum_user_thread_mm'
+#
+CREATE TABLE tx_agora_feuser_thread_mm (
+	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
+	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting int(11) unsigned DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
 );
 
 #
 # Table structure for table 'tx_agora_domain_model_votinganswer'
 #
 CREATE TABLE tx_agora_domain_model_votinganswer (
+	voting  int(11) unsigned DEFAULT '0' NOT NULL
+);
 
-	vote  int(11) unsigned DEFAULT '0' NOT NULL,
-
+#
+# Table structure for table 'tx_agora_domain_model_votinganswer'
+#
+CREATE TABLE tx_agora_domain_model_votinganswer (
+	vote  int(11) unsigned DEFAULT '0' NOT NULL
 );
 
 #
 # Table structure for table 'fe_users'
 #
 CREATE TABLE fe_users (
-
-	view  int(11) unsigned DEFAULT '0' NOT NULL,
-
+	view  int(11) unsigned DEFAULT '0' NOT NULL
 );

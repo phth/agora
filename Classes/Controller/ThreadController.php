@@ -111,7 +111,7 @@ class ThreadController extends ActionController {
 	public function createAction(\AgoraTeam\Agora\Domain\Model\Forum $forum,
 									\AgoraTeam\Agora\Domain\Model\Thread $thread, $text) {
 
-		$thread = $this->threadFactory->createThread($forum, $thread, $text);
+		$this->threadFactory->createThread($forum, $thread, $text);
 
 		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 		$this->redirect(

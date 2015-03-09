@@ -108,10 +108,10 @@
                 <source>Post updated.</source>
             </trans-unit>
 
-            <trans-unit id="tx_agora_domain_model_post.favorite">
+            <trans-unit id="tx_agora_domain_model_thread.favorite">
                 <source>Favorite thread</source>
             </trans-unit>
-            <trans-unit id="tx_agora_domain_model_post.removeFavorite">
+            <trans-unit id="tx_agora_domain_model_thread.removeFavorite">
                 <source>Remove favorite thread</source>
             </trans-unit>
 

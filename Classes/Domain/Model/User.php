@@ -37,6 +37,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * signiture
 	 *
 	 * @var string
+	 * @var string
 	 */
 	protected $signiture = '';
 
@@ -44,14 +45,13 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * posts
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post>
-	 * @cascade remove
 	 */
 	protected $posts = NULL;
 
 	/**
 	 * favoritePosts
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post>
 	 */
 	protected $favoritePosts = NULL;
 
@@ -59,6 +59,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * observedThreads
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread>
+	 * @lazy
 	 */
 	protected $observedThreads = NULL;
 
@@ -92,7 +93,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * __construct
 	 */
 	public function __construct() {
-		//Do not remove the next line: It would break the functionality
+			//Do not remove the next line: It would break the functionality
 		$this->initStorageObjects();
 	}
 
@@ -173,27 +174,27 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Adds a Thread
 	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\Thread $favoritePost
+	 * @param \AgoraTeam\Agora\Domain\Model\Post $favoritePost
 	 * @return void
 	 */
-	public function addFavoritePost(\AgoraTeam\Agora\Domain\Model\Thread $favoritePost) {
+	public function addFavoritePost(\AgoraTeam\Agora\Domain\Model\Post $favoritePost) {
 		$this->favoritePosts->attach($favoritePost);
 	}
 
 	/**
 	 * Removes a Thread
 	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\Thread $favoritePostToRemove The Thread to be removed
+	 * @param \AgoraTeam\Agora\Domain\Model\Post $favoritePostToRemove The Thread to be removed
 	 * @return void
 	 */
-	public function removeFavoritePost(\AgoraTeam\Agora\Domain\Model\Thread $favoritePostToRemove) {
+	public function removeFavoritePost(\AgoraTeam\Agora\Domain\Model\Post $favoritePostToRemove) {
 		$this->favoritePosts->detach($favoritePostToRemove);
 	}
 
 	/**
 	 * Returns the favoritePosts
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread> $favoritePosts
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $favoritePosts
 	 */
 	public function getFavoritePosts() {
 		return $this->favoritePosts;
@@ -202,7 +203,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the favoritePosts
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Thread> $favoritePosts
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $favoritePosts
 	 * @return void
 	 */
 	public function setFavoritePosts(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $favoritePosts) {

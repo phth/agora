@@ -63,9 +63,7 @@ class ActionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function initializeObject() {
-
 		$user = $this->getCurrentUser();
-
 		if(is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
 			$this->setUser($user);
 		}

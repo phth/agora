@@ -1,30 +1,24 @@
 <ul class="list-group">
 	<f:if condition="{favoritePosts}">
 		<f:then>
-			<f:for each="{favoritePosts}" as="thread" iteration="iterator">
+			<f:for each="{favoritePosts}" as="post" iteration="iterator">
 				<li class="list-group-item">
 					<div class="strong h6">
-						<f:link.action action="list" pluginName="Forum" controller="Post" arguments="{thread:thread}">
-							{thread.title}
+						<f:link.action action="show" pluginName="Forum" controller="Post" arguments="{post:post}">
+							{post.topic}
 						</f:link.action>
 
-						<f:link.action class="small" action="removeObservedThread" pluginName="Forum" controller="User" arguments="{thread:thread}">
+						<f:link.action class="small" pluginName="Forum" controller="User" action="removeFavoritePost" arguments="{post:post}">
 							(<f:translate key="tx_agora_domain_model_user.observed_threads.remove" />)
 						</f:link.action>
 
 						<div class="subHeader small">
-							<label class="latestForum">
-								<f:translate key="tx_agora_domain_model_user.observed_threads.forum" />:
-								<f:link.action action="list" pluginName="Forum" controller="Forum" arguments="{forum:thread.forum}">
-									{thread.forum.title}
-								</f:link.action>
-							</label>
 							<label class="latestCreator">
 								<f:translate key="tx_agora_domain_model_user.observed_threads.username" />:
-								{thread.creator.username}
+								{post.thread.creator.username}
 							</label>
 							<label class="latestTime">
-								{thread.tstamp}
+								{post.thread.tstamp}
 							</label>
 						</div>
 					</div>

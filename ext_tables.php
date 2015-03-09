@@ -321,7 +321,7 @@ if (!isset($GLOBALS['TCA']['fe_users']['ctrl']['type'])) {
 	if (file_exists($GLOBALS['TCA']['fe_users']['ctrl']['dynamicConfigFile'])) {
 		require_once($GLOBALS['TCA']['fe_users']['ctrl']['dynamicConfigFile']);
 	}
-	// no type field defined, so we define it here. This will only happen the first time the extension is installed!!
+		// no type field defined, so we define it here. This will only happen the first time the extension is installed!!
 	$GLOBALS['TCA']['fe_users']['ctrl']['type'] = 'tx_extbase_type';
 	$tempColumns = array();
 	$tempColumns[$GLOBALS['TCA']['fe_users']['ctrl']['type']] = array(
@@ -341,7 +341,7 @@ if (!isset($GLOBALS['TCA']['fe_groups']['ctrl']['type'])) {
 	if (file_exists($GLOBALS['TCA']['fe_groups']['ctrl']['dynamicConfigFile'])) {
 		require_once($GLOBALS['TCA']['fe_groups']['ctrl']['dynamicConfigFile']);
 	}
-	// no type field defined, so we define it here. This will only happen the first time the extension is installed!!
+		// no type field defined, so we define it here. This will only happen the first time the extension is installed!!
 	$GLOBALS['TCA']['fe_groups']['ctrl']['type'] = 'tx_extbase_type';
 	$tempColumns = array();
 	$tempColumns[$GLOBALS['TCA']['fe_groups']['ctrl']['type']] = array(
@@ -396,39 +396,27 @@ $tmp_agora_columns = array(
 		'exclude' => 1,
 		'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_user.favorite_posts',
 		'config' => array(
-			'type' => 'inline',
-			'foreign_table' => 'tx_agora_domain_model_thread',
-			'foreign_field' => 'uid',
-			'maxitems'      => 9999,
-			'appearance' => array(
-				'collapseAll' => 0,
-				'levelLinksPosition' => 'top',
-				'showSynchronizationLink' => 1,
-				'showPossibleLocalizationRecords' => 1,
-				'useSortable' => 1,
-				'showAllLocalizationLink' => 1
-			),
+			'type' => 'select',
+			'foreign_table' => 'tx_agora_domain_model_post',
+			'MM' => 'tx_agora_feuser_post_mm',
+			'size' => 5,
+			'minitems' => 0,
+			'maxitems' => 9999,
+			'renderMode' => 'checkbox',
 		),
-
 	),
 	'observed_threads' => array(
 		'exclude' => 1,
-		'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_user.observed_threads',
+		'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_thread.user',
 		'config' => array(
-			'type' => 'inline',
+			'type' => 'select',
 			'foreign_table' => 'tx_agora_domain_model_thread',
-			'foreign_field' => 'user',
-			'maxitems'      => 9999,
-			'appearance' => array(
-				'collapseAll' => 0,
-				'levelLinksPosition' => 'top',
-				'showSynchronizationLink' => 1,
-				'showPossibleLocalizationRecords' => 1,
-				'useSortable' => 1,
-				'showAllLocalizationLink' => 1
-			),
+			'MM' => 'tx_agora_feuser_thread_mm',
+			'size' => 5,
+			'minitems' => 0,
+			'maxitems' => 9999,
+			'renderMode' => 'checkbox',
 		),
-
 	),
 	'spam_posts' => array(
 		'exclude' => 1,
