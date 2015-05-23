@@ -1,6 +1,5 @@
 <?php
-namespace AgoraTeam\Agora\Domain\Repository;
-
+namespace AgoraTeam\Agora\UserFunc;
 
 /***************************************************************
  *
@@ -29,28 +28,33 @@ namespace AgoraTeam\Agora\Domain\Repository;
  ***************************************************************/
 
 /**
- * The repository for Threads
+ * ActionController
  */
-class ThreadRepository extends Repository {
+class Parsedown {
 
 	/**
-	 * Finds the latest Threads
-	 *
-	 * @param integer $limit The number of threads to return at max
-	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+	 * @param $PA
+	 * @param $fObj
+	 * @return mixed
 	 */
-	public function findLatestThreadsForUser($limit) {
-		$user = $this->getUser();
+	public function getParsedText($PA, $fObj) {
+		$uid = $PA['row']['uid'];
+		$parameter = $PA['fieldConf']['config']['parameter'];
 
-		$query = $this->createQuery();
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			$parameter['field'],
+			$parameter['table'],
+			'uid=' . $uid );
 
-		//@todo Implementation of the access-rights
-		$result = $query
-			->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCESCENDING))
-			->setLimit((integer)$limit)
-			->execute();
+		while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+			$result[] = $row;
+		}
 
-		return $result;
+		$parsedown = new \Parsedown();
+		$text = $parsedown->text($result[0]['text']);
+
+		return '<div class="t3-tceforms-fieldReadOnly">' . $text . '</div>';
+
 	}
 
 }

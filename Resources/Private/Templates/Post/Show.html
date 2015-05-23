@@ -8,7 +8,7 @@
 
     <f:render partial="Navigation/Post" arguments="{post:post}" />
 
-    <f:format.raw>{post.text}</f:format.raw>
+    <f:format.raw>{post.text -> a:parser.parsedown()}</f:format.raw>
 
     <ul class="list-group">
         <f:for each="{post.replies}" as="reply">

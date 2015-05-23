@@ -7,9 +7,28 @@
 
   <f:form action="create"  enctype="multipart/form-data"  name="thread" object="{thread}">
     <f:form.hidden name="forum" value="{forum}" />
-    <f:form.textarea name="text" cols="40" rows="15" /><br />
 
-    <f:render partial="Thread/FormFields" />
+    <label for="title">
+      <f:translate key="tx_agora_domain_model_thread.title" />
+    </label><br />
+    <f:form.textfield property="title" />
+    <br />
+    <br />
+
+    <div class="wmd-panel">
+      <div id="wmd-button-bar"></div>
+
+      <f:form.textarea
+              class="wmd-input"
+              id="wmd-input"
+              name="text"
+              cols="40"
+              rows="15" />
+
+    </div>
+    <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+
+
     <f:form.submit value="Create new" />
   </f:form>
 

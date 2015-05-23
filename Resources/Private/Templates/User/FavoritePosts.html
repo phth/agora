@@ -5,7 +5,14 @@
 				<li class="list-group-item">
 					<div class="strong h6">
 						<f:link.action action="show" pluginName="Forum" controller="Post" arguments="{post:post}">
-							{post.topic}
+							<f:if condition="{post.topic}">
+								<f:then>
+									{post.topic}
+								</f:then>
+								<f:else>
+									{post.thread.title}
+								</f:else>
+							</f:if>
 						</f:link.action>
 
 						<f:link.action class="small" pluginName="Forum" controller="User" action="removeFavoritePost" arguments="{post:post}">

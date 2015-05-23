@@ -28,14 +28,12 @@ if (!defined('TYPO3_MODE')) {
 	array(
 		'Post' => 'listLatest',
 		'Thread' => 'listLatest',
-		'User' => 'favoritePosts, observedThreads, removeObservedThread, removeFavoritePost',
-		'Message' => 'list, show, new, create, delete, listConversation'
+		'User' => 'favoritePosts, observedThreads, removeObservedThread, removeFavoritePost'
 	),
 	array(
         'Post' => 'listLatest',
         'Thread' => 'listLatest',
-        'User' => 'favoritePosts, observedThreads, removeObservedThread, removeFavoritePost',
-        'Message' => 'list, show, new, create, delete, listConversation'
+        'User' => 'favoritePosts, observedThreads, removeObservedThread, removeFavoritePost'
 	)
 );
 

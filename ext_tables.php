@@ -143,35 +143,6 @@ $GLOBALS['TCA']['tx_agora_domain_model_thread'] = array(
 	),
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_agora_domain_model_message', 'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_message.xlf');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_agora_domain_model_message');
-$GLOBALS['TCA']['tx_agora_domain_model_message'] = array(
-	'ctrl' => array(
-		'title'	=> 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_message',
-		'label' => 'subject',
-		'tstamp' => 'tstamp',
-		'crdate' => 'crdate',
-		'cruser_id' => 'cruser_id',
-		'dividers2tabs' => TRUE,
-
-		'versioningWS' => 2,
-		'versioning_followPages' => TRUE,
-
-		'languageField' => 'sys_language_uid',
-		'transOrigPointerField' => 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
-		'delete' => 'deleted',
-		'enablecolumns' => array(
-			'disabled' => 'hidden',
-			'starttime' => 'starttime',
-			'endtime' => 'endtime',
-		),
-		'searchFields' => 'subject,message,called,sender,reciever,',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Message.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_agora_domain_model_message.gif'
-	),
-);
-
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_agora_domain_model_voting', 'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_voting.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_agora_domain_model_voting');
 $GLOBALS['TCA']['tx_agora_domain_model_voting'] = array(

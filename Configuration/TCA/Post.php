@@ -129,10 +129,12 @@ $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_post.text',
 			'config' => array(
-				'type' => 'text',
-				'cols' => 40,
-				'rows' => 15,
-				'eval' => 'trim'
+				'type' => 'user',
+				'userFunc' => 'AgoraTeam\Agora\UserFunc\Parsedown->getParsedText',
+				'parameter' => array(
+					'table' => 'tx_agora_domain_model_post',
+					'field' => 'text'
+ 				)
 			)
 		),
         'publishing_date' => array(

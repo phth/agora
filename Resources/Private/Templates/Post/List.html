@@ -43,7 +43,10 @@
                                 {post.topic}
                             </f:link.action>
                         </h4>
-                            {post.text -> f:format.html()}
+                        <div>
+                            {post.text -> a:parser.parsedown()}
+                        </div>
+
                         <f:link.action class="btn btn-default" action="new" arguments="{thread:thread, quotedPost:post}">
                             <f:translate key="tx_agora_domain_model_post.reply" />
                         </f:link.action>

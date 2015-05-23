@@ -1,3 +1,5 @@
+{namespace a=AgoraTeam\Agora\ViewHelpers}
+
 <ul class="breadcrumb">
     <li>
         <f:link.action action="list" controller="Forum">
@@ -19,7 +21,7 @@
     <f:for each="{post.rootline}" as="postRootlineItem">
         <li>
             <f:link.action action="show" controller="Post" arguments="{post: postRootlineItem}">
-                {postRootlineItem.topic}
+                {postRootlineItem.topic -> a:parser.parsedown()}
             </f:link.action>
         </li>
     </f:for>

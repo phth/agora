@@ -1,0 +1,75 @@
+blockquote {
+	border-left: 2px dotted #888888;
+	padding-left: 5px;
+	background: #D0F0FF;
+}
+
+.wmd-panel {
+	width: 100%;
+	min-width: 400px;
+}
+.wmd-panel #wmd-button-bar {
+	width: 100%;
+}
+.wmd-panel #wmd-button-bar .wmd-button-row {
+	position: relative;
+	margin: 10px 5px 5px;
+	padding: 0;
+	height: 20px;
+}
+.wmd-panel #wmd-button-bar .wmd-button-row .wmd-button {
+	position: absolute;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding: 0 3px 0 2px;
+	list-style: none;
+	cursor: pointer;
+}
+.wmd-panel #wmd-button-bar .wmd-button-row .wmd-button > span {
+	display: inline-block;
+	background: url('../Library/Markdown/wmd-buttons.png') no-repeat 0px 0px;
+	width: 20px;
+	height: 20px;
+}
+.wmd-panel #wmd-button-bar .wmd-button-row .wmd-spacer {
+	position: absolute;
+	display: inline-block;
+	width: 1px;
+	height: 20px;
+	margin-left: 14px;
+	background-color: #ccc;
+	list-style: none;
+	cursor: pointer;
+}
+.wmd-panel #wmd-button-bar .wmd-button-row .wmd-spacer1 { left: 50px; }
+.wmd-panel #wmd-button-bar .wmd-button-row .wmd-spacer2 { left: 175px; }
+.wmd-panel #wmd-button-bar .wmd-button-row .wmd-spacer3 { left: 300px; }
+
+.wmd-panel #wmd-input {
+	width: 100%;
+}
+.wmd-prompt-background {
+	background: rgba(0,0,0,.5);
+}
+.wmd-prompt-dialog {
+	border: 1px solid #999999;
+	background: white;
+	-webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+}
+.wmd-prompt-dialog > div {
+	font-size: 0.8em;
+	font-family: arial, helvetica, sans-serif;
+}
+.wmd-prompt-dialog > form > input[type="text"] {
+	border: 1px solid #999999;
+	color: black;
+}
+.wmd-prompt-dialog > form > input[type="button"] {
+	border: 1px solid #888888;
+	font-family: trebuchet MS, helvetica, sans-serif;
+	font-size: 0.8em;
+	font-weight: bold;
+}

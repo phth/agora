@@ -1,20 +1,16 @@
+{namespace a=AgoraTeam\Agora\ViewHelpers}
+
 <div class="form-group">
-    <label for="PostTopicField">
-    	<f:translate key="tx_agora_domain_model_post.topic" />
-    </label>
-	<f:form.textfield
-            class="form-control"
-            id="PostTopicField"
-            property="topic" />
-</div>
-<div class="form-group">
-    <label for="PostTextField">
-        <f:translate key="tx_agora_domain_model_post.text" />
-    </label>
-	<f:form.textarea
-            class="form-control"
-            id="PostTextField"
-            property="text"
-            cols="40"
-            rows="15" />
+    <div class="wmd-panel">
+        <div id="wmd-button-bar"></div>
+
+        <f:form.textarea
+                class="wmd-input"
+                id="wmd-input"
+                property="text"
+                cols="40"
+                rows="15" />
+
+    </div>
+    <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
 </div>
