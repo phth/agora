@@ -47,9 +47,11 @@
                             {post.text -> a:parser.parsedown()}
                         </div>
 
-                        <f:link.action class="btn btn-default" action="new" arguments="{thread:thread, quotedPost:post}">
-                            <f:translate key="tx_agora_domain_model_post.reply" />
-                        </f:link.action>
+						<a:thread.editable thread="{thread}" user="{user}">
+							<f:link.action class="btn btn-default" action="new" arguments="{thread:thread, quotedPost:post}">
+								<f:translate key="tx_agora_domain_model_post.reply" />
+							</f:link.action>
+						</a:thread.editable>
                         <a:security.ifIsAuthor object="{post}">
                             <f:link.action class="btn btn-default" action="edit" arguments="{originalPost:post}">
                                 <f:translate key="tx_agora_domain_model_post.edit" />

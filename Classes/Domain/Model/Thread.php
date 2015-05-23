@@ -649,4 +649,32 @@ class Thread extends Entity {
 		return $this->getForum()->isAccessibleForUser($user);
 	}
 
+	/**
+	 * checks if the thread is writable for the given user
+	 *
+	 * @param mixed $user
+	 * @return bool
+	 */
+	public function isWritableForUser($user) {
+		return $this->getForum()->isWritableForUser($user);
+	}
+
+	/**
+	 * Returns the boolean state of the read protected flag
+	 *
+	 * @return boolean
+	 */
+	public function isReadProtected() {
+		return $this->getForum()->isReadProtected();
+	}
+
+	/**
+	 * Returns the boolean state of the write protected flag
+	 *
+	 * @return boolean
+	 */
+	public function isWriteProtected() {
+		return $this->getForum()->isWriteProtected();
+	}
+
 }

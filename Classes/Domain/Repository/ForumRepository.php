@@ -61,29 +61,36 @@ class ForumRepository extends Repository {
 
 	    $query = $this->createQuery();
 
-	    $groupConstraints = array();
-	    foreach($this->getUser()->getFlattenedGroups() as $group) {
-		    $groupConstraints[] = $query->contains('groupsWithReadAccess', $group);
+	    $constraints = array();
+
+	    if($this->getUser()) {
+		    $groupConstraints = array();
+		    foreach($this->getUser()->getFlattenedGroups() as $group) {
+			    $groupConstraints[] = $query->contains('groupsWithReadAccess', $group);
+		    }
+		    $constraints[] = $query->logicalOr(
+			    $groupConstraints
+		    );
+		    $constraints[] = $query->contains('usersWithReadAccess', $this->getUser());
+	    }
+
+	    $constraints[] = $query->logicalAnd(
+		    array(
+			    $query->equals('groupsWithReadAccess', 0),
+			    $query->equals('usersWithReadAccess', 0)
+		    )
+	    );
+
+	    if(count($constraints) > 1) {
+		    $permissionConstraint = $query->logicalOr($constraints);
+	    } else {
+		    $permissionConstraint = current($constraints);
 	    }
 
         $query->matching(
 	        $query->logicalAnd(
 		        array(
-			        $query->logicalOr(
-				        array(
-					        $query->logicalAnd(
-						        array(
-							        $query->equals('groupsWithReadAccess', 0),
-							        $query->equals('usersWithReadAccess', 0)
-						        )
-					        ),
-					        $query->contains('usersWithReadAccess', $this->getUser()),
-					        $query->logicalOr(
-						        $groupConstraints
-					        )
-
-				        )
-			        ),
+			        $permissionConstraint,
 			        $query->equals('parent', 0)
 		        )
 	        )

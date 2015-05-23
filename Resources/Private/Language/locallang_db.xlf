@@ -24,7 +24,7 @@
 			<trans-unit id="tx_agora_domain_model_forum.groups_with_read_access">
 				<source>Groups With Read Access</source>
 			</trans-unit>
-			<trans-unit id="tx_agora_domain_model_forum.group_with_write_access">
+			<trans-unit id="tx_agora_domain_model_forum.groups_with_write_access">
 				<source>Group With Write Access</source>
 			</trans-unit>
 			<trans-unit id="tx_agora_domain_model_forum.groups_with_modification_access">

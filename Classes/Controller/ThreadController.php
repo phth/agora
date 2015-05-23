@@ -104,7 +104,16 @@ class ThreadController extends ActionController {
 	 * @return void
 	 */
 	public function newAction(\AgoraTeam\Agora\Domain\Model\Forum $forum,
-								\AgoraTeam\Agora\Domain\Model\Thread $thread = NULL, $text = '') {
+							  \AgoraTeam\Agora\Domain\Model\Thread $thread = NULL, $text = '') {
+
+		if(!$forum->isWritableForUser($this->getUser())) {
+			$this->addFlashMessage(
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_forum.flashMessages.editDenied.text', 'agora'),
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_forum.flashMessages.editDenied.headline', 'agora'),
+				\TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+			);
+			$this->redirect('list', 'Thread', 'agora', array('forum' => $forum));
+		}
 
 		$this->view->assign('forum', $forum)
 					->assign('thread', $thread)
@@ -122,11 +131,25 @@ class ThreadController extends ActionController {
 	 * @return void
 	 */
 	public function createAction(\AgoraTeam\Agora\Domain\Model\Forum $forum,
-									\AgoraTeam\Agora\Domain\Model\Thread $thread, $text) {
+								 \AgoraTeam\Agora\Domain\Model\Thread $thread, $text) {
+
+		if(!$forum->isWritableForUser($this->getUser())) {
+			$this->addFlashMessage(
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_forum.flashMessages.editDenied.text', 'agora'),
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_forum.flashMessages.editDenied.headline', 'agora'),
+				\TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+			);
+			$this->redirect('list', 'Thread', 'agora', array('forum' => $forum));
+		}
 
 		$this->threadFactory->createThread($forum, $thread, $text);
 
-		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->addFlashMessage(
+			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_forum.flashMessages.created', 'agora'),
+			'',
+			\TYPO3\CMS\Core\Messaging\AbstractMessage::OK
+		);
+
 		$this->redirect(
 			'list',
 			'Thread',
@@ -143,6 +166,14 @@ class ThreadController extends ActionController {
 	 * @return void
 	 */
 	public function editAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
+		if(!$thread->isWritableForUser($this->getUser())) {
+			$this->addFlashMessage(
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.text', 'agora'),
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.headline', 'agora'),
+				\TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+			);
+			$this->redirect('list', 'Thread', 'agora', array('forum' => $thread->getForum()));
+		}
 		$this->view->assign('thread', $thread);
 	}
 
@@ -153,7 +184,19 @@ class ThreadController extends ActionController {
 	 * @return void
 	 */
 	public function updateAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
-		$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		if(!$thread->isWritableForUser($this->getUser())) {
+			$this->addFlashMessage(
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.text', 'agora'),
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.headline', 'agora'),
+				\TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+			);
+			$this->redirect('list', 'Thread', 'agora', array('forum' => $thread->getForum()));
+		}
+		$this->addFlashMessage(
+			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.updated', 'agora'),
+			'',
+			\TYPO3\CMS\Core\Messaging\AbstractMessage::OK
+		);
 		$this->threadRepository->update($thread);
 		$this->redirect('list');
 	}
@@ -165,7 +208,19 @@ class ThreadController extends ActionController {
 	 * @return void
 	 */
 	public function deleteAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
-		$this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		if(!$thread->isWritableForUser($this->getUser())) {
+			$this->addFlashMessage(
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.text', 'agora'),
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.headline', 'agora'),
+				\TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+			);
+			$this->redirect('list', 'Thread', 'agora', array('forum' => $thread->getForum()));
+		}
+		$this->addFlashMessage(
+			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.deleted', 'agora'),
+			'',
+			\TYPO3\CMS\Core\Messaging\AbstractMessage::OK
+		);
 		$this->threadRepository->remove($thread);
 		$this->redirect('list');
 	}

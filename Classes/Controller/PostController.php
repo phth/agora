@@ -137,8 +137,17 @@ class PostController extends ActionController {
 	 * @return void
 	 */
 	public function newAction(\AgoraTeam\Agora\Domain\Model\Post $newPost = NULL,
-		\AgoraTeam\Agora\Domain\Model\Post $quotedPost = NULL,
-		\AgoraTeam\Agora\Domain\Model\Thread $thread = NULL) {
+							  \AgoraTeam\Agora\Domain\Model\Post $quotedPost = NULL,
+							  \AgoraTeam\Agora\Domain\Model\Thread $thread = NULL) {
+
+		if(!$thread->isWritableForUser($this->getUser())) {
+			$this->addFlashMessage(
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.text', 'agora'),
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.headline', 'agora'),
+				\TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+			);
+			$this->redirect('list', 'Post', 'agora', array('thread' => $thread));
+		}
 
 		$this->view->assign('newPost', $newPost);
 		$this->view->assign('quotedPost', $quotedPost);
@@ -155,6 +164,16 @@ class PostController extends ActionController {
 	 * @return void
 	 */
 	public function createAction(\AgoraTeam\Agora\Domain\Model\Post $newPost) {
+
+		if(!$newPost->getThread()->isWritableForUser($this->getUser())) {
+			$this->addFlashMessage(
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.text', 'agora'),
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.headline', 'agora'),
+				\TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+			);
+			$this->redirect('list', 'Post', 'agora', array('thread' => $newPost->getThread()));
+		}
+
 		$user = $this->getUser();
 
 		$newPost->setCreator($user);
@@ -187,6 +206,15 @@ class PostController extends ActionController {
 	 */
 	public function editAction(\AgoraTeam\Agora\Domain\Model\Post $originalPost, \AgoraTeam\Agora\Domain\Model\Post $post = NULL) {
 
+		if(!$originalPost->getThread()->isWritableForUser($this->getUser())) {
+			$this->addFlashMessage(
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.text', 'agora'),
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.headline', 'agora'),
+				\TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+			);
+			$this->redirect('list', 'Post', 'agora', array('thread' => $originalPost->getThread()));
+		}
+
 		if ($post === NULL) {
 			$post = $this->postService->copy($originalPost);
 		}
@@ -204,6 +232,15 @@ class PostController extends ActionController {
 	 * @return void
 	 */
 	public function updateAction(\AgoraTeam\Agora\Domain\Model\Post $originalPost, \AgoraTeam\Agora\Domain\Model\Post $post) {
+
+		if(!$originalPost->getThread()->isWritableForUser($this->getUser())) {
+			$this->addFlashMessage(
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.text', 'agora'),
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.headline', 'agora'),
+				\TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+			);
+			$this->redirect('list', 'Post', 'agora', array('thread' => $originalPost->getThread()));
+		}
 
 		$newPost = $this->postService->copy($originalPost);
 		$newPost->setTopic($post->getTopic());
@@ -242,7 +279,21 @@ class PostController extends ActionController {
 	 * @return void
 	 */
 	public function deleteAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
-		$this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+
+		if(!$post->getThread()->isWritableForUser($this->getUser())) {
+			$this->addFlashMessage(
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.text', 'agora'),
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.headline', 'agora'),
+				\TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+			);
+			$this->redirect('list', 'Post', 'agora', array('thread' => $post->getThread()));
+		}
+
+		$this->addFlashMessage(
+			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_post.flashMessages.deleted', 'agora'),
+			'',
+			\TYPO3\CMS\Core\Messaging\AbstractMessage::OK
+		);
 		$this->postRepository->remove($post);
 		$this->redirect('list');
 	}

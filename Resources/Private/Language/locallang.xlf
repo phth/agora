@@ -52,11 +52,23 @@
 				<source>forum is modify protected</source>
 			</trans-unit>
 
+			<trans-unit id="tx_agora_domain_model_forum.flashMessages.created">
+				<source>Forum created.</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_forum.flashMessages.updated">
+				<source>Forum updated.</source>
+			</trans-unit>
 			<trans-unit id="tx_agora_domain_model_forum.flashMessages.accessDenied.text">
 				<source>You are not allowed to view the requested forum.</source>
 			</trans-unit>
 			<trans-unit id="tx_agora_domain_model_forum.flashMessages.accessDenied.headline">
 				<source>Access denied.</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_forum.flashMessages.editDenied.text">
+				<source>You are not allowed to edit the current forum.</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_forum.flashMessages.editDenied.headline">
+				<source>Editing denied.</source>
 			</trans-unit>
 
 			<trans-unit id="tx_agora_domain_model_post">
@@ -127,6 +139,9 @@
             <trans-unit id="tx_agora_domain_model_post.flashMessages.updated">
                 <source>Post updated.</source>
             </trans-unit>
+			<trans-unit id="tx_agora_domain_model_post.flashMessages.deleted">
+				<source>Post deleted.</source>
+			</trans-unit>
 
 			<trans-unit id="tx_agora_domain_model_post.flashMessages.accessDenied.text">
 				<source>You are not allowed to view the requested post.</source>
@@ -201,11 +216,27 @@
                 <source>User</source>
             </trans-unit>
 
+			<trans-unit id="tx_agora_domain_model_thread.flashMessages.created">
+				<source>Thread created.</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_thread.flashMessages.updated">
+				<source>Thread updated.</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_thread.flashMessages.deleted">
+				<source>Thread deleted.</source>
+			</trans-unit>
+
 			<trans-unit id="tx_agora_domain_model_thread.flashMessages.accessDenied.text">
 				<source>You are not allowed to view the requested thread.</source>
 			</trans-unit>
 			<trans-unit id="tx_agora_domain_model_thread.flashMessages.accessDenied.headline">
 				<source>Access denied.</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_thread.flashMessages.editDenied.text">
+				<source>You are not allowed to edit the current thread.</source>
+			</trans-unit>
+			<trans-unit id="tx_agora_domain_model_thread.flashMessages.editDenied.headline">
+				<source>Editing denied.</source>
 			</trans-unit>
 
 			<trans-unit id="tx_agora_domain_model_user">
