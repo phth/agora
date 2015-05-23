@@ -61,11 +61,6 @@ You can get the latest Version from GitHub by using the following command:
 > ***Hint:*** *If you want to implement a based configuration based on bootstrap and within the editor markdown, you have to implement "**Agora - TYPO3 Forum - Bootstram Theme (agora)**" as well*
 
 ----------
-#### **Storage folder**
-
-With has full dataset support via TCA and needs a storage folder to save the datasets like posts, threads or forums. This is the reason why you should add a new storage folder for your forum data.
-
-----------
 #### **TypoScript**
 
 For the frontend output you have to tell agora where the forum data is stored. Therefor there is the constant storagePid which you have to change.
