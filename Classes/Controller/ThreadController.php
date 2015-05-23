@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Controller;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
+ *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -66,10 +66,23 @@ class ThreadController extends ActionController {
 	 */
 	public function listAction(\AgoraTeam\Agora\Domain\Model\Forum $forum) {
 
+		if(!$forum->isAccessibleForUser($this->getUser())) {
+			$this->addFlashMessage(
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_forum.flashMessages.accessDenied.text', 'agora'),
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_forum.flashMessages.accessDenied.headline', 'agora'),
+				\TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+			);
+			$this->redirect('list', 'Forum');
+		}
+
         $threads = $this->threadRepository->findByForum($forum);
 
-        $this->view->assign('forum', $forum);
-		$this->view->assign('threads', $threads);
+        $this->view->assignMultiple(
+	        array(
+		        'forum' => $forum,
+				'threads' => $threads
+	        )
+        );
 	}
 
 	/**

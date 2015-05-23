@@ -3,7 +3,7 @@ namespace AgoraTeam\Agora\Controller;
 
 	/***************************************************************
 	 *  Copyright notice
-	 *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
+	 *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
 	 *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
 	 *  All rights reserved
 	 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -59,17 +59,29 @@ class PostController extends ActionController {
 	 * @return void
 	 */
 	public function listAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
+		if(!$thread->isAccessibleForUser($this->getUser())) {
+			$this->addFlashMessage(
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.accessDenied.text', 'agora'),
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.accessDenied.headline', 'agora'),
+				\TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+			);
+			$this->redirect('list', 'Thread', 'agora', array('forum' => $thread->getForum()));
+		}
 		$posts = $this->postRepository->findByThread($thread);
 
-			// Check if current user observes thread
-		$user = $this->getCurrentUser();
+		// Check if current user observes thread
+		$user = $this->getUser();
 		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User') && $user->getObservedThreads() !== NULL) {
 			$observedThread = $user->getObservedThreads()->offsetExists($thread);
 		}
-		$this->view->assign('thread', $thread);
-		$this->view->assign('posts', $posts);
-		$this->view->assign('user', $user);
-		$this->view->assign('observedThread', $observedThread);
+		$this->view->assignMultiple(
+			array(
+				'thread' => $thread,
+				'posts' => $posts,
+				'user' => $user,
+				'observedThread' => $observedThread
+			)
+		);
 	}
 
 	/**
@@ -80,7 +92,16 @@ class PostController extends ActionController {
 	 * @return void
 	 */
 	public function showAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
-		$user = $this->getCurrentUser();
+		if(!$post->isAccessibleForUser($this->getUser())) {
+			$this->addFlashMessage(
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_post.flashMessages.accessDenied.text', 'agora'),
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_post.flashMessages.accessDenied.headline', 'agora'),
+				\TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+			);
+			$this->redirect('list', 'Post', 'agora', array('thread' => $post->getThread()));
+		}
+
+		$user = $this->getUser();
 		$this->view->assign('post', $post);
 		$this->view->assign('user', $user);
 	}
@@ -93,6 +114,15 @@ class PostController extends ActionController {
 	 * @return void
 	 */
 	public function showHistoryAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
+		if(!$post->isAccessibleForUser($this->getUser())) {
+			$this->addFlashMessage(
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_post.flashMessages.accessDenied.text', 'agora'),
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_post.flashMessages.accessDenied.headline', 'agora'),
+				\TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+			);
+			$this->redirect('list', 'Post', 'agora', array('thread' => $post->getThread()));
+		}
+
 		$this->view->assign('post', $post);
 	}
 

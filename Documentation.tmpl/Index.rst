@@ -31,7 +31,7 @@ Agora - TYPO3 Forum
 		2015
 
 	:Author:
-		Phillip Thiele, Björn Christopher Bresser
+		Philipp Thiele, Björn Christopher Bresser
 
 	:Email:
 		philipp.thiele@phth.de, bjoern.bresser@gmail.com

@@ -3,7 +3,7 @@ namespace AgoraTeam\Agora\Tests\Unit\Controller;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
+ *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
  *  			Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *  			
  *  All rights reserved
@@ -28,7 +28,7 @@ namespace AgoraTeam\Agora\Tests\Unit\Controller;
 /**
  * Test case for class AgoraTeam\Agora\Controller\UserController.
  *
- * @author Phillip Thiele <philipp.thiele@phth.de>
+ * @author Philipp Thiele <philipp.thiele@phth.de>
  * @author Björn Christopher Bresser <bjoern.bresser@gmail.com>
  */
 class UserControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {

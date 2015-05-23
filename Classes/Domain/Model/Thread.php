@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Domain\Model;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
+ *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -638,5 +638,15 @@ class Thread extends Entity {
     public function setForum(\AgoraTeam\Agora\Domain\Model\Forum $forum) {
         $this->forum = $forum;
     }
+
+	/**
+	 * checks if the thread is accessible for the given user
+	 *
+	 * @param mixed $user
+	 * @return bool
+	 */
+	public function isAccessibleForUser($user) {
+		return $this->getForum()->isAccessibleForUser($user);
+	}
 
 }

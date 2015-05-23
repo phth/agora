@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Domain\Repository;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
+ *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -46,7 +46,7 @@ class ThreadRepository extends Repository {
 
 		//@todo Implementation of the access-rights
 		$result = $query
-			->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCESCENDING))
+			->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING))
 			->setLimit((integer)$limit)
 			->execute();
 

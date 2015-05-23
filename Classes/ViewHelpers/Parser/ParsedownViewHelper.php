@@ -5,7 +5,7 @@ namespace AgoraTeam\Agora\ViewHelpers\Parser;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
+ *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved

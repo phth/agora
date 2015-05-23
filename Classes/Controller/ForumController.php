@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Controller;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
+ *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -48,7 +48,12 @@ class ForumController extends ActionController {
 	 */
 	public function listAction() {
 		$forums = $this->forumRepository->findVisibleRootForums();
-		$this->view->assign('forums', $forums);
+		$this->view->assignMultiple(
+			array(
+				'forums' => $forums,
+				'user' => $this->getUser()
+			)
+		);
 	}
 
 	/**

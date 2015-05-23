@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Domain\Model;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
+ *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -543,10 +543,10 @@ class Forum extends Entity {
 	 */
 	public function getReadProtected() {
 		$readProtected = FALSE;
-		if($this->getUsersWithReadAccess()->count() > 1) {
+		if($this->getUsersWithReadAccess()->count() > 0) {
 			$readProtected = TRUE;
 		}
-		if($this->getGroupsWithReadAccess()->count() > 1) {
+		if($this->getGroupsWithReadAccess()->count() > 0) {
 			$readProtected = TRUE;
 		}
 		return $readProtected;
@@ -568,10 +568,10 @@ class Forum extends Entity {
      */
     public function getWriteProtected() {
 	    $writeProtected = FALSE;
-	    if($this->getUsersWithWriteAccess()->count() > 1) {
+	    if($this->getUsersWithWriteAccess()->count() > 0) {
 		    $writeProtected = TRUE;
 	    }
-		if($this->getGroupsWithWriteAccess()->count() > 1) {
+		if($this->getGroupsWithWriteAccess()->count() > 0) {
 		    $writeProtected = TRUE;
 	    }
 
@@ -594,10 +594,10 @@ class Forum extends Entity {
 	 */
 	public function getModifyProtected() {
 		$modifyProtected = FALSE;
-		if($this->getUsersWithModificationAccess()->count() > 1) {
+		if($this->getUsersWithModificationAccess()->count() > 0) {
 			$modifyProtected = TRUE;
 		}
-		if($this->getGroupsWithModificationAccess()->count() > 1) {
+		if($this->getGroupsWithModificationAccess()->count() > 0) {
 			$modifyProtected = TRUE;
 		}
 
@@ -641,5 +641,85 @@ class Forum extends Entity {
             }
         }
     }
+
+	/**
+	 * checks if the forum is accessible for the given user
+	 *
+	 * @param mixed $user
+	 * @return bool
+	 */
+	public function isAccessibleForUser($user) {
+		$isAccessible = FALSE;
+
+		if($this->isReadProtected()) {
+			if(is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
+				if($this->getUsersWithReadAccess()->count() > 0) {
+					foreach($this->getUsersWithReadAccess() as $currentUser) {
+						if($user->getUid() == $currentUser->getUid()) {
+							$isAccessible = TRUE;
+							break;
+						}
+					}
+				}
+				// the comparision on group level is expensive, so check and double-check if this is really necessary
+				if($isAccessible != TRUE) {
+					if($this->getGroupsWithReadAccess()->count() > 0) {
+						foreach($this->getGroupsWithReadAccess() as $groupWithAccess) {
+							foreach($user->getFlattenedGroups() as $group) {
+								if($groupWithAccess->getUid() == $group->getUid()) {
+									$isAccessible = TRUE;
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+		} else {
+			$isAccessible = TRUE;
+		}
+
+		return $isAccessible;
+	}
+
+	/**
+	 * checks if the forum is writable for the given user
+	 *
+	 * @param mixed $user
+	 * @return bool
+	 */
+	public function isWritableForUser($user) {
+		$isWritable = FALSE;
+
+		if($this->isWriteProtected()) {
+			if(is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
+				if($this->getUsersWithWriteAccess()->count() > 0) {
+					foreach($this->getUsersWithWriteAccess() as $currentUser) {
+						if($user->getUid() == $currentUser->getUid()) {
+							$isWritable = TRUE;
+							break;
+						}
+					}
+				}
+				// the comparision on group level is expensive, so check and double-check if this is really necessary
+				if($isWritable != TRUE) {
+					if($this->getGroupsWithWriteAccess()->count() > 0) {
+						foreach($this->getGroupsWithWriteAccess() as $groupWithAccess) {
+							foreach($user->getFlattenedGroups() as $group) {
+								if($groupWithAccess->getUid() == $group->getUid()) {
+									$isWritable = TRUE;
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+		} else {
+			$isWritable = TRUE;
+		}
+
+		return $isWritable;
+	}
 
 }

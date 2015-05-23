@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Domain\Model;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
+ *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -82,6 +82,16 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var string
 	 */
 	protected $username = '';
+
+	/**
+	 * @var string
+	 */
+	protected $firstName = '';
+
+	/**
+	 * @var string
+	 */
+	protected $lastName = '';
 
 	/**
 	 * @var string
@@ -383,6 +393,48 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$this->username = $username;
 	}
 
+	/**
+	 * Sets the firstName value
+	 *
+	 * @param string $firstName
+	 * @return void
+	 * @api
+	 */
+	public function setFirstName($firstName) {
+		$this->firstName = $firstName;
+	}
+
+	/**
+	 * Returns the firstName value
+	 *
+	 * @return string
+	 * @api
+	 */
+	public function getFirstName() {
+		return $this->firstName;
+	}
+
+	/**
+	 * Sets the lastName value
+	 *
+	 * @param string $lastName
+	 * @return void
+	 * @api
+	 */
+	public function setLastName($lastName) {
+		$this->lastName = $lastName;
+	}
+
+	/**
+	 * Returns the lastName value
+	 *
+	 * @return string
+	 * @api
+	 */
+	public function getLastName() {
+		return $this->lastName;
+	}
+
     /**
      * displayName
      *
@@ -392,11 +444,11 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
         $displayName = '';
         $displayNameParts = array();
 
-	    if($this->getFirstname()) {
-		    $displayNameParts[] = $this->getFirstname();
+	    if($this->getFirstName()) {
+		    $displayNameParts[] = $this->getFirstName();
 	    }
-		if($this->getLastname()) {
-			$displayNameParts[] = $this->getLastname();
+		if($this->getLastName()) {
+			$displayNameParts[] = $this->getLastName();
 		}
         if(count($displayNameParts) > 0) {
 	        $displayName = implode(' ', $displayNameParts);

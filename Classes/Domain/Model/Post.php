@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Domain\Model;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
+ *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -467,6 +467,14 @@ class Post extends Entity {
 		$this->isFavorite = $isFavorite;
 	}
 
-
+	/**
+	 * checks if the post is accessible for the given user
+	 *
+	 * @param mixed $user
+	 * @return bool
+	 */
+	public function isAccessibleForUser($user) {
+		return $this->getThread()->isAccessibleForUser($user);
+	}
 
 }

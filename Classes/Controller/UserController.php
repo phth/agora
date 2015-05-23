@@ -6,7 +6,7 @@ namespace AgoraTeam\Agora\Controller;
  *
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
+ *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -48,7 +48,7 @@ class UserController extends ActionController {
 	 * @return void
 	 */
 	public function favoritePostsAction() {
-		$user = $this->getCurrentUser();
+		$user = $this->getUser();
 		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User') && $user->getFavoritePosts() !== NULL) {
 			$favoritePosts = $user->getFavoritePosts()->toArray();
 			$limit = $this->settings['post']['numberOfItemsInFavoritePostsWidget'];
@@ -68,7 +68,7 @@ class UserController extends ActionController {
 	 * @return void
 	 */
 	public function observedThreadsAction() {
-		$user = $this->getCurrentUser();
+		$user = $this->getUser();
 		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')  && $user->getObservedThreads() !== NULL) {
 			$observedThreads = $user->getObservedThreads()->toArray();
 			$limit = $this->settings['thread']['numberOfItemsInObservedThreadsWidget'];
@@ -87,7 +87,7 @@ class UserController extends ActionController {
 	 * @retun void
 	 */
 	public function listObservedThreadsAction() {
-		$user = $this->getCurrentUser();
+		$user = $this->getUser();
 		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
 			$observedThreads = $user->getObservedThreads();
 		}
@@ -100,7 +100,7 @@ class UserController extends ActionController {
 	 * @return void
 	 */
 	public function addObservedThreadAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
-		$user = $this->getCurrentUser();
+		$user = $this->getUser();
 		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
 			$user->addObservedThread($thread);
 			$this->userRepository->update($user);
@@ -114,7 +114,7 @@ class UserController extends ActionController {
 	 */
 	public function removeObservedThreadAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
 			// @todo Back to refere redirect
-		$user = $this->getCurrentUser();
+		$user = $this->getUser();
 		$user->removeObservedThread($thread);
 		$this->userRepository->update($user);
 		$this->redirect('list', 'Post', 'Agora', array('thread' => $thread));
@@ -126,7 +126,7 @@ class UserController extends ActionController {
 	 */
 	public function addFavoritePostAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
 			// @todo Back to refere redirect
-		$user = $this->getCurrentUser();
+		$user = $this->getUser();
 		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
 			$user->addFavoritePost($post);
 			$this->userRepository->update($user);
@@ -140,7 +140,7 @@ class UserController extends ActionController {
 	 */
 	public function removeFavoritePostAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
 			// @todo Back to refere redirect
-		$user = $this->getCurrentUser();
+		$user = $this->getUser();
 		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
 			$user->removeFavoritePost($post);
 			$this->userRepository->update($user);

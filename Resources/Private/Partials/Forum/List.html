@@ -1,27 +1,33 @@
 {namespace a=AgoraTeam\Agora\ViewHelpers}
 
-<ul class="list-group">
-    <f:for each="{forums}" as="forum">
-        <li class="list-group-item">
-			<f:translate
-					key="tx_agora_domain_model_forum.tstamp"
-					arguments="{0:'{f:format.date(date:\'{forum.tstamp}\', format:\'{settings.forum.dateFormat}\')}'}" />
-			<f:if condition="{forum.readProtected}">
-				| <f:translate key="tx_agora_domain_model_forum.readProtected" />
-			</f:if>
-			<f:if condition="{forum.writeProtected}">
-				| <f:translate key="tx_agora_domain_model_forum.writeProtected" />
-			</f:if>
-			<f:if condition="{forum.modifyProtected}">
-				| <f:translate key="tx_agora_domain_model_forum.modifyProtected" />
-			</f:if>
-            <f:link.action action="list" controller="Thread" arguments="{forum:forum}">
-                <h2>{forum.title}</h2>
-                <p>{forum.description -> f:format.html()}</p>
-            </f:link.action>
-            <f:if condition="{forum.subForums}">
-                <f:render partial="Forum/List" arguments="{forums:forum.subForums}"/>
-            </f:if>
-        </li>
-    </f:for>
-</ul>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://xsd.helmut-hummel.de/ns/TYPO3/Fluid/ViewHelpers">
+
+	<ul class="list-group">
+		<f:for each="{forums}" as="forum">
+			<li class="list-group-item">
+				<a:forum.visible forum="{forum}" user="{user}">
+					<f:translate
+							key="tx_agora_domain_model_forum.tstamp"
+							arguments="{0:'{f:format.date(date:\'{forum.tstamp}\', format:\'{settings.forum.dateFormat}\')}'}" />
+					<f:if condition="{forum.readProtected}">
+						| <f:translate key="tx_agora_domain_model_forum.readProtected" />
+					</f:if>
+					<f:if condition="{forum.writeProtected}">
+						| <f:translate key="tx_agora_domain_model_forum.writeProtected" />
+					</f:if>
+					<f:if condition="{forum.modifyProtected}">
+						| <f:translate key="tx_agora_domain_model_forum.modifyProtected" />
+					</f:if>
+					<f:link.action action="list" controller="Thread" arguments="{forum:forum}">
+						<h2>{forum.title}</h2>
+						<p>{forum.description}</p>
+					</f:link.action>
+					<f:if condition="{forum.subForums}">
+						<f:render partial="Forum/List" arguments="{forums:forum.subForums, user:user}"/>
+					</f:if>
+				</a:forum.visible>
+			</li>
+		</f:for>
+	</ul>
+</html>

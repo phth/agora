@@ -5,7 +5,7 @@ namespace AgoraTeam\Agora\Tests\Unit\Domain\Model;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2015 Phillip Thiele <philipp.thiele@phth.de>
+ *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
  *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
  *
  *  All rights reserved
@@ -33,7 +33,7 @@ namespace AgoraTeam\Agora\Tests\Unit\Domain\Model;
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
- * @author Phillip Thiele <philipp.thiele@phth.de>
+ * @author Philipp Thiele <philipp.thiele@phth.de>
  * @author Björn Christopher Bresser <bjoern.bresser@gmail.com>
  */
 class ForumTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
