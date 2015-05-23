@@ -97,6 +97,25 @@ $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 			),
 		),
 
+		'crdate' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_post.crdate',
+			'config' => Array (
+				'type' => 'none',
+				'format' => 'date',
+				'eval' => 'date'
+			)
+		),
+		'tstamp' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_post.tstamp',
+			'config' => Array (
+				'type' => 'none',
+				'format' => 'date',
+				'eval' => 'date'
+			)
+		),
+
 		'topic' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_post.topic',

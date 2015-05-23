@@ -97,6 +97,25 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 			),
 		),
 
+		'crdate' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.crdate',
+			'config' => Array (
+				'type' => 'none',
+				'format' => 'date',
+				'eval' => 'date'
+			)
+		),
+		'tstamp' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.tstamp',
+			'config' => Array (
+				'type' => 'none',
+				'format' => 'date',
+				'eval' => 'date'
+			)
+		),
+
 		'title' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.title',
@@ -200,13 +219,13 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 				),
 			),
 		),
-		'group_with_write_access' => array(
+		'groups_with_write_access' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.group_with_write_access',
+			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.groups_with_write_access',
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'fe_groups',
-				'MM' => 'tx_agora_forum_groupwithwriteaccess_group_mm',
+				'MM' => 'tx_agora_forum_groupswithwriteaccess_group_mm',
 				'size' => 10,
 				'autoSizeMax' => 30,
 				'maxitems' => 9999,

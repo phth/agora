@@ -102,8 +102,8 @@
 			<trans-unit id="tx_agora_domain_model_thread.groups_with_read_access">
 				<source>Groups With Read Access</source>
 			</trans-unit>
-			<trans-unit id="tx_agora_domain_model_thread.group_with_write_access">
-				<source>Group With Write Access</source>
+			<trans-unit id="tx_agora_domain_model_thread.groups_with_write_access">
+				<source>Groups With Write Access</source>
 			</trans-unit>
 			<trans-unit id="tx_agora_domain_model_thread.groups_with_modification_access">
 				<source>Groups With Modification Access</source>

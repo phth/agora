@@ -31,7 +31,7 @@ namespace AgoraTeam\Agora\Domain\Model;
 /**
  * Post
  */
-class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Post extends Entity {
 
 	/**
 	 * topic
@@ -46,13 +46,6 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var string
 	 */
 	protected $text = '';
-
-    /**
-     * crdate
-     *
-     * @var \DateTime
-     */
-    protected $crdate;
 
     /**
      * publishingDate
@@ -193,25 +186,6 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setText($text) {
 		$this->text = $text;
 	}
-
-    /**
-     * Returns the crdate
-     *
-     * @return \DateTime $crdate
-     */
-    public function getCrdate() {
-        return $this->crdate;
-    }
-
-    /**
-     * Sets the crdate
-     *
-     * @param \DateTime $crdate
-     * @return void
-     */
-    public function setCrdate($crdate) {
-        $this->crdate = $crdate;
-    }
 
     /**
      * Returns the publishingDate

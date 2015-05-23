@@ -1,6 +1,18 @@
 <ul class="list-group">
     <f:for each="{forums}" as="forum">
         <li class="list-group-item">
+			<f:translate
+					key="tx_agora_domain_model_forum.tstamp"
+					arguments="{0:'{f:format.date(date:\'{forum.tstamp}\', format:\'{settings.forum.dateFormat}\')}'}" />
+			<f:if condition="{forum.readProtected}">
+				| <f:translate key="tx_agora_domain_model_forum.readProtected" />
+			</f:if>
+			<f:if condition="{forum.writeProtected}">
+				| <f:translate key="tx_agora_domain_model_forum.writeProtected" />
+			</f:if>
+			<f:if condition="{forum.modifyProtected}">
+				| <f:translate key="tx_agora_domain_model_forum.modifyProtected" />
+			</f:if>
             <f:link.action action="list" controller="Thread" arguments="{forum:forum}">
                 <h2>{forum.title}</h2>
                 <p>{forum.description}</p>

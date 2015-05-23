@@ -12,7 +12,11 @@
             <ul class="list-group">
                 <f:for each="{paginatedThreads}" as="thread">
                     <li class="list-group-item">
-                        <f:link.action action="list" controller="Post" arguments="{thread:thread}">
+						<f:translate
+							key="tx_agora_domain_model_thread.tstamp"
+							arguments="{0:'{f:format.date(date:\'{thread.tstamp}\', format:\'{settings.thread.dateFormat}\')}'}" />
+						<div class="small text-muted"></div>
+						<f:link.action action="list" controller="Post" arguments="{thread:thread}">
                             <h2>{thread.title}</h2>
                         </f:link.action>
                     </li>

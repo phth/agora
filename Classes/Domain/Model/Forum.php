@@ -31,7 +31,7 @@ namespace AgoraTeam\Agora\Domain\Model;
 /**
  * Forum
  */
-class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Forum extends Entity {
 
 	/**
 	 * title
@@ -82,12 +82,12 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $groupsWithReadAccess = NULL;
 
 	/**
-	 * groupWithWriteAccess
+	 * groupsWithWriteAccess
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group>
 	 * @lazy
 	 */
-	protected $groupWithWriteAccess = NULL;
+	protected $groupsWithWriteAccess = NULL;
 
 	/**
 	 * groupsWithModificationAccess
@@ -147,7 +147,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$this->subForums = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->threads = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->groupsWithReadAccess = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		$this->groupWithWriteAccess = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->groupsWithWriteAccess = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->groupsWithModificationAccess = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->usersWithReadAccess = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->usersWithWriteAccess = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
@@ -290,6 +290,19 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
+	 * Returns the latest thread
+	 *
+	 * @return \boolean|\AgoraTeam\Agora\Domain\Model\Thread $latestThread
+	 */
+	public function getLatestThread() {
+		$latestThread = FALSE;
+		if($this->threads->count()) {
+			$latestThread = $this->threads->getPosition($this->threads->count());
+		}
+		return $latestThread;
+	}
+
+	/**
 	 * Adds a Group
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupsWithReadAccess
@@ -300,7 +313,7 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * Removes a Group
+	 * Removes the Group
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupsWithReadAccessToRemove The Group to be removed
 	 * @return void
@@ -329,62 +342,62 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * Adds a Group
+	 * Adds the Group
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupWithWriteAccess
 	 * @return void
 	 */
 	public function addGroupWithWriteAccess(\AgoraTeam\Agora\Domain\Model\Group $groupWithWriteAccess) {
-		$this->groupWithWriteAccess->attach($groupWithWriteAccess);
+		$this->groupsWithWriteAccess->attach($groupWithWriteAccess);
 	}
 
 	/**
-	 * Removes a Group
+	 * Removes the groupsWithWriteAccess
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupWithWriteAccessToRemove The Group to be removed
 	 * @return void
 	 */
 	public function removeGroupWithWriteAccess(\AgoraTeam\Agora\Domain\Model\Group $groupWithWriteAccessToRemove) {
-		$this->groupWithWriteAccess->detach($groupWithWriteAccessToRemove);
+		$this->groupsWithWriteAccess->detach($groupWithWriteAccessToRemove);
 	}
 
 	/**
-	 * Returns the groupWithWriteAccess
+	 * Returns the groupsWithWriteAccess
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupWithWriteAccess
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupsWithWriteAccess
 	 */
-	public function getGroupWithWriteAccess() {
-		return $this->groupWithWriteAccess;
+	public function getGroupsWithWriteAccess() {
+		return $this->groupsWithWriteAccess;
 	}
 
 	/**
-	 * Sets the groupWithWriteAccess
+	 * Sets the groupsWithWriteAccess
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupWithWriteAccess
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Group> $groupsWithWriteAccess
 	 * @return void
 	 */
-	public function setGroupWithWriteAccess(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $groupWithWriteAccess) {
-		$this->groupWithWriteAccess = $groupWithWriteAccess;
+	public function setGroupsWithWriteAccess(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $groupsWithWriteAccess) {
+		$this->groupsWithWriteAccess = $groupsWithWriteAccess;
 	}
 
 	/**
 	 * Adds a Group
 	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupsWithModificationAccess
+	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupWithModificationAccess
 	 * @return void
 	 */
-	public function addGroupsWithModificationAccess(\AgoraTeam\Agora\Domain\Model\Group $groupsWithModificationAccess) {
-		$this->groupsWithModificationAccess->attach($groupsWithModificationAccess);
+	public function addGroupWithModificationAccess(\AgoraTeam\Agora\Domain\Model\Group $groupWithModificationAccess) {
+		$this->groupsWithModificationAccess->attach($groupWithModificationAccess);
 	}
 
 	/**
 	 * Removes a Group
 	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupsWithModificationAccessToRemove The Group to be removed
+	 * @param \AgoraTeam\Agora\Domain\Model\Group $groupWithModificationAccessToRemove The Group to be removed
 	 * @return void
 	 */
-	public function removeGroupsWithModificationAccess(\AgoraTeam\Agora\Domain\Model\Group $groupsWithModificationAccessToRemove) {
-		$this->groupsWithModificationAccess->detach($groupsWithModificationAccessToRemove);
+	public function removeGroupWithModificationAccess(\AgoraTeam\Agora\Domain\Model\Group $groupWithModificationAccessToRemove) {
+		$this->groupsWithModificationAccess->detach($groupWithModificationAccessToRemove);
 	}
 
 	/**
@@ -409,21 +422,21 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Adds a User
 	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithReadAccess
+	 * @param \AgoraTeam\Agora\Domain\Model\User $userWithReadAccess
 	 * @return void
 	 */
-	public function addUsersWithReadAccess(\AgoraTeam\Agora\Domain\Model\User $usersWithReadAccess) {
-		$this->usersWithReadAccess->attach($usersWithReadAccess);
+	public function addUserWithReadAccess(\AgoraTeam\Agora\Domain\Model\User $userWithReadAccess) {
+		$this->usersWithReadAccess->attach($userWithReadAccess);
 	}
 
 	/**
 	 * Removes a User
 	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithReadAccessToRemove The User to be removed
+	 * @param \AgoraTeam\Agora\Domain\Model\User $userWithReadAccessToRemove The User to be removed
 	 * @return void
 	 */
-	public function removeUsersWithReadAccess(\AgoraTeam\Agora\Domain\Model\User $usersWithReadAccessToRemove) {
-		$this->usersWithReadAccess->detach($usersWithReadAccessToRemove);
+	public function removeUserWithReadAccess(\AgoraTeam\Agora\Domain\Model\User $userWithReadAccessToRemove) {
+		$this->usersWithReadAccess->detach($userWithReadAccessToRemove);
 	}
 
 	/**
@@ -448,21 +461,21 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Adds a User
 	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithWriteAccess
+	 * @param \AgoraTeam\Agora\Domain\Model\User $userWithWriteAccess
 	 * @return void
 	 */
-	public function addUsersWithWriteAccess(\AgoraTeam\Agora\Domain\Model\User $usersWithWriteAccess) {
-		$this->usersWithWriteAccess->attach($usersWithWriteAccess);
+	public function addUserWithWriteAccess(\AgoraTeam\Agora\Domain\Model\User $userWithWriteAccess) {
+		$this->usersWithWriteAccess->attach($userWithWriteAccess);
 	}
 
 	/**
 	 * Removes a User
 	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithWriteAccessToRemove The User to be removed
+	 * @param \AgoraTeam\Agora\Domain\Model\User $userWithWriteAccessToRemove The User to be removed
 	 * @return void
 	 */
-	public function removeUsersWithWriteAccessii(\AgoraTeam\Agora\Domain\Model\User $usersWithWriteAccessToRemove) {
-		$this->usersWithWriteAccess->detach($usersWithWriteAccessToRemove);
+	public function removeUserWithWriteAccess(\AgoraTeam\Agora\Domain\Model\User $userWithWriteAccessToRemove) {
+		$this->usersWithWriteAccess->detach($userWithWriteAccessToRemove);
 	}
 
 	/**
@@ -487,21 +500,21 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Adds a User
 	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithModificationAccess
+	 * @param \AgoraTeam\Agora\Domain\Model\User $userWithModificationAccess
 	 * @return void
 	 */
-	public function addUsersWithModificationAccess(\AgoraTeam\Agora\Domain\Model\User $usersWithModificationAccess) {
-		$this->usersWithModificationAccess->attach($usersWithModificationAccess);
+	public function addUserWithModificationAccess(\AgoraTeam\Agora\Domain\Model\User $userWithModificationAccess) {
+		$this->usersWithModificationAccess->attach($userWithModificationAccess);
 	}
 
 	/**
 	 * Removes a User
 	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\User $usersWithModificationAccessToRemove The User to be removed
+	 * @param \AgoraTeam\Agora\Domain\Model\User $userWithModificationAccessToRemove The User to be removed
 	 * @return void
 	 */
-	public function removeUsersWithModificationAccess(\AgoraTeam\Agora\Domain\Model\User $usersWithModificationAccessToRemove) {
-		$this->usersWithModificationAccess->detach($usersWithModificationAccessToRemove);
+	public function removeUserWithModificationAccess(\AgoraTeam\Agora\Domain\Model\User $userWithModificationAccessToRemove) {
+		$this->usersWithModificationAccess->detach($userWithModificationAccessToRemove);
 	}
 
 	/**
@@ -523,25 +536,82 @@ class Forum extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$this->usersWithModificationAccess = $usersWithModificationAccess;
 	}
 
+	/**
+	 * Returns the read protected flag
+	 *
+	 * @return boolean $readProtected
+	 */
+	public function getReadProtected() {
+		$readProtected = FALSE;
+		if($this->getUsersWithReadAccess()->count() > 1) {
+			$readProtected = TRUE;
+		}
+		if($this->getGroupsWithReadAccess()->count() > 1) {
+			$readProtected = TRUE;
+		}
+		return $readProtected;
+	}
+
+	/**
+	 * Returns the boolean state of the read protected flag
+	 *
+	 * @return boolean
+	 */
+	public function isReadProtected() {
+		return $this->getReadProtected();
+	}
+
     /**
-     * Returns the public
+     * Returns the write protected flag
      *
-     * @todo implement some functionality
-     * @return boolean $public
+     * @return boolean $writeProtected
      */
-    public function getPublic() {
-        return TRUE;
+    public function getWriteProtected() {
+	    $writeProtected = FALSE;
+	    if($this->getUsersWithWriteAccess()->count() > 1) {
+		    $writeProtected = TRUE;
+	    }
+		if($this->getGroupsWithWriteAccess()->count() > 1) {
+		    $writeProtected = TRUE;
+	    }
+
+        return $writeProtected;
     }
 
     /**
-     * Returns the boolean state of public
+     * Returns the boolean state of the write protected flag
      *
-     * @todo implement some functionality
      * @return boolean
      */
-    public function isPublic() {
-        return TRUE;
+    public function isWriteProtected() {
+        return $this->getWriteProtected();
     }
+
+	/**
+	 * Returns the modify protected flag
+	 *
+	 * @return boolean $modifyProtected
+	 */
+	public function getModifyProtected() {
+		$modifyProtected = FALSE;
+		if($this->getUsersWithModificationAccess()->count() > 1) {
+			$modifyProtected = TRUE;
+		}
+		if($this->getGroupsWithModificationAccess()->count() > 1) {
+			$modifyProtected = TRUE;
+		}
+
+		return $modifyProtected;
+	}
+
+	/**
+	 * Returns the boolean state of the modify protected flag
+	 *
+	 * @return boolean
+	 */
+	public function isModifyProtected() {
+		return $this->getModifyProtected();
+	}
 
     /**
      * Returns the rootline

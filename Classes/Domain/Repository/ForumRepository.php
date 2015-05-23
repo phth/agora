@@ -33,16 +33,61 @@ namespace AgoraTeam\Agora\Domain\Repository;
  */
 class ForumRepository extends Repository {
 
+	/**
+	 * findRootForums
+	 *
+	 * find forums that have no parent and are therefore root forums
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+	 */
+	public function findRootForums() {
+		$query = $this->createQuery();
+		$query->matching(
+			$query->equals('parent', 0)
+		);
+		$query->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
+		$forums = $query->execute();
+		return $forums;
+	}
+
     /**
-     * findRootForums
+     * findVisibleRootForums
      *
      * find forums that have no parent and are therefore root forums
      *
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function findRootForums() {
-        $query = $this->createQuery();
-        $query->matching($query->equals('parent', 0));
+    public function findVisibleRootForums() {
+
+	    $query = $this->createQuery();
+
+	    $groupConstraints = array();
+	    foreach($this->getUser()->getFlattenedGroups() as $group) {
+		    $groupConstraints[] = $query->contains('groupsWithReadAccess', $group);
+	    }
+
+        $query->matching(
+	        $query->logicalAnd(
+		        array(
+			        $query->logicalOr(
+				        array(
+					        $query->logicalAnd(
+						        array(
+							        $query->equals('groupsWithReadAccess', 0),
+							        $query->equals('usersWithReadAccess', 0)
+						        )
+					        ),
+					        $query->contains('usersWithReadAccess', $this->getUser()),
+					        $query->logicalOr(
+						        $groupConstraints
+					        )
+
+				        )
+			        ),
+			        $query->equals('parent', 0)
+		        )
+	        )
+        );
         $query->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
         $forums = $query->execute();
         return $forums;

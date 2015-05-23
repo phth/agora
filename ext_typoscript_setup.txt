@@ -5,6 +5,9 @@ config.tx_extbase{
                 mapping {
                     tableName = fe_users
                     recordType =
+                    columns {
+                        usergroup.mapOnProperty = groups
+                    }
                 }
             }
 
@@ -12,9 +15,13 @@ config.tx_extbase{
                 mapping {
                     tableName = fe_groups
                     recordType =
+                    columns {
+                        subgroup.mapOnProperty = subgroups
+                    }
                 }
             }
 
     	}
     }
 }
+

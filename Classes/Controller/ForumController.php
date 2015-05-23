@@ -47,7 +47,7 @@ class ForumController extends ActionController {
 	 * @return void
 	 */
 	public function listAction() {
-		$forums = $this->forumRepository->findRootForums();
+		$forums = $this->forumRepository->findVisibleRootForums();
 		$this->view->assign('forums', $forums);
 	}
 

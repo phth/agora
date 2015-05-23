@@ -1,5 +1,6 @@
 <?php
-namespace AgoraTeam\Agora\Domain\Repository;
+namespace AgoraTeam\Agora\Domain\Model;
+
 
 /***************************************************************
  *
@@ -28,59 +29,60 @@ namespace AgoraTeam\Agora\Domain\Repository;
  ***************************************************************/
 
 /**
- * Class Repository
- *
- * @package AgoraTeam\Agora\Domain\Repository
+ * Post
  */
-class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository {
-
-	/**
-     * userRepository
-     *
-	 * @var \AgoraTeam\Agora\Domain\Repository\UserRepository
-	 * @inject
-	 */
-	protected $userRepository;
-
-	/**
-     * user
-     *
-     * the logged in frontend user, if there is any
-     *
-	 * @var mixed
-	 */
-	protected $user;
+class Entity extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
     /**
-     * initialize object
+     * crdate
      *
+     * @var \DateTime
+     */
+    protected $crdate;
+
+	/**
+	 * crdate
+	 *
+	 * @var \DateTime
+	 */
+	protected $tstamp;
+
+    /**
+     * Returns the crdate
+     *
+     * @return \DateTime $crdate
+     */
+    public function getCrdate() {
+        return $this->crdate;
+    }
+
+    /**
+     * Sets the crdate
+     *
+     * @param \DateTime $crdate
      * @return void
      */
-	public function initializeObject() {
-		$userFromTSFE = $GLOBALS['TSFE']->fe_user->user;
-		$user = $this->userRepository->findByUid($userFromTSFE['uid']);
-        if(is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
-            $this->setUser($user);
-        }
+    public function setCrdate($crdate) {
+        $this->crdate = $crdate;
+    }
+
+	/**
+	 * Returns the tstamp
+	 *
+	 * @return \DateTime $tstamp
+	 */
+	public function getTstamp() {
+		return $this->tstamp;
 	}
 
 	/**
-     * Returns the user
-     *
-	 * @return mixed
+	 * Sets the tstamp
+	 *
+	 * @param \DateTime $tstamp
+	 * @return void
 	 */
-	public function getUser() {
-		return $this->user;
+	public function setTstamp($tstamp) {
+		$this->tstamp = $tstamp;
 	}
-
-	/**
-     * Sets the user
-     *
-	 * @param mixed $user
-	 */
-	public function setUser($user) {
-		$this->user = $user;
-	}
-
 
 }

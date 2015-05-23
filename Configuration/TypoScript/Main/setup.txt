@@ -39,6 +39,11 @@ plugin.tx_agora {
 		# rewrittenPropertyMapper = 1
 	}
     settings {
+        forum {
+            numberOfItemsInLatestView = 10
+            numberOfItemsPerPage = 10
+            dateFormat = m-d-y h:i
+        }
         thread {
             numberOfItemsInLatestView = 10
             numberOfItemsPerPage = 10

@@ -64,6 +64,26 @@ $GLOBALS['TCA']['tx_agora_domain_model_thread'] = array(
 				'type' => 'check',
 			),
 		),
+
+		'crdate' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_thread.crdate',
+			'config' => Array (
+				'type' => 'none',
+				'format' => 'date',
+				'eval' => 'date'
+			)
+		),
+		'tstamp' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_thread.tstamp',
+			'config' => Array (
+				'type' => 'none',
+				'format' => 'date',
+				'eval' => 'date'
+			)
+		),
+
 		'starttime' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
@@ -150,7 +170,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_thread'] = array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_agora_domain_model_post',
 				'foreign_field' => 'thread',
-				'foreign_default_sortby' => 'ORDER BY publishing_date ASC',
+				'foreign_default_sortby' => 'publishing_date ASC',
 				'maxitems'      => 9999,
 				'appearance' => array(
 					'collapseAll' => 0,

@@ -31,7 +31,7 @@ namespace AgoraTeam\Agora\Domain\Model;
 /**
  * Thread
  */
-class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Thread extends Entity {
 
 	/**
 	 * title
@@ -39,13 +39,6 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var string
 	 */
 	protected $title = '';
-
-	/**
-	 * tstamp
-	 *
-	 * @var string
-	 */
-	protected $tstamp;
 
 	/**
 	 * solved
@@ -198,20 +191,6 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$this->title = $title;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getTstamp() {
-		return $this->tstamp;
-	}
-
-	/**
-	 * @param string $tstamp
-	 */
-	public function setTstamp($tstamp) {
-		$this->tstamp = $tstamp;
-	}
-
 
 	/**
 	 * Returns the solved
@@ -353,6 +332,19 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setPosts(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $posts) {
 		$this->posts = $posts;
+	}
+
+	/**
+	 * Returns the latest post
+	 *
+	 * @return \boolean|\AgoraTeam\Agora\Domain\Model\Post $latestPost
+	 */
+	public function getLatestPost() {
+		$latestPost = FALSE;
+		if($this->threads->count()) {
+			$latestPost = $this->threads->getPosition($this->threads->count());
+		}
+		return $latestPost;
 	}
 
 	/**

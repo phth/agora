@@ -329,6 +329,33 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
+	 * Returns the flattened groups
+	 *
+	 * @return array $groups
+	 */
+	public function getFlattenedGroups() {
+		$flattenedGroups = array();
+		foreach($this->getGroups() as $group) {
+			$flattenedGroups[(string)$group] = $group;
+			$flattenedGroups = array_merge($flattenedGroups, $group->getFlattenedSubgroups());
+		}
+		return $flattenedGroups;
+	}
+
+	/**
+	 * Returns the flattened groups
+	 *
+	 * @return array $groups
+	 */
+	public function getFlattenedGroupUids() {
+		$flattenedGroupUids = array();
+		foreach($this->getFlattenedGroups() as $group) {
+			$flattenedGroupUids[] = (int)$group->getUid();
+		}
+		return $flattenedGroupUids;
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getEmail() {
@@ -359,16 +386,21 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     /**
      * displayName
      *
-     * @todo map / import user firstname / lastname
-     *
      * @return string
      */
     public function getDisplayName() {
         $displayName = '';
         $displayNameParts = array();
 
+	    if($this->getFirstname()) {
+		    $displayNameParts[] = $this->getFirstname();
+	    }
+		if($this->getLastname()) {
+			$displayNameParts[] = $this->getLastname();
+		}
         if(count($displayNameParts) > 0) {
-
+	        $displayName = implode(' ', $displayNameParts);
+	        //$displayName .= ' ('.$this->getUsername().')';
         } else {
             $displayName = $this->getUsername();
         }
