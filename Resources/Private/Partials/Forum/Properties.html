@@ -1,3 +1,4 @@
+{namespace a=AgoraTeam\Agora\ViewHelpers}
 
 <table class="tx-agora" >
 	<tr>
@@ -13,7 +14,7 @@
 			<f:translate key="tx_agora_domain_model_forum.description" />
 		</td>
 		<td>
-		{forum.description}
+		{forum.description -> a:parser.parsedown()}
 		</td>
 	</tr>
 	<tr>

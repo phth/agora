@@ -1,9 +1,11 @@
+{namespace a=AgoraTeam\Agora\ViewHelpers}
+
 <ul class="list-group">
     <f:for each="{forums}" as="forum">
         <li class="list-group-item">
             <f:link.action action="list" controller="Thread" arguments="{forum:forum}">
                 <h2>{forum.title}</h2>
-                <p>{forum.description}</p>
+                <p>{forum.description -> f:format.html()}</p>
             </f:link.action>
             <f:if condition="{forum.subForums}">
                 <f:render partial="Forum/List" arguments="{forums:forum.subForums}"/>

@@ -1,5 +1,5 @@
 <?php
-namespace AgoraTeam\Agora\ViewHelpers;
+namespace AgoraTeam\Agora\ViewHelpers\Parser;
 
 /***************************************************************
  *
@@ -30,32 +30,18 @@ namespace AgoraTeam\Agora\ViewHelpers;
 /**
  * CreatorViewHelper
  */
-class CreatorViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class ParsedownViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
-    /**
-     * renders <f:then> child if the current logged in FE user is creator of the specified object
-     * otherwise renders <f:else> child.
-     *
-     * @param string $object The object
-     * @return string the rendered string
-     * @api
-     */
-    public function render($object) {
-
-        $configurationManager = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface');
-        $settings = $configurationManager->getConfiguration(
-            \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
-            'agora'
-        );
-
-        $username = '';
-        if(is_a($object->getCreator(), '\AgoraTeam\Agora\Domain\Model\User')) {
-            $username = $object->getCreator()->getDisplayName();
-        } else {
-
-            $username = $settings['post']['defaultCreatorName'];
-        }
-        return $username;
-    }
+	/**
+	 *
+	 * @return string the rendered string
+	 * @api
+	 */
+	public function render() {
+		$text = $this->renderChildren();
+		$parsedown = $this->objectManager->get('Parsedown');
+		$text = $parsedown->text($text);
+		return $text;
+	}
 
 }
