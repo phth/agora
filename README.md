@@ -161,7 +161,7 @@ The forum plugin contains the whole functionality of the forum excluding the wid
 
 ----------------
 ###Forumpages
-If there are special views of the forum, they will be places within this plugin. Currently there is only the list of "observed threads" within this plugin.
+If there are special views of the forum, they will be placed within this plugin. Currently there is only the list of "observed threads" within this plugin.
 
 ----------------
 ###Widgets
