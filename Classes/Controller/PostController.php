@@ -305,10 +305,9 @@ class PostController extends ActionController {
 	 */
 	public function listLatestAction() {
 		$user = $this->getUser();
-		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
-			$limit = $this->settings['thread']['numberOfItemsInLatestView'];
-			$latestPosts = $this->postRepository->findLatestPostsForUser($limit);
-		}
+		$limit = $this->settings['thread']['numberOfItemsInLatestView'];
+		$latestPosts = $this->postRepository->findLatestPostsForUser($limit);
+
 		$this->view->assign('user', $user);
 		$this->view->assign('latestPosts', $latestPosts);
 	}

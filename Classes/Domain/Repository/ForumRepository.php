@@ -109,21 +109,25 @@ class ForumRepository extends Repository {
 	 */
 	public function findAccessibleUserForums() {
 		$user = $this->getUser();
-
-			// Get the allowed forums for the logged in user
-		$flattenedGroups = $user->getFlattenedGroupUids();
-
 		$query = $this->createQuery();
+
+		$constraints[] = $query->logicalAnd(
+			$query->equals('groupsWithReadAccess', 0),
+			$query->equals('usersWithReadAccess', 0)
+		);
+
+		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
+				// Get the allowed forums for the logged in user
+			$flattenedGroups = $user->getFlattenedGroupUids();
+			$constraints[] = $query->logicalOr(
+				$query->contains('groupsWithReadAccess', $flattenedGroups),
+				$query->contains('usersWithReadAccess', $user->getUid())
+			);
+		}
+
 		$query->matching(
 			$query->logicalOr(
-				$query->logicalOr(
-					$query->contains('groupsWithReadAccess', $flattenedGroups),
-					$query->contains('usersWithReadAccess', $user->getUid())
-				),
-				$query->logicalAnd(
-					$query->equals('groupsWithReadAccess', 0),
-					$query->equals('usersWithReadAccess', 0)
-				)
+				$constraints
 			)
 		);
 		$forums = $query->execute();
