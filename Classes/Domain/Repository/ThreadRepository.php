@@ -40,12 +40,14 @@ class ThreadRepository extends Repository {
 	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
 	 */
 	public function findLatestThreadsForUser($limit) {
-		$user = $this->getUser();
+		$openUserForums = $this->forumRepository->findAccessibleUserForums();
 
 		$query = $this->createQuery();
 
-		//@todo Implementation of the access-rights
 		$result = $query
+			->matching(
+				$query->in('forum', $openUserForums)
+			)
 			->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING))
 			->setLimit((integer)$limit)
 			->execute();

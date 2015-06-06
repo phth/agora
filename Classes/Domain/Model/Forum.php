@@ -1,32 +1,24 @@
 <?php
 namespace AgoraTeam\Agora\Domain\Model;
 
-
-/***************************************************************
- *
- *  Copyright notice
- *
- *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
- *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
- *
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+	/***************************************************************
+	 *  Copyright notice
+	 *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
+	 *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
+	 *  All rights reserved
+	 *  This script is part of the TYPO3 project. The TYPO3 project is
+	 *  free software; you can redistribute it and/or modify
+	 *  it under the terms of the GNU General Public License as published by
+	 *  the Free Software Foundation; either version 3 of the License, or
+	 *  (at your option) any later version.
+	 *  The GNU General Public License can be found at
+	 *  http://www.gnu.org/copyleft/gpl.html.
+	 *  This script is distributed in the hope that it will be useful,
+	 *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+	 *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	 *  GNU General Public License for more details.
+	 *  This copyright notice MUST APPEAR in all copies of the script!
+	 ***************************************************************/
 
 /**
  * Forum
@@ -55,14 +47,14 @@ class Forum extends Entity {
 	 */
 	protected $parent = NULL;
 
-    /**
-     * parent
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Forum>
-     * @cascade remove
-     * @lazy
-     */
-    protected $subForums = NULL;
+	/**
+	 * parent
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Forum>
+	 * @cascade remove
+	 * @lazy
+	 */
+	protected $subForums = NULL;
 
 	/**
 	 * threads
@@ -121,12 +113,12 @@ class Forum extends Entity {
 	 */
 	protected $usersWithModificationAccess = NULL;
 
-    /**
-     * rootline
-     *
-     * @var array
-     */
-    protected $rootline = array();
+	/**
+	 * rootline
+	 *
+	 * @var array
+	 */
+	protected $rootline = array();
 
 	/**
 	 * __construct
@@ -192,24 +184,24 @@ class Forum extends Entity {
 		$this->description = $description;
 	}
 
-    /**
-     * Returns the parent
-     *
-     * @return \AgoraTeam\Agora\Domain\Model\Forum $parent
-     */
-    public function getParent() {
-        return $this->parent;
-    }
+	/**
+	 * Returns the parent
+	 *
+	 * @return \AgoraTeam\Agora\Domain\Model\Forum $parent
+	 */
+	public function getParent() {
+		return $this->parent;
+	}
 
-    /**
-     * Sets the parent
-     *
-     * @param \AgoraTeam\Agora\Domain\Model\Forum $parent
-     * @return void
-     */
-    public function setParent(\AgoraTeam\Agora\Domain\Model\Forum $parent) {
-        $this->parent = $parent;
-    }
+	/**
+	 * Sets the parent
+	 *
+	 * @param \AgoraTeam\Agora\Domain\Model\Forum $parent
+	 * @return void
+	 */
+	public function setParent(\AgoraTeam\Agora\Domain\Model\Forum $parent) {
+		$this->parent = $parent;
+	}
 
 	/**
 	 * Adds a SubForum
@@ -296,9 +288,10 @@ class Forum extends Entity {
 	 */
 	public function getLatestThread() {
 		$latestThread = FALSE;
-		if($this->threads->count()) {
+		if ($this->threads->count()) {
 			$latestThread = $this->threads->getPosition($this->threads->count());
 		}
+
 		return $latestThread;
 	}
 
@@ -543,12 +536,13 @@ class Forum extends Entity {
 	 */
 	public function getReadProtected() {
 		$readProtected = FALSE;
-		if($this->getUsersWithReadAccess()->count() > 0) {
+		if ($this->getUsersWithReadAccess()->count() > 0) {
 			$readProtected = TRUE;
 		}
-		if($this->getGroupsWithReadAccess()->count() > 0) {
+		if ($this->getGroupsWithReadAccess()->count() > 0) {
 			$readProtected = TRUE;
 		}
+
 		return $readProtected;
 	}
 
@@ -561,31 +555,31 @@ class Forum extends Entity {
 		return $this->getReadProtected();
 	}
 
-    /**
-     * Returns the write protected flag
-     *
-     * @return boolean $writeProtected
-     */
-    public function getWriteProtected() {
-	    $writeProtected = FALSE;
-	    if($this->getUsersWithWriteAccess()->count() > 0) {
-		    $writeProtected = TRUE;
-	    }
-		if($this->getGroupsWithWriteAccess()->count() > 0) {
-		    $writeProtected = TRUE;
-	    }
+	/**
+	 * Returns the write protected flag
+	 *
+	 * @return boolean $writeProtected
+	 */
+	public function getWriteProtected() {
+		$writeProtected = FALSE;
+		if ($this->getUsersWithWriteAccess()->count() > 0) {
+			$writeProtected = TRUE;
+		}
+		if ($this->getGroupsWithWriteAccess()->count() > 0) {
+			$writeProtected = TRUE;
+		}
 
-        return $writeProtected;
-    }
+		return $writeProtected;
+	}
 
-    /**
-     * Returns the boolean state of the write protected flag
-     *
-     * @return boolean
-     */
-    public function isWriteProtected() {
-        return $this->getWriteProtected();
-    }
+	/**
+	 * Returns the boolean state of the write protected flag
+	 *
+	 * @return boolean
+	 */
+	public function isWriteProtected() {
+		return $this->getWriteProtected();
+	}
 
 	/**
 	 * Returns the modify protected flag
@@ -594,10 +588,10 @@ class Forum extends Entity {
 	 */
 	public function getModifyProtected() {
 		$modifyProtected = FALSE;
-		if($this->getUsersWithModificationAccess()->count() > 0) {
+		if ($this->getUsersWithModificationAccess()->count() > 0) {
 			$modifyProtected = TRUE;
 		}
-		if($this->getGroupsWithModificationAccess()->count() > 0) {
+		if ($this->getGroupsWithModificationAccess()->count() > 0) {
 			$modifyProtected = TRUE;
 		}
 
@@ -613,34 +607,35 @@ class Forum extends Entity {
 		return $this->getModifyProtected();
 	}
 
-    /**
-     * Returns the rootline
-     *
-     * @return array
-     */
-    public function getRootline() {
-        if(empty($this->rootline)) {
-            $this->fetchNextRootlineLevel();
-        }
-        return $this->rootline;
-    }
+	/**
+	 * Returns the rootline
+	 *
+	 * @return array
+	 */
+	public function getRootline() {
+		if (empty($this->rootline)) {
+			$this->fetchNextRootlineLevel();
+		}
 
-    /**
-     * fetches next rootline level recursively
-     *
-     * @return void
-     */
-    public function fetchNextRootlineLevel() {
+		return $this->rootline;
+	}
 
-        if(empty($this->rootline)) {
-            if (is_object($this->getParent())) {
-                array_push($this->rootline, current($this->getParent()->getRootline()));
-                array_push($this->rootline, $this);
-            } else {
-                array_push($this->rootline, $this);
-            }
-        }
-    }
+	/**
+	 * fetches next rootline level recursively
+	 *
+	 * @return void
+	 */
+	public function fetchNextRootlineLevel() {
+
+		if (empty($this->rootline)) {
+			if (is_object($this->getParent())) {
+				array_push($this->rootline, current($this->getParent()->getRootline()));
+				array_push($this->rootline, $this);
+			} else {
+				array_push($this->rootline, $this);
+			}
+		}
+	}
 
 	/**
 	 * checks if the forum is accessible for the given user
@@ -651,22 +646,22 @@ class Forum extends Entity {
 	public function isAccessibleForUser($user) {
 		$isAccessible = FALSE;
 
-		if($this->isReadProtected()) {
-			if(is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
-				if($this->getUsersWithReadAccess()->count() > 0) {
-					foreach($this->getUsersWithReadAccess() as $currentUser) {
-						if($user->getUid() == $currentUser->getUid()) {
+		if ($this->isReadProtected()) {
+			if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
+				if ($this->getUsersWithReadAccess()->count() > 0) {
+					foreach ($this->getUsersWithReadAccess() as $currentUser) {
+						if ($user->getUid() == $currentUser->getUid()) {
 							$isAccessible = TRUE;
 							break;
 						}
 					}
 				}
 				// the comparision on group level is expensive, so check and double-check if this is really necessary
-				if($isAccessible != TRUE) {
-					if($this->getGroupsWithReadAccess()->count() > 0) {
-						foreach($this->getGroupsWithReadAccess() as $groupWithAccess) {
-							foreach($user->getFlattenedGroups() as $group) {
-								if($groupWithAccess->getUid() == $group->getUid()) {
+				if ($isAccessible != TRUE) {
+					if ($this->getGroupsWithReadAccess()->count() > 0) {
+						foreach ($this->getGroupsWithReadAccess() as $groupWithAccess) {
+							foreach ($user->getFlattenedGroups() as $group) {
+								if ($groupWithAccess->getUid() == $group->getUid()) {
 									$isAccessible = TRUE;
 									break;
 								}
@@ -691,22 +686,22 @@ class Forum extends Entity {
 	public function isWritableForUser($user) {
 		$isWritable = FALSE;
 
-		if($this->isWriteProtected()) {
-			if(is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
-				if($this->getUsersWithWriteAccess()->count() > 0) {
-					foreach($this->getUsersWithWriteAccess() as $currentUser) {
-						if($user->getUid() == $currentUser->getUid()) {
+		if ($this->isWriteProtected()) {
+			if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
+				if ($this->getUsersWithWriteAccess()->count() > 0) {
+					foreach ($this->getUsersWithWriteAccess() as $currentUser) {
+						if ($user->getUid() == $currentUser->getUid()) {
 							$isWritable = TRUE;
 							break;
 						}
 					}
 				}
 				// the comparision on group level is expensive, so check and double-check if this is really necessary
-				if($isWritable != TRUE) {
-					if($this->getGroupsWithWriteAccess()->count() > 0) {
-						foreach($this->getGroupsWithWriteAccess() as $groupWithAccess) {
-							foreach($user->getFlattenedGroups() as $group) {
-								if($groupWithAccess->getUid() == $group->getUid()) {
+				if ($isWritable !== TRUE) {
+					if ($this->getGroupsWithWriteAccess()->count() > 0) {
+						foreach ($this->getGroupsWithWriteAccess() as $groupWithAccess) {
+							foreach ($user->getFlattenedGroups() as $group) {
+								if ($groupWithAccess->getUid() == $group->getUid()) {
 									$isWritable = TRUE;
 									break;
 								}
@@ -721,5 +716,4 @@ class Forum extends Entity {
 
 		return $isWritable;
 	}
-
 }
