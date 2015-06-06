@@ -181,7 +181,6 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 					'showAllLocalizationLink' => 1
 				),
 			),
-
 		),
 		'groups_with_read_access' => array(
 			'exclude' => 1,

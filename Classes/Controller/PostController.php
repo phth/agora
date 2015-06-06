@@ -31,7 +31,7 @@ class PostController extends ActionController {
 	 * @var \AgoraTeam\Agora\Domain\Service\PostService
 	 * @inject
 	 */
-	protected $postService = NULL;
+	protected $postService;
 
 	/**
 	 * postRepository
@@ -39,7 +39,7 @@ class PostController extends ActionController {
 	 * @var \AgoraTeam\Agora\Domain\Repository\PostRepository
 	 * @inject
 	 */
-	protected $postRepository = NULL;
+	protected $postRepository;
 
 	/**
 	 * userRepository
@@ -47,7 +47,7 @@ class PostController extends ActionController {
 	 * @var \AgoraTeam\Agora\Domain\Repository\UserRepository
 	 * @inject
 	 */
-	protected $userRepository = NULL;
+	protected $userRepository;
 
 	/**
 	 * action list

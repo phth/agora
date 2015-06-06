@@ -62,6 +62,14 @@ class Post extends Entity {
 	 */
 	protected $quotedPost = NULL;
 
+	/**
+	 * originalPost
+	 *
+	 * @var \AgoraTeam\Agora\Domain\Model\Post
+	 * @lazy
+	 */
+	protected $originalPost = NULL;
+
     /**
      * replies
      *
@@ -227,6 +235,25 @@ class Post extends Entity {
     public function setQuotedPost(\AgoraTeam\Agora\Domain\Model\Post $quotedPost) {
         $this->quotedPost = $quotedPost;
     }
+
+	/**
+	 * Returns the originalPost
+	 *
+	 * @return \AgoraTeam\Agora\Domain\Model\Post $originalPost
+	 */
+	public function getOriginalPost() {
+		return $this->originalPost;
+	}
+
+	/**
+	 * Sets the originalPost
+	 *
+	 * @param \AgoraTeam\Agora\Domain\Model\Post $originalPost
+	 * @return void
+	 */
+	public function setOriginalPost(\AgoraTeam\Agora\Domain\Model\Post $originalPost) {
+		$this->originalPost = $originalPost;
+	}
 
     /**
      * Adds a Reply

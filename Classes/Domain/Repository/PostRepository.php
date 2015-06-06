@@ -37,7 +37,6 @@ class PostRepository extends Repository {
 		'publishing_date' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
 	);
 
-
 	/**
 	 * Finds the latest Posts
 	 *
@@ -50,16 +49,15 @@ class PostRepository extends Repository {
 		$query = $this->createQuery();
 
 		$result = $query
-				//@todo change post4 in something serious
 			->matching(
-					$query->logicalAnd(
-						$query->equals('post4', 0),
-						$query->logicalOr(
-							$query->in('forum', $openUserForums),
-							$query->equals('forum', 0)
-						)
+				$query->logicalAnd(
+					$query->equals('original_post', 0),
+					$query->logicalOr(
+						$query->in('forum', $openUserForums),
+						$query->equals('forum', 0)
 					)
 				)
+			)
 			->setOrderings(array('publishing_date' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING))
 			->setLimit((integer)$limit)
 			->execute();
