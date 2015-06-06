@@ -512,45 +512,6 @@ CREATE TABLE tx_agora_thread_groupswithmodificationaccess_mm (
 );
 
 #
-# Table structure for table 'tx_agora_thread_userswithreadaccess_user_mm'
-#
-CREATE TABLE tx_agora_thread_userswithreadaccess_user_mm (
-	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
-	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-
-	KEY uid_local (uid_local),
-	KEY uid_foreign (uid_foreign)
-);
-
-#
-# Table structure for table 'tx_agora_thread_userswithwriteaccess_user_mm'
-#
-CREATE TABLE tx_agora_thread_userswithwriteaccess_user_mm (
-	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
-	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-
-	KEY uid_local (uid_local),
-	KEY uid_foreign (uid_foreign)
-);
-
-#
-# Table structure for table 'tx_agora_thread_userswithmodificationaccess_user_mm'
-#
-CREATE TABLE tx_agora_thread_userswithmodificationaccess_user_mm (
-	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
-	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-
-	KEY uid_local (uid_local),
-	KEY uid_foreign (uid_foreign)
-);
-
-#
 # Table structure for table 'tx_agora_forum_user_post_mm'
 #
 CREATE TABLE tx_agora_feuser_post_mm (

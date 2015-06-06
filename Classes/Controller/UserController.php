@@ -64,7 +64,8 @@ class UserController extends ActionController {
 			}
 		}
 
-		$this->view->assign('favoritePosts', $favoritedPosts);
+		$this->view->assign('user', $user);
+		$this->view->assign('favoritePosts', array_reverse($favoritedPosts));
 		$this->view->assign('listPid', $this->settings['listView']);
 	}
 
@@ -89,19 +90,21 @@ class UserController extends ActionController {
 				if ($limit == $i) continue;
 			}
 		}
+		$this->view->assign('user', $user);
 		$this->view->assign('observedThreads', $observedThreads);
 		$this->view->assign('listPid', $this->settings['listView']);
 	}
 
 	/**
 	 * action listObservedThreads
-	 * @retun void
+	 * @return void
 	 */
 	public function listObservedThreadsAction() {
 		$user = $this->getUser();
 		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
 			$observedThreads = $user->getObservedThreads();
 		}
+		$this->view->assign('user', $user);
 		$this->view->assign('observedThreads', $observedThreads);
 	}
 

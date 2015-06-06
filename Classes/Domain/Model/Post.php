@@ -137,6 +137,13 @@ class Post extends Entity {
 	protected $isFavorite = FALSE;
 
 	/**
+	 * @var \AgoraTeam\Agora\Domain\Model\Forum
+	 * @lazy
+	 */
+	protected $forum = NULL;
+
+
+	/**
 	 * __construct
 	 */
 	public function __construct() {
@@ -502,6 +509,20 @@ class Post extends Entity {
 	 */
 	public function isAccessibleForUser($user) {
 		return $this->getThread()->isAccessibleForUser($user);
+	}
+
+	/**
+	 * @return Forum
+	 */
+	public function getForum() {
+		return $this->forum;
+	}
+
+	/**
+	 * @param Forum $forum
+	 */
+	public function setForum($forum) {
+		$this->forum = $forum;
 	}
 
 }

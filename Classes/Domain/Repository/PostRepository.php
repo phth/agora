@@ -52,10 +52,7 @@ class PostRepository extends Repository {
 			->matching(
 				$query->logicalAnd(
 					$query->equals('original_post', 0),
-					$query->logicalOr(
-						$query->in('forum', $openUserForums),
-						$query->equals('forum', 0)
-					)
+					$query->in('forum', $openUserForums)
 				)
 			)
 			->setOrderings(array('publishing_date' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING))

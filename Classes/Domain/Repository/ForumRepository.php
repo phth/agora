@@ -108,12 +108,13 @@ class ForumRepository extends Repository {
 	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
 	 */
 	public function findAccessibleUserForums() {
+		$constraints = array();
 		$user = $this->getUser();
 		$query = $this->createQuery();
 
 		$constraints[] = $query->logicalAnd(
-			$query->equals('groupsWithReadAccess', 0),
-			$query->equals('usersWithReadAccess', 0)
+				$query->equals('groupsWithReadAccess', 0),
+				$query->equals('usersWithReadAccess', 0)
 		);
 
 		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
@@ -125,11 +126,13 @@ class ForumRepository extends Repository {
 			);
 		}
 
-		$query->matching(
-			$query->logicalOr(
-				$constraints
-			)
-		);
+		if(count($constraints) > 1) {
+			$permissionConstraint = $query->logicalOr($constraints);
+		} else {
+			$permissionConstraint = current($constraints);
+		}
+
+		$query->matching($permissionConstraint);
 		$forums = $query->execute();
 
 		return $forums;

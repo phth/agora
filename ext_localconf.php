@@ -7,14 +7,14 @@ if (!defined('TYPO3_MODE')) {
 	'AgoraTeam.' . $_EXTKEY,
 	'Forum',
 	array(
-		'Forum' => 'list, delete, edit, update, new, create',
+		'Forum' => 'list',
 		'Thread' => 'list, delete, edit, update, new, create',
 		'Post' => 'list, show, showHistory, delete, edit, update, new, create',
 		'User' => 'addObservedThread, removeObservedThread, addFavoritePost, removeFavoritePost',
 		'Attachment' => 'download'
 	),
 	array(
-		'Forum' => 'list, delete, edit, update, new, create',
+		'Forum' => 'list',
 		'Thread' => 'list, delete, edit, update, new, create',
 		'Post' => 'list, show, showHistory, delete, edit, update, new, create',
 		'User' => 'addObservedThread, removeObservedThread, addFavoritePost, removeFavoritePost',

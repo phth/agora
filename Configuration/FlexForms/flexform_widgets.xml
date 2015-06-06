@@ -31,7 +31,7 @@
 										<numIndex index="1">Post->listLatest</numIndex>
 									</numIndex>
 									<numIndex index="4">
-										<numIndex index="0">Inobx</numIndex>
+										<numIndex index="0">Inbox</numIndex>
 										<numIndex index="1">Message->list;Message->listConversation;Message->new;Message->create</numIndex>
 									</numIndex>
 								</items>
@@ -42,7 +42,14 @@
 					<settings.listView>
 						<TCEforms>
 							<label>listView</label>
-							<displayCond>FIELD:switchableControllerActions:=:User->observedThreads</displayCond>
+							<displayCond>
+								<OR>
+									FIELD:switchableControllerActions:=:User->observedThreads
+								</OR>
+								<OR>
+									FIELD:switchableControllerActions:=:User->favoritePosts
+								</OR>
+							</displayCond>
 							<config>
 								<type>input</type>
 								<eval>trim</eval>

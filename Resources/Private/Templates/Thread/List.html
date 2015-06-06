@@ -1,33 +1,37 @@
+<f:layout name="Default"/>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
-      xmlns:f="http://xsd.helmut-hummel.de/ns/TYPO3/Fluid/ViewHelpers">
-    <f:layout name="Default" />
+<f:section name="main">
 
-    <f:section name="main">
+	<f:render partial="Navigation/Thread" arguments="{forum:forum}"/>
 
-        <f:flashMessages renderMode="div" />
+	<f:flashMessages renderMode="div"/>
 
-        <f:render partial="Navigation/Thread" arguments="{forum:forum}" />
-        <f:widget.paginate objects="{threads}" as="paginatedThreads" configuration="{itemsPerPage: '{settings.thread.numberOfItemsPerPage}', insertAbove: 1, insertBelow: 1}">
-            <ul class="list-group">
-                <f:for each="{paginatedThreads}" as="thread">
-                    <li class="list-group-item">
-						<f:translate
+	<f:link.action class="btn btn-primary" action="new" arguments="{forum:forum}">
+		<f:translate key="tx_agora_domain_model_thread.new"/>
+	</f:link.action>
+
+	<br/>
+
+	<f:widget.paginate objects="{threads}" as="paginatedThreads"
+					   configuration="{itemsPerPage: '{settings.thread.numberOfItemsPerPage}', insertAbove: 1, insertBelow: 1}">
+		<ul class="list-group">
+			<f:for each="{paginatedThreads}" as="thread">
+				<li class="list-group-item">
+					<f:translate
 							key="tx_agora_domain_model_thread.tstamp"
-							arguments="{0:'{f:format.date(date:\'{thread.tstamp}\', format:\'{settings.thread.dateFormat}\')}'}" />
-						<div class="small text-muted"></div>
-						<f:link.action action="list" controller="Post" arguments="{thread:thread}">
-                            <h2>{thread.title}</h2>
-                        </f:link.action>
-                    </li>
-                </f:for>
-            </ul>
-        </f:widget.paginate>
+							arguments="{0:'{f:format.date(date:\'{thread.tstamp}\', format:\'{settings.thread.dateFormat}\')}'}"/>
+					<div class="small text-muted"></div>
+					<f:link.action action="list" controller="Post" arguments="{thread:thread}">
+						<h2>{thread.title}</h2>
+					</f:link.action>
+				</li>
+			</f:for>
+		</ul>
+	</f:widget.paginate>
 
-        <br/>
+	<br/>
 
-        <f:link.action class="btn btn-primary" action="new" arguments="{forum:forum}">
-            <f:translate key="tx_agora_domain_model_thread.new" />
-        </f:link.action>
-    </f:section>
-</html>
+	<f:link.action class="btn btn-primary" action="new" arguments="{forum:forum}">
+		<f:translate key="tx_agora_domain_model_thread.new"/>
+	</f:link.action>
+</f:section>

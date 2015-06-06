@@ -1,110 +1,117 @@
 {namespace a=AgoraTeam\Agora\ViewHelpers}
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en"
-      xmlns:f="http://xsd.helmut-hummel.de/ns/TYPO3/Fluid/ViewHelpers">
+	  xmlns:f="http://xsd.helmut-hummel.de/ns/TYPO3/Fluid/ViewHelpers">
 
-	<f:layout name="Default" />
+<f:layout name="Default"/>
 
-        <f:section name="main">
+<f:section name="main">
 
-        <f:flashMessages renderMode="div" />
+	<f:flashMessages renderMode="div"/>
 
-        <f:render partial="Navigation/Thread" arguments="{thread:thread}" />
+	<f:render partial="Navigation/Thread" arguments="{thread:thread}"/>
 
-        <f:widget.paginate objects="{posts}" as="paginatedPost" configuration="{itemsPerPage: '{settings.post.numberOfItemsPerPage}', insertAbove: 1, insertBelow: 1}">
-            <ul class="list-group">
-                <f:for each="{paginatedPost}" as="post">
-                    <li class="list-group-item">
-                        <div class="small text-muted">
-                            <f:translate
-                                key="tx_agora_domain_model_post.created_at"
-                                arguments="{0:'{f:format.date(date:\'{post.publishingDate}\', format:\'{settings.post.dateFormat}\')}'}" />
-                            <f:if condition="{post.historicalVersions}">
-                                |
-                                <f:link.action action="showHistory" controller="Post" arguments="{post:post}">
-                                    <f:translate
-                                            key="tx_agora_domain_model_post.edited_at"
-                                            arguments="{0:'{f:format.date(date:\'{post.crdate}\', format:\'{settings.post.dateFormat}\')}'}" /></f:link.action>
-                            </f:if>
-                            <f:if condition="{post.replies}">
-                                |
-                                <f:link.action action="show" controller="Post" arguments="{post:post}">
-                                    <f:translate
-                                        key="tx_agora_domain_model_post.replies"
-                                        arguments="{0:'{f:count(subject:\'{post.replies}\')}'}" /></f:link.action>
-                            </f:if>
-                            |
-                            <f:translate
-                                key="tx_agora_domain_model_post.by"
-                                arguments="{0:'{a:creator(object:\'{post}\')}'}" />
-                        </div>
-                        <h4>
-                            <f:link.action action="show" controller="Post" arguments="{post:post}">
-                                {post.topic}
-                            </f:link.action>
-                        </h4>
-                        <div>
-                            {post.text -> a:parser.parsedown()}
-                        </div>
-
-						<a:thread.editable thread="{thread}" user="{user}">
-							<f:link.action class="btn btn-default" action="new" arguments="{thread:thread, quotedPost:post}">
-								<f:translate key="tx_agora_domain_model_post.reply" />
+	<f:widget.paginate objects="{posts}" as="paginatedPost"
+					   configuration="{itemsPerPage: '{settings.post.numberOfItemsPerPage}', insertAbove: 1, insertBelow: 1}">
+		<ul class="list-group">
+			<f:for each="{paginatedPost}" as="post">
+				<li class="list-group-item">
+					<div class="small text-muted">
+						<f:translate
+								key="tx_agora_domain_model_post.created_at"
+								arguments="{0:'{f:format.date(date:\'{post.publishingDate}\', format:\'{settings.post.dateFormat}\')}'}"/>
+						<f:if condition="{post.historicalVersions}">
+							|
+							<f:link.action action="showHistory" controller="Post" arguments="{post:post}">
+								<f:translate
+										key="tx_agora_domain_model_post.edited_at"
+										arguments="{0:'{f:format.date(date:\'{post.crdate}\', format:\'{settings.post.dateFormat}\')}'}"/>
 							</f:link.action>
-						</a:thread.editable>
-                        <a:security.ifIsAuthor object="{post}">
-                            <f:link.action class="btn btn-default" action="edit" arguments="{originalPost:post}">
-                                <f:translate key="tx_agora_domain_model_post.edit" />
-                            </f:link.action>
-                        </a:security.ifIsAuthor>
+						</f:if>
+						<f:if condition="{post.replies}">
+							|
+							<f:link.action action="show" controller="Post" arguments="{post:post}">
+								<f:translate
+										key="tx_agora_domain_model_post.replies"
+										arguments="{0:'{f:count(subject:\'{post.replies}\')}'}"/>
+							</f:link.action>
+						</f:if>
+						|
+						<f:translate
+								key="tx_agora_domain_model_post.by"
+								arguments="{0:'{a:creator(object:\'{post}\')}'}"/>
+					</div>
+					<h4>
+						<f:link.action action="show" controller="Post" arguments="{post:post}">
+							{post.topic}
+						</f:link.action>
+					</h4>
+					<div>
+						{post.text -> a:parser.parsedown()}
+					</div>
+
+					<a:thread.editable thread="{thread}" user="{user}">
+						<f:link.action class="btn btn-default" action="new"
+									   arguments="{thread:thread, quotedPost:post}">
+							<f:translate key="tx_agora_domain_model_post.reply"/>
+						</f:link.action>
+					</a:thread.editable>
+					<a:security.ifIsAuthor object="{post}">
+						<f:link.action class="btn btn-default" action="edit" arguments="{originalPost:post}">
+							<f:translate key="tx_agora_domain_model_post.edit"/>
+						</f:link.action>
+					</a:security.ifIsAuthor>
 
 
+					<f:security.ifAuthenticated>
+						<f:if condition="{a:postHasFavoriteUser(post:post,user:user)}">
+							<f:then>
+								<f:link.action class="btn btn-default" controller="User" action="removeFavoritePost"
+											   arguments="{post:post}">
+									<f:translate key="tx_agora_domain_model_post.removeFavorite"/>
+								</f:link.action>
+							</f:then>
+							<f:else>
+								<f:link.action class="btn btn-default" controller="User" action="addFavoritePost"
+											   arguments="{post:post}">
+									<f:translate key="tx_agora_domain_model_post.favorite"/>
+								</f:link.action>
+							</f:else>
+						</f:if>
+					</f:security.ifAuthenticated>
 
-                        <f:security.ifAuthenticated>
-                            <f:if condition="{a:postHasFavoriteUser(post:post,user:user)}">
-                                <f:then>
-                                    <f:link.action class="btn btn-default" controller="User" action="removeFavoritePost" arguments="{post:post}">
-                                        <f:translate key="tx_agora_domain_model_post.removeFavorite" />
-                                    </f:link.action>
-                                </f:then>
-                                <f:else>
-                                    <f:link.action class="btn btn-default" controller="User" action="addFavoritePost" arguments="{post:post}">
-                                        <f:translate key="tx_agora_domain_model_post.favorite" />
-                                    </f:link.action>
-                                </f:else>
-                            </f:if>
-                        </f:security.ifAuthenticated>
+				</li>
+			</f:for>
+		</ul>
+	</f:widget.paginate>
 
-                    </li>
-                </f:for>
-            </ul>
-        </f:widget.paginate>
+	<br/>
 
-        <br />
+	<div class="listPostFooter">
+		<f:security.ifAuthenticated>
+			<ul class="list-group">
+				<li class="list-group-item">
+					<f:if condition="{observedThread} == 0">
+						<f:then>
+							<f:link.action class="btn btn-default" action="addObservedThread" controller="User"
+										   arguments="{thread:thread}">
+								<f:translate key="tx_agora_domain_model_thread.favorite"/>
+							</f:link.action>
+						</f:then>
+						<f:else>
+							<f:link.action class="btn btn-default" action="removeObservedThread" controller="User"
+										   arguments="{thread:thread}">
+								<f:translate key="tx_agora_domain_model_thread.removeFavorite"/>
+							</f:link.action>
+						</f:else>
+					</f:if>
+				</li>
+			</ul>
+		</f:security.ifAuthenticated>
+	</div>
 
-        <div class="listPostFooter">
-            <f:security.ifAuthenticated>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <f:if condition="{observedThread} == 0">
-                            <f:then>
-                                <f:link.action class="btn btn-default" action="addObservedThread" controller="User" arguments="{thread:thread}">
-                                    <f:translate key="tx_agora_domain_model_thread.favorite" />
-                                </f:link.action>
-                            </f:then>
-                            <f:else>
-                                <f:link.action class="btn btn-default" action="removeObservedThread" controller="User" arguments="{thread:thread}">
-                                    <f:translate key="tx_agora_domain_model_thread.removeFavorite" />
-                                </f:link.action>
-                            </f:else>
-                        </f:if>
-                    </li>
-                </ul>
-            </f:security.ifAuthenticated>
-        </div>
-
-        <f:link.action class="btn btn-primary" action="new" arguments="{thread:thread}">
-            <f:translate key="tx_agora_domain_model_post.new" />
-        </f:link.action>
-    </f:section>
+	<f:link.action class="btn btn-primary" action="new" arguments="{thread:thread}">
+		<f:translate key="tx_agora_domain_model_post.new"/>
+	</f:link.action>
+</f:section>
 </html>

@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_agora_domain_model_post']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, topic, text, publishing_date, crdate, thread, replies, quoted_post, voting, attachments, creator, historical_versions',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, topic, text, publishing_date, crdate, replies, quoted_post, voting, attachments, creator, historical_versions, forum',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, topic, text, publishing_date, crdate, thread, replies, quoted_post, voting, attachments, creator, historical_versions, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, topic, text, publishing_date, crdate, replies, quoted_post, voting, attachments, creator, historical_versions, forum, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -267,5 +267,17 @@ $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
                 'foreign_table' => 'tx_agora_domain_model_thread'
             ),
 		),
+		'forum' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_post.forum',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'max' => 255,
+				'readOnly' => 1,
+				'foreign_table' => 'tx_agora_domain_model_forum',
+				'foreign_field' => 'title',
+			)
+		)
 	),
 );
