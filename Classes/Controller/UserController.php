@@ -50,16 +50,22 @@ class UserController extends ActionController {
 	public function favoritePostsAction() {
 		$user = $this->getUser();
 		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User') && $user->getFavoritePosts() !== NULL) {
-			$favoritePosts = $user->getFavoritePosts()->toArray();
 			$limit = $this->settings['post']['numberOfItemsInFavoritePostsWidget'];
+			$AllFavoritedPosts = $user->getFavoritePosts()->toArray();
+			$favoritedPosts = array();
+			$i = 0;
 
-			if($limit < count($favoritePosts)) {
-				$favoritePosts = array_slice($favoritePosts, 0, $limit);
-				$listPid = $this->settings['listView'];
+			foreach ($AllFavoritedPosts as $post) {
+				if ($post->isAccessibleForUser($user)) {
+					$favoritedPosts[] = $post;
+					$i++;
+				}
+				if ($limit == $i) continue;
 			}
 		}
-		$this->view->assign('favoritePosts', $favoritePosts);
-		$this->view->assign('listPid', $listPid);
+
+		$this->view->assign('favoritePosts', $favoritedPosts);
+		$this->view->assign('listPid', $this->settings['listView']);
 	}
 
 	/**
@@ -69,17 +75,22 @@ class UserController extends ActionController {
 	 */
 	public function observedThreadsAction() {
 		$user = $this->getUser();
-		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')  && $user->getObservedThreads() !== NULL) {
-			$observedThreads = $user->getObservedThreads()->toArray();
+		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User') && $user->getObservedThreads() !== NULL) {
 			$limit = $this->settings['thread']['numberOfItemsInObservedThreadsWidget'];
+			$allObservedThreads = $user->getObservedThreads()->toArray();
+			$observedThreads = array();
+			$i = 0;
 
-			if ($limit < count($observedThreads)) {
-				$observedThreads = array_slice($observedThreads, 0, $limit);
-				$listPid = $this->settings['listView'];
+			foreach ($allObservedThreads as $thread) {
+				if ($thread->isAccessibleForUser($user)) {
+					$observedThreads[] = $thread;
+					$i++;
+				}
+				if ($limit == $i) continue;
 			}
 		}
 		$this->view->assign('observedThreads', $observedThreads);
-		$this->view->assign('listPid', $listPid);
+		$this->view->assign('listPid', $this->settings['listView']);
 	}
 
 	/**
