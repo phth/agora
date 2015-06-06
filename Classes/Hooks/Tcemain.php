@@ -88,7 +88,7 @@ class Tcemain  {
 		$subForums = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'*', 'tx_agora_domain_model_forum', 'parent = "' . $forum['uid'] . '" '
 		);
-		
+
 		foreach($subForums as $subforum) {
 			// users_with_read_access
 			$usersOfSubforumWithReadAccess = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
