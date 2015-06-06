@@ -57,19 +57,13 @@ class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 */
 	protected $user;
 
-
     /**
      * initialize object
      *
      * @return void
      */
 	public function initializeObject() {
-			// Get the current logged in user
-		$userFromTSFE = $GLOBALS['TSFE']->fe_user->user;
-		$user = $this->userRepository->findByUid($userFromTSFE['uid']);
-        if(is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
-            $this->setUser($user);
-        }
+
 	}
 
 	/**
@@ -78,6 +72,15 @@ class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @return mixed
 	 */
 	public function getUser() {
+		if (!is_a($this->user, '\AgoraTeam\Agora\Domain\Model\User')) {
+			$userFromTSFE = $GLOBALS['TSFE']->fe_user->user;
+			if($userFromTSFE['uid']) {
+				$user = $this->userRepository->findByUid($userFromTSFE['uid']);
+				if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
+					$this->setUser($user);
+				}
+			}
+		}
 		return $this->user;
 	}
 

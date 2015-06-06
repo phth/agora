@@ -75,6 +75,7 @@ class ActionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return null|\AgoraTeam\Agora\Domain\Repository\User
 	 */
 	public function getCurrentUser() {
+
 		if (!is_array($GLOBALS['TSFE']->fe_user->user)) {
 			return NULL;
 		}
