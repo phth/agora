@@ -231,8 +231,12 @@ class ThreadController extends ActionController {
 	 * @return void
 	 */
 	public function listLatestAction() {
-		$limit = $this->settings['thread']['numberOfItemsInLatestView'];
-		$latestThreads = $this->threadRepository->findLatestThreadsForUser($limit);
+		$user = $this->getUser();
+		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
+			$limit = $this->settings['thread']['numberOfItemsInLatestView'];
+			$latestThreads = $this->threadRepository->findLatestThreadsForUser($limit);
+		}
+		$this->view->assign('user', $user);
 		$this->view->assign('latestThreads', $latestThreads);
 	}
 }
