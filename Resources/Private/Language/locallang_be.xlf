@@ -3,8 +3,8 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2015-02-21T19:59:58Z" product-name="agora">
 		<header/>
 		<body>
-			<trans-unit id="extmng.recoursivePermissions">
-				<source>Recoursive Permissions: Permissions for Forums will be set recoursively on update via TCEMAIN Hooks.</source>
+			<trans-unit id="extmng.recursivePermissions">
+				<source>Recursive Permissions: Permissions for Forums will be set recursively on update via TCEMAIN Hooks.</source>
 			</trans-unit>
 		</body>
 	</file>

@@ -1,2 +1,2 @@
-    # cat=forum/enable/26; type=boolean; label=LLL:EXT:agora/Resources/Private/Language/locallang_be.xlf:extmng.recoursivePermissions
-recoursivePermissions = 1
+    # cat=forum/enable/26; type=boolean; label=LLL:EXT:agora/Resources/Private/Language/locallang_be.xlf:extmng.recursivePermissions
+recursivePermissions = 1

@@ -59,7 +59,7 @@ class Tcemain  {
 	public function processDatamap_preProcessFieldArray($fields, $table, $recordUid, \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject) {
 		if ($table === 'tx_agora_domain_model_forum') {
 			$settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['agora']);
-			if ($settings[recoursivePermissions] !== 1) {
+			if ($settings[recursivePermissions] !== 1) {
 				return;
 			}
 			$forum = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('tx_agora_domain_model_forum', $recordUid);
@@ -108,10 +108,10 @@ class Tcemain  {
 	 */
 	public function processDatamap_afterDatabaseOperations($status, $table, $recordUid, array $fields, \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject) {
 
-		// set access rights on subforums for new forums recoursively
+		// set access rights on subforums for new forums recursively
 		if ($table === 'tx_agora_domain_model_forum') {
 			$settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['agora']);
-			if ($settings[recoursivePermissions] !== 1) {
+			if ($settings[recursivePermissions] !== 1) {
 				return;
 			}
 			$record = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('tx_agora_domain_model_forum', $recordUid);
