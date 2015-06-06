@@ -381,9 +381,9 @@ CREATE TABLE tx_agora_domain_model_view (
 );
 
 #
-# Table structure for table 'tx_agora_forum_groupswithreadaccess_group_mm'
+# Table structure for table 'tx_agora_forum_groupswithreadaccess_mm'
 #
-CREATE TABLE tx_agora_forum_groupswithreadaccess_group_mm (
+CREATE TABLE tx_agora_forum_groupswithreadaccess_mm (
 	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
 	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,
@@ -394,9 +394,9 @@ CREATE TABLE tx_agora_forum_groupswithreadaccess_group_mm (
 );
 
 #
-# Table structure for table 'tx_agora_forum_grouspwithwriteaccess_group_mm'
+# Table structure for table 'tx_agora_forum_grouspwithwriteaccess_mm'
 #
-CREATE TABLE tx_agora_forum_groupswithwriteaccess_group_mm (
+CREATE TABLE tx_agora_forum_groupswithwriteaccess_mm (
 	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
 	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,
@@ -407,9 +407,9 @@ CREATE TABLE tx_agora_forum_groupswithwriteaccess_group_mm (
 );
 
 #
-# Table structure for table 'tx_agora_forum_group_mm'
+# Table structure for table 'tx_agora_forum_groupswithmodificationaccess_mm'
 #
-CREATE TABLE tx_agora_forum_group_mm (
+CREATE TABLE tx_agora_forum_groupswithmodificationaccess_mm (
 	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
 	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,
@@ -420,9 +420,9 @@ CREATE TABLE tx_agora_forum_group_mm (
 );
 
 #
-# Table structure for table 'tx_agora_forum_userswithreadaccess_user_mm'
+# Table structure for table 'tx_agora_forum_userswithreadaccess_mm'
 #
-CREATE TABLE tx_agora_forum_userswithreadaccess_user_mm (
+CREATE TABLE tx_agora_forum_userswithreadaccess_mm (
 	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
 	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,
@@ -433,9 +433,9 @@ CREATE TABLE tx_agora_forum_userswithreadaccess_user_mm (
 );
 
 #
-# Table structure for table 'tx_agora_forum_userswithwriteaccess_user_mm'
+# Table structure for table 'tx_agora_forum_userswithwriteaccess_mm'
 #
-CREATE TABLE tx_agora_forum_userswithwriteaccess_user_mm (
+CREATE TABLE tx_agora_forum_userswithwriteaccess_mm (
 	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
 	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,
@@ -446,9 +446,9 @@ CREATE TABLE tx_agora_forum_userswithwriteaccess_user_mm (
 );
 
 #
-# Table structure for table 'tx_agora_forum_user_mm'
+# Table structure for table 'tx_agora_forum_userswithmodificationaccess_mm'
 #
-CREATE TABLE tx_agora_forum_user_mm (
+CREATE TABLE tx_agora_forum_userswithmodificationaccess_mm (
 	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
 	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,
@@ -494,9 +494,9 @@ CREATE TABLE tx_agora_thread_group_mm (
 );
 
 #
-# Table structure for table 'tx_agora_thread_groupwithwriteaccess_group_mm'
+# Table structure for table 'tx_agora_thread_groupwithwriteaccess_mm'
 #
-CREATE TABLE tx_agora_thread_groupwithwriteaccess_group_mm (
+CREATE TABLE tx_agora_thread_groupwithwriteaccess_mm (
 	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
 	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,
@@ -507,9 +507,9 @@ CREATE TABLE tx_agora_thread_groupwithwriteaccess_group_mm (
 );
 
 #
-# Table structure for table 'tx_agora_thread_groupswithmodificationaccess_group_mm'
+# Table structure for table 'tx_agora_thread_groupswithmodificationaccess_mm'
 #
-CREATE TABLE tx_agora_thread_groupswithmodificationaccess_group_mm (
+CREATE TABLE tx_agora_thread_groupswithmodificationaccess_mm (
 	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
 	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,
