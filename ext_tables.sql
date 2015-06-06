@@ -62,19 +62,16 @@ CREATE TABLE tx_agora_domain_model_post (
 	replies int(11) unsigned DEFAULT '0' NOT NULL,
 
 	topic varchar(255) DEFAULT '' NOT NULL,
-	thread  int(11) unsigned DEFAULT '0' NOT NULL
 	text text NOT NULL,
 	publishing_date int(11) unsigned DEFAULT '0' NOT NULL,
 	quoted_post int(11) unsigned DEFAULT '0' NOT NULL,
+	historical_versions int(11) unsigned DEFAULT '0' NOT NULL,
 	original_post int(11) unsigned DEFAULT '0' NOT NULL
 	voting int(11) unsigned DEFAULT '0',
 	attachments int(11) unsigned DEFAULT '0' NOT NULL,
 	creator int(11) unsigned DEFAULT '0',
-	historical_versions int(11) unsigned DEFAULT '0' NOT NULL,
 
 	user2  int(11) unsigned DEFAULT '0' NOT NULL
-	post  int(11) unsigned DEFAULT '0' NOT NULL,
-
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -123,7 +120,7 @@ CREATE TABLE tx_agora_domain_model_thread (
 	posts int(11) unsigned DEFAULT '0' NOT NULL,
 	views int(11) unsigned DEFAULT '0' NOT NULL,
 	groups_with_read_access int(11) unsigned DEFAULT '0' NOT NULL,
-	group_with_write_access int(11) unsigned DEFAULT '0' NOT NULL,
+	groups_with_write_access int(11) unsigned DEFAULT '0' NOT NULL,
 	groups_with_modification_access int(11) unsigned DEFAULT '0' NOT NULL,
 	users_with_read_access int(11) unsigned DEFAULT '0' NOT NULL,
 	users_with_write_access int(11) unsigned DEFAULT '0' NOT NULL,
@@ -462,13 +459,6 @@ CREATE TABLE tx_agora_forum_userswithmodificationaccess_mm (
 
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
-);
-
-#
-# Table structure for table 'tx_agora_domain_model_attachment'
-#
-CREATE TABLE tx_agora_domain_model_attachment (
-	post  int(11) unsigned DEFAULT '0' NOT NULL
 );
 
 #
