@@ -43,13 +43,20 @@ class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	protected $userRepository;
 
 	/**
-     * user
+     * forumRepository
      *
+	 * @var \AgoraTeam\Agora\Domain\Repository\ForumRepository
+	 * @inject
+	 */
+	protected $forumRepository;
+
+	/**
      * the logged in frontend user, if there is any
      *
-	 * @var mixed
+	 * @var \AgoraTeam\Agora\Domain\Model\User
 	 */
 	protected $user;
+
 
     /**
      * initialize object
@@ -57,6 +64,7 @@ class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository {
      * @return void
      */
 	public function initializeObject() {
+			// Get the current logged in user
 		$userFromTSFE = $GLOBALS['TSFE']->fe_user->user;
 		$user = $this->userRepository->findByUid($userFromTSFE['uid']);
         if(is_a($user, '\AgoraTeam\Agora\Domain\Model\User')) {
@@ -81,6 +89,5 @@ class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	public function setUser($user) {
 		$this->user = $user;
 	}
-
 
 }

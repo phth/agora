@@ -99,5 +99,39 @@ class ForumRepository extends Repository {
         $forums = $query->execute();
         return $forums;
     }
-	
+
+
+	/**
+	 * @param $user
+	 * @param $usergroups
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+	 */
+	public function findAccessibleUserForums() {
+		$user = $this->getUser();
+
+			// Get the allowed forums for the logged in user
+		$flattenedGroups = $user->getFlattenedGroups();
+		$userGroups = array();
+		foreach ($flattenedGroups as $key => $value) {
+			$userGroups[] = $value->getUid();
+		}
+
+		$query = $this->createQuery();
+		$query->matching(
+			$query->logicalOr(
+				$query->logicalOr(
+					$query->contains('groupsWithReadAccess', $userGroups),
+					$query->contains('usersWithReadAccess', $user->getUid())
+				),
+				$query->logicalAnd(
+					$query->equals('groupsWithReadAccess', 0),
+					$query->equals('usersWithReadAccess', 0)
+				)
+			)
+		);
+		$forums = $query->execute();
+
+		return $forums;
+	}
 }
