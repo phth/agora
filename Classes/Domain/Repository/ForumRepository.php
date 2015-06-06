@@ -111,17 +111,13 @@ class ForumRepository extends Repository {
 		$user = $this->getUser();
 
 			// Get the allowed forums for the logged in user
-		$flattenedGroups = $user->getFlattenedGroups();
-		$userGroups = array();
-		foreach ($flattenedGroups as $key => $value) {
-			$userGroups[] = $value->getUid();
-		}
+		$flattenedGroups = $user->getFlattenedGroupUids();
 
 		$query = $this->createQuery();
 		$query->matching(
 			$query->logicalOr(
 				$query->logicalOr(
-					$query->contains('groupsWithReadAccess', $userGroups),
+					$query->contains('groupsWithReadAccess', $flattenedGroups),
 					$query->contains('usersWithReadAccess', $user->getUid())
 				),
 				$query->logicalAnd(

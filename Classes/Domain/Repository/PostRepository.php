@@ -45,13 +45,21 @@ class PostRepository extends Repository {
 	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
 	 */
 	public function findLatestPostsForUser($limit) {
-		$user = $this->getUser();
+		$openUserForums = $this->forumRepository->findAccessibleUserForums();
 
 		$query = $this->createQuery();
 
-			// @todo Implementation of the access-rights
 		$result = $query
-			->matching($query->equals('post4', 0))
+				//@todo change post4 in something serious
+			->matching(
+					$query->logicalAnd(
+						$query->equals('post4', 0),
+						$query->logicalOr(
+							$query->in('forum', $openUserForums),
+							$query->equals('forum', 0)
+						)
+					)
+				)
 			->setOrderings(array('publishing_date' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING))
 			->setLimit((integer)$limit)
 			->execute();

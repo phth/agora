@@ -46,7 +46,10 @@ class ThreadRepository extends Repository {
 
 		$result = $query
 			->matching(
-				$query->in('forum', $openUserForums)
+				$query->logicalOr(
+					$query->in('forum', $openUserForums),
+					$query->equals('forum', 0)
+				)
 			)
 			->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING))
 			->setLimit((integer)$limit)
