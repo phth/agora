@@ -47,3 +47,5 @@ if (!defined('TYPO3_MODE')) {
         'User' => 'removeObservedThread, listObservedThreads',
 	)
 );
+
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'EXT:agora/Classes/Hooks/Tcemain.php:\AgoraTeam\Agora\Hooks\Tcemain';
