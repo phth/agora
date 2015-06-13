@@ -42,23 +42,6 @@ class ThreadController extends ActionController {
 	protected $threadRepository = NULL;
 
 	/**
-     * threadFactory
-     *
-	 * @var \AgoraTeam\Agora\Domain\Factory\ThreadFactory
-	 */
-	protected $threadFactory;
-
-	/**
-	 * @param \AgoraTeam\Agora\Domain\Factory\ThreadFactory $threadFactory
-	 */
-	public function __construct(\AgoraTeam\Agora\Domain\Factory\ThreadFactory $threadFactory) {
-		parent::__construct();
-
-		$this->threadFactory = $threadFactory;
-	}
-
-
-	/**
 	 * action list
 	 *
      * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
@@ -142,7 +125,23 @@ class ThreadController extends ActionController {
 			$this->redirect('list', 'Thread', 'agora', array('forum' => $forum));
 		}
 
-		$this->threadFactory->createThread($forum, $thread, $text);
+		/** @var \AgoraTeam\Agora\Domain\Model\Post $post */
+		$post = new \AgoraTeam\Agora\Domain\Model\Post;
+		$post->setTopic($thread->getTitle());
+		$post->setText($text);
+		$now = new \DateTime();
+		$post->setPublishingDate($now);
+
+		if(is_a($this->getUser(),'\AgoraTeam\Agora\Domain\Model\User')) {
+			$post->setCreator($this->getUser());
+		}
+		$thread->addPost($post);
+		if (is_a($this->getUser(),'\AgoraTeam\Agora\Domain\Model\User')) {
+			$thread->setCreator($this->getUser());
+		}
+
+		$forum->addThread($thread);
+		$this->forumRepository->update($forum);
 
 		$this->addFlashMessage(
 			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_forum.flashMessages.created', 'agora'),
