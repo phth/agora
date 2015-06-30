@@ -49,12 +49,18 @@ plugin.tx_agora {
             numberOfItemsPerPage = 10
 			dateFormat = m-d-y h:i
 			numberOfItemsInObservedThreadsWidget = 5
+            notificationsForThreadOwner = 1
+            defaultThreadEmailAdress = philipp.thiele@phth.de
+            defaultThreadEmailUserName = ThreadAdmin
         }
         post {
 			numberOfItemsInLatestView = 10
             numberOfItemsPerPage = 10
             dateFormat = m-d-y h:i
             defaultCreatorName = Anonymous
+            notificationsForPostOwner = 1
+            defaultPostEmailAdress = philipp.thiele@phth.de
+            defaultPostEmailUserName = PostAdmin
         }
     }
 }

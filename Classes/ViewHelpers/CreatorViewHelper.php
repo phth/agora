@@ -49,10 +49,10 @@ class CreatorViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
         );
 
         $username = '';
-        if(is_a($object->getCreator(), '\AgoraTeam\Agora\Domain\Model\User')) {
+
+        if(is_object($object->getCreator())) {
             $username = $object->getCreator()->getDisplayName();
         } else {
-
             $username = $settings['post']['defaultCreatorName'];
         }
         return $username;

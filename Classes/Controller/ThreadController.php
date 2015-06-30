@@ -89,7 +89,7 @@ class ThreadController extends ActionController {
 	public function newAction(\AgoraTeam\Agora\Domain\Model\Forum $forum,
 							  \AgoraTeam\Agora\Domain\Model\Thread $thread = NULL, $text = '') {
 
-		if(!$forum->isWritableForUser($this->getUser())) {
+        if(!$forum->isWritableForUser($this->getUser())) {
 			$this->addFlashMessage(
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_forum.flashMessages.editDenied.text', 'agora'),
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_forum.flashMessages.editDenied.headline', 'agora'),
@@ -98,7 +98,8 @@ class ThreadController extends ActionController {
 			$this->redirect('list', 'Thread', 'agora', array('forum' => $forum));
 		}
 
-		$this->view->assign('forum', $forum)
+
+        $this->view->assign('forum', $forum)
 					->assign('thread', $thread)
 					->assign('text', $text);
 	}
@@ -115,7 +116,6 @@ class ThreadController extends ActionController {
 	 */
 	public function createAction(\AgoraTeam\Agora\Domain\Model\Forum $forum,
 								 \AgoraTeam\Agora\Domain\Model\Thread $thread, $text) {
-
 		if(!$forum->isWritableForUser($this->getUser())) {
 			$this->addFlashMessage(
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_forum.flashMessages.editDenied.text', 'agora'),
@@ -141,20 +141,38 @@ class ThreadController extends ActionController {
 		}
 
 		$forum->addThread($thread);
-		$this->forumRepository->update($forum);
+		//$this->forumRepository->update($forum);
 
 		$this->addFlashMessage(
 			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_forum.flashMessages.created', 'agora'),
 			'',
 			\TYPO3\CMS\Core\Messaging\AbstractMessage::OK
 		);
-
+        if( $this->settings['thread']['notificationsForThreadOwner'] == 1 ) {
+            $user = $this->getUser();
+            $this->sendMail(
+                array(
+                    $user->getEmail() => $user->getDisplayName()
+                ),
+                array(
+                    $this->settings['thread']['defaultThreadEmailAdress'] =>  $this->settings['thread']['defaultThreadEmailUserName']
+                ),
+                \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('email.updateDepotType.subject', 'depot'),
+                'NotificationToThreadOwner',
+                array(
+                    'user' => $user,
+                    'thread' => $thread
+                )
+            );
+        }
 		$this->redirect(
 			'list',
 			'Thread',
 			'Agora',
 			array('forum' => $forum)
 		);
+
+
 	}
 
 	/**
