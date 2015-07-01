@@ -146,6 +146,12 @@ class Thread extends Entity {
     protected $forum;
 
 	/**
+	 * observers
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User>
+	 */
+	protected $observers = NULL;
+	/**
 	 * __construct
 	 */
 	public function __construct() {
@@ -296,11 +302,52 @@ class Thread extends Entity {
 	}
 
 	/**
+	 * Adds an observer
+	 *
+	 * @param \AgoraTeam\Agora\Domain\Model\User $observer
+	 */
+
+
+	public function addObserver(\AgoraTeam\Agora\Domain\Model\User $observer) {
+		$this->observers->attach($observer);
+	}
+
+	/**
+	 * Removes an observer
+	 *
+	 * @param \AgoraTeam\Agora\Domain\Model\User $observerToRemove $observerToRemove The observer to be removed
+	 * @return void
+	 */
+	public function removeObserver(\AgoraTeam\Agora\Domain\Model\User $observerToRemove) {
+		$this->posts->detach($observerToRemove);
+	}
+
+	/**
+	 * Returns the observers
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User> $observers
+	 */
+	public function getObservers() {
+		return $this->observers;
+	}
+
+	/**
+	 * Sets the posts
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User> $observers
+	 * @return void
+	 */
+	public function setObservers(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $observers) {
+		$this->observers = $observers;
+	}
+	/**
 	 * Adds a Post
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
 	 * @return void
 	 */
+
+
 	public function addPost(\AgoraTeam\Agora\Domain\Model\Post $post) {
 		$this->posts->attach($post);
 	}

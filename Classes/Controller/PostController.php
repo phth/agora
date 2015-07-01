@@ -185,6 +185,21 @@ class PostController extends ActionController {
 			'',
 			\TYPO3\CMS\Core\Messaging\AbstractMessage::OK
 		);
+		$sender = $this->getThreadDefaultSender();
+		foreach($newPost->getThread()->getObservers() as $regularUser){
+			$this->sendMail(
+				array(
+					$regularUser->getEmail() => $regularUser->getDisplayName()
+				),
+				$sender,
+				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('email.updateDepotType.subject', 'depot'),
+				'NotificationToRegularUser',
+				array(
+					'user' => $regularUser,
+					'thread' => $newPost->getThread()
+				)
+			);
+		}
         if( ( $this->settings['post']['notificationsForPostOwner'] == 1 ) and  is_object($creator = $newPost->getQuotedPost()) )
         {
             $creator = $newPost->getQuotedPost()->getCreator();
