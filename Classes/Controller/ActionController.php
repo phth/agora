@@ -162,6 +162,7 @@ class ActionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $message->send();
         return $message->isSent();
     }
+<<<<<<< HEAD
 
     protected function getPostsDefaultSender(){
         return array(  $this->settings['post']['defaultPostEmailAdress'] => $this->settings['post']['defaultPostEmailUserName']);
@@ -170,5 +171,7 @@ class ActionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected function getThreadDefaultSender(){
         return array(  $this->settings['thread']['defaultThreadEmailAdress'] => $this->settings['thread']['defaultThreadEmailUserName']);
     }
+=======
+>>>>>>> 9d6f9456f3cfe64a8c3aeb2036b86e6abeaa7b43
 
 }

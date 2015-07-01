@@ -192,8 +192,14 @@ class PostController extends ActionController {
                 array(
                     $creator->getEmail() => $creator->getDisplayName()
                 ),
+<<<<<<< HEAD
                 $this->getPostsDefaultSender(),
 
+=======
+                array(
+                    $this->settings['post']['defaultPostEmailAdress'] =>  $this->settings['post']['defaultPostEmailUserName']
+                ),
+>>>>>>> 9d6f9456f3cfe64a8c3aeb2036b86e6abeaa7b43
                 \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('email.updateDepotType.subject', 'depot'),
                 'NotificationToPostOwner',
                 array(

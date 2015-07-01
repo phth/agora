@@ -154,7 +154,13 @@ class ThreadController extends ActionController {
                 array(
                     $user->getEmail() => $user->getDisplayName()
                 ),
+<<<<<<< HEAD
                 $this->getThreadDefaultSender(),
+=======
+                array(
+                    $this->settings['thread']['defaultThreadEmailAdress'] =>  $this->settings['thread']['defaultThreadEmailUserName']
+                ),
+>>>>>>> 9d6f9456f3cfe64a8c3aeb2036b86e6abeaa7b43
                 \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('email.updateDepotType.subject', 'depot'),
                 'NotificationToThreadOwner',
                 array(
