@@ -152,19 +152,21 @@ class PostController extends ActionController {
 		$this->view->assign('newPost', $newPost);
 		$this->view->assign('quotedPost', $quotedPost);
 		$this->view->assign('thread', $thread);
+
 	}
+
+    public function getCreator($post){
+        return $post->getCreator();
+    }
 
 	/**
 	 * action create
 	 *
 	 * @todo send info mails for subscribed users
-	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $newPost
-	 *
 	 * @return void
 	 */
 	public function createAction(\AgoraTeam\Agora\Domain\Model\Post $newPost) {
-
 		if(!$newPost->getThread()->isWritableForUser($this->getUser())) {
 			$this->addFlashMessage(
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.text', 'agora'),
@@ -173,20 +175,33 @@ class PostController extends ActionController {
 			);
 			$this->redirect('list', 'Post', 'agora', array('thread' => $newPost->getThread()));
 		}
-
 		$user = $this->getUser();
-
 		$newPost->setCreator($user);
 		$now = new \DateTime();
 		$newPost->setPublishingDate($now);
 		$this->postRepository->add($newPost);
-
 		$this->addFlashMessage(
 			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_post.flashMessages.created', 'agora'),
 			'',
 			\TYPO3\CMS\Core\Messaging\AbstractMessage::OK
 		);
+        if( ( $this->settings['post']['notificationsForPostOwner'] == 1 ) and  is_object($creator = $newPost->getQuotedPost()) )
+        {
+            $creator = $newPost->getQuotedPost()->getCreator();
+            $this->sendMail(
+                array(
+                    $creator->getEmail() => $creator->getDisplayName()
+                ),
+                $this->getPostsDefaultSender(),
 
+                \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('email.updateDepotType.subject', 'depot'),
+                'NotificationToPostOwner',
+                array(
+                    'user' => $user,
+                    'post' => $newPost
+                )
+            );
+        }
 		$this->redirect(
 			'list',
 			'Post',
@@ -308,4 +323,5 @@ class PostController extends ActionController {
 		$latestPosts = $this->postRepository->findLatestPostsForUser($limit);
 		$this->view->assign('latestPosts', $latestPosts);
 	}
+
 }

@@ -263,6 +263,7 @@ class Post extends Entity {
      */
     public function addReply(\AgoraTeam\Agora\Domain\Model\Post $reply) {
         $this->replies->attach($reply);
+
     }
 
     /**
@@ -321,6 +322,7 @@ class Post extends Entity {
 	 */
 	public function addAttachment(\AgoraTeam\Agora\Domain\Model\Attachment $attachment) {
 		$this->attachments->attach($attachment);
+
 	}
 
 	/**

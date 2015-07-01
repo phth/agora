@@ -1,0 +1,13 @@
+<f:layout name="Default" />
+<f:section name="main">
+    <h1>{subject}</h1>
+    <h1>
+        <f:translate key="email_postownernotificationgeetings" /> {user.displayName}
+    </h1>
+    <p>
+        <f:translate key="email_postownernotificationmessage" arguments="{0:'{post.quotedPost.text}', 1:'{f:format.date(date: \'NOW\', format: \'d.m.Y H:i:s\')}'}"  />
+    </p>
+    <p>
+        <f:translate key="email_postownernotificationend" />
+    </p>
+</f:section>
