@@ -151,6 +151,7 @@ class Thread extends Entity {
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User>
 	 */
 	protected $observers = NULL;
+
 	/**
 	 * __construct
 	 */
@@ -176,6 +177,7 @@ class Thread extends Entity {
 		$this->usersWithReadAccess = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->usersWithWriteAccess = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->usersWithModificationAccess = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->observers = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
@@ -300,14 +302,12 @@ class Thread extends Entity {
 	public function setCreator($creator) {
 		$this->creator = $creator;
 	}
-
+	
 	/**
 	 * Adds an observer
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\User $observer
 	 */
-
-
 	public function addObserver(\AgoraTeam\Agora\Domain\Model\User $observer) {
 		$this->observers->attach($observer);
 	}
@@ -332,7 +332,7 @@ class Thread extends Entity {
 	}
 
 	/**
-	 * Sets the posts
+	 * Sets the observers
 	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\User> $observers
 	 * @return void
@@ -340,13 +340,13 @@ class Thread extends Entity {
 	public function setObservers(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $observers) {
 		$this->observers = $observers;
 	}
+
 	/**
 	 * Adds a Post
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
 	 * @return void
 	 */
-
 
 	public function addPost(\AgoraTeam\Agora\Domain\Model\Post $post) {
 		$this->posts->attach($post);
