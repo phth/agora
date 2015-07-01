@@ -47,6 +47,10 @@
                             {post.text -> a:parser.parsedown()}
                         </div>
 
+                        <div>
+                            {post.creator.signature}
+                        </div>
+
 						<a:thread.editable thread="{thread}" user="{user}">
 							<f:link.action class="btn btn-default" action="new" arguments="{thread:thread, quotedPost:post}">
 								<f:translate key="tx_agora_domain_model_post.reply" />

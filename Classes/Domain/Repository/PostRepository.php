@@ -65,6 +65,4 @@ class PostRepository extends Repository {
 		return $result;
 	}
 
-
-
 }
