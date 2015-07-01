@@ -50,7 +50,7 @@ plugin.tx_agora {
 			dateFormat = m-d-y h:i
 			numberOfItemsInObservedThreadsWidget = 5
             notificationsForThreadOwner = 1
-            defaultThreadEmailAdress = philipp.thiele@phth.de
+            defaultThreadEmailAdress = email_adress@example.de
             defaultThreadEmailUserName = ThreadAdmin
         }
         post {
@@ -59,7 +59,7 @@ plugin.tx_agora {
             dateFormat = m-d-y h:i
             defaultCreatorName = Anonymous
             notificationsForPostOwner = 1
-            defaultPostEmailAdress = philipp.thiele@phth.de
+            defaultPostEmailAdress = email_aress@example.de
             defaultPostEmailUserName = PostAdmin
         }
     }

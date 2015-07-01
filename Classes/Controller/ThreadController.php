@@ -40,7 +40,7 @@ class ThreadController extends ActionController {
 	 * @inject
 	 */
 	protected $forumRepository = NULL;
-	
+
 	/**
 	 * threadRepository
 	 *
