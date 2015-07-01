@@ -364,7 +364,15 @@
             <trans-unit id="email_postownernotificationend">
                 <source>Have a nice day!</source>
             </trans-unit>
-
+            <trans-unit id="email_regularusernotificationgeetings">
+                <source>Hello</source>
+            </trans-unit>
+            <trans-unit id="email_regularusernotificationmessage">
+                <source>The thread your are following %s was commented at %s.</source>
+            </trans-unit>
+            <trans-unit id="email_regularusernotificationend">
+                <source>Have a nice day!</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>
