@@ -34,6 +34,14 @@ namespace AgoraTeam\Agora\Controller;
 class ThreadController extends ActionController {
 
 	/**
+	 * forumRepository
+	 *
+	 * @var \AgoraTeam\Agora\Domain\Repository\ForumRepository
+	 * @inject
+	 */
+	protected $forumRepository = NULL;
+	
+	/**
 	 * threadRepository
 	 *
 	 * @var \AgoraTeam\Agora\Domain\Repository\ThreadRepository
