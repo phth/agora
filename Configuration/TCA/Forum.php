@@ -125,6 +125,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 				'eval' => 'trim'
 			),
 		),
+
 		'description' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.description',

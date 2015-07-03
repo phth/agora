@@ -40,7 +40,7 @@ if (TYPO3_MODE === 'BE') {
 		'forum',	// Submodule key
 		'',						// Position
 		array(
-			'ForumAdmin' => 'list, new, create, edit, update, statistic',
+			'ForumAdmin' => 'list, new, create, edit, update, statistic,delete',
 
 		),
 		array(
