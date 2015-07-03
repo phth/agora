@@ -199,7 +199,7 @@ class Forum extends Entity {
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $parent
 	 * @return void
 	 */
-	public function setParent(\AgoraTeam\Agora\Domain\Model\Forum $parent) {
+	public function setParent($parent) {
 		$this->parent = $parent;
 	}
 

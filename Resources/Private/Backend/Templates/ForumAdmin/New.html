@@ -1,0 +1,61 @@
+
+<f:layout name="Default" />
+
+This template displays a NEW form for the current domain object.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        New.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="content">
+<h1>New Forum</h1>
+
+<f:flashMessages />
+
+<f:render partial="FormErrors" />
+
+<f:form action="create"  enctype="multipart/form-data"  name="newForum" object="{newForum}">
+	<label for="title">
+		<f:translate key="tx_agora_domain_model_forum.title" />
+	</label><br />
+	<f:form.textfield property="title" /><br />
+	<label for="description">
+		<f:translate key="tx_agora_domain_model_forum.description" />
+	</label><br />
+	<f:form.textarea property="description" cols="40" rows="15" /><br />
+	<label for="groups_with_read_access">
+		<f:translate key="tx_agora_domain_model_forum.groups_with_read_access" />
+	</label><br />
+	<f:form.select property="groupsWithReadAccess" multiple="1" options="{groups}" optionValueField="uid" optionLabelField="title"/><br />
+	<label for ="group_with_write_access">
+		<f:translate key="tx_agora_domain_model_forum.group_with_write_access" />
+	</label><br />
+	<f:form.select property="groupsWithWriteAccess" multiple="1" options="{groups}" optionValueField="uid" optionLabelField="title"/><br />
+	<label for ="groups_with_modification_access">
+		<f:translate key="tx_agora_domain_model_forum.groups_with_modification_access" />
+	</label><br />
+	<f:form.select property="groupsWithModificationAccess" multiple="1" options="{groups}" optionValueField="uid" optionLabelField="title"/><br />
+	<label for ="users_with_read_access">
+		<f:translate key="tx_agora_domain_model_forum.users_with_read_access" />
+	</label><br />
+	<f:form.select property="usersWithReadAccess" multiple="1" options="{users}" optionValueField="uid" optionLabelField="displayName"/><br />
+	<label for ="users_with_write_access">
+		<f:translate key="tx_agora_domain_model_forum.users_with_write_access" />
+	</label><br />
+	<f:form.select property="usersWithWriteAccess" multiple="1" options="{users}" optionValueField="uid" optionLabelField="displayName"/><br />
+	<label for ="users_with_modification_access">
+		<f:translate key="tx_agora_domain_model_forum.users_with_modification_access" />
+	</label><br />
+	<f:form.select property="usersWithModificationAccess" multiple="1" options="{users}" optionValueField="uid" optionLabelField="displayName"/><br />
+	<label for ="parent">
+		<f:translate key="tx_agora_domain_model_forum.parent" />
+	</label><br />
+	<f:form.select property="parent" prependOptionLabel="" prependOptionValue="0" options="{forums}" optionValueField="uid" optionLabelField="title"/><br /><br />
+	<f:form.submit value="Create new" />
+</f:form>
+</f:section>

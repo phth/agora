@@ -302,7 +302,7 @@ class Thread extends Entity {
 	public function setCreator($creator) {
 		$this->creator = $creator;
 	}
-	
+
 	/**
 	 * Adds an observer
 	 *

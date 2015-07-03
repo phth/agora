@@ -103,6 +103,4 @@ class ForumController extends ActionController {
 		$this->forumRepository->update($forum);
 		$this->redirect('list');
 	}
-
-
 }

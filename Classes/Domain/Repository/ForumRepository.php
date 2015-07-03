@@ -130,4 +130,23 @@ class ForumRepository extends Repository {
 
 		return $forums;
 	}
+
+	/**
+	 * findFormusWithDiferentdId
+	 *
+	 * find forums that have different id comparing with the given one
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+	 */
+	public function findFormusWithDiferentdId($forum) {
+		$query = $this->createQuery();
+		$query->matching(
+			$query->logicalNot($query->equals('uid',$forum->getUid()))
+		);
+		$query->setOrderings(array('title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
+		$forums = $query->execute();
+		return $forums;
+	}
+
+
 }
