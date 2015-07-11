@@ -1,37 +1,29 @@
 <?php
 namespace AgoraTeam\Agora\Hooks;
 
-
 	/***************************************************************
-	 *
 	 *  Copyright notice
-	 *
 	 *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
 	 *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
-	 *
 	 *  All rights reserved
-	 *
 	 *  This script is part of the TYPO3 project. The TYPO3 project is
 	 *  free software; you can redistribute it and/or modify
 	 *  it under the terms of the GNU General Public License as published by
 	 *  the Free Software Foundation; either version 3 of the License, or
 	 *  (at your option) any later version.
-	 *
 	 *  The GNU General Public License can be found at
 	 *  http://www.gnu.org/copyleft/gpl.html.
-	 *
 	 *  This script is distributed in the hope that it will be useful,
 	 *  but WITHOUT ANY WARRANTY; without even the implied warranty of
 	 *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	 *  GNU General Public License for more details.
-	 *
 	 *  This copyright notice MUST APPEAR in all copies of the script!
 	 ***************************************************************/
 
 /**
  * Hook into tcemain
  */
-class Tcemain  {
+class Tcemain {
 
 	protected $preProcessValues = array();
 
@@ -41,12 +33,11 @@ class Tcemain  {
 	 * @return string
 	 */
 	protected function getRecordKey($table, $uid) {
-		return $table.'-'.$uid;
+		return $table . '-' . $uid;
 	}
 
 	/**
 	 * processDatamap preProcessFieldArray
-	 *
 	 * here we filter all groups and users with changed permissions and store them in $preProcessValues for later use
 	 * in afterDatabaseOperations
 	 *
@@ -123,7 +114,6 @@ class Tcemain  {
 	 * update subforums
 	 *
 	 * @todo: refactor with a more generic approach
-	 *
 	 * @param array $forum forum
 	 * @param bool $isRootForum
 	 * @return void
@@ -133,10 +123,10 @@ class Tcemain  {
 		$usersOfForumWithReadAccess = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'uid_foreign', 'tx_agora_forum_userswithreadaccess_mm', 'uid_local = "' . $forum['uid'] . '" ', '', '', '', 'uid_foreign'
 		);
-		if($isRootForum) {
+		if ($isRootForum) {
 			$this->usersOfForumWithReadAccessToDelete = array();
-			foreach($this->preProcessValues[$this->getRecordKey('tx_agora_domain_model_forum', $forum['uid'])]['usersOfForumWithReadAccess'] as $userId) {
-				if(!array_key_exists($userId, $usersOfForumWithReadAccess)) {
+			foreach ($this->preProcessValues[$this->getRecordKey('tx_agora_domain_model_forum', $forum['uid'])]['usersOfForumWithReadAccess'] as $userId) {
+				if (!array_key_exists($userId, $usersOfForumWithReadAccess)) {
 					$this->usersOfForumWithReadAccessToDelete[] = $userId;
 				}
 			}
@@ -145,10 +135,10 @@ class Tcemain  {
 		$usersOfForumWithWriteAccess = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'uid_foreign', 'tx_agora_forum_userswithwriteaccess_mm', 'uid_local = "' . $forum['uid'] . '" ', '', '', '', 'uid_foreign'
 		);
-		if($isRootForum) {
+		if ($isRootForum) {
 			$this->usersOfForumWithWriteAccessToDelete = array();
-			foreach($this->preProcessValues[$this->getRecordKey('tx_agora_domain_model_forum', $forum['uid'])]['usersOfForumWithWriteAccess'] as $userId) {
-				if(!array_key_exists($userId, $usersOfForumWithWriteAccess)) {
+			foreach ($this->preProcessValues[$this->getRecordKey('tx_agora_domain_model_forum', $forum['uid'])]['usersOfForumWithWriteAccess'] as $userId) {
+				if (!array_key_exists($userId, $usersOfForumWithWriteAccess)) {
 					$this->usersOfForumWithWriteAccessToDelete[] = $userId;
 				}
 			}
@@ -157,10 +147,10 @@ class Tcemain  {
 		$usersOfForumWithModificationAccess = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'uid_foreign', 'tx_agora_forum_userswithmodificationaccess_mm', 'uid_local = "' . $forum['uid'] . '" ', '', '', '', 'uid_foreign'
 		);
-		if($isRootForum) {
+		if ($isRootForum) {
 			$this->usersOfForumWithModificationAccessToDelete = array();
-			foreach($this->preProcessValues[$this->getRecordKey('tx_agora_domain_model_forum', $forum['uid'])]['usersOfForumWithModificationAccess'] as $userId) {
-				if(!array_key_exists($userId, $usersOfForumWithModificationAccess)) {
+			foreach ($this->preProcessValues[$this->getRecordKey('tx_agora_domain_model_forum', $forum['uid'])]['usersOfForumWithModificationAccess'] as $userId) {
+				if (!array_key_exists($userId, $usersOfForumWithModificationAccess)) {
 					$this->usersOfForumWithModificationAccessToDelete[] = $userId;
 				}
 			}
@@ -169,10 +159,10 @@ class Tcemain  {
 		$groupsOfForumWithReadAccess = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'uid_foreign', 'tx_agora_forum_groupswithreadaccess_mm', 'uid_local = "' . $forum['uid'] . '" ', '', '', '', 'uid_foreign'
 		);
-		if($isRootForum) {
+		if ($isRootForum) {
 			$this->groupsOfForumWithReadAccessToDelete = array();
-			foreach($this->preProcessValues[$this->getRecordKey('tx_agora_domain_model_forum', $forum['uid'])]['groupsOfForumWithReadAccess'] as $userId) {
-				if(!array_key_exists($userId, $groupsOfForumWithReadAccess)) {
+			foreach ($this->preProcessValues[$this->getRecordKey('tx_agora_domain_model_forum', $forum['uid'])]['groupsOfForumWithReadAccess'] as $userId) {
+				if (!array_key_exists($userId, $groupsOfForumWithReadAccess)) {
 					$this->groupsOfForumWithReadAccessToDelete[] = $userId;
 				}
 			}
@@ -181,10 +171,10 @@ class Tcemain  {
 		$groupsOfForumWithWriteAccess = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'uid_foreign', 'tx_agora_forum_groupswithwriteaccess_mm', 'uid_local = "' . $forum['uid'] . '" ', '', '', '', 'uid_foreign'
 		);
-		if($isRootForum) {
+		if ($isRootForum) {
 			$this->groupsOfForumWithWriteAccessToDelete = array();
-			foreach($this->preProcessValues[$this->getRecordKey('tx_agora_domain_model_forum', $forum['uid'])]['groupsOfForumWithWriteAccess'] as $userId) {
-				if(!array_key_exists($userId, $groupsOfForumWithWriteAccess)) {
+			foreach ($this->preProcessValues[$this->getRecordKey('tx_agora_domain_model_forum', $forum['uid'])]['groupsOfForumWithWriteAccess'] as $userId) {
+				if (!array_key_exists($userId, $groupsOfForumWithWriteAccess)) {
 					$this->groupsOfForumWithWriteAccessToDelete[] = $userId;
 				}
 			}
@@ -193,10 +183,10 @@ class Tcemain  {
 		$groupsOfForumWithModificationAccess = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'uid_foreign', 'tx_agora_forum_groupswithmodificationaccess_mm', 'uid_local = "' . $forum['uid'] . '" ', '', '', '', 'uid_foreign'
 		);
-		if($isRootForum) {
+		if ($isRootForum) {
 			$this->groupsOfForumWithModifactionAccessToDelete = array();
-			foreach($this->preProcessValues[$this->getRecordKey('tx_agora_domain_model_forum', $forum['uid'])]['groupsOfForumWithModificationAccess'] as $userId) {
-				if(!array_key_exists($userId, $groupsOfForumWithModificationAccess)) {
+			foreach ($this->preProcessValues[$this->getRecordKey('tx_agora_domain_model_forum', $forum['uid'])]['groupsOfForumWithModificationAccess'] as $userId) {
+				if (!array_key_exists($userId, $groupsOfForumWithModificationAccess)) {
 					$this->groupsOfForumWithModificationAccessToDelete[] = $userId;
 				}
 			}
@@ -206,13 +196,13 @@ class Tcemain  {
 			'*', 'tx_agora_domain_model_forum', 'parent = "' . $forum['uid'] . '" '
 		);
 
-		foreach($subForums as $subforum) {
+		foreach ($subForums as $subforum) {
 			// users_with_read_access
 			$usersOfSubforumWithReadAccess = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 				'uid_foreign', 'tx_agora_forum_userswithreadaccess_mm', 'uid_local = "' . $subforum['uid'] . '" ', '', '', '', 'uid_foreign'
 			);
-			foreach(array_keys($usersOfForumWithReadAccess) as $userOfForumWithReadAccess) {
-				if(!array_key_exists($userOfForumWithReadAccess, $usersOfSubforumWithReadAccess)) {
+			foreach (array_keys($usersOfForumWithReadAccess) as $userOfForumWithReadAccess) {
+				if (!array_key_exists($userOfForumWithReadAccess, $usersOfSubforumWithReadAccess)) {
 					$GLOBALS['TYPO3_DB']->exec_INSERTquery(
 						'tx_agora_forum_userswithreadaccess_mm',
 						array(
@@ -222,18 +212,18 @@ class Tcemain  {
 					);
 				}
 			}
-			if(count($this->usersOfForumWithReadAccessToDelete)) {
+			if (count($this->usersOfForumWithReadAccessToDelete)) {
 				$GLOBALS['TYPO3_DB']->exec_DELETEquery(
 					'tx_agora_forum_userswithreadaccess_mm',
-					'uid_foreign IN (' . implode(',', $this->usersOfForumWithReadAccessToDelete) . ') AND uid_local = '.$subforum['uid']
+					'uid_foreign IN (' . implode(',', $this->usersOfForumWithReadAccessToDelete) . ') AND uid_local = ' . $subforum['uid']
 				);
 			}
 			// users_with_write_access
 			$usersOfSubforumWithWriteAccess = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 				'uid_foreign', 'tx_agora_forum_userswithwriteaccess_mm', 'uid_local = "' . $subforum['uid'] . '" ', '', '', '', 'uid_foreign'
 			);
-			foreach(array_keys($usersOfForumWithWriteAccess) as $userOfForumWithWriteAccess) {
-				if(!array_key_exists($userOfForumWithWriteAccess, $usersOfSubforumWithWriteAccess)) {
+			foreach (array_keys($usersOfForumWithWriteAccess) as $userOfForumWithWriteAccess) {
+				if (!array_key_exists($userOfForumWithWriteAccess, $usersOfSubforumWithWriteAccess)) {
 					$GLOBALS['TYPO3_DB']->exec_INSERTquery(
 						'tx_agora_forum_userswithwriteaccess_mm',
 						array(
@@ -243,18 +233,18 @@ class Tcemain  {
 					);
 				}
 			}
-			if(count($this->usersOfForumWithWriteAccessToDelete)) {
+			if (count($this->usersOfForumWithWriteAccessToDelete)) {
 				$GLOBALS['TYPO3_DB']->exec_DELETEquery(
 					'tx_agora_forum_userswithwriteaccess_mm',
-					'uid_foreign IN (' . implode(',', $this->usersOfForumWithWriteAccessToDelete) . ') AND uid_local = '.$subforum['uid']
+					'uid_foreign IN (' . implode(',', $this->usersOfForumWithWriteAccessToDelete) . ') AND uid_local = ' . $subforum['uid']
 				);
 			}
 			// users_with_modification_access
 			$usersOfSubforumWithModificationAccess = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 				'uid_foreign', 'tx_agora_forum_userswithmodificationaccess_mm', 'uid_local = "' . $subforum['uid'] . '" ', '', '', '', 'uid_foreign'
 			);
-			foreach(array_keys($usersOfForumWithModificationAccess) as $userOfForumWithModificationAccess) {
-				if(!array_key_exists($userOfForumWithModificationAccess, $usersOfSubforumWithModificationAccess)) {
+			foreach (array_keys($usersOfForumWithModificationAccess) as $userOfForumWithModificationAccess) {
+				if (!array_key_exists($userOfForumWithModificationAccess, $usersOfSubforumWithModificationAccess)) {
 					$GLOBALS['TYPO3_DB']->exec_INSERTquery(
 						'tx_agora_forum_userswithmodificationaccess_mm',
 						array(
@@ -264,18 +254,18 @@ class Tcemain  {
 					);
 				}
 			}
-			if(count($this->usersOfForumWithModificationAccessToDelete)) {
+			if (count($this->usersOfForumWithModificationAccessToDelete)) {
 				$GLOBALS['TYPO3_DB']->exec_DELETEquery(
 					'tx_agora_forum_userswithmodificationaccess_mm',
-					'uid_foreign IN (' . implode(',', $this->usersOfForumWithModificationAccessToDelete) . ') AND uid_local = '.$subforum['uid']
+					'uid_foreign IN (' . implode(',', $this->usersOfForumWithModificationAccessToDelete) . ') AND uid_local = ' . $subforum['uid']
 				);
 			}
 			// groups_with_read_access
 			$groupsOfSubforumWithReadAccess = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 				'uid_foreign', 'tx_agora_forum_groupswithreadaccess_mm', 'uid_local = "' . $subforum['uid'] . '" ', '', '', '', 'uid_foreign'
 			);
-			foreach(array_keys($groupsOfForumWithReadAccess) as $groupOfForumWithReadAccess) {
-				if(!array_key_exists($groupOfForumWithReadAccess, $groupsOfSubforumWithReadAccess)) {
+			foreach (array_keys($groupsOfForumWithReadAccess) as $groupOfForumWithReadAccess) {
+				if (!array_key_exists($groupOfForumWithReadAccess, $groupsOfSubforumWithReadAccess)) {
 					$GLOBALS['TYPO3_DB']->exec_INSERTquery(
 						'tx_agora_forum_groupswithreadaccess_mm',
 						array(
@@ -285,18 +275,18 @@ class Tcemain  {
 					);
 				}
 			}
-			if(count($this->groupsOfForumWithReadAccessToDelete)) {
+			if (count($this->groupsOfForumWithReadAccessToDelete)) {
 				$GLOBALS['TYPO3_DB']->exec_DELETEquery(
 					'tx_agora_forum_groupswithreadaccess_mm',
-					'uid_foreign IN (' . implode(',', $this->groupsOfForumWithReadAccessToDelete) . ') AND uid_local = '.$subforum['uid']
+					'uid_foreign IN (' . implode(',', $this->groupsOfForumWithReadAccessToDelete) . ') AND uid_local = ' . $subforum['uid']
 				);
 			}
 			// groups_with_write_access
 			$groupsOfSubforumWithWriteAccess = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 				'uid_foreign', 'tx_agora_forum_groupswithwriteaccess_mm', 'uid_local = "' . $subforum['uid'] . '" ', '', '', '', 'uid_foreign'
 			);
-			foreach(array_keys($groupsOfForumWithWriteAccess) as $groupOfForumWithWriteAccess) {
-				if(!array_key_exists($groupOfForumWithWriteAccess, $groupsOfSubforumWithWriteAccess)) {
+			foreach (array_keys($groupsOfForumWithWriteAccess) as $groupOfForumWithWriteAccess) {
+				if (!array_key_exists($groupOfForumWithWriteAccess, $groupsOfSubforumWithWriteAccess)) {
 					$GLOBALS['TYPO3_DB']->exec_INSERTquery(
 						'tx_agora_forum_groupswithwriteaccess_mm',
 						array(
@@ -306,18 +296,18 @@ class Tcemain  {
 					);
 				}
 			}
-			if(count($this->groupsOfForumWithWriteAccessToDelete)) {
+			if (count($this->groupsOfForumWithWriteAccessToDelete)) {
 				$GLOBALS['TYPO3_DB']->exec_DELETEquery(
 					'tx_agora_forum_groupswithwriteaccess_mm',
-					'uid_foreign IN (' . implode(',', $this->groupsOfForumWithWriteAccessToDelete) . ') AND uid_local = '.$subforum['uid']
+					'uid_foreign IN (' . implode(',', $this->groupsOfForumWithWriteAccessToDelete) . ') AND uid_local = ' . $subforum['uid']
 				);
 			}
 			// groups_with_modification_access
 			$groupsOfSubforumWithModificationAccess = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 				'uid_foreign', 'tx_agora_forum_groupswithmodificationaccess_mm', 'uid_local = "' . $subforum['uid'] . '" ', '', '', '', 'uid_foreign'
 			);
-			foreach(array_keys($groupsOfForumWithModificationAccess) as $groupOfForumWithModificationAccess) {
-				if(!array_key_exists($groupOfForumWithModificationAccess, $groupsOfSubforumWithModificationAccess)) {
+			foreach (array_keys($groupsOfForumWithModificationAccess) as $groupOfForumWithModificationAccess) {
+				if (!array_key_exists($groupOfForumWithModificationAccess, $groupsOfSubforumWithModificationAccess)) {
 					$GLOBALS['TYPO3_DB']->exec_INSERTquery(
 						'tx_agora_forum_groupswithmodificationaccess_mm',
 						array(
@@ -327,19 +317,16 @@ class Tcemain  {
 					);
 				}
 			}
-			if(count($this->groupsOfForumWithModificationAccessToDelete)) {
+			if (count($this->groupsOfForumWithModificationAccessToDelete)) {
 				$GLOBALS['TYPO3_DB']->exec_DELETEquery(
 					'tx_agora_forum_groupswithmodificationaccess_mm',
-					'uid_foreign IN (' . implode(',', $this->groupsOfForumWithModificationAccessToDelete) . ') AND uid_local = '.$subforum['uid']
+					'uid_foreign IN (' . implode(',', $this->groupsOfForumWithModificationAccessToDelete) . ') AND uid_local = ' . $subforum['uid']
 				);
 			}
 		}
 
-		foreach($subForums as $subforum) {
+		foreach ($subForums as $subforum) {
 			$this->updateSubforums($subforum);
 		}
-
 	}
-
-
 }

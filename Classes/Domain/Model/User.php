@@ -1,32 +1,24 @@
 <?php
 namespace AgoraTeam\Agora\Domain\Model;
 
-
-/***************************************************************
- *
- *  Copyright notice
- *
- *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
- *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
- *
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+	/***************************************************************
+	 *  Copyright notice
+	 *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
+	 *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
+	 *  All rights reserved
+	 *  This script is part of the TYPO3 project. The TYPO3 project is
+	 *  free software; you can redistribute it and/or modify
+	 *  it under the terms of the GNU General Public License as published by
+	 *  the Free Software Foundation; either version 3 of the License, or
+	 *  (at your option) any later version.
+	 *  The GNU General Public License can be found at
+	 *  http://www.gnu.org/copyleft/gpl.html.
+	 *  This script is distributed in the hope that it will be useful,
+	 *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+	 *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	 *  GNU General Public License for more details.
+	 *  This copyright notice MUST APPEAR in all copies of the script!
+	 ***************************************************************/
 
 /**
  * User
@@ -98,12 +90,11 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected $email = '';
 
-
 	/**
 	 * __construct
 	 */
 	public function __construct() {
-			//Do not remove the next line: It would break the functionality
+		//Do not remove the next line: It would break the functionality
 		$this->initStorageObjects();
 	}
 
@@ -249,7 +240,6 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		return $this->observedThreads;
 	}
 
-
 	/**
 	 * Sets the observedThreads
 	 *
@@ -345,10 +335,11 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function getFlattenedGroups() {
 		$flattenedGroups = array();
-		foreach($this->getGroups() as $group) {
+		foreach ($this->getGroups() as $group) {
 			$flattenedGroups[(string)$group] = $group;
 			$flattenedGroups = array_merge($flattenedGroups, $group->getFlattenedSubgroups());
 		}
+
 		return $flattenedGroups;
 	}
 
@@ -359,9 +350,10 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function getFlattenedGroupUids() {
 		$flattenedGroupUids = array();
-		foreach($this->getFlattenedGroups() as $group) {
+		foreach ($this->getFlattenedGroups() as $group) {
 			$flattenedGroupUids[] = (int)$group->getUid();
 		}
+
 		return $flattenedGroupUids;
 	}
 
@@ -435,28 +427,28 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		return $this->lastName;
 	}
 
-    /**
-     * displayName
-     *
-     * @return string
-     */
-    public function getDisplayName() {
-        $displayName = '';
-        $displayNameParts = array();
+	/**
+	 * displayName
+	 *
+	 * @return string
+	 */
+	public function getDisplayName() {
+		$displayName = '';
+		$displayNameParts = array();
 
-	    if($this->getFirstName()) {
-		    $displayNameParts[] = $this->getFirstName();
-	    }
-		if($this->getLastName()) {
+		if ($this->getFirstName()) {
+			$displayNameParts[] = $this->getFirstName();
+		}
+		if ($this->getLastName()) {
 			$displayNameParts[] = $this->getLastName();
 		}
-        if(count($displayNameParts) > 0) {
-	        $displayName = implode(' ', $displayNameParts);
-	        //$displayName .= ' ('.$this->getUsername().')';
-        } else {
-            $displayName = $this->getUsername();
-        }
-        return $displayName;
-    }
+		if (count($displayNameParts) > 0) {
+			$displayName = implode(' ', $displayNameParts);
+			//$displayName .= ' ('.$this->getUsername().')';
+		} else {
+			$displayName = $this->getUsername();
+		}
 
+		return $displayName;
+	}
 }

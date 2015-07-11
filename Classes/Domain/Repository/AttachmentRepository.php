@@ -1,7 +1,6 @@
 <?php
 namespace AgoraTeam\Agora\Domain\Repository;
 
-
 /***************************************************************
  *
  *  Copyright notice

@@ -1,5 +1,5 @@
 <?php
-if (!defined ('TYPO3_MODE')) {
+if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
@@ -15,7 +15,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_votinganswer'] = array(
 		'1' => array('showitem' => ''),
 	),
 	'columns' => array(
-	
+
 		'sys_language_uid' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
@@ -56,7 +56,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_votinganswer'] = array(
 				'max' => 255,
 			)
 		),
-	
+
 		'hidden' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
@@ -107,7 +107,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_votinganswer'] = array(
 				'eval' => 'trim'
 			)
 		),
-		
+
 		'voting' => array(
 			'config' => array(
 				'type' => 'passthrough',

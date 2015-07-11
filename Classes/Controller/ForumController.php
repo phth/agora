@@ -25,72 +25,72 @@ namespace AgoraTeam\Agora\Controller;
  */
 class ForumController extends ActionController {
 
-    /**
-     * forumRepository
-     *
-     * @var \AgoraTeam\Agora\Domain\Repository\ForumRepository
-     * @inject
-     */
-    protected $forumRepository = NULL;
+	/**
+	 * forumRepository
+	 *
+	 * @var \AgoraTeam\Agora\Domain\Repository\ForumRepository
+	 * @inject
+	 */
+	protected $forumRepository = NULL;
 
-    /**
-     * action list
-     *
-     * @return void
-     */
-    public function listAction() {
-        $forums = $this->forumRepository->findVisibleRootForums();
-        $this->view->assignMultiple(
-            array(
-                'forums' => $forums,
-                'user' => $this->getUser()
-            )
-        );
-    }
+	/**
+	 * action list
+	 *
+	 * @return void
+	 */
+	public function listAction() {
+		$forums = $this->forumRepository->findVisibleRootForums();
+		$this->view->assignMultiple(
+			array(
+				'forums' => $forums,
+				'user' => $this->getUser()
+			)
+		);
+	}
 
-    /**
-     * action show
-     *
-     * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
-     * @return void
-     */
-    public function showAction(\AgoraTeam\Agora\Domain\Model\Forum $forum) {
-        $this->view->assign('forum', $forum);
-    }
+	/**
+	 * action show
+	 *
+	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
+	 * @return void
+	 */
+	public function showAction(\AgoraTeam\Agora\Domain\Model\Forum $forum) {
+		$this->view->assign('forum', $forum);
+	}
 
-    /**
-     * action new
-     *
-     * @param \AgoraTeam\Agora\Domain\Model\Forum $newForum
-     * @ignorevalidation $newForum
-     * @return void
-     */
-    public function newAction(\AgoraTeam\Agora\Domain\Model\Forum $newForum = NULL) {
-        $this->view->assign('newForum', $newForum);
-    }
+	/**
+	 * action new
+	 *
+	 * @param \AgoraTeam\Agora\Domain\Model\Forum $newForum
+	 * @ignorevalidation $newForum
+	 * @return void
+	 */
+	public function newAction(\AgoraTeam\Agora\Domain\Model\Forum $newForum = NULL) {
+		$this->view->assign('newForum', $newForum);
+	}
 
-    /**
-     * action create
-     *
-     * @param \AgoraTeam\Agora\Domain\Model\Forum $newForum
-     * @return void
-     */
-    public function createAction(\AgoraTeam\Agora\Domain\Model\Forum $newForum) {
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-        $this->forumRepository->add($newForum);
-        $this->redirect('list');
-    }
+	/**
+	 * action create
+	 *
+	 * @param \AgoraTeam\Agora\Domain\Model\Forum $newForum
+	 * @return void
+	 */
+	public function createAction(\AgoraTeam\Agora\Domain\Model\Forum $newForum) {
+		$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		$this->forumRepository->add($newForum);
+		$this->redirect('list');
+	}
 
-    /**
-     * action edit
-     *
-     * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
-     * @ignorevalidation $forum
-     * @return void
-     */
-    public function editAction(\AgoraTeam\Agora\Domain\Model\Forum $forum) {
-        $this->view->assign('forum', $forum);
-    }
+	/**
+	 * action edit
+	 *
+	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
+	 * @ignorevalidation $forum
+	 * @return void
+	 */
+	public function editAction(\AgoraTeam\Agora\Domain\Model\Forum $forum) {
+		$this->view->assign('forum', $forum);
+	}
 
 	/**
 	 * action update

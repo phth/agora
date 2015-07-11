@@ -1,5 +1,5 @@
 <?php
-if (!defined ('TYPO3_MODE')) {
+if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
@@ -15,7 +15,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_view'] = array(
 		'1' => array('showitem' => ''),
 	),
 	'columns' => array(
-	
+
 		'sys_language_uid' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
@@ -56,7 +56,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_view'] = array(
 				'max' => 255,
 			)
 		),
-	
+
 		'hidden' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
@@ -114,7 +114,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_view'] = array(
 				'type' => 'inline',
 				'foreign_table' => 'fe_users',
 				'foreign_field' => 'view',
-				'maxitems'      => 9999,
+				'maxitems' => 9999,
 				'appearance' => array(
 					'collapseAll' => 0,
 					'levelLinksPosition' => 'top',
@@ -125,6 +125,6 @@ $GLOBALS['TCA']['tx_agora_domain_model_view'] = array(
 			),
 
 		),
-		
+
 	),
 );

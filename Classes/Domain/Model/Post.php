@@ -1,61 +1,55 @@
 <?php
 namespace AgoraTeam\Agora\Domain\Model;
 
-
-/***************************************************************
- *
- *  Copyright notice
- *
- *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
- *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
- *
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+	/***************************************************************
+	 *  Copyright notice
+	 *  (c) 2015 Philipp Thiele <philipp.thiele@phth.de>
+	 *           Björn Christopher Bresser <bjoern.bresser@gmail.com>
+	 *  All rights reserved
+	 *  This script is part of the TYPO3 project. The TYPO3 project is
+	 *  free software; you can redistribute it and/or modify
+	 *  it under the terms of the GNU General Public License as published by
+	 *  the Free Software Foundation; either version 3 of the License, or
+	 *  (at your option) any later version.
+	 *  The GNU General Public License can be found at
+	 *  http://www.gnu.org/copyleft/gpl.html.
+	 *  This script is distributed in the hope that it will be useful,
+	 *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+	 *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	 *  GNU General Public License for more details.
+	 *  This copyright notice MUST APPEAR in all copies of the script!
+	 ***************************************************************/
 
 /**
- * Post
+ * Class Post
+ *
+ * @package AgoraTeam\Agora\Domain\Model
  */
 class Post extends Entity {
 
 	/**
-	 * topic
+	 * Topic
 	 *
 	 * @var string
 	 */
 	protected $topic = '';
 
 	/**
-	 * text
+	 * Text
 	 *
 	 * @var string
 	 */
 	protected $text = '';
 
-    /**
-     * publishingDate
-     *
-     * @var \DateTime
-     */
-    protected $publishingDate;
+	/**
+	 * PublishingDate
+	 *
+	 * @var \DateTime
+	 */
+	protected $publishingDate;
 
 	/**
-	 * quotedPost
+	 * QuotedPost
 	 *
 	 * @var \AgoraTeam\Agora\Domain\Model\Post
 	 * @lazy
@@ -63,23 +57,23 @@ class Post extends Entity {
 	protected $quotedPost = NULL;
 
 	/**
-	 * originalPost
+	 * OriginalPost
 	 *
 	 * @var \AgoraTeam\Agora\Domain\Model\Post
 	 * @lazy
 	 */
 	protected $originalPost = NULL;
 
-    /**
-     * replies
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post>
-     * @lazy
-     */
-    protected $replies = NULL;
+	/**
+	 * Replies
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post>
+	 * @lazy
+	 */
+	protected $replies = NULL;
 
 	/**
-	 * voting
+	 * Voting
 	 *
 	 * @var \AgoraTeam\Agora\Domain\Model\Voting
 	 * @lazy
@@ -87,7 +81,7 @@ class Post extends Entity {
 	protected $voting = NULL;
 
 	/**
-	 * attachments
+	 * Attachments
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Attachment>
 	 * @cascade remove
@@ -96,25 +90,24 @@ class Post extends Entity {
 	protected $attachments = NULL;
 
 	/**
-	 * creator
-     *
-     * may be NULL if post is anonymous
+	 * Creator
+	 * may be NULL if post is anonymous
 	 *
 	 * @var \AgoraTeam\Agora\Domain\Model\User
 	 * @lazy
 	 */
 	protected $creator = NULL;
 
-    /**
-     * thread
-     *
-     * @var \AgoraTeam\Agora\Domain\Model\Thread
-     * @lazy
-     */
-    protected $thread = NULL;
+	/**
+	 * Thread
+	 *
+	 * @var \AgoraTeam\Agora\Domain\Model\Thread
+	 * @lazy
+	 */
+	protected $thread = NULL;
 
 	/**
-	 * historicalVersions
+	 * HistoricalVersions
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post>
 	 * @cascade remove
@@ -122,26 +115,27 @@ class Post extends Entity {
 	 */
 	protected $historicalVersions = NULL;
 
-    /**
-     * rootline
-     *
-     * @var array
-     */
-    protected $rootline = array();
+	/**
+	 * Rootline
+	 *
+	 * @var array
+	 */
+	protected $rootline = array();
 
 	/**
-	 * isFavorite
+	 * IsFavorite
 	 *
 	 * @var bool
 	 */
 	protected $isFavorite = FALSE;
 
 	/**
+	 * Forum
+	 *
 	 * @var \AgoraTeam\Agora\Domain\Model\Forum
 	 * @lazy
 	 */
 	protected $forum = NULL;
-
 
 	/**
 	 * __construct
@@ -177,6 +171,7 @@ class Post extends Entity {
 	 * Sets the topic
 	 *
 	 * @param string $topic
+	 *
 	 * @return void
 	 */
 	public function setTopic($topic) {
@@ -196,33 +191,36 @@ class Post extends Entity {
 	 * Sets the text
 	 *
 	 * @param string $text
+	 *
 	 * @return void
 	 */
 	public function setText($text) {
 		$this->text = $text;
 	}
 
-    /**
-     * Returns the publishingDate
-     *
-     * @return \DateTime $publishingDate
-     */
-    public function getPublishingDate() {
-        if(!$this->publishingDate) {
-            return $this->getCrdate();
-        }
-        return $this->publishingDate;
-    }
+	/**
+	 * Returns the publishingDate
+	 *
+	 * @return \DateTime $publishingDate
+	 */
+	public function getPublishingDate() {
+		if (!$this->publishingDate) {
+			return $this->getCrdate();
+		}
 
-    /**
-     * Sets the publishingDate
-     *
-     * @param \DateTime $publishingDate
-     * @return void
-     */
-    public function setPublishingDate($publishingDate) {
-        $this->publishingDate = $publishingDate;
-    }
+		return $this->publishingDate;
+	}
+
+	/**
+	 * Sets the publishingDate
+	 *
+	 * @param \DateTime $publishingDate
+	 *
+	 * @return void
+	 */
+	public function setPublishingDate($publishingDate) {
+		$this->publishingDate = $publishingDate;
+	}
 
 	/**
 	 * Returns the quotedPost
@@ -233,15 +231,16 @@ class Post extends Entity {
 		return $this->quotedPost;
 	}
 
-    /**
-     * Sets the quotedPost
-     *
-     * @param \AgoraTeam\Agora\Domain\Model\Post $quotedPost
-     * @return void
-     */
-    public function setQuotedPost(\AgoraTeam\Agora\Domain\Model\Post $quotedPost) {
-        $this->quotedPost = $quotedPost;
-    }
+	/**
+	 * Sets the quotedPost
+	 *
+	 * @param \AgoraTeam\Agora\Domain\Model\Post $quotedPost
+	 *
+	 * @return void
+	 */
+	public function setQuotedPost(\AgoraTeam\Agora\Domain\Model\Post $quotedPost) {
+		$this->quotedPost = $quotedPost;
+	}
 
 	/**
 	 * Returns the originalPost
@@ -256,46 +255,49 @@ class Post extends Entity {
 	 * Sets the originalPost
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $originalPost
+	 *
 	 * @return void
 	 */
 	public function setOriginalPost(\AgoraTeam\Agora\Domain\Model\Post $originalPost) {
 		$this->originalPost = $originalPost;
 	}
 
-    /**
-     * Adds a Reply
-     *
-     * @param \AgoraTeam\Agora\Domain\Model\Post $reply
-     * @return void
-     */
-    public function addReply(\AgoraTeam\Agora\Domain\Model\Post $reply) {
-        $this->replies->attach($reply);
+	/**
+	 * Adds a Reply
+	 *
+	 * @param \AgoraTeam\Agora\Domain\Model\Post $reply
+	 *
+	 * @return void
+	 */
+	public function addReply(\AgoraTeam\Agora\Domain\Model\Post $reply) {
+		$this->replies->attach($reply);
+	}
 
-    }
+	/**
+	 * Removes a Reply
+	 *
+	 * @param \AgoraTeam\Agora\Domain\Model\Post $replyToRemove The Reply to be removed
+	 *
+	 * @return void
+	 */
+	public function removeReply(\AgoraTeam\Agora\Domain\Model\Post $replyToRemove) {
+		$this->replies->detach($replyToRemove);
+	}
 
-    /**
-     * Removes a Reply
-     *
-     * @param \AgoraTeam\Agora\Domain\Model\Post $replyToRemove The Reply to be removed
-     * @return void
-     */
-    public function removeReply(\AgoraTeam\Agora\Domain\Model\Post $replyToRemove) {
-        $this->replies->detach($replyToRemove);
-    }
-
-    /**
-     * Returns the replies
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $replies
-     */
-    public function getReplies() {
-        return $this->replies;
-    }
+	/**
+	 * Returns the replies
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $replies
+	 */
+	public function getReplies() {
+		return $this->replies;
+	}
 
 	/**
 	 * Sets the replies
 	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $replies
+	 *
 	 * @return void
 	 */
 	public function setReplies(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $replies) {
@@ -315,6 +317,7 @@ class Post extends Entity {
 	 * Sets the voting
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Voting $voting
+	 *
 	 * @return void
 	 */
 	public function setVoting(\AgoraTeam\Agora\Domain\Model\Voting $voting) {
@@ -325,17 +328,18 @@ class Post extends Entity {
 	 * Adds a Attachment
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Attachment $attachment
+	 *
 	 * @return void
 	 */
 	public function addAttachment(\AgoraTeam\Agora\Domain\Model\Attachment $attachment) {
 		$this->attachments->attach($attachment);
-
 	}
 
 	/**
 	 * Removes a Attachment
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Attachment $attachmentToRemove The Attachment to be removed
+	 *
 	 * @return void
 	 */
 	public function removeAttachment(\AgoraTeam\Agora\Domain\Model\Attachment $attachmentToRemove) {
@@ -355,6 +359,7 @@ class Post extends Entity {
 	 * Sets the attachments
 	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Attachment> $attachments
+	 *
 	 * @return void
 	 */
 	public function setAttachments(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $attachments) {
@@ -374,40 +379,44 @@ class Post extends Entity {
 	 * Sets the creator
 	 *
 	 * @param mixed $creator
+	 *
 	 * @return void
 	 */
 	public function setCreator($creator) {
 		$this->creator = $creator;
 	}
 
-    /**
-     * Returns the thread
-     *
-     * @return \AgoraTeam\Agora\Domain\Model\Thread $thread
-     */
-    public function getThread() {
-        if(is_object($this->thread)) {
-            $thread = $this->thread;
-        } else {
-            $thread = $this->detectThread();
-        }
-        return $thread;
-    }
+	/**
+	 * Returns the thread
+	 *
+	 * @return \AgoraTeam\Agora\Domain\Model\Thread $thread
+	 */
+	public function getThread() {
+		if (is_object($this->thread)) {
+			$thread = $this->thread;
+		} else {
+			$thread = $this->detectThread();
+		}
 
-    /**
-     * Sets the thread
-     *
-     * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
-     * @return void
-     */
-    public function setThread($thread) {
-        $this->thread = $thread;
-    }
+		return $thread;
+	}
+
+	/**
+	 * Sets the thread
+	 *
+	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
+	 *
+	 * @return void
+	 */
+	public function setThread($thread) {
+		$this->thread = $thread;
+	}
 
 	/**
 	 * Adds a Post
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $historicalVersion
+	 *
 	 * @return void
 	 */
 	public function addHistoricalVersion(\AgoraTeam\Agora\Domain\Model\Post $historicalVersion) {
@@ -418,6 +427,7 @@ class Post extends Entity {
 	 * Removes a Post
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $historicalVersionToRemove The Post to be removed
+	 *
 	 * @return void
 	 */
 	public function removeHistoricalVersion(\AgoraTeam\Agora\Domain\Model\Post $historicalVersionToRemove) {
@@ -427,7 +437,7 @@ class Post extends Entity {
 	/**
 	 * Returns the historicalVersions
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $historicalVersions
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $historicalVersion
 	 */
 	public function getHistoricalVersions() {
 		return $this->historicalVersions;
@@ -437,67 +447,76 @@ class Post extends Entity {
 	 * Sets the historicalVersions
 	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\AgoraTeam\Agora\Domain\Model\Post> $historicalVersions
+	 *
 	 * @return void
 	 */
 	public function setHistoricalVersions(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $historicalVersions) {
 		$this->historicalVersions = $historicalVersions;
 	}
 
-    /**
-     * Detects the Thread recursively
-     *
-     * @return Thread|bool
-     */
-    public function detectThread() {
-        $thread = FALSE;
-        if(is_object($this->thread)) {
-            $thread = $this->thread;
-        } else {
-            if(is_object($this->quotedPost)) {
-                $thread = $this->quotedPost->detectThread();
-            }
-        }
-        return $thread;
-    }
+	/**
+	 * Detects the Thread recursively
+	 *
+	 * @return Thread|bool
+	 */
+	public function detectThread() {
+		$thread = FALSE;
+		if (is_object($this->thread)) {
+			$thread = $this->thread;
+		} else {
+			if (is_object($this->quotedPost)) {
+				$thread = $this->quotedPost->detectThread();
+			}
+		}
 
-    /**
-     * Returns the rootline
-     *
-     * @return array
-     */
-    public function getRootline() {
-        if(empty($this->rootline)) {
-            $this->fetchNextRootlineLevel();
-        }
-        return $this->rootline;
-    }
-
-    /**
-     * fetches next rootline level recursively
-     *
-     * @return void
-     */
-    public function fetchNextRootlineLevel() {
-
-        if(empty($this->rootline)) {
-            if (is_object($this->getQuotedPost())) {
-                array_push($this->rootline, current($this->getQuotedPost()->getRootline()));
-                array_push($this->rootline, $this);
-            } else {
-                array_push($this->rootline, $this);
-            }
-        }
-    }
+		return $thread;
+	}
 
 	/**
-	 * @return boolean
+	 * Returns the rootline
+	 *
+	 * @return array
+	 */
+	public function getRootline() {
+		if (empty($this->rootline)) {
+			$this->fetchNextRootlineLevel();
+		}
+
+		return $this->rootline;
+	}
+
+	/**
+	 * Fetches next rootline level recursively
+	 *
+	 * @return void
+	 */
+	public function fetchNextRootlineLevel() {
+
+		if (empty($this->rootline)) {
+			if (is_object($this->getQuotedPost())) {
+				array_push($this->rootline, current($this->getQuotedPost()->getRootline()));
+				array_push($this->rootline, $this);
+			} else {
+				array_push($this->rootline, $this);
+			}
+		}
+	}
+
+	/**
+	 * Function isIsFavorite
+	 *
+	 * @return bool
 	 */
 	public function isIsFavorite() {
 		return $this->isFavorite;
 	}
 
 	/**
-	 * @param boolean $isFavorite
+	 * Function setIsFavorite
+	 *
+	 * @param bool $isFavorite
+	 *
+	 * @return void
 	 */
 	public function setIsFavorite($isFavorite) {
 		$this->isFavorite = $isFavorite;
@@ -526,5 +545,4 @@ class Post extends Entity {
 	public function setForum($forum) {
 		$this->forum = $forum;
 	}
-
 }

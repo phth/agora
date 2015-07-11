@@ -11,7 +11,8 @@ namespace AgoraTeam\Agora\Controller;
 /**
  * ForumAdminController
  */
-class ForumAdminController  extends ActionController{
+class ForumAdminController extends ActionController {
+
 	/**
 	 * forumRepository
 	 *
@@ -36,7 +37,6 @@ class ForumAdminController  extends ActionController{
 
 	/**
 	 * @var $id
-	 *
 	 * keeps the selected page id
 	 */
 	protected $id;
@@ -95,7 +95,6 @@ class ForumAdminController  extends ActionController{
 		$this->forumRepository->add($newForum);
 		$this->addFlashMessage('The form was succesfully created!!');
 		$this->redirect('list');
-
 	}
 
 	/**
@@ -108,13 +107,13 @@ class ForumAdminController  extends ActionController{
 	public function editAction(\AgoraTeam\Agora\Domain\Model\Forum $forum) {
 		$users = $this->userRepository->findAll();
 		$groups = $this->groupRepository->findAll();
-		$forums = $this->forumRepository-> findFormusWithDiferentdId($forum);
+		$forums = $this->forumRepository->findFormusWithDiferentdId($forum);
 		$this->view->assignMultiple(
 			array(
 				'forum' => $forum,
 				'users' => $users,
 				'groups' => $groups,
-				'forums' =>$forums
+				'forums' => $forums
 			)
 		);
 	}
@@ -135,17 +134,19 @@ class ForumAdminController  extends ActionController{
 	 * action delete
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
-	 *
 	 * @return void
 	 */
 	public function deleteAction(\AgoraTeam\Agora\Domain\Model\Forum $forum) {
 
-		if( ( $forum->getThreads()->count() == 0 ) && (  $forum->getSubForums()->count() == 0) ) {
+		if (($forum->getThreads()->count() == 0) && ($forum->getSubForums()->count() == 0)) {
 			$this->forumRepository->remove($forum);
 			$this->redirect('list');
-		}
-		else {
-			$this->addFlashMessage('You cannot delete the forum beacause it has subforums or threads!', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+		} else {
+			$this->addFlashMessage(
+				'You cannot delete the forum beacause it has subforums or threads!',
+				'',
+				\TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
+			);
 			$this->redirect('list');
 		}
 	}

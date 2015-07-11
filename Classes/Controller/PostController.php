@@ -53,13 +53,11 @@ class PostController extends ActionController {
 	 * action list
 	 *
 	 * @todo Mark post as read
-	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
-	 *
 	 * @return void
 	 */
 	public function listAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
-		if(!$thread->isAccessibleForUser($this->getUser())) {
+		if (!$thread->isAccessibleForUser($this->getUser())) {
 			$this->addFlashMessage(
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.accessDenied.text', 'agora'),
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.accessDenied.headline', 'agora'),
@@ -88,11 +86,10 @@ class PostController extends ActionController {
 	 * action show
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
-	 *
 	 * @return void
 	 */
 	public function showAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
-		if(!$post->isAccessibleForUser($this->getUser())) {
+		if (!$post->isAccessibleForUser($this->getUser())) {
 			$this->addFlashMessage(
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_post.flashMessages.accessDenied.text', 'agora'),
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_post.flashMessages.accessDenied.headline', 'agora'),
@@ -110,11 +107,10 @@ class PostController extends ActionController {
 	 * action showHistory
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
-	 *
 	 * @return void
 	 */
 	public function showHistoryAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
-		if(!$post->isAccessibleForUser($this->getUser())) {
+		if (!$post->isAccessibleForUser($this->getUser())) {
 			$this->addFlashMessage(
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_post.flashMessages.accessDenied.text', 'agora'),
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_post.flashMessages.accessDenied.headline', 'agora'),
@@ -129,18 +125,17 @@ class PostController extends ActionController {
 	/**
 	 * action new
 	 *
-	 * @param \AgoraTeam\Agora\Domain\Model\Post   $newPost
+	 * @param \AgoraTeam\Agora\Domain\Model\Post $newPost
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
-	 * @param \AgoraTeam\Agora\Domain\Model\Post   $quotedPost
+	 * @param \AgoraTeam\Agora\Domain\Model\Post $quotedPost
 	 * @ignorevalidation $newPost
-	 *
 	 * @return void
 	 */
 	public function newAction(\AgoraTeam\Agora\Domain\Model\Post $newPost = NULL,
 		\AgoraTeam\Agora\Domain\Model\Post $quotedPost = NULL,
 		\AgoraTeam\Agora\Domain\Model\Thread $thread = NULL) {
 
-		if(!$thread->isWritableForUser($this->getUser())) {
+		if (!$thread->isWritableForUser($this->getUser())) {
 			$this->addFlashMessage(
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.text', 'agora'),
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.headline', 'agora'),
@@ -152,10 +147,9 @@ class PostController extends ActionController {
 		$this->view->assign('newPost', $newPost);
 		$this->view->assign('quotedPost', $quotedPost);
 		$this->view->assign('thread', $thread);
-
 	}
 
-	public function getCreator($post){
+	public function getCreator($post) {
 		return $post->getCreator();
 	}
 
@@ -167,7 +161,7 @@ class PostController extends ActionController {
 	 * @return void
 	 */
 	public function createAction(\AgoraTeam\Agora\Domain\Model\Post $newPost) {
-		if(!$newPost->getThread()->isWritableForUser($this->getUser())) {
+		if (!$newPost->getThread()->isWritableForUser($this->getUser())) {
 			$this->addFlashMessage(
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.text', 'agora'),
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.headline', 'agora'),
@@ -186,7 +180,7 @@ class PostController extends ActionController {
 			\TYPO3\CMS\Core\Messaging\AbstractMessage::OK
 		);
 		$sender = $this->getThreadDefaultSender();
-		foreach($newPost->getThread()->getObservers() as $regularUser){
+		foreach ($newPost->getThread()->getObservers() as $regularUser) {
 			$this->sendMail(
 				array(
 					$regularUser->getEmail() => $regularUser->getDisplayName()
@@ -200,8 +194,7 @@ class PostController extends ActionController {
 				)
 			);
 		}
-		if( ( $this->settings['post']['notificationsForPostOwner'] == 1 ) and  is_object($creator = $newPost->getQuotedPost()) )
-		{
+		if (($this->settings['post']['notificationsForPostOwner'] == 1) and is_object($creator = $newPost->getQuotedPost())) {
 			$creator = $newPost->getQuotedPost()->getCreator();
 			$this->sendMail(
 				array(
@@ -231,12 +224,11 @@ class PostController extends ActionController {
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $originalPost
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
 	 * @ignorevalidation $post
-	 *
 	 * @return void
 	 */
 	public function editAction(\AgoraTeam\Agora\Domain\Model\Post $originalPost, \AgoraTeam\Agora\Domain\Model\Post $post = NULL) {
 
-		if(!$originalPost->getThread()->isWritableForUser($this->getUser())) {
+		if (!$originalPost->getThread()->isWritableForUser($this->getUser())) {
 			$this->addFlashMessage(
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.text', 'agora'),
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.headline', 'agora'),
@@ -258,12 +250,11 @@ class PostController extends ActionController {
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $originalPost
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
-	 *
 	 * @return void
 	 */
 	public function updateAction(\AgoraTeam\Agora\Domain\Model\Post $originalPost, \AgoraTeam\Agora\Domain\Model\Post $post) {
 
-		if(!$originalPost->getThread()->isWritableForUser($this->getUser())) {
+		if (!$originalPost->getThread()->isWritableForUser($this->getUser())) {
 			$this->addFlashMessage(
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.text', 'agora'),
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.headline', 'agora'),
@@ -305,12 +296,11 @@ class PostController extends ActionController {
 	 * action delete
 	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
-	 *
 	 * @return void
 	 */
 	public function deleteAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
 
-		if(!$post->getThread()->isWritableForUser($this->getUser())) {
+		if (!$post->getThread()->isWritableForUser($this->getUser())) {
 			$this->addFlashMessage(
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.text', 'agora'),
 				\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_thread.flashMessages.editDenied.headline', 'agora'),
@@ -338,5 +328,4 @@ class PostController extends ActionController {
 		$latestPosts = $this->postRepository->findLatestPostsForUser($limit);
 		$this->view->assign('latestPosts', $latestPosts);
 	}
-
 }

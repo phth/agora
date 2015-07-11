@@ -1,5 +1,5 @@
 <?php
-if (!defined ('TYPO3_MODE')) {
+if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
@@ -97,19 +97,19 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 			),
 		),
 
-		'crdate' => Array (
+		'crdate' => Array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.crdate',
-			'config' => Array (
+			'config' => Array(
 				'type' => 'none',
 				'format' => 'date',
 				'eval' => 'date'
 			)
 		),
-		'tstamp' => Array (
+		'tstamp' => Array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.tstamp',
-			'config' => Array (
+			'config' => Array(
 				'type' => 'none',
 				'format' => 'date',
 				'eval' => 'date'
@@ -143,7 +143,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_agora_domain_model_forum',
 				'foreign_field' => 'parent',
-				'maxitems'      => 9999,
+				'maxitems' => 9999,
 				'appearance' => array(
 					'collapseAll' => 0,
 					'levelLinksPosition' => 'top',
@@ -154,17 +154,17 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 				),
 			),
 		),
-        'parent' => array(
-            'exclude' => 1,
-            'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.parent',
-            'config' => array(
-                'type' => 'select',
-                'items' => array(
-                    array('', 0),
-                ),
-                'foreign_table' => 'tx_agora_domain_model_forum'
-            ),
-        ),
+		'parent' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.parent',
+			'config' => array(
+				'type' => 'select',
+				'items' => array(
+					array('', 0),
+				),
+				'foreign_table' => 'tx_agora_domain_model_forum'
+			),
+		),
 		'threads' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.threads',
@@ -172,7 +172,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_agora_domain_model_thread',
 				'foreign_field' => 'forum',
-				'maxitems'      => 9999,
+				'maxitems' => 9999,
 				'appearance' => array(
 					'collapseAll' => 0,
 					'levelLinksPosition' => 'top',
@@ -204,7 +204,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 						'icon' => 'edit2.gif',
 						'popup_onlyOpenIfSelected' => 1,
 						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-						),
+					),
 					'add' => Array(
 						'type' => 'script',
 						'title' => 'Create new',
@@ -213,7 +213,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 							'table' => 'fe_groups',
 							'pid' => '###CURRENT_PID###',
 							'setValue' => 'prepend'
-							),
+						),
 						'script' => 'wizard_add.php',
 					),
 				),
@@ -240,7 +240,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 						'icon' => 'edit2.gif',
 						'popup_onlyOpenIfSelected' => 1,
 						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-						),
+					),
 					'add' => Array(
 						'type' => 'script',
 						'title' => 'Create new',
@@ -249,7 +249,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 							'table' => 'fe_groups',
 							'pid' => '###CURRENT_PID###',
 							'setValue' => 'prepend'
-							),
+						),
 						'script' => 'wizard_add.php',
 					),
 				),
@@ -276,7 +276,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 						'icon' => 'edit2.gif',
 						'popup_onlyOpenIfSelected' => 1,
 						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-						),
+					),
 					'add' => Array(
 						'type' => 'script',
 						'title' => 'Create new',
@@ -285,7 +285,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 							'table' => 'fe_groups',
 							'pid' => '###CURRENT_PID###',
 							'setValue' => 'prepend'
-							),
+						),
 						'script' => 'wizard_add.php',
 					),
 				),
@@ -312,7 +312,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 						'icon' => 'edit2.gif',
 						'popup_onlyOpenIfSelected' => 1,
 						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-						),
+					),
 					'add' => Array(
 						'type' => 'script',
 						'title' => 'Create new',
@@ -321,7 +321,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 							'table' => 'fe_users',
 							'pid' => '###CURRENT_PID###',
 							'setValue' => 'prepend'
-							),
+						),
 						'script' => 'wizard_add.php',
 					),
 				),
@@ -348,7 +348,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 						'icon' => 'edit2.gif',
 						'popup_onlyOpenIfSelected' => 1,
 						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-						),
+					),
 					'add' => Array(
 						'type' => 'script',
 						'title' => 'Create new',
@@ -357,7 +357,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 							'table' => 'fe_users',
 							'pid' => '###CURRENT_PID###',
 							'setValue' => 'prepend'
-							),
+						),
 						'script' => 'wizard_add.php',
 					),
 				),
@@ -384,7 +384,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 						'icon' => 'edit2.gif',
 						'popup_onlyOpenIfSelected' => 1,
 						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-						),
+					),
 					'add' => Array(
 						'type' => 'script',
 						'title' => 'Create new',
@@ -393,7 +393,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 							'table' => 'fe_users',
 							'pid' => '###CURRENT_PID###',
 							'setValue' => 'prepend'
-							),
+						),
 						'script' => 'wizard_add.php',
 					),
 				),

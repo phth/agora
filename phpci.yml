@@ -1,6 +1,8 @@
 build_settings:
   ignore:
     - "Libraries/Parser/Parsedown/Parsedown.php"
+    - "Tests/*"
+    - "Classes/Hooks/Tcemain.php"
 
 test:
   PhpLoc:

@@ -21,24 +21,29 @@ if (!defined('TYPO3_MODE')) {
 	'Forumpages'
 );
 
-$pluginSignature = str_replace('_','',$_EXTKEY) . '_widgets';
+$pluginSignature = str_replace('_', '', $_EXTKEY) . '_widgets';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_widgets.xml');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+	$pluginSignature,
+	'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_widgets.xml'
+);
 
-$pluginSignature = str_replace('_','',$_EXTKEY) . '_forumpages';
+$pluginSignature = str_replace('_', '', $_EXTKEY) . '_forumpages';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_forumpages.xml');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+	$pluginSignature,
+	'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_forumpages.xml'
+);
 
 if (TYPO3_MODE === 'BE') {
-
 	/**
 	 * Registers a Backend Module
 	 */
 	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
 		'AgoraTeam.' . $_EXTKEY,
-		'web',	 // Make module a submodule of 'web'
-		'forum',	// Submodule key
-		'',						// Position
+		'web',
+		'forum',
+		'',
 		array(
 			'ForumAdmin' => 'list, new, create, edit, update, statistic,delete',
 
@@ -52,10 +57,19 @@ if (TYPO3_MODE === 'BE') {
 
 }
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Main', 'Agora - TYPO3 Forum');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript/ExampleTemplate', 'Agora - TYPO3 Forum - Bootstrap Theme');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+	$_EXTKEY,
+	'Configuration/TypoScript/Main', 'Agora - TYPO3 Forum'
+);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+	$_EXTKEY,
+	'Configuration/TypoScript/ExampleTemplate', 'Agora - TYPO3 Forum - Bootstrap Theme'
+);
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_agora_domain_model_forum', 'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_forum.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
+	'tx_agora_domain_model_forum',
+	'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_forum.xlf'
+);
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_agora_domain_model_forum');
 $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 	'ctrl' => array(
@@ -78,13 +92,19 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'title,description,public,parent,threads,groups_with_read_access,groups_with_write_access,groups_with_modification_access,users_with_read_access,users_with_write_access,users_with_modification_access,',
+		'searchFields' => 'title,description,public,parent,threads,groups_with_read_access,groups_with_write_access,
+							groups_with_modification_access,users_with_read_access,users_with_write_access,
+							users_with_modification_access,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Forum.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_agora_domain_model_forum.gif'
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) .
+			'Resources/Public/Icons/tx_agora_domain_model_forum.gif'
 	),
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_agora_domain_model_post', 'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_post.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
+	'tx_agora_domain_model_post',
+	'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_post.xlf'
+);
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_agora_domain_model_post');
 $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 	'ctrl' => array(
@@ -110,11 +130,15 @@ $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 		),
 		'searchFields' => 'topic,text,quoted_post,voting,attachments,creator,historical_versions,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Post.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_agora_domain_model_post.gif'
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) .
+			'Resources/Public/Icons/tx_agora_domain_model_post.gif'
 	),
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_agora_domain_model_thread', 'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_thread.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
+	'tx_agora_domain_model_thread',
+	'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_thread.xlf'
+);
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_agora_domain_model_thread');
 $GLOBALS['TCA']['tx_agora_domain_model_thread'] = array(
 	'ctrl' => array(
@@ -137,13 +161,19 @@ $GLOBALS['TCA']['tx_agora_domain_model_thread'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'title,solved,closed,sticky,creator,posts,views,groups_with_read_access,groups_with_write_access,groups_with_modification_access,users_with_read_access,users_with_write_access,users_with_modification_access,',
+		'searchFields' => 'title,solved,closed,sticky,creator,posts,views,groups_with_read_access,
+							groups_with_write_access,groups_with_modification_access,users_with_read_access,
+							users_with_write_access,users_with_modification_access,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Thread.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_agora_domain_model_thread.gif'
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) .
+			'Resources/Public/Icons/tx_agora_domain_model_thread.gif'
 	),
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_agora_domain_model_voting', 'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_voting.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
+	'tx_agora_domain_model_voting',
+	'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_voting.xlf'
+);
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_agora_domain_model_voting');
 $GLOBALS['TCA']['tx_agora_domain_model_voting'] = array(
 	'ctrl' => array(
@@ -168,11 +198,15 @@ $GLOBALS['TCA']['tx_agora_domain_model_voting'] = array(
 		),
 		'searchFields' => 'question,answers,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Voting.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_agora_domain_model_voting.gif'
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) .
+			'Resources/Public/Icons/tx_agora_domain_model_voting.gif'
 	),
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_agora_domain_model_attachment', 'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_attachment.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
+	'tx_agora_domain_model_attachment',
+	'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_attachment.xlf'
+);
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_agora_domain_model_attachment');
 $GLOBALS['TCA']['tx_agora_domain_model_attachment'] = array(
 	'ctrl' => array(
@@ -196,12 +230,18 @@ $GLOBALS['TCA']['tx_agora_domain_model_attachment'] = array(
 			'endtime' => 'endtime',
 		),
 		'searchFields' => 'title,file,',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Attachment.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_agora_domain_model_attachment.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) .
+			'Configuration/TCA/Attachment.php',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) .
+			'Resources/Public/Icons/tx_agora_domain_model_attachment.gif'
 	),
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_agora_domain_model_vote', 'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_vote.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
+	'tx_agora_domain_model_vote',
+	'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_vote.xlf'
+);
+
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_agora_domain_model_vote');
 $GLOBALS['TCA']['tx_agora_domain_model_vote'] = array(
 	'ctrl' => array(
@@ -226,11 +266,15 @@ $GLOBALS['TCA']['tx_agora_domain_model_vote'] = array(
 		),
 		'searchFields' => 'voting,voting_answers,user,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Vote.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_agora_domain_model_vote.gif'
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) .
+			'Resources/Public/Icons/tx_agora_domain_model_vote.gif'
 	),
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_agora_domain_model_votinganswer', 'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_votinganswer.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
+	'tx_agora_domain_model_votinganswer',
+	'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_votinganswer.xlf'
+);
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_agora_domain_model_votinganswer');
 $GLOBALS['TCA']['tx_agora_domain_model_votinganswer'] = array(
 	'ctrl' => array(
@@ -254,12 +298,17 @@ $GLOBALS['TCA']['tx_agora_domain_model_votinganswer'] = array(
 			'endtime' => 'endtime',
 		),
 		'searchFields' => 'answer,',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/VotingAnswer.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_agora_domain_model_votinganswer.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) .
+			'Configuration/TCA/VotingAnswer.php',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) .
+			'Resources/Public/Icons/tx_agora_domain_model_votinganswer.gif'
 	),
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_agora_domain_model_view', 'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_view.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
+	'tx_agora_domain_model_view',
+	'EXT:agora/Resources/Private/Language/locallang_csh_tx_agora_domain_model_view.xlf'
+);
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_agora_domain_model_view');
 $GLOBALS['TCA']['tx_agora_domain_model_view'] = array(
 	'ctrl' => array(
@@ -284,7 +333,8 @@ $GLOBALS['TCA']['tx_agora_domain_model_view'] = array(
 		),
 		'searchFields' => 'thread,user,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/View.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_agora_domain_model_view.gif'
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) .
+			'Resources/Public/Icons/tx_agora_domain_model_view.gif'
 	),
 );
 
@@ -292,7 +342,6 @@ if (!isset($GLOBALS['TCA']['fe_users']['ctrl']['type'])) {
 	if (file_exists($GLOBALS['TCA']['fe_users']['ctrl']['dynamicConfigFile'])) {
 		require_once($GLOBALS['TCA']['fe_users']['ctrl']['dynamicConfigFile']);
 	}
-		// no type field defined, so we define it here. This will only happen the first time the extension is installed!!
 	$GLOBALS['TCA']['fe_users']['ctrl']['type'] = 'tx_extbase_type';
 	$tempColumns = array();
 	$tempColumns[$GLOBALS['TCA']['fe_users']['ctrl']['type']] = array(
@@ -312,7 +361,6 @@ if (!isset($GLOBALS['TCA']['fe_groups']['ctrl']['type'])) {
 	if (file_exists($GLOBALS['TCA']['fe_groups']['ctrl']['dynamicConfigFile'])) {
 		require_once($GLOBALS['TCA']['fe_groups']['ctrl']['dynamicConfigFile']);
 	}
-		// no type field defined, so we define it here. This will only happen the first time the extension is installed!!
 	$GLOBALS['TCA']['fe_groups']['ctrl']['type'] = 'tx_extbase_type';
 	$tempColumns = array();
 	$tempColumns[$GLOBALS['TCA']['fe_groups']['ctrl']['type']] = array(
@@ -328,13 +376,15 @@ if (!isset($GLOBALS['TCA']['fe_groups']['ctrl']['type'])) {
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('fe_groups', $tempColumns, 1);
 }
 
-$GLOBALS['TCA']['fe_groups']['types']['Tx_Agora_Group']['showitem'] = $TCA['fe_groups']['types']['0']['showitem'];
-$GLOBALS['TCA']['fe_groups']['types']['Tx_Agora_Group']['showitem'] .= ',--div--;LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_group,';
-$GLOBALS['TCA']['fe_groups']['types']['Tx_Agora_Group']['showitem'] .= '';
+$GLOBALS['TCA']['fe_groups']['types']['Tx_Agora_Group']['showitem'] = $TCA['fe_groups']['types']['0']['showitem'] .
+	',--div--;LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_group,';
 
-$GLOBALS['TCA']['fe_groups']['columns'][$TCA['fe_groups']['ctrl']['type']]['config']['items'][] = array('LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:fe_groups.tx_extbase_type.Tx_Agora_Group','Tx_Agora_Group');
+$GLOBALS['TCA']['fe_groups']['columns'][$TCA['fe_groups']['ctrl']['type']]['config']['items'][] = array(
+	'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:fe_groups.tx_extbase_type.Tx_Agora_Group',
+	'Tx_Agora_Group'
+);
 
-$tmp_agora_columns = array(
+$tmpAgoraColumns = array(
 	'signiture' => array(
 		'exclude' => 1,
 		'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_user.signiture',
@@ -408,20 +458,33 @@ $tmp_agora_columns = array(
 	)
 );
 
-$tmp_agora_columns['view'] = array(
+$tmpAgoraColumns['view'] = array(
 	'config' => array(
 		'type' => 'passthrough',
 	)
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('fe_users',$tmp_agora_columns);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('fe_users', $tmpAgoraColumns);
 
-$GLOBALS['TCA']['fe_users']['types']['Tx_Agora_User']['showitem'] = $TCA['fe_users']['types']['0']['showitem'];
-$GLOBALS['TCA']['fe_users']['types']['Tx_Agora_User']['showitem'] .= ',--div--;LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_user,';
-$GLOBALS['TCA']['fe_users']['types']['Tx_Agora_User']['showitem'] .= 'signiture, posts, favorite_posts, observed_threads, spam_posts, groups';
+$GLOBALS['TCA']['fe_users']['types']['Tx_Agora_User']['showitem'] = $TCA['fe_users']['types']['0']['showitem'] .
+	',--div--;LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_user,
+	signiture, posts, favorite_posts, observed_threads, spam_posts, groups';
 
-$GLOBALS['TCA']['fe_users']['columns'][$TCA['fe_users']['ctrl']['type']]['config']['items'][] = array('LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:fe_users.tx_extbase_type.Tx_Agora_User','Tx_Agora_User');
+$GLOBALS['TCA']['fe_users']['columns'][$TCA['fe_users']['ctrl']['type']]['config']['items'][] = array(
+	'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:fe_users.tx_extbase_type.Tx_Agora_User',
+	'Tx_Agora_User'
+);
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('fe_users', $GLOBALS['TCA']['fe_users']['ctrl']['type'],'','after:' . $TCA['fe_users']['ctrl']['label']);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+	'fe_users',
+	$GLOBALS['TCA']['fe_users']['ctrl']['type'],
+	'',
+	'after:' . $TCA['fe_users']['ctrl']['label']
+);
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('fe_groups', $GLOBALS['TCA']['fe_groups']['ctrl']['type'],'','after:' . $TCA['fe_groups']['ctrl']['label']);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+	'fe_groups',
+	$GLOBALS['TCA']['fe_groups']['ctrl']['type'],
+	'',
+	'after:' . $TCA['fe_groups']['ctrl']['label']
+);
