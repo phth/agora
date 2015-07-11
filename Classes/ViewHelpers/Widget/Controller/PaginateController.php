@@ -182,25 +182,20 @@ class PaginateController extends AbstractWidgetController {
 				$query->setOffset($offset);
 			}
 			$modifiedObjects = $query->execute();
-
-			return $modifiedObjects;
 		} elseif ($this->objects instanceof ObjectStorage) {
 			$modifiedObjects = array();
 			$endOfRange = $offset + $itemsPerPage;
 			for ($i = $offset; $i < $endOfRange; $i++) {
 				$modifiedObjects[] = $this->objects->toArray()[$i];
 			}
-
-			return $modifiedObjects;
 		} elseif (is_array($this->objects)) {
 			$modifiedObjects = array_slice($this->objects, $offset, $itemsPerPage);
-
-			return $modifiedObjects;
 		} else {
 			throw new \InvalidArgumentException('The view helper "' . get_class($this) .
 				'" accepts as argument "QueryResultInterface", "\SplObjectStorage", "ObjectStorage" or an array. ' .
 				'given: ' . get_class($this->objects), 1385547291
 			);
 		}
+		return $modifiedObjects;
 	}
 }

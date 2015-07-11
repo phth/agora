@@ -61,6 +61,8 @@ class ForumAdminController extends ActionController {
 
 	/**
 	 * Function initializeAction
+	 *
+	 * @return void
 	 */
 	protected function initializeAction() {
 		$this->id = (int)\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('id');

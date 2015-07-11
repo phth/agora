@@ -40,9 +40,10 @@ class Parsedown {
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			$parameter['field'],
 			$parameter['table'],
-			'uid=' . $uid);
+			'uid=' . $uid
+		);
 
-		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+		while (($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res))) {
 			$result[] = $row;
 		}
 
