@@ -1,0 +1,14 @@
+<f:layout name="Default" />
+<f:section name="main">
+    <h1>{subject}</h1>
+    <h1>
+        <f:translate key="email_ownernotificationgeetings" /> {user.displayName}
+
+    </h1>
+    <p>
+        <f:translate key="email_ownernotificationmessage"  arguments="{0:'{thread.title}', 1:'{f:format.date(date: \'NOW\', format: \'d.m.Y H:i:s\')}'}"  />
+    </p>
+    <p>
+        <f:translate key="email_ownernotificationend" />
+    </p>
+</f:section>

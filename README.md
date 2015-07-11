@@ -1,16 +1,16 @@
-TYPO3 Extension "agora"
+TYPO3 Extension "Agora"
 ===================
-Agora is forum extension **based on extbase & fluid** for TYPO3 CMS v6 and TYPO3 CMS v7. It implements the functionality of a complete forum within your TYPO3 CMS based on the latest technologies.
+Agora is a forum extension **based on Extbase & Fluid** for TYPO3 CMS v6 and TYPO3 CMS v7. It brings a complete forum functionality for TYPO3 CMS based on the latest technologies.
 
 
 Features
 ----------
-The Team of Agora implemented a lot of features:
+The Team of Agora implemented the following features:
 
  - Widget: Latest threads
  - Widget: Latest posts
  - Widget: Observe threads
- - Widgte: Favorite posts
+ - Widget: Favorite posts
  - Revision of posts
  - History of replies to posts
  - Access rights for threads and forums
@@ -19,7 +19,7 @@ The Team of Agora implemented a lot of features:
 
 #### Future features
 ----------
-The AgoraTeam already thoughed about the future of Agora and its coming features:
+Behold the future of Agora and it's future features:
 
  - Dashboard-Plugin
  - Backend module for statistics
@@ -28,13 +28,13 @@ The AgoraTeam already thoughed about the future of Agora and its coming features
  - Priority of threads (pin to top)
  - Mark posts as spam
  - Custom sorting of posts/threads
- - RSS feeds
+ - RSS Feeds
  - Posts attachments
  - Polls per thread
 
 Installation
 ----------
-Agora needs to be installed as any other TYPO3 CMS extension:
+Agora needs to be installed like any other TYPO3 CMS extension:
 
  1. Switch to the module "Extension Manager".
  2. Get the extension
@@ -43,7 +43,7 @@ Agora needs to be installed as any other TYPO3 CMS extension:
 ----------
 
 #### **Latest version from GitHub**
-You can get the latest Version from GitHub by using the following command:
+To get the latest Version from GitHub use the following command:
 
     git clone https://github.com/phth/agora.git
 
@@ -55,15 +55,15 @@ You can get the latest Version from GitHub by using the following command:
  1. Select your root page 
  2. Select the **Backend module "Template"**
  3. Press the link "**Edit the whole template record**"
- 4. Select th tab "**Includes**"
- 5. Select "**Agora - TYPO3 Forum (agora)**" at the list "Include static (from extensions)"
+ 4. Select the tab "**Includes**"
+ 5. Select "**Agora - TYPO3 Forum (Agora)**" from the list "Include static (from extensions)"
 
-> ***Hint:*** *If you want to implement a based configuration based on bootstrap and within the editor markdown, you have to implement "**Agora - TYPO3 Forum - Bootstram Theme (agora)**" as well*
+> ***Hint:*** *If you want to implement a configuration based on bootstrap for the editor markdown, you have to implement "**Agora - TYPO3 Forum - Bootstram Theme (agora)**" as well*
 
 ----------
 #### **TypoScript**
 
-For the frontend output you have to tell agora where the forum data is stored. Therefor there is the constant storagePid which you have to change.
+For the frontend output you have to tell Agora where the forum data is stored. Therefore there is the constant storagePid which you need to set.
 
  1. Select your root page
  2. Select the **Backend module "Template"**
@@ -110,22 +110,22 @@ Records
 |SubForums|`Relation to forum` A list of forums that are subforums of the current forums|
 |Parent|`Relation to forum` The title of the parent forum|
 |Threads|`Relation to threads` Threads that are currently in this forum|
-|Groups with read access|`Relation to fe_groups` A list of usersgroups that can actualy see and read the selected forum. If there is no entry is means, that the forum is public and displayed for everyone, even not logged in users.|
-|Group with write access|`Relation to fe_groups` Same behaviour as the read access only for the write access|
-|Group with modification access|`Relation to fe_groups` Same behaviour as the read access only for the frontend modification access|
-|Users with read access|`Relation to fe_users` Same behavior as for the groups|
-|Users with write access|`Relations to fe_users` Same behavior as for the groups|
-|Users with modifications access|`Relations to fe_users` Same behavior as for the groups|
+|Groups with read permissions|`Relation to fe_groups` A list of usergroups that can actually see and read the selected forum. If there is no entry it means, that the forum is public and cab be accessed everyone, even users thar are not logged in.|
+|Groups with write permissions|`Relation to fe_groups` Same behaviour as the group with read permissions but then with writing permissions|
+|Groups with modification permissions|`Relation to fe_groups` Same behaviour as the group with read permissions but then only with frontend modification rights|
+|Users with read permissions|`Relation to fe_users` Same behavior as for the groups|
+|Users with write permissions|`Relations to fe_users` Same behavior as for the groups|
+|Users with modifications permissions|`Relations to fe_users` Same behavior as for the groups|
  
- > **Handling of the access rights:** If the lists an access right is empty it means, that the option of the forum is public. For example: If the *Group with read access* is empty, it means, that everybody can see and read the whole forum. 
+ > **Handling of permissions:** If the permissions list is empty it means that the corresponding permissions-set is set as a default for the everyone(public) . For example: If the *Group with read permissions* is empty, it means, that everybody can access and read the whole forum.
 
 #### Threads
 | Field         | Description                        |
 |----------------- | ---------------------------- |
-|Title| Title for the thread|
+|Title| Title of the thread|
 |Solved|`Not implemented yet`Option to mark a thread as solved|
-|Closed|`Not implemented yet` Option to close a thread, so that only moderator can publish posts|
-|Sticky|`Not implemented yet` Option to stick the thread to the post of the thread list for a forum|
+|Closed|`Not implemented yet` Option to close a thread, so only moderators can publish posts|
+|Sticky|`Not implemented yet` Option to stick a thread to the post of the thread list for a forum|
 |Creator|`Relation to fe_users` The relation to the fe_user that created the thread|
 |Posts|`Relation to posts` A list of the posts for the current thread|
 |Views|`Not implemented yet`|
@@ -136,15 +136,15 @@ Records
 |----------------- | ---------------------------- |
 |Topic|Title/topic of the post|
 |Text|Text of the post in markdown|
-|Publishing Date|Datetime of the publishing date of the post|
-|Creation Date|Datetime of the creation date of the post|
-|Thread|`Relation to threads` The current thread the post contains to|
-|Replies|`Relation to posts` A list of posts that are replies to the current one|
+|Publishing Date|Datetime of publishing|
+|Creation Date|Datetime of creation|
+|Thread|`Relation to threads` The current thread the post belongs to|
+|Replies|`Relation to posts` the list of replies to the current post|
 |Quoted Post|`Not implemented yet` The relation to the original post, that was quoted|
 |Voting|`Not implemented yet`|
 |Attachments|`Not implemented yet`|
 |Creator|`Relation to fe_users` The relation to the fe_user that created the post|
-|Historical Versions|`Relation to posts` The historical list of posts|
+|Historical Versions|`Relation to posts` An historical list of versions of the posts|
 
 
 Plugins
@@ -157,22 +157,22 @@ There are currently 3 available plugins:
 
 ----------------
 ###Forum
-The forum plugin contains the whole functionality of the forum excluding the widgets. It contains the lists of the forum, threads and the posts, the editation views and the histories
+The forum plugin contains all functionality of the forum excluding the widgets. It contains the lists of the forum, threads and the posts, the views and the history
 
 ----------------
 ###Forumpages
-If there are special views of the forum, they will be placed within this plugin. Currently there is only the list of "observed threads" within this plugin.
+If there are special views of the forum, they will be placed within this plugin. Currently there's only the list of "observed threads" within this plugin.
 
 ----------------
 ###Widgets
-There are several widgets implemented within agora:
+There are several widgets implemented within Agora:
 
  - Observed threads
- - Favorite Posts
+ - Favourite Posts
  - Latest Posts
  - Latest Threads
 
-If you want to display one of this widget you have to implement the widget-plugin and select the functionality to display via flexform. Some of the views needs the Plugin "Forumpages" to display the lists, like the "observed threads".
+If you want to display one of this widgets you have to implement the widget-plugin and select the functionality to display via flexform. Some of the views needs the Plugin "Forumpages" to display the lists, like the "observed threads".
 
 Miscellaneous
 =======

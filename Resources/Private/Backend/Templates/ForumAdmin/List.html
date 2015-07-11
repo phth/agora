@@ -28,9 +28,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 	<f:for each="{forums}" as="forum">
 		<tr>
-			<td><f:link.action action="show" arguments="{forum : forum}"> {forum.title}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{forum : forum}"> {forum.description}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{forum : forum}"> {forum.public}</f:link.action></td>
+			<td>{forum.title}</td>
+			<td>{forum.description}</td>
 			<td><f:link.action action="edit" arguments="{forum : forum}">Edit</f:link.action></td>
 			<td><f:link.action action="delete" arguments="{forum : forum}">Delete</f:link.action></td>
 		</tr>

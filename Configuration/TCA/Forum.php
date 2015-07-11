@@ -9,7 +9,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, sub_forums, parent, threads, groups_with_read_access, groups_with_write_access, groups_with_modification_access, users_with_read_access, users_with_write_access, users_with_modification_access',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, description, sub_forums, parent, threads, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, groups_with_read_access, groups_with_write_access, groups_with_modification_access, users_with_read_access, users_with_write_access, users_with_modification_access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, description, parent, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, groups_with_read_access, groups_with_write_access, groups_with_modification_access, users_with_read_access, users_with_write_access, users_with_modification_access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -125,6 +125,7 @@ $GLOBALS['TCA']['tx_agora_domain_model_forum'] = array(
 				'eval' => 'trim'
 			),
 		),
+
 		'description' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:agora/Resources/Private/Language/locallang_db.xlf:tx_agora_domain_model_forum.description',

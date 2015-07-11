@@ -346,6 +346,33 @@
 			<trans-unit id="tx_agora_domain_model_view.user">
 				<source>User</source>
 			</trans-unit>
+			<trans-unit id="email_ownernotificationgeetings">
+                <source>Hello</source>
+            </trans-unit>
+            <trans-unit id="email_ownernotificationmessage">
+                <source>Your thread %s was succesfully created at %s.</source>
+            </trans-unit>
+            <trans-unit id="email_ownernotificationend">
+                <source>Thank you!</source>
+            </trans-unit>
+            <trans-unit id="email_postownernotificationgeetings">
+                <source>Hello</source>
+            </trans-unit>
+            <trans-unit id="email_postownernotificationmessage">
+                <source>Your post %s  was just  commented at  %s.</source>
+            </trans-unit>
+            <trans-unit id="email_postownernotificationend">
+                <source>Have a nice day!</source>
+            </trans-unit>
+            <trans-unit id="email_regularusernotificationgeetings">
+                <source>Hello</source>
+            </trans-unit>
+            <trans-unit id="email_regularusernotificationmessage">
+                <source>The thread your are following %s was commented at %s.</source>
+            </trans-unit>
+            <trans-unit id="email_regularusernotificationend">
+                <source>Have a nice day!</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>
