@@ -7,11 +7,11 @@ $GLOBALS['TCA']['tx_agora_domain_model_post'] = array(
 	'ctrl' => $GLOBALS['TCA']['tx_agora_domain_model_post']['ctrl'],
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, topic, text, publishing_date,
-		crdate, replies, quoted_post, voting, attachments, creator, historical_versions, forum',
+		crdate, replies, quoted_post, creator, historical_versions, forum',
 	),
 	'types' => array(
 		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, topic, text,
-		publishing_date, crdate, replies, quoted_post, voting, attachments, creator, historical_versions, forum,
+		publishing_date, crdate, replies, quoted_post, creator, historical_versions, forum,
 		--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(

@@ -37,7 +37,7 @@ class IfIsAuthorViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractCond
 		$child = $this->renderElseChild();
 
 		if ($this->frontendUserIsCreator($object)) {
-			$child = renderThenChild();
+			$child = $this->renderThenChild();
 		}
 
 		return $child;
