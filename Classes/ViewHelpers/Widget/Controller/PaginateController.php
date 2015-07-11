@@ -161,10 +161,13 @@ class PaginateController extends AbstractWidgetController {
 		if ($this->currentPage > 1) {
 			$pagination['previousPage'] = $this->currentPage - 1;
 		}
+
 		return $pagination;
 	}
 
 	/**
+	 * Function prepareObjectsSlice
+	 *
 	 * @param int $itemsPerPage
 	 * @param int $offset
 	 *
@@ -179,6 +182,7 @@ class PaginateController extends AbstractWidgetController {
 				$query->setOffset($offset);
 			}
 			$modifiedObjects = $query->execute();
+
 			return $modifiedObjects;
 		} elseif ($this->objects instanceof ObjectStorage) {
 			$modifiedObjects = array();
@@ -186,16 +190,17 @@ class PaginateController extends AbstractWidgetController {
 			for ($i = $offset; $i < $endOfRange; $i++) {
 				$modifiedObjects[] = $this->objects->toArray()[$i];
 			}
+
 			return $modifiedObjects;
 		} elseif (is_array($this->objects)) {
 			$modifiedObjects = array_slice($this->objects, $offset, $itemsPerPage);
+
 			return $modifiedObjects;
 		} else {
-			throw new \InvalidArgumentException('The view helper "' . get_class($this)
-				. '" accepts as argument "QueryResultInterface", "\SplObjectStorage", "ObjectStorage" or an array. '
-				. 'given: ' . get_class($this->objects), 1385547291
+			throw new \InvalidArgumentException('The view helper "' . get_class($this) .
+				'" accepts as argument "QueryResultInterface", "\SplObjectStorage", "ObjectStorage" or an array. ' .
+				'given: ' . get_class($this->objects), 1385547291
 			);
 		}
 	}
-
 }

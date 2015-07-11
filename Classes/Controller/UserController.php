@@ -43,7 +43,7 @@ class UserController extends ActionController {
 
 
 	/**
-	 * action favoritePosts
+	 * Action favoritePosts
 	 *
 	 * @return void
 	 */
@@ -51,16 +51,18 @@ class UserController extends ActionController {
 		$user = $this->getUser();
 		if (is_a($user, '\AgoraTeam\Agora\Domain\Model\User') && $user->getFavoritePosts() !== NULL) {
 			$limit = $this->settings['post']['numberOfItemsInFavoritePostsWidget'];
-			$AllFavoritedPosts = $user->getFavoritePosts()->toArray();
+			$allFavoritedPosts = $user->getFavoritePosts()->toArray();
 			$favoritedPosts = array();
 			$i = 0;
 
-			foreach ($AllFavoritedPosts as $post) {
+			foreach ($allFavoritedPosts as $post) {
 				if ($post->isAccessibleForUser($user)) {
 					$favoritedPosts[] = $post;
 					$i++;
 				}
-				if ($limit == $i) continue;
+				if ($limit == $i) {
+					continue;
+				}
 			}
 		}
 
@@ -70,7 +72,7 @@ class UserController extends ActionController {
 	}
 
 	/**
-	 * action observedThreads
+	 * Action observedThreads
 	 *
 	 * @return void
 	 */
@@ -87,7 +89,9 @@ class UserController extends ActionController {
 					$observedThreads[] = $thread;
 					$i++;
 				}
-				if ($limit == $i) continue;
+				if ($limit == $i) {
+					continue;
+				}
 			}
 		}
 		$this->view->assign('user', $user);
@@ -96,7 +100,8 @@ class UserController extends ActionController {
 	}
 
 	/**
-	 * action listObservedThreads
+	 * Action listObservedThreads
+	 *
 	 * @return void
 	 */
 	public function listObservedThreadsAction() {
@@ -110,7 +115,10 @@ class UserController extends ActionController {
 
 
 	/**
+	 * Action addObservedThreadAction
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
+	 *
 	 * @return void
 	 */
 	public function addObservedThreadAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
@@ -123,7 +131,10 @@ class UserController extends ActionController {
 	}
 
 	/**
+	 * Action removeObservedThreadAction
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Thread $thread
+	 *
 	 * @return void
 	 */
 	public function removeObservedThreadAction(\AgoraTeam\Agora\Domain\Model\Thread $thread) {
@@ -135,7 +146,10 @@ class UserController extends ActionController {
 	}
 
 	/**
+	 * Action addFavoritePostAction
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
+	 *
 	 * @return void
 	 */
 	public function addFavoritePostAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
@@ -149,7 +163,10 @@ class UserController extends ActionController {
 	}
 
 	/**
+	 * Action removeFavoritePostAction
+	 *
 	 * @param \AgoraTeam\Agora\Domain\Model\Post $post
+	 *
 	 * @return void
 	 */
 	public function removeFavoritePostAction(\AgoraTeam\Agora\Domain\Model\Post $post) {
@@ -159,7 +176,7 @@ class UserController extends ActionController {
 			$user->removeFavoritePost($post);
 			$this->userRepository->update($user);
 		}
-		$this->redirect('list', 'Post', 'Agora', array('thread' =>  $post->getThread()));
+		$this->redirect('list', 'Post', 'Agora', array('thread' => $post->getThread()));
 	}
 
 

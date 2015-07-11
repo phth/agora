@@ -21,19 +21,21 @@ namespace AgoraTeam\Agora\UserFunc;
 	 ***************************************************************/
 
 /**
- * ActionController
+ * Class Parsedown
+ *
+ * @package AgoraTeam\Agora\UserFunc
  */
 class Parsedown {
 
 	/**
-	 * @param $PA
+	 * @param $pa
 	 * @param $fObj
 	 * @return mixed
 	 */
-	public function getParsedText($PA, $fObj) {
+	public function getParsedText($pa, $fObj) {
 		$result = array();
-		$uid = $PA['row']['uid'];
-		$parameter = $PA['fieldConf']['config']['parameter'];
+		$uid = $pa['row']['uid'];
+		$parameter = $pa['fieldConf']['config']['parameter'];
 
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			$parameter['field'],

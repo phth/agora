@@ -34,11 +34,13 @@ class IfIsAuthorViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractCond
 	 * @api
 	 */
 	public function render($object) {
+		$child = $this->renderElseChild();
+		
 		if ($this->frontendUserIsCreator($object)) {
-			return $this->renderThenChild();
-		} else {
-			return $this->renderElseChild();
+			$child = renderThenChild();
 		}
+
+		return $child;
 	}
 
 	/**

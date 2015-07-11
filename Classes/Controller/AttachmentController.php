@@ -35,7 +35,7 @@ class AttachmentController extends ActionController {
 
 	/**
 	 * attachmentRepository
-	 * 
+	 *
 	 * @var \AgoraTeam\Agora\Domain\Repository\AttachmentRepository
 	 * @inject
 	 */
@@ -43,11 +43,10 @@ class AttachmentController extends ActionController {
 
 	/**
 	 * action download
-	 * 
+	 *
 	 * @return void
 	 */
 	public function downloadAction() {
-		
 	}
 
 }
