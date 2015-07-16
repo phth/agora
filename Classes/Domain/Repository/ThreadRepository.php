@@ -27,11 +27,30 @@ namespace AgoraTeam\Agora\Domain\Repository;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * The repository for Threads
  */
 class ThreadRepository extends Repository {
+
+	/**
+	 * Find threads by forum
+	 * @param \AgoraTeam\Agora\Domain\Model\Forum $forum
+	 * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+	 */
+	public function findByForum(\AgoraTeam\Agora\Domain\Model\Forum $forum) {
+		$query = $this->createQuery();
+
+		$result = $query
+			->matching(
+				$query->equals('forum', $forum)
+			)
+			->setOrderings(array('tstamp' => QueryInterface::ORDER_DESCENDING))
+			->execute();
+
+		return $result;
+	}
 
 	/**
 	 * Finds the latest Threads
@@ -48,11 +67,10 @@ class ThreadRepository extends Repository {
 			->matching(
 				$query->in('forum', $openUserForums)
 			)
-			->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING))
+			->setOrderings(array('crdate' => QueryInterface::ORDER_DESCENDING))
 			->setLimit((integer)$limit)
 			->execute();
 
 		return $result;
 	}
-
 }

@@ -1,0 +1,104 @@
+/**=======================================================
+* General Settings
+*=======================================================*/
+
+/**=======================================================
+* Forum
+*=======================================================*/
+.tx-agora .forum-list {
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+.tx-agora .forum-list .forum-list {
+	margin-top: 20px;
+}
+.tx-agora .forum-list .list-group-item {
+	margin-bottom: 40px;
+}
+.tx-agora .forum-list .list-group-item .list-group-item {
+	margin-bottom: -1px;
+}
+.tx-agora .forum-list .list-group-item .forum-data h2 {
+	margin: 0 0 5px;
+	font-size: 20px;
+}
+.tx-agora .forum-list .list-group-item .forum-data p {
+	font-size: 14px;
+	margin: 0;
+}
+.tx-agora .forum-list .list-group-item .forum-data .latest-thread,
+.tx-agora .forum-list .list-group-item .forum-data .count-thread {
+	font-size: 12px;
+}
+.tx-agora .forum-list .list-group-item .forum-data .count-thread {}
+.tx-agora .forum-list .list-group-item .forum-data .latest-thread {
+}
+.tx-agora .forum-list .list-group-item .forum-bottom {
+	font-size: 12px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	padding: 5px 0;
+}
+.tx-agora .forum-list .list-group-item .forum-bottom .forum-readprotection,
+.tx-agora .forum-list .list-group-item .forum-bottom .forum-writeprotection,
+.tx-agora .forum-list .list-group-item .forum-bottom .forum-modifyprotection {
+	display: inline;
+	border-right: 1px solid #ccc;
+	padding: 0 5px;
+	font-weight: bold;
+}
+.tx-agora .forum-list .list-group-item .forum-bottom div > div:first-child {
+	padding-left: 0;
+}
+.tx-agora .forum-list .list-group-item .forum-bottom div:last-child {
+	border-right: none;
+}
+
+/**=======================================================
+* Threads
+*=======================================================*/
+.tx-agora .thread-list .list-group-item h2 {
+	margin: 0 0 5px;
+	font-size: 20px;
+}
+.tx-agora .thread-list .list-group-item .thread-bottom div {
+	display: inline;
+	margin-right: 5px;
+	border-right: 1px solid #ccc;
+}
+.tx-agora .thread-list .list-group-item .thread-bottom div:last-child {
+	border-right: 0;
+}
+
+
+/**=======================================================
+* Posts
+*=======================================================*/
+
+/**=======================================================
+* Widgets
+*=======================================================*/
+
+/**=======================================================
+* Pagination
+*=======================================================*/
+.tx-agora .pagination {
+	display: block;
+}
+/**=======================================================
+* Pagination
+*=======================================================*/
+.tx-agora .typo3-messages .typo3-message {
+	padding: 15px;
+	margin-bottom: 20px;
+	border-radius: 4px;
+}
+.tx-agora .typo3-messages .typo3-message.message-error {
+	color: #a94442;
+	border: 1px solid #ebccd1;
+	background-color: #f2dede;
+}
+.tx-agora .typo3-messages .typo3-message .message-header {
+	font-weight: bold;
+}
+.tx-agora .typo3-messages .typo3-message .message-body {}

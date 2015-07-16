@@ -289,7 +289,8 @@ class Forum extends Entity {
 	public function getLatestThread() {
 		$latestThread = FALSE;
 		if ($this->threads->count()) {
-			$latestThread = $this->threads->getPosition($this->threads->count());
+			$threads = $this->threads->toArray();
+			$latestThread = $threads[$this->threads->count() - 1];
 		}
 
 		return $latestThread;
@@ -716,4 +717,5 @@ class Forum extends Entity {
 
 		return $isWritable;
 	}
+
 }

@@ -42,6 +42,14 @@ class PostController extends ActionController {
 	protected $postRepository;
 
 	/**
+	 * threadRepository
+	 *
+	 * @var \AgoraTeam\Agora\Domain\Repository\ThreadRepository
+	 * @inject
+	 */
+	protected $threadRepository;
+
+	/**
 	 * userRepository
 	 *
 	 * @var \AgoraTeam\Agora\Domain\Repository\UserRepository
@@ -149,6 +157,10 @@ class PostController extends ActionController {
 		$this->view->assign('thread', $thread);
 	}
 
+	/**
+	 * @param $post
+	 * @return mixed
+	 */
 	public function getCreator($post) {
 		return $post->getCreator();
 	}
@@ -174,12 +186,20 @@ class PostController extends ActionController {
 		$now = new \DateTime();
 		$newPost->setPublishingDate($now);
 		$this->postRepository->add($newPost);
+
+			// To update the tstamp of the thread we've to update the thread-object
+			// just by adding the new post to the thread
+		$thread = $newPost->getThread();
+		$thread->addPost($newPost);
+		$this->threadRepository->update($thread);
+
 		$this->addFlashMessage(
 			\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_agora_domain_model_post.flashMessages.created', 'agora'),
 			'',
 			\TYPO3\CMS\Core\Messaging\AbstractMessage::OK
 		);
 		$sender = $this->getThreadDefaultSender();
+
 		foreach ($newPost->getThread()->getObservers() as $regularUser) {
 			$this->sendMail(
 				array(
@@ -240,6 +260,11 @@ class PostController extends ActionController {
 		if ($post === NULL) {
 			$post = $this->postService->copy($originalPost);
 		}
+
+			// To update the tstamp of the thread we've to update the thread-object
+			// just by adding the new post to the thread
+		$thread = $originalPost->getThread();
+		$this->threadRepository->update($thread);
 
 		$this->view->assign('originalPost', $originalPost);
 		$this->view->assign('post', $post);

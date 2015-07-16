@@ -6,5 +6,9 @@
 
     <f:render partial="Navigation/Forum" />
 
+    <f:if condition="{forum}">
+        <h2 class="forumTitle">{forum.title}</h2>
+    </f:if>
+
     <f:render partial="Forum/List" arguments="{forums:forums, user:user}"/>
 </f:section>

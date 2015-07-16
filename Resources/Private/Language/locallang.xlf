@@ -43,13 +43,13 @@
 				<source>Users With Modification Access</source>
 			</trans-unit>
 			<trans-unit id="tx_agora_domain_model_forum.readProtected">
-				<source>forum is read protected</source>
+				<source>Read protected</source>
 			</trans-unit>
 			<trans-unit id="tx_agora_domain_model_forum.writeProtected">
-				<source>forum is write protected</source>
+				<source>Write protected</source>
 			</trans-unit>
 			<trans-unit id="tx_agora_domain_model_forum.modifyProtected">
-				<source>forum is modify protected</source>
+				<source>Modify protected</source>
 			</trans-unit>
 
 			<trans-unit id="tx_agora_domain_model_forum.flashMessages.created">
@@ -373,6 +373,17 @@
             <trans-unit id="email_regularusernotificationend">
                 <source>Have a nice day!</source>
             </trans-unit>
+
+            <trans-unit id="navigation.forum.start">
+				<source>Start</source>
+			</trans-unit>
+            <trans-unit id="anonymous">
+				<source>Anonymous</source>
+			</trans-unit>
+            <trans-unit id="by">
+				<source>by</source>
+			</trans-unit>
+
 		</body>
 	</file>
 </xliff>

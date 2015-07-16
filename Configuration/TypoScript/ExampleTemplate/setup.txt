@@ -11,6 +11,6 @@ page {
     }
     includeCSS {
         agoraTheme = EXT:agora/Resources/Public/Css/agora-theme.css
-        agoraTheme = EXT:agora/Resources/Public/Css/pagedown.css
+        pagedown = EXT:agora/Resources/Public/Css/pagedown.css
     }
 }

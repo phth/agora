@@ -2,36 +2,75 @@
 
 <f:section name="main">
 
+	<!-- /* Thread-List: Start */ -->
+
 	<f:render partial="Navigation/Thread" arguments="{forum:forum}"/>
 
 	<f:flashMessages renderMode="div"/>
 
-	<f:link.action class="btn btn-primary" action="new" arguments="{forum:forum}">
-		<f:translate key="tx_agora_domain_model_thread.new"/>
-	</f:link.action>
-
-	<br/>
+	<a:forum.editable forum="{forum}" user="{user}">
+		<f:link.action class="btn btn-primary" action="new" arguments="{forum:forum}">
+			<f:translate key="tx_agora_domain_model_thread.new"/>
+		</f:link.action>
+	</a:forum.editable>
 
 	<f:widget.paginate objects="{threads}" as="paginatedThreads"
 					   configuration="{itemsPerPage: '{settings.thread.numberOfItemsPerPage}', insertAbove: 1, insertBelow: 1}">
-		<ul class="list-group">
+
+		<ul class="list-group thread-list">
 			<f:for each="{paginatedThreads}" as="thread">
 				<li class="list-group-item">
-					<f:translate
-							key="tx_agora_domain_model_thread.tstamp"
-							arguments="{0:'{f:format.date(date:\'{thread.tstamp}\', format:\'{settings.thread.dateFormat}\')}'}"/>
-					<div class="small text-muted"></div>
-					<f:link.action action="list" controller="Post" arguments="{thread:thread}">
-						<h2>{thread.title}</h2>
-					</f:link.action>
+
+					<div class="row">
+						<div class="col-md-10">
+
+							<f:link.action action="list" controller="Post" arguments="{thread:thread}">
+								<h2>{thread.title}</h2>
+							</f:link.action>
+
+							<div class="thread-bottom small text-muted">
+								<div class="thread-creator">
+									<f:translate key="LLL:EXT:agora/Resources/Private/Language/locallang.xlf:by" />
+									<f:if condition="{forum.latestThread.creator}">
+										<f:then>
+											{thread.creator.username}
+										</f:then>
+										<f:else>
+											<f:translate key="LLL:EXT:agora/Resources/Private/Language/locallang.xlf:anonymous" />
+										</f:else>
+									</f:if>
+								</div>
+								<div class="thread-date">
+									<f:translate
+											key="tx_agora_domain_model_thread.tstamp"
+											arguments="{0:'{f:format.date(date:\'{thread.tstamp}\', format:\'{settings.thread.dateFormat}\')}'}"/>
+								</div>
+							</div>
+
+						</div>
+						<div class="col-md-2 small">
+							<div class="thread-views">
+								{thread.views -> f:count()}
+								<f:translate key="LLL:EXT:agora/Resources/Private/Language/locallang.xlf:tx_agora_domain_model_thread.views" />
+							</div>
+							<div class="thread-posts">
+								{thread.posts -> f:count()}
+								<f:translate key="LLL:EXT:agora/Resources/Private/Language/locallang.xlf:tx_agora_domain_model_thread.posts" />
+							</div>
+						</div>
+					</div>
 				</li>
 			</f:for>
 		</ul>
+
 	</f:widget.paginate>
 
-	<br/>
+	<a:forum.editable forum="{forum}" user="{user}">
+		<f:link.action class="btn btn-primary" action="new" arguments="{forum:forum}">
+			<f:translate key="tx_agora_domain_model_thread.new"/>
+		</f:link.action>
+	</a:forum.editable>
 
-	<f:link.action class="btn btn-primary" action="new" arguments="{forum:forum}">
-		<f:translate key="tx_agora_domain_model_thread.new"/>
-	</f:link.action>
+	<!-- /* Thread-List: End */ -->
+
 </f:section>

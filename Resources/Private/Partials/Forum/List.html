@@ -1,29 +1,83 @@
 {namespace a=AgoraTeam\Agora\ViewHelpers}
 
-<ul class="list-group">
-	<f:for each="{forums}" as="forum">
-		<li class="list-group-item">
+<!-- /* Agora-List-Forum: Start */ -->
+<f:if condition="{forums}">
+	<ul class="list-group forum-list">
+		<f:for each="{forums}" as="forum">
 			<a:forum.visible forum="{forum}" user="{user}">
-				<f:translate
-						key="tx_agora_domain_model_forum.tstamp"
-						arguments="{0:'{f:format.date(date:\'{forum.tstamp}\', format:\'{settings.forum.dateFormat}\')}'}" />
-				<f:if condition="{forum.readProtected}">
-					| <f:translate key="tx_agora_domain_model_forum.readProtected" />
-				</f:if>
-				<f:if condition="{forum.writeProtected}">
-					| <f:translate key="tx_agora_domain_model_forum.writeProtected" />
-				</f:if>
-				<f:if condition="{forum.modifyProtected}">
-					| <f:translate key="tx_agora_domain_model_forum.modifyProtected" />
-				</f:if>
-				<f:link.action action="list" controller="Thread" arguments="{forum:forum}">
-					<h2>{forum.title}</h2>
-					<p>{forum.description}</p>
-				</f:link.action>
-				<f:if condition="{forum.subForums}">
-					<f:render partial="Forum/List" arguments="{forums:forum.subForums, user:user}"/>
-				</f:if>
+				<li class="list-group-item">
+
+					<div class="row forum-data">
+						<div class="col-md-6">
+							<f:link.action action="list" controller="Thread" arguments="{forum:forum}">
+								<h2>{forum.title}</h2>
+								<f:if condition="{forum.description}">
+									<p>{forum.description}</p>
+								</f:if>
+							</f:link.action>
+
+							<div class="row forum-bottom">
+								<div class="col-md-12">
+									<f:if condition="{forum.readProtected}">
+										<div class="forum-readprotection">
+											<f:translate key="tx_agora_domain_model_forum.readProtected" />
+										</div>
+									</f:if>
+
+									<f:if condition="{forum.modifyProtected}">
+										<div class="forum-modifyprotection">
+											<f:translate key="tx_agora_domain_model_forum.modifyProtected" />
+										</div>
+									</f:if>
+
+									<f:if condition="{forum.writeProtected}">
+										<div class="forum-writeprotection">
+											<f:translate key="tx_agora_domain_model_forum.writeProtected" />
+										</div>
+									</f:if>
+								</div>
+							</div>
+
+						</div>
+						<div class="col-md-3 count-thread">
+							{forum.threads -> f:count()}
+							<f:translate key="LLL:EXT:agora/Resources/Private/Language/locallang.xlf:tx_agora_domain_model_forum.threads" />
+						</div>
+						<div class="col-md-3 latest-thread">
+							<f:if condition="{forum.latestThread}">
+								<f:link.action action="list" controller="Post" arguments="{thread:forum.latestThread}">
+									<f:format.crop maxCharacters="45" respectHtml="FALSE">
+										{forum.latestThread.title}
+									</f:format.crop>
+								</f:link.action>
+
+								<div class="thread-creator">
+									<f:translate key="LLL:EXT:agora/Resources/Private/Language/locallang.xlf:by" />
+									<f:if condition="{forum.latestThread.creator}">
+										<f:then>
+											{forum.latestThread.creator.username}
+										</f:then>
+										<f:else>
+											<f:translate key="LLL:EXT:agora/Resources/Private/Language/locallang.xlf:anonymous" />
+										</f:else>
+									</f:if>
+								</div>
+								<div class="thread-date">
+									<f:translate
+											key="tx_agora_domain_model_forum.tstamp"
+											arguments="{0:'{f:format.date(date:\'{forum.latestThread.tstamp}\', format:\'{settings.forum.dateFormat}\')}'}" />
+								</div>
+							</f:if>
+						</div>
+					</div>
+
+					<f:if condition="{forum.subForums}">
+						<f:render partial="Forum/List" arguments="{forums:forum.subForums, user:user}"/>
+					</f:if>
+
+				</li>
 			</a:forum.visible>
-		</li>
-	</f:for>
-</ul>
+		</f:for>
+	</ul>
+</f:if>
+<!-- /* Agora-List-Forum: End */ -->

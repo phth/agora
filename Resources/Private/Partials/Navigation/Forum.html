@@ -1,9 +1,10 @@
 {namespace a=AgoraTeam\Agora\ViewHelpers}
 
+<!-- /* Agora-Navigation-Forum: Start */ -->
 <ul class="breadcrumb">
     <li>
         <f:link.action action="list" controller="Forum">
-            Start
+            <f:translate key="LLL:EXT:agora/Resources/Private/Language/locallang.xlf:navigation.forum.start" />
         </f:link.action>
     </li>
     <f:if condition="{forum}">
@@ -16,7 +17,4 @@
         </f:for>
     </f:if>
 </ul>
-
-<f:if condition="{forum}">
-    <h2>{forum.title}</h2>
-</f:if>
+<!-- /* Agora-Navigation-Forum: End */ -->

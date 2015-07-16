@@ -164,7 +164,8 @@ class ThreadController extends ActionController {
 			'',
 			\TYPO3\CMS\Core\Messaging\AbstractMessage::OK
 		);
-		if ($this->settings['thread']['notificationsForThreadOwner'] == 1) {
+		if ($this->settings['thread']['notificationsForThreadOwner'] == 1 &&
+			is_a($this->getUser(), '\AgoraTeam\Agora\Domain\Model\User')) {
 			$user = $this->getUser();
 			$this->sendMail(
 				array(
