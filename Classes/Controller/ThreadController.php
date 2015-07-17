@@ -19,6 +19,7 @@ namespace AgoraTeam\Agora\Controller;
 	 *  GNU General Public License for more details.
 	 *  This copyright notice MUST APPEAR in all copies of the script!
 	 ***************************************************************/
+use AgoraTeam\Agora\Domain\Service\MailService;
 
 /**
  * ThreadController
@@ -167,7 +168,7 @@ class ThreadController extends ActionController {
 		if ($this->settings['thread']['notificationsForThreadOwner'] == 1 &&
 			is_a($this->getUser(), '\AgoraTeam\Agora\Domain\Model\User')) {
 			$user = $this->getUser();
-			$this->sendMail(
+			MailService::sendMail(
 				array(
 					$user->getEmail() => $user->getDisplayName()
 				),
@@ -177,7 +178,9 @@ class ThreadController extends ActionController {
 				array(
 					'user' => $user,
 					'thread' => $thread
-				)
+				),
+				'',
+				$this->settings
 			);
 		}
 		$this->redirect(

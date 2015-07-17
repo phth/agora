@@ -13,6 +13,14 @@ plugin.tx_agora {
             }
         }
 	}
+	email {
+		# cat=plugin.tx_agora/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:agora/Resources/Private/Email/Templates/
+		# cat=plugin.tx_agora/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:agora/Resources/Private/Email/Partials/
+		# cat=plugin.tx_agora/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:agora/Resources/Private/Email/Layouts/
+	}
 	persistence {
 		# cat=plugin.tx_agora//a; type=string; label=Default storage PID
 		storagePid =

@@ -19,6 +19,7 @@ namespace AgoraTeam\Agora\Controller;
 	 *  GNU General Public License for more details.
 	 *  This copyright notice MUST APPEAR in all copies of the script!
 	 ***************************************************************/
+use AgoraTeam\Agora\Service\MailService;
 
 /**
  * PostController
@@ -158,14 +159,6 @@ class PostController extends ActionController {
 	}
 
 	/**
-	 * @param $post
-	 * @return mixed
-	 */
-	public function getCreator($post) {
-		return $post->getCreator();
-	}
-
-	/**
 	 * action create
 	 *
 	 * @todo send info mails for subscribed users
@@ -200,8 +193,9 @@ class PostController extends ActionController {
 		);
 		$sender = $this->getThreadDefaultSender();
 
+			// Send mails to the observing users of the thread
 		foreach ($newPost->getThread()->getObservers() as $regularUser) {
-			$this->sendMail(
+			MailService::sendMail(
 				array(
 					$regularUser->getEmail() => $regularUser->getDisplayName()
 				),
@@ -211,12 +205,16 @@ class PostController extends ActionController {
 				array(
 					'user' => $regularUser,
 					'thread' => $newPost->getThread()
-				)
+				),
+				'',
+				$this->settings
 			);
 		}
-		if (($this->settings['post']['notificationsForPostOwner'] == 1) and is_object($creator = $newPost->getQuotedPost())) {
-			$creator = $newPost->getQuotedPost()->getCreator();
-			$this->sendMail(
+
+			// Send mails to the threadowner
+		if (($this->settings['post']['notificationsForPostOwner'] == 1) && is_object($newPost->getThread()->getCreator())) {
+			$creator = $newPost->getThread()->getCreator();
+			MailService::sendMail(
 				array(
 					$creator->getEmail() => $creator->getDisplayName()
 				),
@@ -227,9 +225,12 @@ class PostController extends ActionController {
 				array(
 					'user' => $user,
 					'post' => $newPost
-				)
+				),
+				'',
+				$this->settings
 			);
 		}
+
 		$this->redirect(
 			'list',
 			'Post',
