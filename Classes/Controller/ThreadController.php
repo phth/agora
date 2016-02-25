@@ -152,9 +152,9 @@ class ThreadController extends ActionController
         $post = new \AgoraTeam\Agora\Domain\Model\Post;
         $post->setTopic($thread->getTitle());
         $post->setText($text);
+        $post->setForum($forum);
         $now = new \DateTime();
         $post->setPublishingDate($now);
-
         if (is_a($this->getUser(), '\AgoraTeam\Agora\Domain\Model\User')) {
             $post->setCreator($this->getUser());
         }
