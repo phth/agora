@@ -11,24 +11,30 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'Agora - TYPO3 Forum',
-	'description' => '',
-	'category' => 'plugin',
-	'author' => 'Philipp Thiele, Björn Christopher Bresser',
-	'author_email' => 'philipp.thiele@phth.de, bjoern.bresser@gmail.com',
-	'state' => 'alpha',
-	'internal' => '',
-	'uploadfolder' => '1',
-	'createDirs' => '',
-	'clearCacheOnLoad' => 0,
-	'version' => '0.1.0-dev',
-	'constraints' => array(
-		'depends' => array(
-			'typo3' => '6.2',
-		),
-		'conflicts' => array(
-		),
-		'suggests' => array(
-		),
-	),
+    'title' => 'Agora - TYPO3 Forum',
+    'description' => '',
+    'category' => 'plugin',
+    'author' => 'Philipp Thiele, Björn Christopher Bresser',
+    'author_email' => 'philipp.thiele@phth.de, bjoern.bresser@gmail.com',
+    'state' => 'alpha',
+    'internal' => '',
+    'uploadfolder' => '1',
+    'createDirs' => '',
+    'clearCacheOnLoad' => 0,
+    'version' => '0.1.0-dev',
+    'constraints' => array(
+        'depends' => array(
+            'typo3' => '>=7.6,<8.0',
+        ),
+        'conflicts' => array(),
+        'suggests' => array(),
+    ),
+    'autoload' => array(
+        'psr-4' => array(
+            'AgoraTeam\\Agora\\' => 'Classes'
+        ),
+        'classmap' => array(
+            'Resources/Private/PHP'
+        )
+    )
 );

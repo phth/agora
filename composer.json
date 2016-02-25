@@ -1,0 +1,32 @@
+{
+  "name": "AgoraTeam/Agora",
+  "type": "typo3-cms-extension",
+  "description": "A TYPO3-based forum extension",
+  "keywords": [
+    "TYPO3",
+    "extension",
+    "Forum"
+  ],
+  "authors": [
+    {
+      "name": "Philipp Thiele",
+      "role": "Developer"
+    },
+    {
+      "name": "Björn Christopher Bresser",
+      "role": "Developer"
+    }
+  ],
+  "licence": [
+    "GPL-2.0+"
+  ],
+  "require": {
+    "typo3/cms-core": ">=7.6.0,<8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "AgoraTeam\\Agora\\": "Classes"
+    },
+    "classmap": ["Resources/Private/PHP"]
+  }
+}
